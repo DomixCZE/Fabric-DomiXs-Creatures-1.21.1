@@ -1,0 +1,15 @@
+{
+  "name": "domixs-creatures:spectral_tree/spectral_bat",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "domixs-creatures:entities/spectral_bat/spectral_bat",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

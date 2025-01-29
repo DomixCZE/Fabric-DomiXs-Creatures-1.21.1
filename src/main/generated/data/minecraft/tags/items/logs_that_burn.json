@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:spectral_log",
+    "domixs-creatures:spectral_wood",
+    "domixs-creatures:stripped_spectral_log",
+    "domixs-creatures:stripped_spectral_wood"
+  ]
+}

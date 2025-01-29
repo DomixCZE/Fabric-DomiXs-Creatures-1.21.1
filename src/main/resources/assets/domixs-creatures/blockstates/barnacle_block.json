@@ -1,0 +1,140 @@
+{
+  "variants": {
+    "barnacles=1,waterlogged=true": [
+      {
+        "model": "domixs-creatures:block/one_barnacle"
+      },
+      {
+        "model": "domixs-creatures:block/one_barnacle",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/one_barnacle",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/one_barnacle",
+        "y": 270
+      }
+    ],
+    "barnacles=1,waterlogged=false": [
+      {
+        "model": "domixs-creatures:block/one_barnacle"
+      },
+      {
+        "model": "domixs-creatures:block/one_barnacle",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/one_barnacle",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/one_barnacle",
+        "y": 270
+      }
+    ],
+    "barnacles=2,waterlogged=true": [
+      {
+        "model": "domixs-creatures:block/two_barnacles"
+      },
+      {
+        "model": "domixs-creatures:block/two_barnacles",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/two_barnacles",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/two_barnacles",
+        "y": 270
+      }
+    ],
+    "barnacles=2,waterlogged=false": [
+      {
+        "model": "domixs-creatures:block/two_barnacles"
+      },
+      {
+        "model": "domixs-creatures:block/two_barnacles",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/two_barnacles",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/two_barnacles",
+        "y": 270
+      }
+    ],
+    "barnacles=3,waterlogged=true": [
+      {
+        "model": "domixs-creatures:block/three_barnacles"
+      },
+      {
+        "model": "domixs-creatures:block/three_barnacles",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/three_barnacles",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/three_barnacles",
+        "y": 270
+      }
+    ],
+    "barnacles=3,waterlogged=false": [
+      {
+        "model": "domixs-creatures:block/three_barnacles"
+      },
+      {
+        "model": "domixs-creatures:block/three_barnacles",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/three_barnacles",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/three_barnacles",
+        "y": 270
+      }
+    ],
+    "barnacles=4,waterlogged=true": [
+      {
+        "model": "domixs-creatures:block/four_barnacles"
+      },
+      {
+        "model": "domixs-creatures:block/four_barnacles",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/four_barnacles",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/four_barnacles",
+        "y": 270
+      }
+    ],
+    "barnacles=4,waterlogged=false": [
+      {
+        "model": "domixs-creatures:block/four_barnacles"
+      },
+      {
+        "model": "domixs-creatures:block/four_barnacles",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/four_barnacles",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/four_barnacles",
+        "y": 270
+      }
+    ]
+  }
+}

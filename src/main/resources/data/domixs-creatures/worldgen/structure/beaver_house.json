@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#domixs-creatures:has_structure/beaver_house",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "start_pool": "domixs-creatures:beaver_house/start_pool",
+  "size": 2,
+  "start_height": {
+    "absolute": -2
+  },
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "max_distance_from_center": 50,
+  "use_expansion_hack": false
+}

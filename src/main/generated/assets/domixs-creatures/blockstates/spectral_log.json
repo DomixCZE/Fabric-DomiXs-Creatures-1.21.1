@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "domixs-creatures:block/spectral_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "domixs-creatures:block/spectral_log"
+    },
+    "axis=z": {
+      "model": "domixs-creatures:block/spectral_log_horizontal",
+      "x": 90
+    }
+  }
+}

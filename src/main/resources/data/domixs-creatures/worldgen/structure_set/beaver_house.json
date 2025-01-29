@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "domixs-creatures:beaver_house",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1572701435,
+    "spacing": 15,
+    "separation": 3
+  }
+}

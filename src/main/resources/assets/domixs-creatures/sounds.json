@@ -1,0 +1,56 @@
+{
+  "spectral_bat_screech": {
+    "subtitle": "sounds.domixs-creatures.spectral_bat_screech",
+    "sounds": [
+      "domixs-creatures:spectral_bat_screech"
+    ]
+  },
+
+
+  "whale_ambient": {
+    "subtitle": "sounds.domixs-creatures.whale_ambient",
+    "sounds": [
+      "domixs-creatures:whale_ambient_1",
+      "domixs-creatures:whale_ambient_2"
+    ]
+  },
+  "whale_hurt": {
+    "subtitle": "sounds.domixs-creatures.whale_hurt",
+    "sounds": [
+      "domixs-creatures:whale_hurt"
+    ]
+  },
+  "whale_death": {
+    "subtitle": "sounds.domixs-creatures.whale_death",
+    "sounds": [
+      "domixs-creatures:whale_death"
+    ]
+  },
+
+
+  "crocodile_ambient": {
+    "subtitle": "sounds.domixs-creatures.crocodile_ambient",
+    "sounds": [
+      "domixs-creatures:crocodile_growl"
+    ]
+  },
+  "crocodile_hurt": {
+    "subtitle": "sounds.domixs-creatures.crocodile_hurt",
+    "sounds": [
+      "domixs-creatures:crocodile_hurt1"
+    ]
+  },
+  "crocodile_death": {
+    "subtitle": "sounds.domixs-creatures.crocodile_death",
+    "sounds": [
+      "domixs-creatures:crocodile_death"
+    ]
+  },
+
+  "tiger_hurt": {
+    "subtitle": "sounds.domixs-creatures.tiger_hurt",
+    "sounds": [
+      "domixs-creatures:tiger_hurt"
+    ]
+  }
+}

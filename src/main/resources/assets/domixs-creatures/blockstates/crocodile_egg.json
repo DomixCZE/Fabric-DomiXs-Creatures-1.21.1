@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "eggs=1,hatch=0": [
+      { "model": "domixs-creatures:block/crocodile_egg_1" },
+      { "model": "domixs-creatures:block/crocodile_egg_1", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_1", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_1", "y": 270 }
+    ],
+    "eggs=1,hatch=1": [
+      { "model": "domixs-creatures:block/crocodile_egg_1_slightly_cracked" },
+      { "model": "domixs-creatures:block/crocodile_egg_1_slightly_cracked", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_1_slightly_cracked", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_1_slightly_cracked", "y": 270 }
+    ],
+    "eggs=1,hatch=2": [
+      { "model": "domixs-creatures:block/crocodile_egg_1_very_cracked" },
+      { "model": "domixs-creatures:block/crocodile_egg_1_very_cracked", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_1_very_cracked", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_1_very_cracked", "y": 270 }
+    ],
+    "eggs=2,hatch=0": [
+      { "model": "domixs-creatures:block/crocodile_egg_2" },
+      { "model": "domixs-creatures:block/crocodile_egg_2", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_2", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_2", "y": 270 }
+    ],
+    "eggs=2,hatch=1": [
+      { "model": "domixs-creatures:block/crocodile_egg_2_slightly_cracked" },
+      { "model": "domixs-creatures:block/crocodile_egg_2_slightly_cracked", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_2_slightly_cracked", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_2_slightly_cracked", "y": 270 }
+    ],
+    "eggs=2,hatch=2": [
+      { "model": "domixs-creatures:block/crocodile_egg_2_very_cracked" },
+      { "model": "domixs-creatures:block/crocodile_egg_2_very_cracked", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_2_very_cracked", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_2_very_cracked", "y": 270 }
+    ],
+    "eggs=3,hatch=0": [
+      { "model": "domixs-creatures:block/crocodile_egg_3" },
+      { "model": "domixs-creatures:block/crocodile_egg_3", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_3", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_3", "y": 270 }
+    ],
+    "eggs=3,hatch=1": [
+      { "model": "domixs-creatures:block/crocodile_egg_3_slightly_cracked" },
+      { "model": "domixs-creatures:block/crocodile_egg_3_slightly_cracked", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_3_slightly_cracked", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_3_slightly_cracked", "y": 270 }
+    ],
+    "eggs=3,hatch=2": [
+      { "model": "domixs-creatures:block/crocodile_egg_3_very_cracked" },
+      { "model": "domixs-creatures:block/crocodile_egg_3_very_cracked", "y": 90 },
+      { "model": "domixs-creatures:block/crocodile_egg_3_very_cracked", "y": 180 },
+      { "model": "domixs-creatures:block/crocodile_egg_3_very_cracked", "y": 270 }
+    ]
+  }
+}

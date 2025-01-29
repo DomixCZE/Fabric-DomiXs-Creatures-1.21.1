@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "domixs-creatures:block/spectral_planks",
+    "side": "domixs-creatures:block/spectral_planks",
+    "top": "domixs-creatures:block/spectral_planks"
+  }
+}

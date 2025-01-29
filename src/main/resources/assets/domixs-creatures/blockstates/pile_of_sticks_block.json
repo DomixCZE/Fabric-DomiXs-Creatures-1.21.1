@@ -1,0 +1,72 @@
+{
+  "variants": {
+    "natural=false,waterlogged=false": [
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block"
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 270
+      }
+    ],
+    "natural=false,waterlogged=true": [
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block"
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 270
+      }
+    ],
+    "natural=true,waterlogged=false": [
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block"
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 270
+      }
+    ],
+    "natural=true,waterlogged=true": [
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block"
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 90
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 180
+      },
+      {
+        "model": "domixs-creatures:block/pile_of_sticks_block",
+        "y": 270
+      }
+    ]
+  }
+}

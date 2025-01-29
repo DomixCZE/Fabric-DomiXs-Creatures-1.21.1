@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ALA"
+  ],
+  "key": {
+    "A": {
+      "item": "domixs-creatures:small_antler"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "domixs-creatures:small_antler_hat",
+    "count": 1
+  }
+}

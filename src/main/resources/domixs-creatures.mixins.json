@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "net.domixcze.domixscreatures.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"SoundManagerMixin",
+		"BrewingRecipeRegistryMixin",
+		"TrunkPlacerTypeInvoker",
+		"FoliagePlacerTypeInvoker"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

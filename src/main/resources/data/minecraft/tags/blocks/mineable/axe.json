@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:spectral_planks",
+    "domixs-creatures:spectral_stairs",
+    "domixs-creatures:spectral_slab",
+    "domixs-creatures:spectral_fence",
+    "domixs-creatures:spectral_door",
+    "domixs-creatures:spectral_trapdoor",
+    "domixs-creatures:spectral_button",
+    "domixs-creatures:spectral_pressure_plate"
+  ]
+}

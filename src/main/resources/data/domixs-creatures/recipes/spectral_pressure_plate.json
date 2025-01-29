@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "domixs-creatures:spectral_planks"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "domixs-creatures:spectral_pressure_plate"
+  },
+  "show_notification": true
+}

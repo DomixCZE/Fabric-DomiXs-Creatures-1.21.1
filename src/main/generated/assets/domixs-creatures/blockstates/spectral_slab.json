@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "domixs-creatures:block/spectral_slab"
+    },
+    "type=double": {
+      "model": "domixs-creatures:block/spectral_planks"
+    },
+    "type=top": {
+      "model": "domixs-creatures:block/spectral_slab_top"
+    }
+  }
+}

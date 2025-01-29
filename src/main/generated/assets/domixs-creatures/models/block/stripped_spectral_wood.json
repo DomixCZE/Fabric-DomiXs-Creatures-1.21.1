@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "domixs-creatures:block/stripped_spectral_log",
+    "side": "domixs-creatures:block/stripped_spectral_log"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "domixs-creatures:spectral_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "domixs-creatures:spectral_planks"
+  }
+}
