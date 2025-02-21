@@ -7,6 +7,6 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class TestRenderer extends GeoEntityRenderer<TestEntity> {
     public TestRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new TestModel());
-        this.addRenderLayer(new TestLayer(this));
+        //this.addRenderLayer(new TestLayer(this));
     }
 }*/

@@ -24,6 +24,9 @@ public class ModItemGroups {
                         entries.add(ModItems.IGUANA_SPAWN_EGG);
                         entries.add(ModItems.TIGER_SPAWN_EGG);
                         entries.add(ModItems.DEER_SPAWN_EGG);
+                        entries.add(ModItems.MOOSE_SPAWN_EGG);
+                        entries.add(ModItems.SHARK_SPAWN_EGG);
+                        entries.add(ModItems.EEL_SPAWN_EGG);
                         entries.add(ModItems.CROCODILE_SPAWN_EGG);
                         entries.add(ModBlocks.CROCODILE_EGG);
                         entries.add(ModItems.FIRE_SALAMANDER_SCALES);
@@ -32,6 +35,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CROCODILE_SCALE);
                         entries.add(ModItems.CROCODILE_SCALE_ALBINO);
                         entries.add(ModItems.CROCODILE_TOOTH);
+                        entries.add(ModItems.SHARK_TOOTH);
                         entries.add(ModItems.GOLDFISH_BUCKET);
                         entries.add(ModItems.GOLDFISH);
                         entries.add(ModItems.SKULL);

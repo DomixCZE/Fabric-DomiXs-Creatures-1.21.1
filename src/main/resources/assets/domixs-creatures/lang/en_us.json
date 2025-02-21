@@ -10,6 +10,9 @@
   "entity.domixs-creatures.iguana": "Iguana",
   "entity.domixs-creatures.tiger": "Tiger",
   "entity.domixs-creatures.deer": "Deer",
+  "entity.domixs-creatures.moose": "Moose",
+  "entity.domixs-creatures.shark": "Shark",
+  "entity.domixs-creatures.eel": "Eel",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Fire Salamander Spawn Egg",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Spectral Bat Spawn Egg",
@@ -21,6 +24,9 @@
   "item.domixs-creatures.iguana_spawn_egg": "Iguana Spawn Egg",
   "item.domixs-creatures.tiger_spawn_egg": "Tiger Spawn Egg",
   "item.domixs-creatures.deer_spawn_egg": "Deer Spawn Egg",
+  "item.domixs-creatures.moose_spawn_egg": "Moose Spawn Egg",
+  "item.domixs-creatures.shark_spawn_egg": "Shark Spawn Egg",
+  "item.domixs-creatures.eel_spawn_egg": "Eel Spawn Egg",
 
   "item.domixs-creatures.fire_salamander_scales": "Fire Salamander Scales",
   "item.domixs-creatures.spectral_bat_wing": "Spectral Bat Wing",
@@ -28,6 +34,7 @@
   "item.domixs-creatures.crocodile_scale": "Crocodile Scale",
   "item.domixs-creatures.crocodile_scale_albino": "Albino Crocodile Scale",
   "item.domixs-creatures.crocodile_tooth": "Crocodile Tooth",
+  "item.domixs-creatures.shark_tooth": "Shark Tooth",
   "item.domixs-creatures.goldfish_bucket": "Bucket of Goldfish",
   "item.domixs-creatures.goldfish": "Goldfish",
   "item.domixs-creatures.skull": "Skull",
@@ -56,6 +63,8 @@
 
   "effect.domixs-creatures.deafen": "Deafen",
   "effect.domixs-creatures.echolocation": "Echolocation",
+  "effect.domixs-creatures.bleeding": "Bleeding",
+  "effect.domixs-creatures.electrified": "Electrified",
 
   "item.minecraft.potion.effect.echolocation_potion": "Potion of Echolocation",
 
@@ -80,6 +89,10 @@
   "block.domixs-creatures.spectral_leaves": "Spectral Leaves",
   "block.domixs-creatures.spectral_sapling": "Spectral Sapling",
 
+  "sounds.domixs-creatures.zap": "Zap",
+
+  "sounds.domixs-creatures.eel_attack": "Eel attacks",
+
   "sounds.domixs-creatures.whale_ambient": "Whale sings",
   "sounds.domixs-creatures.whale_hurt": "Whale hurts",
   "sounds.domixs-creatures.whale_death": "Whale dies",
@@ -90,7 +103,7 @@
   "sounds.domixs-creatures.crocodile_hurt": "Crocodile hurts",
   "sounds.domixs-creatures.crocodile_death": "Crocodile dies",
 
-  "sounds.domixs-creatures.tiger_hurt": "Tiger Hurts",
+  "sounds.domixs-creatures.tiger_hurt": "Tiger hurts",
 
   "advancement.domixs-creatures.root": "Welcome to Domix's Creatures",
   "advancement.domixs-creatures.my_ears": "MY EARS!",
@@ -106,5 +119,10 @@
   "advancement.domixs-creatures.adventurer_hat.desc": "Adventurer's Hat",
   "advancement.domixs-creatures.ghost_of_the_swamp.desc": "Obtain the Scales of a Rare White Crocodile",
   "advancement.domixs-creatures.ghost_of_the_jungle.desc": "Tame a White Tiger",
-  "advancement.domixs-creatures.king_of_the_forest.desc": "Get Large Deer Antler"
+  "advancement.domixs-creatures.king_of_the_forest.desc": "Get Large Deer Antler",
+
+  "death.attack.bleeding": "%1$s bled out.",
+  "death.attack.bleeding.player": "%1$s bled out due to %2$s.",
+  "death.attack.electric": "%1$s was zapped too hard",
+  "death.attack.electric.player": "%1$s was zapped too hard due to %2$s"
 }

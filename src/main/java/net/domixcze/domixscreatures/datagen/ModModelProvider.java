@@ -39,6 +39,12 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.DEER_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MOOSE_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.SHARK_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.EEL_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
@@ -53,6 +59,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BARK, Models.GENERATED);
         itemModelGenerator.register(ModItems.SAWDUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.WARDEN_TENDRIL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHARK_TOOTH, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.SMALL_ANTLER, Models.GENERATED);
         itemModelGenerator.register(ModItems.MEDIUM_ANTLER, Models.GENERATED);

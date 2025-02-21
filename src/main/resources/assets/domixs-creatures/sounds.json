@@ -7,6 +7,23 @@
   },
 
 
+  "eel_attack": {
+    "subtitle": "sounds.domixs-creatures.eel_attack",
+    "sounds": [
+      "domixs-creatures:eel_attack"
+    ]
+  },
+
+
+  "zap": {
+    "subtitle": "sounds.domixs-creatures.zap",
+    "sounds": [
+      "domixs-creatures:zap_1",
+      "domixs-creatures:zap_2"
+    ]
+  },
+
+
   "whale_ambient": {
     "subtitle": "sounds.domixs-creatures.whale_ambient",
     "sounds": [

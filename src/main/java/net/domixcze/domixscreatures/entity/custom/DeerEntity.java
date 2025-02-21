@@ -3,8 +3,10 @@ package net.domixcze.domixscreatures.entity.custom;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.deer.DeerAntlerSize;
 import net.domixcze.domixscreatures.entity.client.deer.DeerVariants;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -14,17 +16,25 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -34,12 +44,16 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
+public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowLayerable {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
+    private int snowTicks = 0;
+    private int snowMeltTimer = 0;
+
+    public static final TrackedData<Boolean> HAS_SNOW_LAYER = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> ANTLER_SIZE = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static final TrackedData<Boolean> SLEEPING = DataTracker.registerData(TigerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static final TrackedData<Boolean> SLEEPING = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public DeerEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -58,13 +72,17 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new FleeGoal<>(this, PlayerEntity.class, 10.0f, 1.0, 1.5));
         this.goalSelector.add(2, new FleeGoal<>(this, WolfEntity.class, 10.0f, 1.0, 1.5));
-        this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
+        this.goalSelector.add(2, new FleeGoal<>(this, PolarBearEntity.class, 10.0f, 1.0, 1.5));
+        this.goalSelector.add(2, new FleeGoal<>(this, TigerEntity.class, 10.0f, 1.0, 1.5));
+        this.goalSelector.add(3, new FollowParentGoal(this, 1.25));
+        this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(4, new LookAroundGoal(this));
     }
 
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
+        this.dataTracker.startTracking(HAS_SNOW_LAYER, false);
         this.dataTracker.startTracking(VARIANT, DeerVariants.BROWN.ordinal());
         this.dataTracker.startTracking(ANTLER_SIZE, DeerAntlerSize.NONE.ordinal());
         this.dataTracker.startTracking(SLEEPING, false);
@@ -103,6 +121,24 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
         if (this.isSleeping()) {
             this.getNavigation().stop();
         }
+
+        boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
+
+        if (this.isInSnowyBiome() && isSnowing && !this.hasSnowLayer()) {
+            snowTicks++;
+            if (snowTicks >= 600) {
+                this.setHasSnowLayer(true);
+                snowTicks = 0;
+            }
+        }
+
+        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
+            snowMeltTimer++;
+            if (snowMeltTimer >= 200) {
+                this.setHasSnowLayer(false);
+                snowMeltTimer = 0;
+            }
+        }
     }
 
     @Override
@@ -129,6 +165,33 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
         return entityData;
     }
+
+    @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getStackInHand(hand);
+
+        if (itemStack.isIn(ItemTags.SHOVELS)) {
+            if (this.hasSnowLayer()) {
+                this.setHasSnowLayer(false);
+                snowMeltTimer = 0;
+
+                if (!player.isCreative()) {
+                    itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                }
+
+                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+
+                if (!this.getWorld().isClient) {
+                    int count = 3 + this.getWorld().random.nextInt(2);
+                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
+                }
+
+                return ActionResult.SUCCESS;
+            }
+        }
+        return super.interactMob(player, hand);
+    }
+
 
     @Override
     public EntityDimensions getDimensions(EntityPose pose) {
@@ -209,6 +272,9 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
+        nbt.putBoolean("HasSnowLayer", this.hasSnowLayer());
+        nbt.putInt("SnowTicks", this.snowTicks);
+        nbt.putInt("SnowMeltTimer", this.snowMeltTimer);
         nbt.putBoolean("Sleeping", this.isSleeping());
         nbt.putInt("Variant", this.getVariant().ordinal());
         nbt.putInt("AntlerSize", this.getAntlerSize().ordinal());
@@ -217,9 +283,27 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
+        this.setHasSnowLayer(nbt.getBoolean("HasSnowLayer"));
+        this.snowTicks = nbt.getInt("SnowTicks");
+        this.snowMeltTimer = nbt.getInt("SnowMeltTimer");
         this.setSleeping(nbt.getBoolean("Sleeping"));
         this.setVariant(DeerVariants.values()[nbt.getInt("Variant")]);
         this.setAntlerSize(DeerAntlerSize.values()[nbt.getInt("AntlerSize")]);
+    }
+
+    public boolean isInSnowyBiome() {
+        BlockPos pos = this.getBlockPos();
+        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
+        Biome biome = biomeEntry.value();
+        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
+    }
+
+    public boolean hasSnowLayer() {
+        return this.dataTracker.get(HAS_SNOW_LAYER);
+    }
+
+    public void setHasSnowLayer(boolean hasSnow) {
+        this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
     }
 
     @Override
@@ -258,7 +342,6 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
             }
             return PlayState.CONTINUE;
         }
-
         return PlayState.STOP;
     }
 
@@ -284,5 +367,10 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy {
         public boolean shouldContinue() {
             return !this.deer.isSleeping() && super.shouldContinue();
         }
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        this.playSound(SoundEvents.ENTITY_HORSE_STEP, 0.15F, 1.0F);
     }
 }

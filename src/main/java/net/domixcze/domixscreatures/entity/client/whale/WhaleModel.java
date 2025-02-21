@@ -15,20 +15,9 @@ public class WhaleModel extends GeoModel<WhaleEntity> {
 
     @Override
     public Identifier getTextureResource(WhaleEntity animatable) {
-
-        int customNumber = animatable.getBarnacleCount();
-        return switch (customNumber) {
-            case 0 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_9.png");
-            case 1 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_8.png");
-            case 2 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_7.png");
-            case 3 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_6.png");
-            case 4 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_5.png");
-            case 5 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_4.png");
-            case 6 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_3.png");
-            case 7 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_2.png");
-            case 8 -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_1.png");
-            default -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_barnacles_0.png");
-        };
+        return animatable.getVariant() == WhaleVariants.ALBINO
+                ? new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_albino.png")
+                : new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale.png");
     }
 
     @Override

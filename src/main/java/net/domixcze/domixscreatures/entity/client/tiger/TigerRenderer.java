@@ -9,6 +9,7 @@ public class TigerRenderer extends GeoEntityRenderer<TigerEntity> {
     public TigerRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new TigerModel());
         this.addRenderLayer(new AutoGlowingGeoLayer<>(this));
+        this.addRenderLayer(new TigerSnowyLayer(this));
         this.shadowRadius = 0.8F;
     }
 }

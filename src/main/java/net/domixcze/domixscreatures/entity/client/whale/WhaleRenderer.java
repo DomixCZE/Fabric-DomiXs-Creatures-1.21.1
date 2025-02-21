@@ -7,6 +7,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class WhaleRenderer extends GeoEntityRenderer<WhaleEntity> {
     public WhaleRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new WhaleModel());
+        this.addRenderLayer(new WhaleBarnacleLayer(this));
         this.shadowRadius = 1.6F;
     }
 }

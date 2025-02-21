@@ -192,7 +192,7 @@
 				}
 			}
 		},
-		"animation.whale.idle": {
+		"animation.whale.idle_swim": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {

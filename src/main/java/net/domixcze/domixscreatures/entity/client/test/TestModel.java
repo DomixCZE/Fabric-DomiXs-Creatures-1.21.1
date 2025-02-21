@@ -3,6 +3,8 @@
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.entity.custom.TestEntity;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 
 public class TestModel extends GeoModel<TestEntity> {

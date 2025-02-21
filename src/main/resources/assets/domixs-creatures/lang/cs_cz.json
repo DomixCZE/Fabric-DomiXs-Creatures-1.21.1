@@ -10,6 +10,9 @@
   "entity.domixs-creatures.iguana": "Leguán",
   "entity.domixs-creatures.tiger": "Tiger",
   "entity.domixs-creatures.deer": "Jelen",
+  "entity.domixs-creatures.moose": "Los",
+  "entity.domixs-creatures.shark": "Žralok",
+  "entity.domixs-creatures.eel": "Úhoř",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -21,6 +24,9 @@
   "item.domixs-creatures.iguana_spawn_egg": "Vajíčko s Leguánem",
   "item.domixs-creatures.tiger_spawn_egg": "Vajíčko s Tigrem",
   "item.domixs-creatures.deer_spawn_egg": "Vajíčko s Jelenem",
+  "item.domixs-creatures.moose_spawn_egg": "Vajíčko s Losem",
+  "item.domixs-creatures.shark_spawn_egg": "Vajíčko se Žralokem",
+  "item.domixs-creatures.eel_spawn_egg": "Vajíčko s Úhořem",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -28,6 +34,7 @@
   "item.domixs-creatures.crocodile_scale": "Šupina Krokodýla",
   "item.domixs-creatures.crocodile_scale_albino": "Šupina Albínského Krokodýla",
   "item.domixs-creatures.crocodile_tooth": "Zub Krokodýla",
+  "item.domixs-creatures.shark_tooth": "Zub Žraloka",
   "item.domixs-creatures.goldfish_bucket": "Kbelík se Zlatou Rybkou",
   "item.domixs-creatures.goldfish": "Zlatá Rybka",
   "item.domixs-creatures.skull": "Lebka",
@@ -56,6 +63,8 @@
 
   "effect.domixs-creatures.deafen": "Hluchý",
   "effect.domixs-creatures.echolocation": "Echolokace",
+  "effect.domixs-creatures.bleeding": "Krvácení",
+  "effect.domixs-creatures.electrified": "Elektrizovaný",
 
   "item.minecraft.potion.effect.echolocation_potion": "Lektvar Echolokace",
 
@@ -79,6 +88,10 @@
   "block.domixs-creatures.spectral_trapdoor": "Spektrální Poklop",
   "block.domixs-creatures.spectral_leaves": "Spektrální Listí",
   "block.domixs-creatures.spectral_sapling": "Sazenice Spektrálního Stromu",
+
+  "sounds.domixs-creatures.zap": "Elektřina",
+
+  "sounds.domixs-creatures.eel_attack": "Úhoř útočí",
 
   "sounds.domixs-creatures.whale_ambient": "Velryba zpívá",
   "sounds.domixs-creatures.whale_hurt": "Velryba byla zraněna",
@@ -106,5 +119,10 @@
   "advancement.domixs-creatures.adventurer_hat.desc": "Klobouk Dobrodruha",
   "advancement.domixs-creatures.ghost_of_the_swamp.desc": "Získej Šupinu Vzácného Bílého Krokodýla",
   "advancement.domixs-creatures.ghost_of_the_jungle.desc": "Ochoč Bílého Tigra",
-  "advancement.domixs-creatures.king_of_the_forest.desc": "Získej Velké Jelení Paroží"
+  "advancement.domixs-creatures.king_of_the_forest.desc": "Získej Velké Jelení Paroží",
+
+  "death.attack.bleeding": "%1$s vykrvácel",
+  "death.attack.bleeding.player": "%1$s vykrvácel kvůli %2$s",
+  "death.attack.electric": "%1$s byl zelektrizován",
+  "death.attack.electric.player": "%1$s byl zelektrizován kvůli %2$s"
 }

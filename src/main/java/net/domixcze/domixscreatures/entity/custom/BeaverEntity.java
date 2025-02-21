@@ -4,12 +4,15 @@ import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -24,14 +27,22 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -44,12 +55,15 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.Random;
 
-public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy {
+public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowLayerable {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
+    private int snowTicks = 0;
+    private int snowMeltTimer = 0;
+
+    public static final TrackedData<Boolean> HAS_SNOW_LAYER = DataTracker.registerData(BeaverEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<BlockPos> HOME_POS = DataTracker.registerData(BeaverEntity.class, TrackedDataHandlerRegistry.BLOCK_POS);
     public static final TrackedData<Boolean> SLEEPING = DataTracker.registerData(BeaverEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(BeaverEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public BeaverEntity(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -72,13 +86,19 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add( 1, new StripLogGoal(this, 1,10));
         this.goalSelector.add(1, new StayNearHomeGoal(this, 1.0, 16, 10));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.75f, 1));
+        this.goalSelector.add(2, new FollowParentGoal(this, 1.0));
+        this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
+    }
+
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+        return dimensions.height * 0.65F;
     }
 
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
+        this.dataTracker.startTracking(HAS_SNOW_LAYER, false);
         this.dataTracker.startTracking(HOME_POS, BlockPos.ORIGIN);
         this.dataTracker.startTracking(SLEEPING, false);
         this.dataTracker.startTracking(VARIANT, BeaverVariants.BROWN.getId());
@@ -133,6 +153,32 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy {
             }
         }
         return baby;
+    }
+
+    @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getStackInHand(hand);
+
+        if (itemStack.isIn(ItemTags.SHOVELS)) {
+            if (this.hasSnowLayer()) {
+                this.setHasSnowLayer(false);
+                snowMeltTimer = 0;
+
+                if (!player.isCreative()) {
+                    itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                }
+
+                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+
+                if (!this.getWorld().isClient) {
+                    int count = 3 + this.getWorld().random.nextInt(2);
+                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
+                }
+
+                return ActionResult.SUCCESS;
+            }
+        }
+        return super.interactMob(player, hand);
     }
 
     @Override
@@ -245,6 +291,39 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy {
         if (this.isSleeping()) {
             this.getNavigation().stop();
         }
+
+        boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
+
+        if (this.isInSnowyBiome() && isSnowing && !this.hasSnowLayer()) {
+            snowTicks++;
+            if (snowTicks >= 600) {
+                this.setHasSnowLayer(true);
+                snowTicks = 0;
+            }
+        }
+
+        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
+            snowMeltTimer++;
+            if (snowMeltTimer >= 200) {
+                this.setHasSnowLayer(false);
+                snowMeltTimer = 0;
+            }
+        }
+    }
+
+    public boolean isInSnowyBiome() {
+        BlockPos pos = this.getBlockPos();
+        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
+        Biome biome = biomeEntry.value();
+        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
+    }
+
+    public boolean hasSnowLayer() {
+        return this.dataTracker.get(HAS_SNOW_LAYER);
+    }
+
+    public void setHasSnowLayer(boolean hasSnow) {
+        this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
     }
 
     public void setHomePos(BlockPos pos) {
@@ -257,6 +336,9 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
+        nbt.putBoolean("HasSnowLayer", this.hasSnowLayer());
+        nbt.putInt("SnowTicks", this.snowTicks);
+        nbt.putInt("SnowMeltTimer", this.snowMeltTimer);
         nbt.putInt("Variant", this.getVariant().getId());
         nbt.putBoolean("Sleeping", this.isSleeping());
         BlockPos homePos = this.getHomePos();
@@ -269,6 +351,9 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
+        this.setHasSnowLayer(nbt.getBoolean("HasSnowLayer"));
+        this.snowTicks = nbt.getInt("SnowTicks");
+        this.snowMeltTimer = nbt.getInt("SnowMeltTimer");
         this.setVariant(BeaverVariants.byId(nbt.getInt("Variant")));
         this.setSleeping(nbt.getBoolean("Sleeping"));
         if (nbt.contains("HomeX") && nbt.contains("HomeY") && nbt.contains("HomeZ")) {

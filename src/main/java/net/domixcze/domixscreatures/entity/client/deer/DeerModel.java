@@ -1,7 +1,6 @@
 package net.domixcze.domixscreatures.entity.client.deer;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
-import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.entity.custom.DeerEntity;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib.model.GeoModel;

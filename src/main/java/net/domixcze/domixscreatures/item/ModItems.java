@@ -32,6 +32,12 @@ public class ModItems {
             new FabricItemSettings()));
     public static final Item DEER_SPAWN_EGG = registerItem("deer_spawn_egg", new SpawnEggItem(ModEntities.DEER, 0x61452e, 0xcba379,
             new FabricItemSettings()));
+    public static final Item MOOSE_SPAWN_EGG = registerItem("moose_spawn_egg", new SpawnEggItem(ModEntities.MOOSE, 0x3c2f29, 0x61493a,
+            new FabricItemSettings()));
+    public static final Item SHARK_SPAWN_EGG = registerItem("shark_spawn_egg", new SpawnEggItem(ModEntities.SHARK, 0x2a3d52, 0x4b7586,
+            new FabricItemSettings()));
+    public static final Item EEL_SPAWN_EGG = registerItem("eel_spawn_egg", new SpawnEggItem(ModEntities.EEL, 0x3c671a, 0x628923,
+            new FabricItemSettings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new FabricItemSettings().maxCount(1)));
@@ -48,6 +54,7 @@ public class ModItems {
     public static final Item BARK = registerItem("bark", new Item(new FabricItemSettings()));
     public static final Item SAWDUST = registerItem("sawdust", new Item(new FabricItemSettings()));
     public static final Item WARDEN_TENDRIL = registerItem("warden_tendril", new Item(new FabricItemSettings()));
+    public static final Item SHARK_TOOTH = registerItem("shark_tooth", new Item(new FabricItemSettings()));
 
     public static final Item SMALL_ANTLER = registerItem("small_antler", new SmallAntlerItem(new FabricItemSettings()));
     public static final Item MEDIUM_ANTLER = registerItem("medium_antler", new MediumAntlerItem(new FabricItemSettings()));

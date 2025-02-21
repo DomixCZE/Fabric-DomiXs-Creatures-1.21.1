@@ -23,9 +23,9 @@ public class DeerAntlerLayer extends GeoRenderLayer<DeerEntity> {
             String antlerTexture = null;
 
             switch (animatable.getAntlerSize()) {
-                case SMALL -> antlerTexture = "antlers_small.png";
-                case MEDIUM -> antlerTexture = "antlers_medium.png";
-                case LARGE -> antlerTexture = "antlers_large.png";
+                case SMALL -> antlerTexture = "deer_antlers_small.png";
+                case MEDIUM -> antlerTexture = "deer_antlers_medium.png";
+                case LARGE -> antlerTexture = "deer_antlers_large.png";
                 default -> {}
             }
 

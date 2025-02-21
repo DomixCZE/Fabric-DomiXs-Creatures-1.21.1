@@ -2,8 +2,11 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.FireSalamanderMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderVariants;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -41,7 +44,9 @@ import java.util.UUID;
 
 public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
-    private static final TrackedData<Boolean> IS_OBSIDIAN_VARIANT = DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> VARIANT = DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Boolean> SITTING = DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
     private static final int SMELTING_COOLDOWN = 300;
     private int smeltingTimer = 0;
     private ItemStack smeltingItem = ItemStack.EMPTY;
@@ -53,11 +58,6 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.LAVA, 0.0F);
         this.setPathfindingPenalty(PathNodeType.WATER, -1.0F);
         this.setPathfindingPenalty(PathNodeType.WATER_BORDER, -1.0F);
-    }
-
-    @Override
-    public boolean canImmediatelyDespawn(double distanceSquared) {
-        return !this.hasCustomName() && !this.isTamed();
     }
 
     @Override
@@ -91,6 +91,85 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         return ModEntities.FIRE_SALAMANDER.create(world);
     }
 
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+
+        this.setVariant(FireSalamanderVariants.MAGMA);
+
+        return entityData;
+    }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(VARIANT, FireSalamanderVariants.MAGMA.getId());
+        this.dataTracker.startTracking(SITTING, false);
+    }
+
+    public FireSalamanderVariants getVariant() {
+        return FireSalamanderVariants.byId(this.dataTracker.get(VARIANT));
+    }
+
+    public void setVariant(FireSalamanderVariants variant) {
+        this.dataTracker.set(VARIANT, variant.getId());
+    }
+
+    public boolean isObsidianVariant() {
+        return this.getVariant() == FireSalamanderVariants.OBSIDIAN;
+    }
+
+    public boolean isSitting() {
+        return this.dataTracker.get(SITTING);
+    }
+
+    public void setSit(PlayerEntity player, boolean sitting) {
+        if (player == getOwner()) {
+            this.dataTracker.set(SITTING, sitting);
+            super.setSitting(sitting);
+        }
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putInt("Variant", this.getVariant().getId());
+        if (this.getOwner() != null) {
+            nbt.putUuid("Owner", this.getOwnerUuid());
+        }
+        nbt.putBoolean("isSitting", this.dataTracker.get(SITTING));
+
+        if (!this.smeltingItem.isEmpty()) {
+            NbtCompound itemNbt = new NbtCompound();
+            this.smeltingItem.writeNbt(itemNbt);
+            nbt.put("SmeltingItem", itemNbt);
+        }
+        nbt.putInt("SmeltingTimer", this.smeltingTimer);
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        if (nbt.contains("Variant")) {
+            this.setVariant(FireSalamanderVariants.byId(nbt.getInt("Variant")));
+        } else if (nbt.contains("IsObsidianVariant")) {
+            // Convert old boolean flag to the new enum-based system
+            boolean wasObsidian = nbt.getBoolean("IsObsidianVariant");
+            this.setVariant(wasObsidian ? FireSalamanderVariants.OBSIDIAN : FireSalamanderVariants.MAGMA);
+        }
+        UUID ownerUUID = nbt.contains("Owner") ? nbt.getUuid("Owner") : null;
+        if (ownerUUID != null) {
+            this.setOwnerUuid(ownerUUID);
+        }
+        this.dataTracker.set(SITTING, nbt.getBoolean("isSitting"));
+
+        if (nbt.contains("SmeltingItem")) {
+            this.smeltingItem = ItemStack.fromNbt(nbt.getCompound("SmeltingItem"));
+        } else {
+            this.smeltingItem = ItemStack.EMPTY;
+        }
+        this.smeltingTimer = nbt.getInt("SmeltingTimer");
+    }
 
     @Override
     public void tickMovement() {
@@ -105,7 +184,6 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
             }
         }
     }
-
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
@@ -146,7 +224,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     public void tick() {
         super.tick();
         if (this.isWet() && !this.isObsidianVariant()) {
-            this.setVariant(true);
+            this.setVariant(FireSalamanderVariants.OBSIDIAN);
         }
 
         if (!this.smeltingItem.isEmpty()) {
@@ -155,31 +233,6 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
             } else {
                 smeltItem();
             }
-        }
-    }
-
-    public void setVariant(boolean isObsidian) {
-        if (this.isObsidianVariant() != isObsidian) {
-            this.dataTracker.set(IS_OBSIDIAN_VARIANT, isObsidian);
-            this.getWorld().sendEntityStatus(this, (byte) 10);
-        }
-    }
-
-    public boolean isObsidianVariant() {
-        return this.dataTracker.get(IS_OBSIDIAN_VARIANT);
-    }
-
-    private static final TrackedData<Boolean> SITTING =
-            DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
-    public boolean isSitting() {
-        return this.dataTracker.get(SITTING);
-    }
-
-    public void setSit(PlayerEntity player, boolean sitting) {
-        if (player == getOwner()) {
-            this.dataTracker.set(SITTING, sitting);
-            super.setSitting(sitting);
         }
     }
 
@@ -249,48 +302,6 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
             }
             this.smeltingItem = ItemStack.EMPTY;
         }
-    }
-
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        if (this.getOwner() != null) {
-            nbt.putUuid("Owner", this.getOwnerUuid());
-        }
-        nbt.putBoolean("IsObsidianVariant", this.isObsidianVariant());
-        nbt.putBoolean("isSitting", this.dataTracker.get(SITTING));
-
-        if (!this.smeltingItem.isEmpty()) {
-            NbtCompound itemNbt = new NbtCompound();
-            this.smeltingItem.writeNbt(itemNbt);
-            nbt.put("SmeltingItem", itemNbt);
-        }
-        nbt.putInt("SmeltingTimer", this.smeltingTimer);
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        UUID ownerUUID = nbt.contains("Owner") ? nbt.getUuid("Owner") : null;
-        if (ownerUUID != null) {
-            this.setOwnerUuid(ownerUUID);
-        }
-        this.setVariant(nbt.getBoolean("IsObsidianVariant"));
-        this.dataTracker.set(SITTING, nbt.getBoolean("isSitting"));
-
-        if (nbt.contains("SmeltingItem")) {
-            this.smeltingItem = ItemStack.fromNbt(nbt.getCompound("SmeltingItem"));
-        } else {
-            this.smeltingItem = ItemStack.EMPTY;
-        }
-        this.smeltingTimer = nbt.getInt("SmeltingTimer");
-    }
-
-    @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(IS_OBSIDIAN_VARIANT, false);
-        this.dataTracker.startTracking(SITTING, false);
     }
 
     public boolean canBeLeashedBy(PlayerEntity player) {

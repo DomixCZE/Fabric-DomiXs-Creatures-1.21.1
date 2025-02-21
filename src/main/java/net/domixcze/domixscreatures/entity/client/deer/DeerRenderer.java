@@ -8,6 +8,7 @@ public class DeerRenderer extends GeoEntityRenderer<DeerEntity> {
     public DeerRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new DeerModel());
         this.addRenderLayer(new DeerAntlerLayer(this));
+        this.addRenderLayer(new DeerSnowyLayer(this));
         this.shadowRadius = 0.6F;
     }
 }

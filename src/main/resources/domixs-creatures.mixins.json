@@ -6,7 +6,8 @@
 		"SoundManagerMixin",
 		"BrewingRecipeRegistryMixin",
 		"TrunkPlacerTypeInvoker",
-		"FoliagePlacerTypeInvoker"
+		"FoliagePlacerTypeInvoker",
+		"LivingEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

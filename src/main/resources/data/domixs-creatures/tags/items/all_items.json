@@ -7,6 +7,7 @@
     "domixs-creatures:crocodile_egg",
     "domixs-creatures:crocodile_scale",
     "domixs-creatures:crocodile_tooth",
+    "domixs-creatures:shark_tooth",
     "domixs-creatures:goldfish_bucket",
     "domixs-creatures:goldfish",
     "domixs-creatures:skull",
@@ -33,6 +34,10 @@
     "domixs-creatures:sawdust",
     "domixs-creatures:bark",
     "domixs-creatures:water_lily",
-    "domixs-creatures:warden_tendril"
+    "domixs-creatures:warden_tendril",
+    "domixs-creatures:small_antler",
+    "domixs-creatures:medium_antler",
+    "domixs-creatures:large_antler",
+    "domixs-creatures:nightmare_amulet"
   ]
 }

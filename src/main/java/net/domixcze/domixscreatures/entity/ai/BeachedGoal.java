@@ -5,11 +5,11 @@ import net.minecraft.entity.mob.MobEntity;
 
 import java.util.EnumSet;
 
-public class EntityBeachedGoal extends Goal {
+public class BeachedGoal extends Goal {
     private final Beachable beachableEntity;
     private final MobEntity entity;
 
-    public EntityBeachedGoal(Beachable beachableEntity, MobEntity entity) {
+    public BeachedGoal(Beachable beachableEntity, MobEntity entity) {
         this.beachableEntity = beachableEntity;
         this.entity = entity;
         this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));

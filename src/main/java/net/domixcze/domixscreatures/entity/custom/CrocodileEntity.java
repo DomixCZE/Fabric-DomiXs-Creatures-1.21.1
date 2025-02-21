@@ -71,9 +71,9 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, false, true));
-        this.goalSelector.add(1, new CrocodileMeleeAttackGoal(this, 1.0, true, 2));
         this.goalSelector.add(1, new CrocodileMateGoal(this, 1.0));
         this.goalSelector.add(1, new CrocodileLayEggGoal(this, 1.0));
+        this.goalSelector.add(2, new CrocodileMeleeAttackGoal(this, 1.0, true, 2));
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
 

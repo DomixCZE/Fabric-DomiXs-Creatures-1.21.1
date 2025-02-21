@@ -23,7 +23,7 @@
           "condition": "minecraft:entity_properties",
           "entity": "this",
           "predicate": {
-            "nbt": "{IsObsidianVariant:0b}"
+            "nbt": "{Variant:0}"
           }
         }
       ]

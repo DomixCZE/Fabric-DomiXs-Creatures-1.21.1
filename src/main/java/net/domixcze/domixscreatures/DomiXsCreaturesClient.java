@@ -5,9 +5,12 @@ import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverRenderer;
 import net.domixcze.domixscreatures.entity.client.crocodile.CrocodileRenderer;
 import net.domixcze.domixscreatures.entity.client.deer.DeerRenderer;
+import net.domixcze.domixscreatures.entity.client.eel.EelRenderer;
 import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderRenderer;
 import net.domixcze.domixscreatures.entity.client.goldfish.GoldfishRenderer;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaRenderer;
+import net.domixcze.domixscreatures.entity.client.moose.MooseRenderer;
+import net.domixcze.domixscreatures.entity.client.shark.SharkRenderer;
 import net.domixcze.domixscreatures.entity.client.spectral_bat.SpectralBatRenderer;
 //import net.domixcze.domixscreatures.entity.client.test.TestRenderer;
 import net.domixcze.domixscreatures.entity.client.tiger.TigerRenderer;
@@ -35,6 +38,9 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.IGUANA, IguanaRenderer::new);
         EntityRendererRegistry.register(ModEntities.TIGER, TigerRenderer::new);
         EntityRendererRegistry.register(ModEntities.DEER, DeerRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MOOSE, MooseRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SHARK, SharkRenderer::new);
+        EntityRendererRegistry.register(ModEntities.EEL, EelRenderer::new);
 
         //EntityRendererRegistry.register(ModEntities.TEST, TestRenderer::new);
 

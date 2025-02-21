@@ -98,11 +98,6 @@ public class WispEntity extends TameableEntity implements GeoEntity {
     }
 
     @Override
-    public boolean canImmediatelyDespawn(double distanceSquared) {
-        return !this.hasCustomName() && !this.isTamed();
-    }
-
-    @Override
     public int getLimitPerChunk() {
         return 2;
     }

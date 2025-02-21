@@ -7,6 +7,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class IguanaRenderer extends GeoEntityRenderer<IguanaEntity> {
     public IguanaRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new IguanaModel());
+        this.addRenderLayer(new IguanaSnowyLayer(this));
         this.shadowRadius = 0.3F;
     }
 }

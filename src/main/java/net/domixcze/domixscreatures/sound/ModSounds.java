@@ -7,6 +7,10 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public class ModSounds {
+    public static final SoundEvent ZAP= registerSoundEvent("zap");
+
+    public static final SoundEvent EEL_ATTACK = registerSoundEvent("eel_attack");
+
     public static final SoundEvent SPECTRAL_BAT_SCREECH = registerSoundEvent("spectral_bat_screech");
 
     public static final SoundEvent WHALE_AMBIENT = registerSoundEvent("whale_ambient");

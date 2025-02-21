@@ -44,7 +44,7 @@ public class ModEntities {
     public static final EntityType<BeaverEntity> BEAVER = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "beaver"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, BeaverEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build());
+                    .dimensions(EntityDimensions.fixed(0.5f, 0.4f)).build());
 
     public static final EntityType<IguanaEntity> IGUANA = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "iguana"),
@@ -61,12 +61,27 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, DeerEntity::new)
                     .dimensions(EntityDimensions.fixed(0.8f, 1.5f)).build());
 
+    public static final EntityType<MooseEntity> MOOSE = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "moose"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MooseEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.4f, 2.0f)).build());
+
+    public static final EntityType<SharkEntity> SHARK = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "shark"),
+            FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, SharkEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.5f, 0.99f)).build());
+
+    public static final EntityType<EelEntity> EEL = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "eel"),
+            FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, EelEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.8f, 0.6f)).build());
+
 
 
     /*public static final EntityType<TestEntity> TEST = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "test"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TestEntity::new)
-                    .dimensions(EntityDimensions.fixed(1.4f, 1.0f)).build());*/
+                    .dimensions(EntityDimensions.fixed(2.0f, 1.4f)).build());*/
 
     public static void registerModEntities() {
         DomiXsCreatures.LOGGER.info("Registering Entities for " + DomiXsCreatures.MOD_ID);

@@ -8,8 +8,8 @@
 		"DomixCZE"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/domixs-creatures",
+		"sources": "https://github.com/DomixCZE/Fabric-DomiXs-Creatures-1.20.1/tree/master"
 	},
 	"license": "ARR",
 	"icon": "assets/domixs-creatures/icon.png",

@@ -2,9 +2,10 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ai.Beachable;
-import net.domixcze.domixscreatures.entity.ai.EntityBeachedGoal;
+import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
+import net.domixcze.domixscreatures.entity.client.whale.WhaleVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;
 import net.minecraft.entity.ai.goal.*;
@@ -32,21 +33,24 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
-
-import java.util.Random;
 
 public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beachable {
 
     private static final TrackedData<Integer> BARNACLE_COUNT = DataTracker.registerData(WhaleEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static final TrackedData<Boolean> BEACHED = DataTracker.registerData(WhaleEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> VARIANT = DataTracker.registerData(WhaleEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     private static final int BARNACLE_REGEN_COOLDOWN = 12000;
     private int barnacleRegenTimer = BARNACLE_REGEN_COOLDOWN;
@@ -57,13 +61,11 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
         super(entityType, world);
         this.moveControl = new AquaticMoveControl(this, 70, 5, 0.01F, 0.05F, true);
         this.lookControl = new YawAdjustingLookControl(this, 8);
-        Random random = new Random();
-        this.setBarnacleCount(random.nextInt(10));
     }
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new EntityBeachedGoal(this, this));
+        this.goalSelector.add(0, new BeachedGoal(this, this));
         this.goalSelector.add(1, new WhaleJumpGoal(this, 10));
         this.goalSelector.add(2, new SwimAroundGoal(this, 0.8, 12));
         this.goalSelector.add(3, new LookAroundGoal(this));
@@ -74,6 +76,10 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 2.0F)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0);
+    }
+
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+        return dimensions.height * 0.65F;
     }
 
     @Override
@@ -87,6 +93,27 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     }
 
     @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+
+        if (world.getRandom().nextDouble() < 0.05) {
+            this.setVariant(WhaleVariants.ALBINO);
+        } else {
+            this.setVariant(WhaleVariants.NORMAL);
+        }
+
+        return entityData;
+    }
+
+    public WhaleVariants getVariant() {
+        return WhaleVariants.values()[this.dataTracker.get(VARIANT)];
+    }
+
+    public void setVariant(WhaleVariants variant) {
+        this.dataTracker.set(VARIANT, variant.ordinal());
+    }
+
+    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
     }
@@ -97,7 +124,7 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
         } else if (isBeached()){
             whaleAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.whale.beached", Animation.LoopType.HOLD_ON_LAST_FRAME));
         } else {
-            whaleAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.whale.idle", Animation.LoopType.LOOP));
+            whaleAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.whale.idle_swim", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }
@@ -110,6 +137,7 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
+        this.dataTracker.startTracking(VARIANT, WhaleVariants.NORMAL.ordinal());
         this.dataTracker.startTracking(BEACHED, false);
         this.dataTracker.startTracking(BARNACLE_COUNT, 0);
     }
@@ -133,6 +161,7 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
+        nbt.putInt("Variant", this.getVariant().ordinal());
         nbt.putBoolean("Beached", this.isBeached());
         nbt.putInt("BarnacleCount", this.getBarnacleCount());
     }
@@ -140,6 +169,7 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
+        this.setVariant(WhaleVariants.values()[nbt.getInt("Variant")]);
         this.setBeached(nbt.getBoolean("Beached"));
         this.setBarnacleCount(nbt.getInt("BarnacleCount"));
     }
@@ -152,12 +182,12 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
             if (!this.getWorld().isClient) {
                 int currentNumber = this.getBarnacleCount();
 
-                if (currentNumber < 9) {
+                if (currentNumber > 0) {
                     this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     this.emitGameEvent(GameEvent.SHEAR, player);
 
                     this.dropItem(ModBlocks.BARNACLE_BLOCK);
-                    this.setBarnacleCount(currentNumber + 1);
+                    this.setBarnacleCount(currentNumber - 1);
 
                     itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 
@@ -175,11 +205,11 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
         super.tick();
 
         if (!this.getWorld().isClient) {
-            if (this.getBarnacleCount() > 0) {
+            if (this.getBarnacleCount() < 9) {
                 if (barnacleRegenTimer > 0) {
                     barnacleRegenTimer--;
                 } else {
-                    this.setBarnacleCount(this.getBarnacleCount() -1);
+                    this.setBarnacleCount(this.getBarnacleCount() + 1);
                     barnacleRegenTimer = BARNACLE_REGEN_COOLDOWN;
                 }
             }
@@ -189,6 +219,9 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     //SOUNDS
     @Override
     protected SoundEvent getAmbientSound() {
+        if (this.isBeached()) {
+            return null;
+        }
         return ModSounds.WHALE_AMBIENT;
     }
 
