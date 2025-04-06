@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:crocodile_scale_albino"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:crocodile_chestplate_albino"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_chestplate",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:crocodile_chestplate_albino"
+    ]
+  },
+  "sends_telemetry_event": false
+}

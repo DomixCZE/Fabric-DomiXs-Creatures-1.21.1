@@ -13,6 +13,12 @@
   "entity.domixs-creatures.moose": "Los",
   "entity.domixs-creatures.shark": "Žralok",
   "entity.domixs-creatures.eel": "Úhoř",
+  "entity.domixs-creatures.mud_golem": "Bahnitý Golem",
+  "entity.domixs-creatures.hippo": "Hroch",
+  "entity.domixs-creatures.shaman": "Šaman",
+  "entity.domixs-creatures.vine": "Lijána",
+  "entity.domixs-creatures.mole": "Krtek",
+  "entity.domixs-creatures.worm": "Žížala",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -27,6 +33,12 @@
   "item.domixs-creatures.moose_spawn_egg": "Vajíčko s Losem",
   "item.domixs-creatures.shark_spawn_egg": "Vajíčko se Žralokem",
   "item.domixs-creatures.eel_spawn_egg": "Vajíčko s Úhořem",
+  "item.domixs-creatures.hippo_spawn_egg": "Vajíčko s Hrochem",
+  "item.domixs-creatures.shaman_spawn_egg": "Vajíčko se Šamanem",
+  "item.domixs-creatures.vine_spawn_egg": "Vajíčko s Lijánou",
+  "item.domixs-creatures.mud_golem_spawn_egg": "Vajíčko s Bahnitým Golemem",
+  "item.domixs-creatures.mole_spawn_egg": "Vajíčko s Krtkem",
+  "item.domixs-creatures.worm_spawn_egg": "Vajíčko se Žížalou",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -44,14 +56,18 @@
   "item.domixs-creatures.sawdust": "Piliny",
   "item.domixs-creatures.bark": "Kůra",
   "item.domixs-creatures.warden_tendril": "Warden's Tendril",
+  "item.domixs-creatures.worm": "Žížala",
 
   "item.domixs-creatures.nightmare_amulet": "Amulet Nočních Můr",
 
+  "item.domixs-creatures.crocodile_chestplate": "Krokodýlí Brnění",
+  "item.domixs-creatures.crocodile_chestplate_albino": "Albínské Krokodýlí Brnění",
   "item.domixs-creatures.adventurer_hat": "Klobouk Dobrodruha",
   "item.domixs-creatures.sonic_blockers": "Sonic Blockers",
   "item.domixs-creatures.small_antler_hat": "Antler Hat",
   "item.domixs-creatures.medium_antler_hat": "Antler Hat",
   "item.domixs-creatures.large_antler_hat": "Antler Hat",
+  "item.domixs-creatures.shaman_mask": "Maska Šamana",
 
   "item.domixs-creatures.small_antler": "Paroží",
   "item.domixs-creatures.medium_antler": "Paroží",
@@ -72,6 +88,8 @@
   "block.domixs-creatures.barnacle_block": "Vilejš",
   "block.domixs-creatures.crocodile_egg": "Vajíčko Krokodýla",
   "block.domixs-creatures.pile_of_sticks_block": "Hromádka Klacíků",
+  "block.domixs-creatures.sawdust_block": "Hromádka Pilin",
+  "block.domixs-creatures.molehill_block": "Krtina",
 
   "block.domixs-creatures.spectral_log": "Spektrální Kmen",
   "block.domixs-creatures.stripped_spectral_log": "Oloupaný Spektrální Kmen",
@@ -102,6 +120,14 @@
   "sounds.domixs-creatures.crocodile_ambient": "Krokodýl vrčí",
   "sounds.domixs-creatures.crocodile_hurt": "Krokodýl byl zraněn",
   "sounds.domixs-creatures.crocodile_death": "Krokodýl zemřel",
+
+  "sounds.domixs-creatures.hippo_ambient": "Hroch vrčí",
+  "sounds.domixs-creatures.hippo_hurt": "Hroch byl zraněn",
+
+  "sounds.domixs-creatures.fire_salamander_hurt": "Ohnivý mlok byl zraněn",
+  "sounds.domixs-creatures.fire_salamander_death": "Ohnivý mlok zemřel",
+
+  "sounds.domixs-creatures.vine_hurt": "Lijána byla zraněna",
 
   "sounds.domixs-creatures.tiger_hurt": "Tigr byl zraněn",
 

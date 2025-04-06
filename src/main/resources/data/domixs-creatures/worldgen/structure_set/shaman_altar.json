@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "domixs-creatures:shaman_altar",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1557961435,
+    "spacing": 15,
+    "separation": 3
+  }
+}

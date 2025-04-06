@@ -4,12 +4,12 @@ import net.domixcze.domixscreatures.entity.custom.WispEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
-public class WispAttackGoal extends MeleeAttackGoal {
+public class WispMeleeAttackGoal extends MeleeAttackGoal {
 
     private final WispEntity wisp;
     private final double attackRange;
 
-    public WispAttackGoal(WispEntity wisp, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public WispMeleeAttackGoal(WispEntity wisp, double speed, boolean pauseWhenMobIdle, double attackRange) {
         super(wisp, speed, pauseWhenMobIdle);
         this.wisp = wisp;
         this.attackRange = attackRange * attackRange;
@@ -20,6 +20,7 @@ public class WispAttackGoal extends MeleeAttackGoal {
         if (!this.wisp.isWearingSkull()) {
             return false;
         }
+
         if (this.wisp.isTamed()) {
             LivingEntity owner = this.wisp.getOwner();
             if (owner != null) {

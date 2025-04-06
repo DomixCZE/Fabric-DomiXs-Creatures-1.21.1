@@ -13,6 +13,12 @@
   "entity.domixs-creatures.moose": "Moose",
   "entity.domixs-creatures.shark": "Shark",
   "entity.domixs-creatures.eel": "Eel",
+  "entity.domixs-creatures.mud_golem": "Mud Golem",
+  "entity.domixs-creatures.hippo": "Hippo",
+  "entity.domixs-creatures.shaman": "Shaman",
+  "entity.domixs-creatures.vine": "Vine",
+  "entity.domixs-creatures.mole": "Mole",
+  "entity.domixs-creatures.worm": "Worm",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Fire Salamander Spawn Egg",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Spectral Bat Spawn Egg",
@@ -27,6 +33,12 @@
   "item.domixs-creatures.moose_spawn_egg": "Moose Spawn Egg",
   "item.domixs-creatures.shark_spawn_egg": "Shark Spawn Egg",
   "item.domixs-creatures.eel_spawn_egg": "Eel Spawn Egg",
+  "item.domixs-creatures.hippo_spawn_egg": "Hippo Spawn Egg",
+  "item.domixs-creatures.shaman_spawn_egg": "Shaman Spawn Egg",
+  "item.domixs-creatures.vine_spawn_egg": "Vine Spawn Egg",
+  "item.domixs-creatures.mud_golem_spawn_egg": "Mud Golem Spawn Egg",
+  "item.domixs-creatures.mole_spawn_egg": "Mole Spawn Egg",
+  "item.domixs-creatures.worm_spawn_egg": "Worm Spawn Egg",
 
   "item.domixs-creatures.fire_salamander_scales": "Fire Salamander Scales",
   "item.domixs-creatures.spectral_bat_wing": "Spectral Bat Wing",
@@ -44,18 +56,24 @@
   "item.domixs-creatures.sawdust": "Sawdust",
   "item.domixs-creatures.bark": "Bark",
   "item.domixs-creatures.warden_tendril": "Warden's Tendril",
+  "item.domixs-creatures.worm": "Worm",
 
   "item.domixs-creatures.nightmare_amulet": "Nightmare Amulet",
 
+  "item.domixs-creatures.crocodile_chestplate": "Crocodile Chestplate",
+  "item.domixs-creatures.crocodile_chestplate_albino": "Crocodile Chestplate Albino",
   "item.domixs-creatures.adventurer_hat": "Adventurer's Hat",
   "item.domixs-creatures.sonic_blockers": "Sonic Blockers",
   "item.domixs-creatures.small_antler_hat": "Antler Hat",
   "item.domixs-creatures.medium_antler_hat": "Antler Hat",
   "item.domixs-creatures.large_antler_hat": "Antler Hat",
+  "item.domixs-creatures.shaman_mask": "Shaman's Mask",
 
   "item.domixs-creatures.small_antler": "Antler",
   "item.domixs-creatures.medium_antler": "Antler",
   "item.domixs-creatures.large_antler": "Antler",
+
+  "item.domixs-creatures.mud_blossom_seed": "Mud Blossom Seed",
 
   "domixs-creatures.tooltip.small_antler": "Size: Small",
   "domixs-creatures.tooltip.medium_antler": "Size: Medium",
@@ -72,6 +90,8 @@
   "block.domixs-creatures.barnacle_block": "Barnacle",
   "block.domixs-creatures.crocodile_egg": "Crocodile Egg",
   "block.domixs-creatures.pile_of_sticks_block": "Pile of Sticks Block",
+  "block.domixs-creatures.sawdust_block": "Sawdust Block",
+  "block.domixs-creatures.molehill_block": "Molehill",
 
   "block.domixs-creatures.spectral_log": "Spectral Log",
   "block.domixs-creatures.stripped_spectral_log": "Stripped Spectral Log",
@@ -102,6 +122,14 @@
   "sounds.domixs-creatures.crocodile_ambient": "Crocodile growls",
   "sounds.domixs-creatures.crocodile_hurt": "Crocodile hurts",
   "sounds.domixs-creatures.crocodile_death": "Crocodile dies",
+
+  "sounds.domixs-creatures.hippo_ambient": "Hippo growls",
+  "sounds.domixs-creatures.hippo_hurt": "Hippo hurts",
+
+  "sounds.domixs-creatures.fire_salamander_hurt": "Fire salamander hurts",
+  "sounds.domixs-creatures.fire_salamander_death": "Fire salamander dies",
+
+  "sounds.domixs-creatures.vine_hurt": "Vine hurts",
 
   "sounds.domixs-creatures.tiger_hurt": "Tiger hurts",
 

@@ -20,8 +20,9 @@ public class CrocodileMeleeAttackGoal extends MeleeAttackGoal {
         if (this.crocodile.isBaby()) {
             return false;
         }
+
         LivingEntity target = this.crocodile.getTarget();
-        if (target instanceof PlayerEntity player && player.isSneaking() /*&& target != null && !target.isTouchingWater()*/ || this.crocodile.isSleeping()) {
+        if (target instanceof PlayerEntity player && player.isSneaking() || this.crocodile.isSleeping()) {
             return false;
         }
         return super.canStart();

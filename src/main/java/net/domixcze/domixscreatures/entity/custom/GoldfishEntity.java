@@ -42,11 +42,11 @@ public class GoldfishEntity extends FishEntity implements GeoEntity, Bucketable 
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> goldfishAnimationState) {
-        if (goldfishAnimationState.isMoving()) {
-            goldfishAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.goldfish.swim", Animation.LoopType.LOOP));
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.goldfish.swim", Animation.LoopType.LOOP));
         } else {
-            goldfishAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.goldfish.idle", Animation.LoopType.LOOP));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.goldfish.idle", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }

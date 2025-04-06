@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.item;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -10,7 +11,12 @@ import net.minecraft.sound.SoundEvents;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    COSMETIC("cosmetic", 15, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.ofItems(net.minecraft.item.Items.LEATHER));
+    COSMETIC("cosmetic", 0, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.ofItems(Items.LEATHER)),
+
+    UTILITY("utility", 40, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.ofItems(Items.SHULKER_SHELL)),
+
+    CROCODILE("crocodile", 25, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.5F, 0.0F, () -> Ingredient.ofItems(ModItems.CROCODILE_SCALE)),
+    CROCODILE_ALBINO("crocodile_albino", 25, new int[]{3, 6, 8, 3}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.5F, 0.0F, () -> Ingredient.ofItems(ModItems.CROCODILE_SCALE_ALBINO));
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
     private final String name;
@@ -35,7 +41,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     @Override
     public int getDurability(ArmorItem.Type type) {
-        return 0;
+        return BASE_DURABILITY[type.ordinal()] * this.durabilityMultiplier;
     }
 
     @Override

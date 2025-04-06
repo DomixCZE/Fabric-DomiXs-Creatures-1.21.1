@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "domixs-creatures:hippo_mud_bath",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1498101435,
+    "spacing": 15,
+    "separation": 3
+  }
+}

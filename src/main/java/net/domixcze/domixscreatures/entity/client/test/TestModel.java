@@ -22,4 +22,19 @@ public class TestModel extends GeoModel<TestEntity> {
     public Identifier getAnimationResource(TestEntity animatable) {
         return new Identifier(DomiXsCreatures.MOD_ID, "animations/test.animation.json");
     }
+
+    @Override
+    public void setCustomAnimations(TestEntity entity, long instanceId, AnimationState<TestEntity> animationState) {
+        super.setCustomAnimations(entity, instanceId, animationState);
+
+        GeoBone bone = (GeoBone) getAnimationProcessor().getBone("placeholder_george");
+
+        if (bone != null) {
+            float pitch = -entity.getPitch(animationState.getPartialTick()) * ((float) Math.PI / 180F);
+            float yaw = -entity.getYaw(animationState.getPartialTick()) * ((float) Math.PI / 180F);
+
+            bone.setRotX(pitch);
+            bone.setRotY(yaw);
+        }
+    }
 }*/

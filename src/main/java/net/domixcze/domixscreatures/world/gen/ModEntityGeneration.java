@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.world.gen;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.FireSalamanderEntity;
 import net.domixcze.domixscreatures.entity.custom.WispEntity;
+import net.domixcze.domixscreatures.entity.custom.WormEntity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.entity.SpawnGroup;
@@ -34,8 +35,8 @@ public class ModEntityGeneration {
         SpawnRestriction.register(ModEntities.TIGER, SpawnRestriction.Location.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
 
-        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.MANGROVE_SWAMP), SpawnGroup.CREATURE,
-                ModEntities.CROCODILE, 15, 1, 2);
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.MANGROVE_SWAMP, BiomeKeys.SAVANNA), SpawnGroup.CREATURE,
+                ModEntities.CROCODILE, 10, 1, 2);
         SpawnRestriction.register(ModEntities.CROCODILE, SpawnRestriction.Location.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
 
@@ -48,6 +49,21 @@ public class ModEntityGeneration {
                 ModEntities.MOOSE, 10, 2, 3);
         SpawnRestriction.register(ModEntities.MOOSE, SpawnRestriction.Location.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.SAVANNA), SpawnGroup.CREATURE,
+                ModEntities.HIPPO, 10, 2, 3);
+        SpawnRestriction.register(ModEntities.HIPPO, SpawnRestriction.Location.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.PLAINS), SpawnGroup.CREATURE,
+                ModEntities.MOLE, 5, 0, 1);
+        SpawnRestriction.register(ModEntities.MOLE, SpawnRestriction.Location.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.PLAINS), SpawnGroup.CREATURE,
+                ModEntities.WORM, 20, 1, 3);
+        SpawnRestriction.register(ModEntities.WORM, SpawnRestriction.Location.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WormEntity::canSpawn);
 
 
 

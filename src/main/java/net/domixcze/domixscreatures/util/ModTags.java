@@ -14,6 +14,9 @@ public class ModTags {
         public static final TagKey<Block> CROCODILE_EGG_HATCHABLE =
                 createTag("crocodile_egg_hatchable");
 
+        public static final TagKey<Block> WORM_SPAWNABLE_ON =
+                createTag("worm_spawnable_on");
+
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(DomiXsCreatures.MOD_ID, name));
         }
@@ -38,6 +41,16 @@ public class ModTags {
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier(DomiXsCreatures.MOD_ID, name));
+        }
+    }
+
+    public static class Biomes {
+        public static final TagKey<Biome> SPAWNS_SAVANNA_CROCODILE = createTag("spawns_savanna_crocodile");
+        public static final TagKey<Biome> SPAWNS_ABYSS_EEL = createTag("spawns_abyss_eel");
+        public static final TagKey<Biome> SPAWNS_YELLOW_EEL = createTag("spawns_yellow_eel");
+
+        private static TagKey<Biome> createTag(String name) {
+            return TagKey.of(RegistryKeys.BIOME, new Identifier(DomiXsCreatures.MOD_ID, name));
         }
     }
 }

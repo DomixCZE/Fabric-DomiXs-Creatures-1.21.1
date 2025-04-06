@@ -65,6 +65,11 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
         this.dataTracker.startTracking(BEACHED, false);
     }
 
+    @Override
+    public void takeKnockback(double strength, double x, double z) {
+        super.takeKnockback(strength * 0.2, x, z);
+    }
+
     public boolean isBeached() {
         return this.dataTracker.get(BEACHED);
     }
@@ -111,7 +116,7 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
     }
 
     private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> State) {
-        if (State.isMoving() && this.isTouchingWater()) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9 && this.isTouchingWater()) {
             State.getController().setAnimation(RawAnimation.begin().then("animation.shark.swim", Animation.LoopType.LOOP));
         } else if (isBeached()){
             State.getController().setAnimation(RawAnimation.begin().then("animation.shark.beached", Animation.LoopType.HOLD_ON_LAST_FRAME));

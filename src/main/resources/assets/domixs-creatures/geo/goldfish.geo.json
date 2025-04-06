@@ -13,7 +13,7 @@
 			"bones": [
 				{
 					"name": "goldfish",
-					"pivot": [0, 6.25, -1.25]
+					"pivot": [0, 5, -1]
 				},
 				{
 					"name": "body",

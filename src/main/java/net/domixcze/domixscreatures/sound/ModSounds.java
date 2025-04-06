@@ -17,9 +17,17 @@ public class ModSounds {
     public static final SoundEvent WHALE_HURT = registerSoundEvent("whale_hurt");
     public static final SoundEvent WHALE_DEATH = registerSoundEvent("whale_death");
 
+    public static final SoundEvent FIRE_SALAMANDER_HURT = registerSoundEvent("fire_salamander_hurt");
+    public static final SoundEvent FIRE_SALAMANDER_DEATH = registerSoundEvent("fire_salamander_death");
+
     public static final SoundEvent CROCODILE_AMBIENT = registerSoundEvent("crocodile_ambient");
     public static final SoundEvent CROCODILE_HURT = registerSoundEvent("crocodile_hurt");
     public static final SoundEvent CROCODILE_DEATH = registerSoundEvent("crocodile_death");
+
+    public static final SoundEvent HIPPO_AMBIENT = registerSoundEvent("hippo_ambient");
+    public static final SoundEvent HIPPO_HURT = registerSoundEvent("hippo_hurt");
+
+    public static final SoundEvent VINE_HURT = registerSoundEvent("vine_hurt");
 
     public static final SoundEvent TIGER_HURT = registerSoundEvent("tiger_hurt");
 

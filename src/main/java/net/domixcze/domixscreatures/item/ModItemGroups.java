@@ -27,28 +27,48 @@ public class ModItemGroups {
                         entries.add(ModItems.MOOSE_SPAWN_EGG);
                         entries.add(ModItems.SHARK_SPAWN_EGG);
                         entries.add(ModItems.EEL_SPAWN_EGG);
+                        entries.add(ModItems.HIPPO_SPAWN_EGG);
+                        entries.add(ModItems.SHAMAN_SPAWN_EGG);
+                        entries.add(ModItems.VINE_SPAWN_EGG);
+                        entries.add(ModItems.MUD_GOLEM_SPAWN_EGG);
+                        entries.add(ModItems.MOLE_SPAWN_EGG);
+                        entries.add(ModItems.WORM_SPAWN_EGG);
                         entries.add(ModItems.CROCODILE_SPAWN_EGG);
+
                         entries.add(ModBlocks.CROCODILE_EGG);
-                        entries.add(ModItems.FIRE_SALAMANDER_SCALES);
+                        entries.add(ModItems.GOLDFISH_BUCKET);
+                        entries.add(ModItems.GOLDFISH);
+                        entries.add(ModItems.WORM);
                         entries.add(ModItems.SPECTRAL_BAT_WING);
                         entries.add(ModItems.SPECTRAL_BAT_EAR);
+                        entries.add(ModItems.FIRE_SALAMANDER_SCALES);
                         entries.add(ModItems.CROCODILE_SCALE);
                         entries.add(ModItems.CROCODILE_SCALE_ALBINO);
                         entries.add(ModItems.CROCODILE_TOOTH);
                         entries.add(ModItems.SHARK_TOOTH);
-                        entries.add(ModItems.GOLDFISH_BUCKET);
-                        entries.add(ModItems.GOLDFISH);
                         entries.add(ModItems.SKULL);
                         entries.add(ModItems.SKULL_WAND);
+                        entries.add(ModItems.NIGHTMARE_AMULET);
                         entries.add(ModItems.WATER_LILY);
                         entries.add(ModItems.BARK);
                         entries.add(ModItems.SAWDUST);
 
-                        entries.add(ModItems.ADVENTURER_HAT);
-                        entries.add(ModItems.SONIC_BLOCKERS);
                         entries.add(ModItems.WARDEN_TENDRIL);
+                        entries.add(ModItems.SONIC_BLOCKERS);
+                        entries.add(ModItems.ADVENTURER_HAT);
+                        entries.add(ModItems.SHAMAN_MASK);
+                        entries.add(ModItems.CROCODILE_CHESTPLATE);
+                        entries.add(ModItems.CROCODILE_CHESTPLATE_ALBINO);
+
+                        entries.add(ModItems.MUD_BLOSSOM_SEED);
 
                         entries.add(ModItems.SPECTRAL_FRUIT);
+
+                        entries.add(ModBlocks.BARNACLE_BLOCK);
+                        entries.add(ModBlocks.CRACKED_GLASS_BLOCK);
+                        entries.add(ModBlocks.PILE_OF_STICKS_BLOCK);
+                        entries.add(ModBlocks.SAWDUST_BLOCK);
+                        entries.add(ModBlocks.MOLEHILL_BLOCK);
 
                         entries.add(ModBlocks.SPECTRAL_LOG);
                         entries.add(ModBlocks.SPECTRAL_WOOD);
@@ -65,12 +85,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.SPECTRAL_TRAPDOOR);
                         entries.add(ModBlocks.SPECTRAL_LEAVES);
                         entries.add(ModBlocks.SPECTRAL_SAPLING);
-
-                        entries.add(ModBlocks.CRACKED_GLASS_BLOCK);
-                        entries.add(ModBlocks.BARNACLE_BLOCK);
-                        entries.add(ModBlocks.PILE_OF_STICKS_BLOCK);
-
-                        entries.add(ModItems.NIGHTMARE_AMULET);
 
                     }).build());
 

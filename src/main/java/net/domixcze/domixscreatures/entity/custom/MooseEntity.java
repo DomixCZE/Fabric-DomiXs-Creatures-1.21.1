@@ -98,13 +98,13 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
             return PlayState.STOP;
         }
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_moose.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_moose.idle", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.moose.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.moose.idle", Animation.LoopType.LOOP));
@@ -226,9 +226,6 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     @Override
     public void tick() {
         super.tick();
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
-        }
 
         boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
 

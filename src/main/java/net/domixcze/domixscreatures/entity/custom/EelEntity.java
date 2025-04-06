@@ -4,6 +4,7 @@ import net.domixcze.domixscreatures.entity.ai.Beachable;
 import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
 import net.domixcze.domixscreatures.entity.ai.EelMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.eel.EelVariants;
+import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;
@@ -18,6 +19,8 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.WaterCreatureEntity;
+import net.minecraft.entity.passive.CodEntity;
+import net.minecraft.entity.passive.SalmonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
@@ -69,6 +72,8 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, CodEntity.class, true));
     }
 
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
@@ -81,12 +86,12 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
 
         setAttackCooldown(ATTACK_COOLDOWN);
 
-        if (spawnReason == SpawnReason.NATURAL || spawnReason == SpawnReason.COMMAND) {
+        if (spawnReason == SpawnReason.NATURAL || spawnReason == SpawnReason.COMMAND || spawnReason == SpawnReason.SPAWN_EGG || spawnReason == SpawnReason.CHUNK_GENERATION) {
             RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
 
-            if (biomeEntry.matchesKey(BiomeKeys.SWAMP)) {
+            if (biomeEntry.isIn(ModTags.Biomes.SPAWNS_YELLOW_EEL)) {
                 this.setVariant(random.nextBoolean() ? EelVariants.YELLOW : EelVariants.GREEN);
-            } else if (biomeEntry.matchesKey(BiomeKeys.DEEP_OCEAN)) {
+            } else if (biomeEntry.isIn(ModTags.Biomes.SPAWNS_ABYSS_EEL)) {
                 this.setVariant(random.nextFloat() < 0.1f ? EelVariants.ABYSS : EelVariants.GREEN);
             } else {
                 this.setVariant(EelVariants.GREEN);
@@ -205,13 +210,13 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
         controllers.add(new AnimationController<>(this, "controller",5 , this::predicate));
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> State) {
-        if (State.isMoving()) {
-            State.getController().setAnimation(RawAnimation.begin().then("animation.eel.swim", Animation.LoopType.LOOP));
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.eel.swim", Animation.LoopType.LOOP));
         } else if (isBeached()){
-            State.getController().setAnimation(RawAnimation.begin().then("animation.eel.beached", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.eel.beached", Animation.LoopType.HOLD_ON_LAST_FRAME));
         } else {
-            State.getController().setAnimation(RawAnimation.begin().then("animation.eel.idle_swim", Animation.LoopType.LOOP));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.eel.idle_swim", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }

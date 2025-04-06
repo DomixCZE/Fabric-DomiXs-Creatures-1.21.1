@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "domixs-creatures:block/mud_blossom_stage0"
+    },
+    "age=1": {
+      "model": "domixs-creatures:block/mud_blossom_stage1"
+    },
+    "age=2": {
+      "model": "domixs-creatures:block/mud_blossom_stage2"
+    },
+    "age=3": {
+      "model": "domixs-creatures:block/mud_blossom_stage3"
+    }
+  }
+}

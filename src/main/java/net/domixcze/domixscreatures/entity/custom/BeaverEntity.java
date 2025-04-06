@@ -75,8 +75,6 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
     public static DefaultAttributeContainer.Builder setAttributes() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 15.0D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0f)
-                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f);
     }
 
@@ -193,13 +191,13 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
             return PlayState.STOP;
         }
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_beaver.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_beaver.idle", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.beaver.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.beaver.idle", Animation.LoopType.LOOP));
@@ -286,10 +284,6 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
             this.moveControl = new AquaticMoveControl(this, 85, 10, 5F, 0.1F, true);
         } else if (this.isOnGround()) {
             this.moveControl = new BeaverMoveControl();
-        }
-
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
         }
 
         boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();

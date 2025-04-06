@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "occupied=false,waterlogged=true": [
+      { "model": "domixs-creatures:block/molehill_block" },
+      { "model": "domixs-creatures:block/molehill_block", "y": 90 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 180 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 270 }
+    ],
+    "occupied=true,waterlogged=true": [
+      { "model": "domixs-creatures:block/molehill_block" },
+      { "model": "domixs-creatures:block/molehill_block", "y": 90 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 180 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 270 }
+    ],
+    "occupied=false,waterlogged=false": [
+      { "model": "domixs-creatures:block/molehill_block" },
+      { "model": "domixs-creatures:block/molehill_block", "y": 90 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 180 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 270 }
+    ],
+    "occupied=true,waterlogged=false": [
+      { "model": "domixs-creatures:block/molehill_block" },
+      { "model": "domixs-creatures:block/molehill_block", "y": 90 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 180 },
+      { "model": "domixs-creatures:block/molehill_block", "y": 270 }
+    ]
+  }
+}

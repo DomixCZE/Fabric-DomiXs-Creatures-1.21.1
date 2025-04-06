@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "layers=1": { "model": "domixs-creatures:block/sawdust_height2" },
+    "layers=2": { "model": "domixs-creatures:block/sawdust_height4" },
+    "layers=3": { "model": "domixs-creatures:block/sawdust_height6" },
+    "layers=4": { "model": "domixs-creatures:block/sawdust_height8" },
+    "layers=5": { "model": "domixs-creatures:block/sawdust_height10" },
+    "layers=6": { "model": "domixs-creatures:block/sawdust_height12" },
+    "layers=7": { "model": "domixs-creatures:block/sawdust_height14" },
+    "layers=8": { "model": "domixs-creatures:block/sawdust_block" }
+  }
+}

@@ -109,6 +109,15 @@ public class SleepGoal extends Goal {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+
+        if (this.entity.isSleeping()) {
+            this.entity.getNavigation().stop();
+        }
+    }
+
+    @Override
     public void stop() {
         sleepyEntity.setSleeping(false);
         cooldown = getRandomCooldown();

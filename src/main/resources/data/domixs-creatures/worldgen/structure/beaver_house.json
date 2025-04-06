@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:jigsaw",
+  "type": "domixs-creatures:ground_structures",
   "biomes": "#domixs-creatures:has_structure/beaver_house",
   "step": "surface_structures",
   "spawn_overrides": {},

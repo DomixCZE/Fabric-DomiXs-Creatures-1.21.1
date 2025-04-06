@@ -23,6 +23,40 @@
     ]
   },
 
+  "vine_hurt": {
+    "subtitle": "sounds.domixs-creatures.vine_hurt",
+    "sounds": [
+      "domixs-creatures:vine_hurt"
+    ]
+  },
+
+  "hippo_ambient": {
+    "subtitle": "sounds.domixs-creatures.hippo_ambient",
+    "sounds": [
+      "domixs-creatures:hippo_ambient"
+    ]
+  },
+  "hippo_hurt": {
+    "subtitle": "sounds.domixs-creatures.hippo_hurt",
+    "sounds": [
+      "domixs-creatures:hippo_hurt"
+    ]
+  },
+
+  "fire_salamander_hurt": {
+    "subtitle": "sounds.domixs-creatures.fire_salamander_hurt",
+    "sounds": [
+      "domixs-creatures:fire_salamander_hurt_1",
+      "domixs-creatures:fire_salamander_hurt_2"
+    ]
+  },
+  "fire_salamander_death": {
+    "subtitle": "sounds.domixs-creatures.fire_salamander_death",
+    "sounds": [
+      "domixs-creatures:fire_salamander_death"
+    ]
+  },
+
 
   "whale_ambient": {
     "subtitle": "sounds.domixs-creatures.whale_ambient",

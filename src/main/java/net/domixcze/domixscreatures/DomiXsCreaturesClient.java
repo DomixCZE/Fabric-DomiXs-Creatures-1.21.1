@@ -8,14 +8,21 @@ import net.domixcze.domixscreatures.entity.client.deer.DeerRenderer;
 import net.domixcze.domixscreatures.entity.client.eel.EelRenderer;
 import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderRenderer;
 import net.domixcze.domixscreatures.entity.client.goldfish.GoldfishRenderer;
+import net.domixcze.domixscreatures.entity.client.hippo.HippoRenderer;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaRenderer;
+import net.domixcze.domixscreatures.entity.client.magma_ball.MagmaBallRenderer;
+import net.domixcze.domixscreatures.entity.client.mole.MoleRenderer;
 import net.domixcze.domixscreatures.entity.client.moose.MooseRenderer;
+import net.domixcze.domixscreatures.entity.client.mud_golem.MudGolemRenderer;
+import net.domixcze.domixscreatures.entity.client.shaman.ShamanRenderer;
 import net.domixcze.domixscreatures.entity.client.shark.SharkRenderer;
 import net.domixcze.domixscreatures.entity.client.spectral_bat.SpectralBatRenderer;
 //import net.domixcze.domixscreatures.entity.client.test.TestRenderer;
 import net.domixcze.domixscreatures.entity.client.tiger.TigerRenderer;
+import net.domixcze.domixscreatures.entity.client.vine.VineRenderer;
 import net.domixcze.domixscreatures.entity.client.whale.WhaleRenderer;
 import net.domixcze.domixscreatures.entity.client.wisp.WispRenderer;
+import net.domixcze.domixscreatures.entity.client.worm.WormRenderer;
 import net.domixcze.domixscreatures.particle.InkParticle;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.fabricmc.api.ClientModInitializer;
@@ -41,6 +48,14 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.MOOSE, MooseRenderer::new);
         EntityRendererRegistry.register(ModEntities.SHARK, SharkRenderer::new);
         EntityRendererRegistry.register(ModEntities.EEL, EelRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MUD_GOLEM, MudGolemRenderer::new);
+        EntityRendererRegistry.register(ModEntities.HIPPO, HippoRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SHAMAN, ShamanRenderer::new);
+        EntityRendererRegistry.register(ModEntities.VINE, VineRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MOLE, MoleRenderer::new);
+        EntityRendererRegistry.register(ModEntities.WORM, WormRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.MAGMA_BALL, MagmaBallRenderer::new);
 
         //EntityRendererRegistry.register(ModEntities.TEST, TestRenderer::new);
 
@@ -54,5 +69,7 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPECTRAL_TRAPDOOR, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPECTRAL_SAPLING, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MUD_BLOSSOM, RenderLayer.getCutout());
     }
 }

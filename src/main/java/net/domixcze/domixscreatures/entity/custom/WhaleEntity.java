@@ -87,6 +87,10 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
         super.takeKnockback(strength * 0.1, x, z);
     }
 
+    public boolean isPushable() {
+        return false;
+    }
+
     @Override
     protected EntityNavigation createNavigation(World world) {
         return new SwimNavigation(this, world);
@@ -118,13 +122,13 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
         controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
     }
 
-    private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> whaleAnimationState) {
-        if (whaleAnimationState.isMoving() && this.isTouchingWater()) {
-            whaleAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.whale.swim", Animation.LoopType.LOOP));
+    private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> state) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9 && this.isTouchingWater()) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.whale.swim", Animation.LoopType.LOOP));
         } else if (isBeached()){
-            whaleAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.whale.beached", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.whale.beached", Animation.LoopType.HOLD_ON_LAST_FRAME));
         } else {
-            whaleAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.whale.idle_swim", Animation.LoopType.LOOP));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.whale.idle_swim", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }

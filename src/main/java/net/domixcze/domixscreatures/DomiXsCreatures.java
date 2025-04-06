@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.block.entity.ModBlockEntities;
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.*;
@@ -9,6 +10,7 @@ import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.potion.ModPotions;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.structures.ModStructures;
 import net.domixcze.domixscreatures.util.ModLootTableModifiers;
 import net.domixcze.domixscreatures.world.gen.ModEntityGeneration;
 import net.domixcze.domixscreatures.util.ModTrades;
@@ -17,6 +19,7 @@ import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +44,12 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.MOOSE, MooseEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.SHARK, SharkEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.EEL, SharkEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.MUD_GOLEM, MudGolemEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.HIPPO, HippoEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.SHAMAN, HippoEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.VINE, VineEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.MOLE, MoleEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.WORM, MoleEntity.setAttributes());
 
 		//FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
 
@@ -52,6 +61,7 @@ public class DomiXsCreatures implements ModInitializer {
 
 		ModEntities.registerModEntities();
 
+		ModBlockEntities.registerBlockEntities();
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
@@ -80,7 +90,24 @@ public class DomiXsCreatures implements ModInitializer {
 
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PILE_OF_STICKS_BLOCK, 30, 60);
 
+		FuelRegistry.INSTANCE.add(ModBlocks.PILE_OF_STICKS_BLOCK, 150);
+		FuelRegistry.INSTANCE.add(ModItems.BARK, 100);
+		FuelRegistry.INSTANCE.add(ModItems.SAWDUST, 30);
+		FuelRegistry.INSTANCE.add(ModBlocks.SAWDUST_BLOCK, 120);
+
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_SAPLING, 100);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_DOOR, 300);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_TRAPDOOR, 300);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_BUTTON, 100);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_PRESSURE_PLATE, 300);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_FENCE, 300);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_FENCE_GATE, 300);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_STAIRS, 300);
+		FuelRegistry.INSTANCE.add(ModBlocks.SPECTRAL_SLAB, 150);
+
 		ModTrunkPlacerTypes.register();
 		ModFoliagePlacerTypes.register();
+
+		ModStructures.registerStructureFeatures();
 	}
 }

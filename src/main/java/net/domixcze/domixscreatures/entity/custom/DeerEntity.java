@@ -118,9 +118,6 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     @Override
     public void tick() {
         super.tick();
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
-        }
 
         boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
 
@@ -191,7 +188,6 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         }
         return super.interactMob(player, hand);
     }
-
 
     @Override
     public EntityDimensions getDimensions(EntityPose pose) {
@@ -317,13 +313,13 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
             return PlayState.STOP;
         }
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_deer.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_deer.idle", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.deer.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.deer.idle", Animation.LoopType.LOOP));

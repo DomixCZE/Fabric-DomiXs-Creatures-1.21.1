@@ -22,6 +22,7 @@ public class MooseMeleeAttackGoal extends MeleeAttackGoal {
         if (this.moose.isSleeping()) {
             return false;
         }
+
         return super.canStart();
     }
 

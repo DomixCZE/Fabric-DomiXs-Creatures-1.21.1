@@ -13,11 +13,16 @@
 			"bones": [
 				{
 					"name": "fire_salamander",
-					"pivot": [0, 2.25, -9]
+					"pivot": [0, 0, 0]
 				},
 				{
 					"name": "body",
 					"parent": "fire_salamander",
+					"pivot": [0, 3, 0]
+				},
+				{
+					"name": "main",
+					"parent": "body",
 					"pivot": [0, 3, 0],
 					"cubes": [
 						{

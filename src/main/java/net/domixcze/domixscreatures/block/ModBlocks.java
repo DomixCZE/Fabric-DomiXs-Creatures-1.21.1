@@ -1,10 +1,7 @@
 package net.domixcze.domixscreatures.block;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
-import net.domixcze.domixscreatures.block.custom.BarnacleBlock;
-import net.domixcze.domixscreatures.block.custom.CrackedGlassBlock;
-import net.domixcze.domixscreatures.block.custom.CrocodileEggBlock;
-import net.domixcze.domixscreatures.block.custom.PileOfSticksBlock;
+import net.domixcze.domixscreatures.block.custom.*;
 import net.domixcze.domixscreatures.world.tree.SpectralSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -28,6 +25,9 @@ public class ModBlocks {
 
     public static final Block PILE_OF_STICKS_BLOCK = registerBlock("pile_of_sticks_block",
             new PileOfSticksBlock(FabricBlockSettings.create().sounds(BlockSoundGroup.ROOTS).nonOpaque()));
+
+    public static final Block SAWDUST_BLOCK = registerBlock("sawdust_block",
+            new SawdustBlock(FabricBlockSettings.create().sounds(BlockSoundGroup.SAND).strength(0.1f).nonOpaque()));
 
     public static final Block SPECTRAL_LOG = registerBlock("spectral_log",
             new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)));
@@ -65,6 +65,12 @@ public class ModBlocks {
 
     public static final Block SPECTRAL_SAPLING = registerBlock("spectral_sapling",
             new SaplingBlock(new SpectralSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+
+    public static final Block MUD_BLOSSOM = Registry.register(Registries.BLOCK, new Identifier(DomiXsCreatures.MOD_ID, "mud_blossom"),
+            new MudBlossomBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
+
+    public static final Block MOLEHILL_BLOCK = registerBlock("molehill_block",
+            new MolehillBlock(FabricBlockSettings.copyOf(Blocks.DIRT).nonOpaque()));
 
 
     private static Block registerBlock(String name, Block block) {

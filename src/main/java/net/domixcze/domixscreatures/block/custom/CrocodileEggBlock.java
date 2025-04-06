@@ -13,6 +13,7 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -28,6 +29,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -147,11 +150,18 @@ public class CrocodileEggBlock extends Block {
                     LivingEntity crocodileEntity = (LivingEntity) crocodile.create(world);
                     if (crocodileEntity instanceof CrocodileEntity crocodileInstance) {
                         crocodileInstance.setBaby(true);
+
+                        RegistryEntry<Biome> biomeEntry = world.getBiome(pos);
+                        if (biomeEntry.isIn(ModTags.Biomes.SPAWNS_SAVANNA_CROCODILE)) {
+                            crocodileInstance.setVariant(CrocodileVariants.SAVANNA);
+                        } else {
                             if (world.getRandom().nextDouble() < 0.05) {
                                 crocodileInstance.setVariant(CrocodileVariants.ALBINO);
                             } else {
                                 crocodileInstance.setVariant(CrocodileVariants.NORMAL);
                             }
+                        }
+
                         crocodileEntity.refreshPositionAndAngles(pos.getX() + 0.3 + j * 0.2, pos.getY(), pos.getZ() + 0.3, 0.0F, 0.0F);
                         world.spawnEntity(crocodileEntity);
                     }

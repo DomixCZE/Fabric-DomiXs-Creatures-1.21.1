@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "domixs-creatures:block/mud_blossom_stage0"
+  }
+}

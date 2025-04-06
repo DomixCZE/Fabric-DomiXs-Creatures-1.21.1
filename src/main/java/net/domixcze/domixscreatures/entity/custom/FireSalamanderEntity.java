@@ -1,30 +1,35 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.ai.FireSalamanderMagmaBallAttackGoal;
 import net.domixcze.domixscreatures.entity.ai.FireSalamanderMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderVariants;
-import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.sound.ModSounds;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.control.LookControl;
+import net.minecraft.entity.ai.control.YawAdjustingLookControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -46,7 +51,10 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> SITTING = DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> IS_CHARGING = DataTracker.registerData(FireSalamanderEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
+    private int magmaBallChargeTime = 0;
+    private int magmaBallCooldown = 0;
     private static final int SMELTING_COOLDOWN = 300;
     private int smeltingTimer = 0;
     private ItemStack smeltingItem = ItemStack.EMPTY;
@@ -58,6 +66,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         this.setPathfindingPenalty(PathNodeType.LAVA, 0.0F);
         this.setPathfindingPenalty(PathNodeType.WATER, -1.0F);
         this.setPathfindingPenalty(PathNodeType.WATER_BORDER, -1.0F);
+        this.lookControl = new SalamanderLookControl(this);
     }
 
     @Override
@@ -65,13 +74,27 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         return true;
     }
 
+    class SalamanderLookControl extends LookControl {
+        public SalamanderLookControl(MobEntity entity) {
+            super(entity);
+        }
+
+        @Override
+        public void tick() {
+            if (!isCharging()) {
+                super.tick();
+            }
+        }
+    }
+
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new FireSalamanderMagmaBallAttackGoal(this));
         this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
-        this.goalSelector.add(1, new FireSalamanderMeleeAttackGoal(this, 1.0, false, 2.0f));
-        this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.75f, 1));
+        this.goalSelector.add(2, new FireSalamanderMeleeAttackGoal(this, 1.0, false, 2.0f));
+        this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
@@ -105,6 +128,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         super.initDataTracker();
         this.dataTracker.startTracking(VARIANT, FireSalamanderVariants.MAGMA.getId());
         this.dataTracker.startTracking(SITTING, false);
+        this.dataTracker.startTracking(IS_CHARGING, false);
     }
 
     public FireSalamanderVariants getVariant() {
@@ -130,14 +154,41 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         }
     }
 
+    public int getMagmaBallCooldown() {
+        return magmaBallCooldown;
+    }
+
+    public void setMagmaBallCooldown(int cooldown) {
+        this.magmaBallCooldown = cooldown;
+    }
+
+    public int getMagmaBallChargeTime() {
+        return this.magmaBallChargeTime;
+    }
+
+    public void setMagmaBallChargeTime(int time) {
+        this.magmaBallChargeTime = time;
+    }
+
+    public boolean isCharging() {
+        return this.dataTracker.get(IS_CHARGING);
+    }
+
+    public void setCharging(boolean charging) {
+        this.dataTracker.set(IS_CHARGING, charging);
+    }
+
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
+        nbt.putInt("MagmaBallChargeTime", magmaBallChargeTime);
+        nbt.putInt("MagmaBallCooldown", magmaBallCooldown);
         nbt.putInt("Variant", this.getVariant().getId());
         if (this.getOwner() != null) {
             nbt.putUuid("Owner", this.getOwnerUuid());
         }
         nbt.putBoolean("isSitting", this.dataTracker.get(SITTING));
+        nbt.putBoolean("isCharging", this.dataTracker.get(IS_CHARGING));
 
         if (!this.smeltingItem.isEmpty()) {
             NbtCompound itemNbt = new NbtCompound();
@@ -150,18 +201,15 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("Variant")) {
-            this.setVariant(FireSalamanderVariants.byId(nbt.getInt("Variant")));
-        } else if (nbt.contains("IsObsidianVariant")) {
-            // Convert old boolean flag to the new enum-based system
-            boolean wasObsidian = nbt.getBoolean("IsObsidianVariant");
-            this.setVariant(wasObsidian ? FireSalamanderVariants.OBSIDIAN : FireSalamanderVariants.MAGMA);
-        }
+        magmaBallChargeTime = nbt.getInt("MagmaBallChargeTime");
+        magmaBallCooldown = nbt.getInt("MagmaBallCooldown");
+        this.setVariant(FireSalamanderVariants.byId(nbt.getInt("Variant")));
         UUID ownerUUID = nbt.contains("Owner") ? nbt.getUuid("Owner") : null;
         if (ownerUUID != null) {
             this.setOwnerUuid(ownerUUID);
         }
         this.dataTracker.set(SITTING, nbt.getBoolean("isSitting"));
+        this.dataTracker.set(IS_CHARGING, nbt.getBoolean("isCharging"));
 
         if (nbt.contains("SmeltingItem")) {
             this.smeltingItem = ItemStack.fromNbt(nbt.getCompound("SmeltingItem"));
@@ -191,14 +239,15 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         controllers.add(new AnimationController<>(this, "lava_controller", 5, this::lavaPredicate));
     }
 
-    private <T extends GeoAnimatable> PlayState landPredicate(AnimationState<T> fireSalamanderAnimationState) {
-        if (fireSalamanderAnimationState.isMoving()) {
-            fireSalamanderAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.walk", Animation.LoopType.LOOP));
+    private <T extends GeoAnimatable> PlayState landPredicate(AnimationState<T> state) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.walk", Animation.LoopType.LOOP));
         } else if (this.isSitting()) {
-            fireSalamanderAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.sit", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.sit", Animation.LoopType.LOOP));
+        } else if (this.isCharging()) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.charge", Animation.LoopType.PLAY_ONCE));
         } else {
-            fireSalamanderAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.idle", Animation.LoopType.LOOP));
-
+            state.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.idle", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }
@@ -207,7 +256,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         if (!this.isInLava()) {
             return PlayState.STOP;
         }
-        if (state.isMoving()) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
             state.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.swim", Animation.LoopType.LOOP));
         } else {
             state.getController().setAnimation(RawAnimation.begin().then("animation.fire_salamander.idle_swim", Animation.LoopType.LOOP));
@@ -223,6 +272,10 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
+        if (magmaBallCooldown > 0) {
+            magmaBallCooldown--;
+        }
+
         if (this.isWet() && !this.isObsidianVariant()) {
             this.setVariant(FireSalamanderVariants.OBSIDIAN);
         }
@@ -311,5 +364,15 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     @Override
     public EntityView method_48926() {
         return this.getWorld();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.FIRE_SALAMANDER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.FIRE_SALAMANDER_DEATH;
     }
 }

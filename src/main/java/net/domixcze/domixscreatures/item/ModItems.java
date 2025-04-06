@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures.item;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
+import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -18,7 +19,7 @@ public class ModItems {
             new FabricItemSettings()));
     public static final Item WHALE_SPAWN_EGG = registerItem("whale_spawn_egg", new SpawnEggItem(ModEntities.WHALE, 0x1c1b1b, 0xaba79e,
             new FabricItemSettings()));
-    public static final Item GOLDFISH_SPAWN_EGG = registerItem("goldfish_spawn_egg", new SpawnEggItem(ModEntities.GOLDFISH, 0xfb6c00, 0xfdb223,
+    public static final Item GOLDFISH_SPAWN_EGG = registerItem("goldfish_spawn_egg", new SpawnEggItem(ModEntities.GOLDFISH, 0xffaa21, 0xff771c,
             new FabricItemSettings()));
     public static final Item WISP_SPAWN_EGG = registerItem("wisp_spawn_egg", new SpawnEggItem(ModEntities.WISP, 0x73bed3, 0xa4dddb,
             new FabricItemSettings()));
@@ -38,11 +39,26 @@ public class ModItems {
             new FabricItemSettings()));
     public static final Item EEL_SPAWN_EGG = registerItem("eel_spawn_egg", new SpawnEggItem(ModEntities.EEL, 0x3c671a, 0x628923,
             new FabricItemSettings()));
+    public static final Item HIPPO_SPAWN_EGG = registerItem("hippo_spawn_egg", new SpawnEggItem(ModEntities.HIPPO, 0x6d444c, 0xd38b8c,
+            new FabricItemSettings()));
+    public static final Item SHAMAN_SPAWN_EGG = registerItem("shaman_spawn_egg", new SpawnEggItem(ModEntities.SHAMAN, 0x464420, 0xbe886c,
+            new FabricItemSettings()));
+    public static final Item VINE_SPAWN_EGG = registerItem("vine_spawn_egg", new SpawnEggItem(ModEntities.VINE, 0x445b23, 0x5d852b,
+            new FabricItemSettings()));
+    public static final Item MUD_GOLEM_SPAWN_EGG = registerItem("mud_golem_spawn_egg", new SpawnEggItem(ModEntities.MUD_GOLEM, 0x7e5d48, 0xab8661,
+            new FabricItemSettings()));
+    public static final Item MOLE_SPAWN_EGG = registerItem("mole_spawn_egg", new SpawnEggItem(ModEntities.MOLE, 0x262626, 0x3b3b3b,
+            new FabricItemSettings()));
+    public static final Item WORM_SPAWN_EGG = registerItem("worm_spawn_egg", new SpawnEggItem(ModEntities.WORM, 0xbb7697, 0xd1a8bc,
+            new FabricItemSettings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new FabricItemSettings().maxCount(1)));
 
-    public static final Item GOLDFISH = registerItem("goldfish", new Item(new FabricItemSettings()));
+    public static final Item GOLDFISH = registerItem("goldfish", new Item(new FabricItemSettings().food(ModFoodComponents.GOLDFISH)));
+    public static final Item WORM = registerItem("worm", new Item(new FabricItemSettings().food(ModFoodComponents.WORM)));
+    public static final Item SPECTRAL_FRUIT = registerItem("spectral_fruit", new Item(new FabricItemSettings().food(ModFoodComponents.SPECTRAL_FRUIT)));
+
     public static final Item SKULL = registerItem("skull", new Item(new FabricItemSettings()));
     public static final Item FIRE_SALAMANDER_SCALES = registerItem("fire_salamander_scales", new Item(new FabricItemSettings()));
     public static final Item SPECTRAL_BAT_WING = registerItem("spectral_bat_wing", new Item(new FabricItemSettings()));
@@ -60,20 +76,24 @@ public class ModItems {
     public static final Item MEDIUM_ANTLER = registerItem("medium_antler", new MediumAntlerItem(new FabricItemSettings()));
     public static final Item LARGE_ANTLER = registerItem("large_antler", new LargeAntlerItem(new FabricItemSettings()));
 
-    public static final Item SPECTRAL_FRUIT = registerItem("spectral_fruit", new Item(new FabricItemSettings()));
-
     public static final Item ADVENTURER_HAT = registerItem("adventurer_hat", new AdventurerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new FabricItemSettings()));
-    public static final Item SONIC_BLOCKERS = registerItem("sonic_blockers", new SonicBlockersItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new FabricItemSettings()));
+    public static final Item SONIC_BLOCKERS = registerItem("sonic_blockers", new SonicBlockersItem(ModArmorMaterials.UTILITY, ArmorItem.Type.HELMET, new FabricItemSettings()));
+    public static final Item SHAMAN_MASK = registerItem("shaman_mask", new ShamanMaskItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new FabricItemSettings()));
 
     public static final Item SMALL_ANTLER_HAT = registerItem("small_antler_hat", new SmallAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new FabricItemSettings()));
     public static final Item MEDIUM_ANTLER_HAT = registerItem("medium_antler_hat", new MediumAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new FabricItemSettings()));
     public static final Item LARGE_ANTLER_HAT = registerItem("large_antler_hat", new LargeAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new FabricItemSettings()));
+
+    public static final Item CROCODILE_CHESTPLATE = registerItem("crocodile_chestplate", new CrocodileChestplateItem(ModArmorMaterials.CROCODILE, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
+    public static final Item CROCODILE_CHESTPLATE_ALBINO = registerItem("crocodile_chestplate_albino", new CrocodileChestplateAlbinoItem(ModArmorMaterials.CROCODILE_ALBINO, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
 
     public static final Item SKULL_WAND = registerItem("skull_wand", new Item(new FabricItemSettings().maxCount(1)));
     public static final Item NIGHTMARE_AMULET = registerItem("nightmare_amulet", new NightmareAmuletItem(new FabricItemSettings().maxCount(1)));
 
     public static final Item DEAFEN_ICON = registerItem("deafen_icon", new Item(new FabricItemSettings()));
     public static final Item TAB_ICON = registerItem("tab_icon", new Item(new FabricItemSettings()));
+
+    public static final Item MUD_BLOSSOM_SEED = registerItem("mud_blossom_seed", new AliasedBlockItem(ModBlocks.MUD_BLOSSOM, new FabricItemSettings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(DomiXsCreatures.MOD_ID, name), item);

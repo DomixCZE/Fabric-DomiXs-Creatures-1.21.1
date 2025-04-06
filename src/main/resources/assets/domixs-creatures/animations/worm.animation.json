@@ -1,0 +1,28 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.worm.walk": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"worm": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.25": {
+							"vector": [1, 1, 0.9]
+						},
+						"0.5": {
+							"vector": [1, 1, 1]
+						}
+					}
+				}
+			}
+		},
+		"animation.worm.idle": {
+			"loop": true
+		}
+	},
+	"geckolib_format_version": 2
+}

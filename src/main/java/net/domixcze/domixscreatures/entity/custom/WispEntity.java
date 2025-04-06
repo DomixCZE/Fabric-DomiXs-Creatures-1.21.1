@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.WispAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.WispMeleeAttackGoal;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MovementType;
@@ -65,7 +65,7 @@ public class WispEntity extends TameableEntity implements GeoEntity {
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
-        this.goalSelector.add(2, new WispAttackGoal(this, 1.0, false, 1.0f));
+        this.goalSelector.add(2, new WispMeleeAttackGoal(this, 1.0, false, 1.0f));
         this.goalSelector.add(2, new FlyGoal(this, 1.0));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -117,11 +117,11 @@ public class WispEntity extends TameableEntity implements GeoEntity {
         return geocache;
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> wispAnimationState) {
-        if (wispAnimationState.isMoving()) {
-            wispAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.wisp.walk", Animation.LoopType.LOOP));
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.wisp.walk", Animation.LoopType.LOOP));
         } else {
-            wispAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.wisp.idle", Animation.LoopType.LOOP));
+            state.getController().setAnimation(RawAnimation.begin().then("animation.wisp.idle", Animation.LoopType.LOOP));
 
         }
         return PlayState.CONTINUE;

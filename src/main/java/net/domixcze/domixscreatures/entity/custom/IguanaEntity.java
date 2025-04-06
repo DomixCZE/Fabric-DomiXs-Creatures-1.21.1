@@ -258,9 +258,6 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     @Override
     public void tick() {
         super.tick();
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
-        }
 
         boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
 
@@ -374,7 +371,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     }
 
     private <T extends GeoAnimatable> PlayState landPredicate(AnimationState<T> state) {
-        if (state.isMoving()) {
+        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
             if (this.isBaby()) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_iguana.walk", Animation.LoopType.LOOP));
             } else {

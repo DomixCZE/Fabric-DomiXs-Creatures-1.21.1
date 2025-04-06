@@ -231,10 +231,6 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
     @Override
     public void tick() {
         super.tick();
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
-            return;
-        }
 
         boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
 
@@ -368,7 +364,7 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
         }
 
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_tiger.walk", Animation.LoopType.LOOP));
             } else if (this.isSitting() && !this.isSleeping()) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_tiger.sit", Animation.LoopType.LOOP));
@@ -376,7 +372,7 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_tiger.idle", Animation.LoopType.LOOP));
             }
         } else if (this.getVariant() == TigerVariants.DREAM || this.getVariant() == TigerVariants.ALBINO_DREAM) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.dream_tiger.walk", Animation.LoopType.LOOP));
             } else if (this.isSitting() && !this.isSleeping()) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.dream_tiger.sit", Animation.LoopType.LOOP));
@@ -384,7 +380,7 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
                 state.getController().setAnimation(RawAnimation.begin().then("animation.dream_tiger.idle", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.tiger.walk", Animation.LoopType.LOOP));
             } else if (this.isSitting() && !this.isSleeping()) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.tiger.sit", Animation.LoopType.LOOP));

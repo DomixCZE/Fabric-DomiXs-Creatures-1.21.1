@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures.datagen;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.block.custom.MudBlossomBlock;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -45,12 +46,25 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.EEL_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.HIPPO_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.SHAMAN_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.VINE_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MUD_GOLEM_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MOLE_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.WORM_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_EAR, Models.GENERATED);
         itemModelGenerator.register(ModItems.GOLDFISH_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.GOLDFISH, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WORM, Models.GENERATED);
         itemModelGenerator.register(ModItems.SKULL, Models.GENERATED);
         itemModelGenerator.register(ModItems.CROCODILE_SCALE, Models.GENERATED);
         itemModelGenerator.register(ModItems.CROCODILE_SCALE_ALBINO, Models.GENERATED);
@@ -71,6 +85,9 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.ADVENTURER_HAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.SONIC_BLOCKERS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHAMAN_MASK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CROCODILE_CHESTPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CROCODILE_CHESTPLATE_ALBINO, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.TAB_ICON, Models.GENERATED);
         itemModelGenerator.register(ModItems.DEAFEN_ICON, Models.GENERATED);
@@ -99,5 +116,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerTintableCross(ModBlocks.SPECTRAL_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_GLASS_BLOCK);
+
+        blockStateModelGenerator.registerCrop(ModBlocks.MUD_BLOSSOM, MudBlossomBlock.AGE, 0, 1, 2, 3);
     }
 }

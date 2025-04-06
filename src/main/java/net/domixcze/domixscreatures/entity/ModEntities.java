@@ -76,12 +76,49 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, EelEntity::new)
                     .dimensions(EntityDimensions.fixed(0.8f, 0.6f)).build());
 
+    public static final EntityType<MudGolemEntity> MUD_GOLEM = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "mud_golem"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MudGolemEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.5f, 0.6f)).build());
+
+    public static final EntityType<HippoEntity> HIPPO = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "hippo"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HippoEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.8f, 1.6f)).build());
+
+    public static final EntityType<ShamanEntity> SHAMAN = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "shaman"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ShamanEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.6f, 2.0f)).build());
+
+    public static final EntityType<VineEntity> VINE = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "vine"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, VineEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.8f, 1.8f)).build());
+
+    public static final EntityType<MoleEntity> MOLE = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "mole"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MoleEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.4f, 0.3f)).build());
+
+    public static final EntityType<WormEntity> WORM = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "worm"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WormEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.2f, 0.2f)).build());
+
+
+
+    public static final EntityType<MagmaBallEntity> MAGMA_BALL = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "magma_ball"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, MagmaBallEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.8f, 0.8f)).build());
+
 
 
     /*public static final EntityType<TestEntity> TEST = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "test"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TestEntity::new)
-                    .dimensions(EntityDimensions.fixed(2.0f, 1.4f)).build());*/
+                    .dimensions(EntityDimensions.fixed(0.8f, 0.8f)).build());*/
 
     public static void registerModEntities() {
         DomiXsCreatures.LOGGER.info("Registering Entities for " + DomiXsCreatures.MOD_ID);

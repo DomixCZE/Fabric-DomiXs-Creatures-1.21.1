@@ -20,6 +20,7 @@ public class FireSalamanderMeleeAttackGoal extends MeleeAttackGoal {
         if (this.salamander.isObsidianVariant()) {
             return false;
         }
+
         return super.canStart();
     }
 

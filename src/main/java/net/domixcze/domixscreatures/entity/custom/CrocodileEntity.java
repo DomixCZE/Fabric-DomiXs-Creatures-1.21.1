@@ -29,6 +29,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -40,6 +41,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -73,7 +76,7 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, false, true));
         this.goalSelector.add(1, new CrocodileMateGoal(this, 1.0));
         this.goalSelector.add(1, new CrocodileLayEggGoal(this, 1.0));
-        this.goalSelector.add(2, new CrocodileMeleeAttackGoal(this, 1.0, true, 2));
+        this.goalSelector.add(2, new CrocodileMeleeAttackGoal(this, 1.0, true, 2.0f));
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -141,11 +144,6 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
             this.moveControl = new AquaticMoveControl(this, 85, 10, 5F, 0.1F, true);
         } else if (this.isOnGround()) {
             this.moveControl = new CrocodileMoveControl();
-        }
-
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
-            return;
         }
 
         if (this.isTouchingWater() && !this.isBaby()) {
@@ -223,7 +221,6 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.dataTracker.startTracking(OVERGROWN, false);
         this.dataTracker.startTracking(HAS_EGG, false);
         this.dataTracker.startTracking(SLEEPING, false);
-
         this.dataTracker.startTracking(VARIANT, CrocodileVariants.NORMAL.getId());
     }
 
@@ -245,11 +242,18 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
         entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 
-        if (world.getRandom().nextDouble() < 0.05) {
-            this.setVariant(CrocodileVariants.ALBINO);
-        } else {
-            this.setVariant(CrocodileVariants.NORMAL);
+        if (spawnReason == SpawnReason.NATURAL || spawnReason == SpawnReason.COMMAND || spawnReason == SpawnReason.SPAWN_EGG || spawnReason == SpawnReason.CHUNK_GENERATION) {
+            RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
+
+            if (world.getRandom().nextDouble() < 0.05) {
+                this.setVariant(CrocodileVariants.ALBINO);
+            } else if (biomeEntry.isIn(ModTags.Biomes.SPAWNS_SAVANNA_CROCODILE)) {
+                this.setVariant(CrocodileVariants.SAVANNA);
+            } else {
+                this.setVariant(CrocodileVariants.NORMAL);
+            }
         }
+
         return entityData;
     }
 
@@ -296,13 +300,13 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         }
 
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-6) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_crocodile.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_crocodile.idle", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-6) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.crocodile.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.crocodile.idle", Animation.LoopType.LOOP));
@@ -330,13 +334,13 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
             return PlayState.STOP;
         }
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_crocodile.swim", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_crocodile.idle_swim", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.crocodile.swim", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.crocodile.idle_swim", Animation.LoopType.LOOP));
@@ -452,6 +456,11 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     //SOUNDS
+    @Override
+    public float getSoundPitch() {
+        return 1.0f;
+    }
+
     @Override
     protected SoundEvent getAmbientSound() {
         if (this.isSleeping()) {
