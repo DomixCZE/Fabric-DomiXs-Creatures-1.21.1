@@ -7,12 +7,10 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class CrocodileMeleeAttackGoal extends MeleeAttackGoal {
     private final CrocodileEntity crocodile;
-    private final double attackRange;
 
-    public CrocodileMeleeAttackGoal(CrocodileEntity crocodile, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public CrocodileMeleeAttackGoal(CrocodileEntity crocodile, double speed, boolean pauseWhenMobIdle) {
         super(crocodile, speed, pauseWhenMobIdle);
         this.crocodile = crocodile;
-        this.attackRange = attackRange * attackRange;
     }
 
     @Override
@@ -35,10 +33,5 @@ public class CrocodileMeleeAttackGoal extends MeleeAttackGoal {
             return true;
         }
         return super.shouldContinue();
-    }
-
-    @Override
-    protected double getSquaredMaxAttackDistance(LivingEntity target) {
-        return this.attackRange;
     }
 }

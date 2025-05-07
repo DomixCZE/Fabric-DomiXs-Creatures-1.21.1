@@ -24,11 +24,11 @@ public class DeerSnowyLayer extends GeoRenderLayer<DeerEntity> {
             String texturePath = "textures/entity/";
             String snowTexture = animatable.isBaby() ? "baby_deer_snowy.png" : "deer_snowy.png";
 
-            Identifier snowIdentifier = new Identifier(DomiXsCreatures.MOD_ID, texturePath + snowTexture);
+            Identifier snowIdentifier = Identifier.of(DomiXsCreatures.MOD_ID, texturePath + snowTexture);
             RenderLayer entityCutoutNoCull = RenderLayer.getEntityCutoutNoCull(snowIdentifier);
 
             getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, entityCutoutNoCull,
-                    bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+                    bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
         }
     }
 }

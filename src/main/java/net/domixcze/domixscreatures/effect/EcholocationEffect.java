@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -19,22 +20,23 @@ public class EcholocationEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
             World world = entity.getEntityWorld();
             BlockPos playerPos = entity.getBlockPos();
 
             int radius = 25;
 
-            List<LivingEntity> nearbyEntities = world.getEntitiesByClass(LivingEntity.class, new Box(
-                    playerPos.add(-radius, -radius, -radius),
-                    playerPos.add(radius, radius, radius)
-            ), e -> e != entity);
+            Vec3d min = Vec3d.of(playerPos).add(-radius, -radius, -radius);
+            Vec3d max = Vec3d.of(playerPos).add(radius, radius, radius);
+
+            List<LivingEntity> nearbyEntities = world.getEntitiesByClass(LivingEntity.class, new Box(min, max), e -> e != entity);
 
             for (LivingEntity nearbyEntity : nearbyEntities) {
                 nearbyEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
             }
         }
+        return super.applyUpdateEffect(entity, amplifier);
     }
 
     @Override

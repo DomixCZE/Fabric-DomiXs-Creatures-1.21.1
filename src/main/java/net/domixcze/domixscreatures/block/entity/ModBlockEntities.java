@@ -10,8 +10,8 @@ import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
     public static final BlockEntityType<MolehillBlockEntity> MOLEHILL_BLOCK_ENTITY =
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "molehill_block_entity"),
-                    FabricBlockEntityTypeBuilder.create(MolehillBlockEntity::new,
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "molehill_block_entity"),
+                    BlockEntityType.Builder.create(MolehillBlockEntity::new,
                             ModBlocks.MOLEHILL_BLOCK).build());
 
     public static void registerBlockEntities() {

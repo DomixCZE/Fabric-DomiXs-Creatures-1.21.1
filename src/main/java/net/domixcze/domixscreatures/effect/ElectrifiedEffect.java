@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.effect;
 
+import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.damage.ModDamageTypes;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.sound.ModSounds;
@@ -13,35 +14,36 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Identifier;
 
 import java.util.UUID;
 
 public class ElectrifiedEffect extends StatusEffect {
 
-    private static final UUID MOVEMENT_SPEED_UUID = UUID.fromString("7107DE5E-7CE8-4030-940E-514C1F160890");
+    public static final Identifier MOVEMENT_SPEED_MODIFIER_ID = Identifier.of(DomiXsCreatures.MOD_ID, "electrified_speed_debuff");
 
     public ElectrifiedEffect(StatusEffectCategory category, int color) {
         super(category, color);
         this.addAttributeModifier(
                 EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                MOVEMENT_SPEED_UUID.toString(),
+                MOVEMENT_SPEED_MODIFIER_ID,
                 -0.25,
-                EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity.getWorld().getTime() % 20 != 0) {
-            return;
+            return true;
         }
 
         if (entity.getType() == ModEntities.EEL) {
-            return;
+            return true;
         }
 
         if (entity instanceof PlayerEntity player && (player.isCreative() || player.isSpectator())) {
-            return;
+            return true;
         }
 
         int conductiveItemCount = 0;
@@ -82,6 +84,7 @@ public class ElectrifiedEffect extends StatusEffect {
                 );
             }
         }
+        return true;
     }
 
     @Override

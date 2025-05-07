@@ -23,12 +23,11 @@ import net.minecraft.entity.mob.WaterCreatureEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beachable {
@@ -52,7 +51,7 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new BeachedGoal(this, this));
-        this.goalSelector.add(1, new SharkMeleeAttackGoal(this, 1.0, true, 2));
+        this.goalSelector.add(1, new SharkMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(2, new SwimAroundGoal(this, 0.8, 12));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -60,9 +59,9 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(BEACHED, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(BEACHED, false);
     }
 
     @Override
@@ -101,9 +100,9 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
         return stack.isIn(ModTags.Items.PREVENTS_BLEEDING);
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return dimensions.height * 0.65F;
-    }
+    }*/
 
     @Override
     protected EntityNavigation createNavigation(World world) {

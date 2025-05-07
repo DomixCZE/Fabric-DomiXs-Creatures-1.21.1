@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:mangrove_swamp",
+    "minecraft:savanna",
+    {
+      "id": "biomesoplenty:bayou",
+      "required": false
+    }
+  ]
+}

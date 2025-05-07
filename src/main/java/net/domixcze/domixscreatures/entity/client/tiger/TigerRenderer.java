@@ -10,6 +10,12 @@ public class TigerRenderer extends GeoEntityRenderer<TigerEntity> {
         super(renderManager, new TigerModel());
         this.addRenderLayer(new AutoGlowingGeoLayer<>(this));
         this.addRenderLayer(new TigerSnowyLayer(this));
-        this.shadowRadius = 0.8F;
+    }
+
+    @Override
+    protected float getShadowRadius(TigerEntity entity) {
+        float adultShadowScale = 0.8f;
+        float babyShadowScale = 0.5f;
+        return entity.isBaby() ? babyShadowScale : adultShadowScale;
     }
 }

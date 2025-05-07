@@ -13,7 +13,7 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class CrocodileMossLayer extends GeoRenderLayer<CrocodileEntity> {
-    private static final Identifier MOSS_LAYER = new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/crocodile_overgrown_layer.png");
+    private static final Identifier MOSS_LAYER = Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/crocodile_overgrown_layer.png");
 
     public CrocodileMossLayer(GeoRenderer<CrocodileEntity> entityGeoRenderer) {
         super(entityGeoRenderer);
@@ -26,8 +26,7 @@ public class CrocodileMossLayer extends GeoRenderLayer<CrocodileEntity> {
             RenderLayer entityCutoutNoCull = RenderLayer.getEntityCutoutNoCull(MOSS_LAYER);
 
             getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, entityCutoutNoCull,
-                bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV,
-                1, 1, 1, 1);
+                bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
         }
     }
 }

@@ -9,12 +9,12 @@ public class CrocodileChestplateModel extends GeoModel<CrocodileChestplateItem> 
 
     @Override
     public Identifier getModelResource(CrocodileChestplateItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"geo/crocodile_chestplate.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"geo/crocodile_chestplate.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CrocodileChestplateItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"textures/armor/crocodile_chestplate.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"textures/armor/crocodile_chestplate.png");
     }
 
     @Override

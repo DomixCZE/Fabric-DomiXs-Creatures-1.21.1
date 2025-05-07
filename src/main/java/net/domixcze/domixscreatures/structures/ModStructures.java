@@ -11,6 +11,6 @@ public class ModStructures {
     public static StructureType<GroundStructures> GROUND_STRUCTURES;
 
     public static void registerStructureFeatures() {
-        GROUND_STRUCTURES = Registry.register(Registries.STRUCTURE_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "ground_structures"), () -> GroundStructures.CODEC);
+        GROUND_STRUCTURES = Registry.register(Registries.STRUCTURE_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "ground_structures"), () -> GroundStructures.CODEC);
     }
 }

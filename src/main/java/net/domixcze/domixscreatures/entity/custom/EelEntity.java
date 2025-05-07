@@ -29,14 +29,12 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 
@@ -67,7 +65,7 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new BeachedGoal(this, this));
-        this.goalSelector.add(1, new EelMeleeAttackGoal(this, 1.0, true, 2));
+        this.goalSelector.add(1, new EelMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(2, new SwimAroundGoal(this, 0.8, 12));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -76,13 +74,13 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, CodEntity.class, true));
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return dimensions.height * 0.40F;
-    }
+    }*/
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         setAttackCooldown(ATTACK_COOLDOWN);
 
@@ -149,11 +147,11 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, EelVariants.GREEN.ordinal());
-        this.dataTracker.startTracking(CHARGED, false);
-        this.dataTracker.startTracking(BEACHED, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(VARIANT, EelVariants.GREEN.ordinal());
+        builder.add(CHARGED, false);
+        builder.add(BEACHED, false);
     }
 
     public boolean isBeached() {

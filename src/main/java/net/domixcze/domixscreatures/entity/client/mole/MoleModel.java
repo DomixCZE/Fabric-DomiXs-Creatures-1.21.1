@@ -12,7 +12,7 @@ import java.util.Set;
 public class MoleModel extends GeoModel<MoleEntity> {
     @Override
     public Identifier getModelResource(MoleEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "geo/mole.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/mole.geo.json");
     }
 
     @Override
@@ -25,12 +25,12 @@ public class MoleModel extends GeoModel<MoleEntity> {
             specialNames.add("moley");
 
             if (specialNames.contains(name.toLowerCase())) {
-                return new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/mole_krtecek.png");
+                return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/mole_krtecek.png");
             }
         }
         return animatable.getVariant() == MoleVariants.ALBINO
-                ? new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/mole_albino.png")
-                : new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/mole.png");
+                ? Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/mole_albino.png")
+                : Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/mole.png");
     }
 
     private String normalize(String input) {
@@ -40,6 +40,6 @@ public class MoleModel extends GeoModel<MoleEntity> {
 
     @Override
     public Identifier getAnimationResource(MoleEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "animations/mole.animation.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/mole.animation.json");
     }
 }

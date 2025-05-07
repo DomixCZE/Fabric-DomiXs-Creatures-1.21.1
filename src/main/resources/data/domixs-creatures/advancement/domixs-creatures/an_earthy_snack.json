@@ -1,0 +1,35 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/fin-tastic_fortune",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:worm"
+    },
+    "title": {
+      "translate": "advancements.domixs_creatures.an_earthy_snack.title"
+    },
+    "description": {
+      "translate": "advancements.domixs_creatures.an_earthy_snack.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "eat_worm": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "domixs-creatures:worm"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eat_worm"
+    ]
+  ]
+}

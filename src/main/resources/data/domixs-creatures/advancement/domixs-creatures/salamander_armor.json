@@ -1,0 +1,39 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/root",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:salamander_chestplate"
+    },
+    "title": {
+      "translate": "advancements.domixs_creatures.salamander_armor.title"
+    },
+    "description": {
+      "translate": "advancements.domixs_creatures.salamander_armor.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "salamander_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["domixs-creatures:salamander_helmet"] },
+          { "items": ["domixs-creatures:salamander_chestplate"] },
+          { "items": ["domixs-creatures:salamander_leggings"] },
+          { "items": ["domixs-creatures:salamander_boots"] }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "salamander_armor"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

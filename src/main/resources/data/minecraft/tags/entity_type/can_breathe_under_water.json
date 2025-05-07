@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:hippo",
+    "domixs-creatures:crocodile",
+    "domixs-creatures:beaver",
+    "domixs-creatures:vine"
+  ]
+}

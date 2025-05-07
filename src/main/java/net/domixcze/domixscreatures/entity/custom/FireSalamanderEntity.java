@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.control.LookControl;
-import net.minecraft.entity.ai.control.YawAdjustingLookControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -26,8 +25,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -37,11 +39,10 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
@@ -92,8 +93,8 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new FireSalamanderMagmaBallAttackGoal(this));
-        this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
-        this.goalSelector.add(2, new FireSalamanderMeleeAttackGoal(this, 1.0, false, 2.0f));
+        this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
+        this.goalSelector.add(2, new FireSalamanderMeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -115,8 +116,8 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         this.setVariant(FireSalamanderVariants.MAGMA);
 
@@ -124,11 +125,11 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, FireSalamanderVariants.MAGMA.getId());
-        this.dataTracker.startTracking(SITTING, false);
-        this.dataTracker.startTracking(IS_CHARGING, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(VARIANT, FireSalamanderVariants.MAGMA.getId());
+        builder.add(SITTING, false);
+        builder.add(IS_CHARGING, false);
     }
 
     public FireSalamanderVariants getVariant() {
@@ -191,9 +192,9 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         nbt.putBoolean("isCharging", this.dataTracker.get(IS_CHARGING));
 
         if (!this.smeltingItem.isEmpty()) {
-            NbtCompound itemNbt = new NbtCompound();
-            this.smeltingItem.writeNbt(itemNbt);
-            nbt.put("SmeltingItem", itemNbt);
+            nbt.put("SmeltingItem", ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, this.smeltingItem)
+                    .resultOrPartial(error -> {
+                    }).orElse(new NbtCompound()));
         }
         nbt.putInt("SmeltingTimer", this.smeltingTimer);
     }
@@ -212,11 +213,18 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         this.dataTracker.set(IS_CHARGING, nbt.getBoolean("isCharging"));
 
         if (nbt.contains("SmeltingItem")) {
-            this.smeltingItem = ItemStack.fromNbt(nbt.getCompound("SmeltingItem"));
+            this.smeltingItem = ItemStack.CODEC.parse(NbtOps.INSTANCE, nbt.get("SmeltingItem"))
+                    .resultOrPartial(error -> {
+                    }).orElse(ItemStack.EMPTY);
         } else {
             this.smeltingItem = ItemStack.EMPTY;
         }
         this.smeltingTimer = nbt.getInt("SmeltingTimer");
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return false;
     }
 
     @Override
@@ -338,7 +346,8 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
     }
 
     private boolean canSmelt(ItemStack stack) {
-        return this.getWorld().getRecipeManager().getFirstMatch(RecipeType.SMELTING, new net.minecraft.inventory.SimpleInventory(stack), this.getWorld()).isPresent();
+        SingleStackRecipeInput input = new SingleStackRecipeInput(stack);
+        return this.getWorld().getRecipeManager().getFirstMatch(RecipeType.SMELTING, input, this.getWorld()).isPresent();
     }
 
     private void startSmelting(ItemStack stack) {
@@ -348,9 +357,10 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
     private void smeltItem() {
         if (!this.smeltingItem.isEmpty() && this.getWorld() instanceof ServerWorld serverWorld) {
-            Optional<SmeltingRecipe> recipe = serverWorld.getRecipeManager().getFirstMatch(RecipeType.SMELTING, new net.minecraft.inventory.SimpleInventory(this.smeltingItem), serverWorld);
+            SingleStackRecipeInput input = new SingleStackRecipeInput(this.smeltingItem);
+            Optional<RecipeEntry<SmeltingRecipe>> recipe = serverWorld.getRecipeManager().getFirstMatch(RecipeType.SMELTING, input, serverWorld);
             if (recipe.isPresent()) {
-                ItemStack result = recipe.get().getOutput(serverWorld.getRegistryManager()).copy();
+                ItemStack result = recipe.get().value().getResult(serverWorld.getRegistryManager()).copy();
                 this.dropStack(result);
             }
             this.smeltingItem = ItemStack.EMPTY;
@@ -359,11 +369,6 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
     public boolean canBeLeashedBy(PlayerEntity player) {
         return true;
-    }
-
-    @Override
-    public EntityView method_48926() {
-        return this.getWorld();
     }
 
     @Override

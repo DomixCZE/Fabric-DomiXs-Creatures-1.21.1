@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "domixs-creatures:antlers"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "minecraft:bone_meal"
+  }
+}

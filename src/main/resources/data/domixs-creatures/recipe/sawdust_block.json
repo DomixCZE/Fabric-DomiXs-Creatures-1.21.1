@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "domixs-creatures:sawdust"
+    }
+  },
+  "result": {
+    "count": 3,
+    "id": "domixs-creatures:sawdust_block"
+  }
+}

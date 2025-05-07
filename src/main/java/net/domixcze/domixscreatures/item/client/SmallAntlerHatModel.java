@@ -9,12 +9,12 @@ public class SmallAntlerHatModel extends GeoModel<SmallAntlerHatItem> {
 
     @Override
     public Identifier getModelResource(SmallAntlerHatItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"geo/antler_hat.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"geo/antler_hat.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SmallAntlerHatItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"textures/armor/small_antler_hat.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"textures/armor/small_antler_hat.png");
     }
 
     @Override

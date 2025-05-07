@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "domixs-creatures:spectral_planks"
+    }
+  ],
+  "result": {
+    "id": "domixs-creatures:spectral_button"
+  }
+}

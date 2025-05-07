@@ -1,14 +1,13 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaVariants;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.domixcze.domixscreatures.util.ModTags;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -31,17 +30,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EntityView;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.UUID;
@@ -73,20 +69,28 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, true, true));
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
+        this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(2, new FollowParentGoal(this, 1.25));
+        this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.25));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(HAS_SNOW_LAYER, false);
-        this.dataTracker.startTracking(VARIANT, IguanaVariants.GREEN.getId());
-        this.dataTracker.startTracking(SITTING, false);
-        this.dataTracker.startTracking(SLEEPING, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(HAS_SNOW_LAYER, false);
+        builder.add(VARIANT, IguanaVariants.GREEN.getId());
+        builder.add(SITTING, false);
+        builder.add(SLEEPING, false);
+    }
+
+    @Override
+    protected EntityDimensions getBaseDimensions(EntityPose pose) {
+        if (this.isBaby()) {
+            return EntityDimensions.fixed(0.4F, 0.3F);
+        }
+        return this.getType().getDimensions();
     }
 
     public boolean isSleeping() {
@@ -122,6 +126,24 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         }
     }
 
+    public boolean isBeingSnowedOn() {
+        BlockPos blockPos = this.getBlockPos();
+        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
+    }
+
+    public boolean hasSnow(BlockPos pos) {
+        if (!this.getWorld().isRaining()) {
+            return false;
+        } else if (!this.getWorld().isSkyVisible(pos)) {
+            return false;
+        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
+            return false;
+        } else {
+            Biome biome = this.getWorld().getBiome(pos).value();
+            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
+        }
+    }
+
     public boolean isInSnowyBiome() {
         BlockPos pos = this.getBlockPos();
         RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
@@ -154,8 +176,8 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         double randomValue = world.getRandom().nextDouble();
 
@@ -230,7 +252,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
                 snowMeltTimer = 0;
 
                 if (!player.isCreative()) {
-                    itemstack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                    itemstack.damage(1, player, EquipmentSlot.MAINHAND);
                 }
 
                 this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
@@ -259,9 +281,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     public void tick() {
         super.tick();
 
-        boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
-
-        if (this.isInSnowyBiome() && isSnowing && !this.hasSnowLayer()) {
+        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
             snowTicks++;
             if (snowTicks >= 600) {
                 this.setHasSnowLayer(true);
@@ -315,13 +335,13 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
 
                 float yaw = bodyYaw;
                 float offsetX = 0.4f; // Adjust left/right position
-                float offsetY = 0.0f; // Adjust vertical position
+                float offsetY = -0.2f; // Adjust vertical position
                 float offsetZ = - 0.1f; // Adjust forward/backward position
                 yaw = (float) Math.toRadians(yaw);
 
                 double newX = player.getX() + offsetX * Math.cos(yaw) - offsetZ * Math.sin(yaw);
                 double newZ = player.getZ() + offsetZ * Math.cos(yaw) + offsetX * Math.sin(yaw);
-                double newY = player.getY() + player.getMountedHeightOffset() + offsetY;
+                double newY = player.getY() + offsetY + player.getStandingEyeHeight();
 
                 this.setPosition(newX, newY, newZ);
             }
@@ -359,7 +379,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isOf(Items.APPLE);
+        return stack.isIn(ModTags.Items.IGUANA_FOR_BREEDING);
     }
 
     @Override
@@ -465,10 +485,5 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
             }
         }
         return baby;
-    }
-
-    @Override
-    public EntityView method_48926() {
-        return this.getWorld();
     }
 }

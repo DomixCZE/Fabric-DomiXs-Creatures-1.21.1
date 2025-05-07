@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "domixs-creatures:fire_salamander_scales"
+  },
+  "base": {
+    "item": "minecraft:netherite_leggings"
+  },
+  "result": {
+    "id": "domixs-creatures:salamander_leggings"
+  },
+  "template": {
+    "item": "domixs-creatures:salamander_upgrade_smithing_template"
+  }
+}

@@ -6,12 +6,10 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
 public class MooseMeleeAttackGoal extends MeleeAttackGoal {
     private final MooseEntity moose;
-    private final double attackRange;
 
-    public MooseMeleeAttackGoal(MooseEntity moose, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public MooseMeleeAttackGoal(MooseEntity moose, double speed, boolean pauseWhenMobIdle) {
         super(moose, speed, pauseWhenMobIdle);
         this.moose = moose;
-        this.attackRange = attackRange * attackRange;
     }
 
     @Override
@@ -24,10 +22,5 @@ public class MooseMeleeAttackGoal extends MeleeAttackGoal {
         }
 
         return super.canStart();
-    }
-
-    @Override
-    protected double getSquaredMaxAttackDistance(LivingEntity target) {
-        return this.attackRange;
     }
 }

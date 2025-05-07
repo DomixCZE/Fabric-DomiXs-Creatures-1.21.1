@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.domixcze.domixscreatures.block.entity.MolehillBlockEntity;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.MoleEntity;
@@ -24,6 +25,8 @@ import org.jetbrains.annotations.Nullable;
 public class MolehillBlock extends BlockWithEntity implements Waterloggable {
     private static final VoxelShape SHAPE = Block.createCuboidShape(3, 0, 3, 13, 6, 13);
 
+    public static final MapCodec<MolehillBlock> CODEC = MolehillBlock.createCodec(MolehillBlock::new);
+
     public static final BooleanProperty OCCUPIED = BooleanProperty.of("occupied");
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
@@ -32,6 +35,11 @@ public class MolehillBlock extends BlockWithEntity implements Waterloggable {
         setDefaultState(getStateManager().getDefaultState()
                 .with(WATERLOGGED, false)
                 .with(OCCUPIED, false));
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -77,7 +85,7 @@ public class MolehillBlock extends BlockWithEntity implements Waterloggable {
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof MolehillBlockEntity moleHill) {
@@ -92,5 +100,6 @@ public class MolehillBlock extends BlockWithEntity implements Waterloggable {
             }
         }
         super.onBreak(world, pos, state, player);
+        return state;
     }
 }

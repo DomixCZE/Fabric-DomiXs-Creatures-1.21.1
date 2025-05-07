@@ -12,11 +12,13 @@ import net.minecraft.util.Identifier;
 
 public class ModLootTableModifiers {
     public static final Identifier WARDEN_ID =
-            new Identifier("minecraft", "entities/warden");
+            Identifier.of("minecraft", "entities/warden");
+    public static final Identifier BASTION_ID =
+            Identifier.of("minecraft", "chests/bastion_treasure");
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (WARDEN_ID.equals(id)) {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
+            if (WARDEN_ID.equals(key.getValue())) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(1f)) //100% chance
@@ -25,7 +27,17 @@ public class ModLootTableModifiers {
 
                 tableBuilder.pool(poolBuilder.build());
             }
-        }));
+
+            if (BASTION_ID.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(1f)) //100% chance
+                        .with(ItemEntry.builder(ModItems.SALAMANDER_UPGRADE_SMITHING_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
     }
 
 }

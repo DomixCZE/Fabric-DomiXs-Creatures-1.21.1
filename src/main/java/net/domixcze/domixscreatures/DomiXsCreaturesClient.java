@@ -3,6 +3,8 @@ package net.domixcze.domixscreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverRenderer;
+import net.domixcze.domixscreatures.entity.client.bison.BisonRenderer;
+import net.domixcze.domixscreatures.entity.client.boar.BoarRenderer;
 import net.domixcze.domixscreatures.entity.client.crocodile.CrocodileRenderer;
 import net.domixcze.domixscreatures.entity.client.deer.DeerRenderer;
 import net.domixcze.domixscreatures.entity.client.eel.EelRenderer;
@@ -14,12 +16,15 @@ import net.domixcze.domixscreatures.entity.client.magma_ball.MagmaBallRenderer;
 import net.domixcze.domixscreatures.entity.client.mole.MoleRenderer;
 import net.domixcze.domixscreatures.entity.client.moose.MooseRenderer;
 import net.domixcze.domixscreatures.entity.client.mud_golem.MudGolemRenderer;
+import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineRenderer;
+import net.domixcze.domixscreatures.entity.client.quill_projectile.QuillProjectileRenderer;
 import net.domixcze.domixscreatures.entity.client.shaman.ShamanRenderer;
 import net.domixcze.domixscreatures.entity.client.shark.SharkRenderer;
 import net.domixcze.domixscreatures.entity.client.spectral_bat.SpectralBatRenderer;
-//import net.domixcze.domixscreatures.entity.client.test.TestRenderer;
+import net.domixcze.domixscreatures.entity.client.test.TestRenderer;
 import net.domixcze.domixscreatures.entity.client.tiger.TigerRenderer;
 import net.domixcze.domixscreatures.entity.client.vine.VineRenderer;
+import net.domixcze.domixscreatures.entity.client.water_strider.WaterStriderRenderer;
 import net.domixcze.domixscreatures.entity.client.whale.WhaleRenderer;
 import net.domixcze.domixscreatures.entity.client.wisp.WispRenderer;
 import net.domixcze.domixscreatures.entity.client.worm.WormRenderer;
@@ -54,10 +59,15 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.VINE, VineRenderer::new);
         EntityRendererRegistry.register(ModEntities.MOLE, MoleRenderer::new);
         EntityRendererRegistry.register(ModEntities.WORM, WormRenderer::new);
+        EntityRendererRegistry.register(ModEntities.PORCUPINE, PorcupineRenderer::new);
+        EntityRendererRegistry.register(ModEntities.WATER_STRIDER, WaterStriderRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BOAR, BoarRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BISON, BisonRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.MAGMA_BALL, MagmaBallRenderer::new);
+        EntityRendererRegistry.register(ModEntities.QUILL_PROJECTILE, QuillProjectileRenderer::new);
 
-        //EntityRendererRegistry.register(ModEntities.TEST, TestRenderer::new);
+        EntityRendererRegistry.register(ModEntities.TEST, TestRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.SCREECH, SonicBoomParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.INK, InkParticle.Factory::new);

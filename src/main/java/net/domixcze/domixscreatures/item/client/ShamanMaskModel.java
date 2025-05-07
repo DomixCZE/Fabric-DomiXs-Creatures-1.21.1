@@ -9,12 +9,12 @@ public class ShamanMaskModel extends GeoModel<ShamanMaskItem> {
 
     @Override
     public Identifier getModelResource(ShamanMaskItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"geo/shaman_mask.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"geo/shaman_mask.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShamanMaskItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"textures/armor/shaman_mask.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"textures/armor/shaman_mask.png");
     }
 
     @Override

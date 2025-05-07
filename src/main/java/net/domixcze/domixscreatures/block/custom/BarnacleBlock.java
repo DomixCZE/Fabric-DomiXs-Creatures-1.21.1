@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.block.custom;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -99,15 +100,15 @@ public class BarnacleBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        ItemStack itemStack = player.getMainHandStack();
 
         if (itemStack.isOf(Items.SHEARS)) {
             boolean sheared = state.get(SHEARED);
 
             if (!sheared) {
                 world.setBlockState(pos, state.with(SHEARED, true), 3);
-                itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                itemStack.damage(1, player, EquipmentSlot.MAINHAND);
                 world.playSound(player, pos, SoundEvents.ENTITY_SNOW_GOLEM_SHEAR, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
                 return ActionResult.SUCCESS;

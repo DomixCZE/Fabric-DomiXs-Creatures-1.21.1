@@ -1,12 +1,10 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.MooseMeleeAttackGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
-import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
+import net.domixcze.domixscreatures.entity.ai.*;
 import net.domixcze.domixscreatures.entity.client.moose.MooseAntlerSize;
 import net.domixcze.domixscreatures.entity.client.moose.MooseVariants;
+import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -29,17 +27,17 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerable, Sleepy {
@@ -53,16 +51,21 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(MooseEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> ANTLER_SIZE = DataTracker.registerData(MooseEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
+    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.fixed(0.8F, 1.4F);
+    private static final EntityDimensions ADULT_DIMENSIONS = EntityDimensions.fixed(1.4F, 2.0F);
+    private static final EntityDimensions SLEEPING_BABY_DIMENSIONS = EntityDimensions.fixed(0.8F, 0.7F);
+    private static final EntityDimensions SLEEPING_ADULT_DIMENSIONS = EntityDimensions.fixed(1.4F, 1.0F);
+
     public MooseEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
-        this.setStepHeight(1.2f);
     }
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0f)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f);
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f)
+                .add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.2);
     }
 
     @Override
@@ -70,21 +73,22 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
         this.goalSelector.add(0, new SleepGoal(this, this, true, false, true, false, 5.0, 500, 700, true, false, true, true));
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(2, new MooseMeleeAttackGoal(this, 1.0, true, 2));
-        this.goalSelector.add(3, new FollowParentGoal(this, 1.25));
-        this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
-        this.goalSelector.add(4, new LookAroundGoal(this));
+        this.goalSelector.add(2, new MooseMeleeAttackGoal(this, 1.0, true));
+        this.goalSelector.add(3, new BabyFollowParentGoal(this, 1.25));
+        this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.75f, 1));
+        this.goalSelector.add(5, new LookAroundGoal(this));
 
-        this.targetSelector.add(1, (new RevengeGoal(this)));
+        this.targetSelector.add(1, new ProtectBabiesGoal<>(this, MooseEntity.class, 8.0));
+        this.targetSelector.add(2, (new RevengeGoal(this)));
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(HAS_SNOW_LAYER, false);
-        this.dataTracker.startTracking(SLEEPING, false);
-        this.dataTracker.startTracking(VARIANT, MooseVariants.BROWN.ordinal());
-        this.dataTracker.startTracking(ANTLER_SIZE, MooseAntlerSize.NONE.ordinal());
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(HAS_SNOW_LAYER, false);
+        builder.add(SLEEPING, false);
+        builder.add(VARIANT, MooseVariants.BROWN.ordinal());
+        builder.add(ANTLER_SIZE, MooseAntlerSize.NONE.ordinal());
     }
 
     @Override
@@ -131,8 +135,8 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         if (world.getRandom().nextDouble() < 0.05) {
             this.setVariant(MooseVariants.ALBINO);
@@ -152,11 +156,22 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     }
 
     @Override
-    public EntityDimensions getDimensions(EntityPose pose) {
-        if (this.isBaby()) {
-            return EntityDimensions.fixed(0.8F, 1.4F);
+    public void onTrackedDataSet(TrackedData<?> data) {
+        if (SLEEPING.equals(data)) {
+            this.calculateDimensions();
         }
-        return super.getDimensions(pose);
+        super.onTrackedDataSet(data);
+    }
+
+    public EntityDimensions getBaseDimensions(EntityPose pose) {
+        return this.getCustomDimensions(pose);
+    }
+
+    private EntityDimensions getCustomDimensions(EntityPose pose) {
+        if (this.isSleeping()) {
+            return this.isBaby() ? SLEEPING_BABY_DIMENSIONS : SLEEPING_ADULT_DIMENSIONS;
+        }
+        return this.isBaby() ? BABY_DIMENSIONS : ADULT_DIMENSIONS;
     }
 
     @Override
@@ -204,8 +219,9 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
         return baby;
     }
 
+    @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isOf(Items.APPLE);
+        return stack.isIn(ModTags.Items.MOOSE_FOR_BREEDING);
     }
 
     @Override
@@ -227,9 +243,7 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     public void tick() {
         super.tick();
 
-        boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
-
-        if (this.isInSnowyBiome() && isSnowing && !this.hasSnowLayer()) {
+        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
             snowTicks++;
             if (snowTicks >= 600) {
                 this.setHasSnowLayer(true);
@@ -256,7 +270,7 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
                 snowMeltTimer = 0;
 
                 if (!player.isCreative()) {
-                    itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
                 }
 
                 this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
@@ -270,6 +284,24 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
             }
         }
         return super.interactMob(player, hand);
+    }
+
+    public boolean isBeingSnowedOn() {
+        BlockPos blockPos = this.getBlockPos();
+        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
+    }
+
+    public boolean hasSnow(BlockPos pos) {
+        if (!this.getWorld().isRaining()) {
+            return false;
+        } else if (!this.getWorld().isSkyVisible(pos)) {
+            return false;
+        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
+            return false;
+        } else {
+            Biome biome = this.getWorld().getBiome(pos).value();
+            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
+        }
     }
 
     public boolean isInSnowyBiome() {

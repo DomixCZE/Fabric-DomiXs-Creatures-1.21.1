@@ -32,7 +32,7 @@ public class ModSounds {
     public static final SoundEvent TIGER_HURT = registerSoundEvent("tiger_hurt");
 
     private static SoundEvent registerSoundEvent(String name) {
-        Identifier id = new Identifier(DomiXsCreatures.MOD_ID, name);
+        Identifier id = Identifier.of(DomiXsCreatures.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
 

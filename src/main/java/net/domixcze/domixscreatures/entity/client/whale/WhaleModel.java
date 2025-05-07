@@ -3,26 +3,26 @@ package net.domixcze.domixscreatures.entity.client.whale;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.entity.custom.WhaleEntity;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 
 public class WhaleModel extends GeoModel<WhaleEntity> {
     @Override
     public Identifier getModelResource(WhaleEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "geo/whale.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/whale.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(WhaleEntity animatable) {
         return animatable.getVariant() == WhaleVariants.ALBINO
-                ? new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale_albino.png")
-                : new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/whale.png");
+                ? Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/whale_albino.png")
+                : Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/whale.png");
     }
 
     @Override
     public Identifier getAnimationResource(WhaleEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "animations/whale.animation.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/whale.animation.json");
     }
 
     @Override

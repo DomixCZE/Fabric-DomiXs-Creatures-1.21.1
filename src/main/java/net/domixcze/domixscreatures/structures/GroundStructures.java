@@ -1,37 +1,38 @@
 package net.domixcze.domixscreatures.structures;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.structure.StructureLiquidSettings;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
+import net.minecraft.structure.pool.alias.StructurePoolAliasLookup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.gen.HeightContext;
 import net.minecraft.world.gen.heightprovider.HeightProvider;
+import net.minecraft.world.gen.structure.DimensionPadding;
+import net.minecraft.world.gen.structure.JigsawStructure;
 import net.minecraft.world.gen.structure.Structure;
 import net.minecraft.world.gen.structure.StructureType;
 
 import java.util.Optional;
 
 public class GroundStructures extends Structure {
-    public static final Codec<GroundStructures> CODEC = RecordCodecBuilder.<GroundStructures>mapCodec(instance ->
+    public static final MapCodec<GroundStructures> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(GroundStructures.configCodecBuilder(instance),
                     StructurePool.REGISTRY_CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
                     Identifier.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
                     Codec.intRange(0, 30).fieldOf("size").forGetter(structure -> structure.size),
                     HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
                     Heightmap.Type.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter(structure -> structure.projectStartToHeightmap),
-                    Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter)
-            ).apply(instance, GroundStructures::new)).codec();
+                    Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter),
+                    DimensionPadding.CODEC.optionalFieldOf("dimension_padding", JigsawStructure.DEFAULT_DIMENSION_PADDING).forGetter(structure -> structure.dimensionPadding),
+                    StructureLiquidSettings.codec.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(structure -> structure.liquidSettings)
+            ).apply(instance, GroundStructures::new));
 
     private final RegistryEntry<StructurePool> startPool;
     private final Optional<Identifier> startJigsawName;
@@ -39,14 +40,18 @@ public class GroundStructures extends Structure {
     private final HeightProvider startHeight;
     private final Optional<Heightmap.Type> projectStartToHeightmap;
     private final int maxDistanceFromCenter;
+    private final DimensionPadding dimensionPadding;
+    private final StructureLiquidSettings liquidSettings;
 
     public GroundStructures(Structure.Config config,
-                         RegistryEntry<StructurePool> startPool,
-                         Optional<Identifier> startJigsawName,
-                         int size,
-                         HeightProvider startHeight,
-                         Optional<Heightmap.Type> projectStartToHeightmap,
-                         int maxDistanceFromCenter)
+                            RegistryEntry<StructurePool> startPool,
+                            Optional<Identifier> startJigsawName,
+                            int size,
+                            HeightProvider startHeight,
+                            Optional<Heightmap.Type> projectStartToHeightmap,
+                            int maxDistanceFromCenter,
+                            DimensionPadding dimensionPadding,
+                            StructureLiquidSettings liquidSettings)
     {
         super(config);
         this.startPool = startPool;
@@ -55,6 +60,8 @@ public class GroundStructures extends Structure {
         this.startHeight = startHeight;
         this.projectStartToHeightmap = projectStartToHeightmap;
         this.maxDistanceFromCenter = maxDistanceFromCenter;
+        this.dimensionPadding = dimensionPadding;
+        this.liquidSettings = liquidSettings;
     }
 
     private static boolean extraSpawningChecks(Structure.Context context) {
@@ -109,7 +116,11 @@ public class GroundStructures extends Structure {
                         blockPos,
                         false,
                         this.projectStartToHeightmap,
-                        this.maxDistanceFromCenter);
+                        this.maxDistanceFromCenter,
+                        StructurePoolAliasLookup.EMPTY,
+                        this.dimensionPadding,
+                        this.liquidSettings
+                );
 
         return structurePiecesGenerator;
     }

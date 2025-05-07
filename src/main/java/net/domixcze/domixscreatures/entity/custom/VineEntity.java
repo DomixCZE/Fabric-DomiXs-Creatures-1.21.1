@@ -14,15 +14,13 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
@@ -49,14 +47,14 @@ public class VineEntity extends HostileEntity implements GeoEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(IS_HOLDING_ENTITY, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(IS_HOLDING_ENTITY, false);
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return dimensions.height * 0.5F;
-    }
+    }*/
 
     public boolean isHoldingEntity() {
         return this.dataTracker.get(IS_HOLDING_ENTITY);
@@ -81,10 +79,6 @@ public class VineEntity extends HostileEntity implements GeoEntity {
     @Override
     public void takeKnockback(double strength, double x, double z) {
         super.takeKnockback(strength * 0.0, x, z);
-    }
-
-    public boolean canBreatheInWater() {
-        return true;
     }
 
     public boolean isPushedByFluids() {

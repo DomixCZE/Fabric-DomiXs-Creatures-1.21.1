@@ -8,6 +8,12 @@ public class BeaverRenderer extends GeoEntityRenderer<BeaverEntity> {
     public BeaverRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new BeaverModel());
         this.addRenderLayer(new BeaverSnowyLayer(this));
-        this.shadowRadius = 0.3F;
+    }
+
+    @Override
+    protected float getShadowRadius(BeaverEntity entity) {
+        float adultShadowScale = 0.4f;
+        float babyShadowScale = 0.3f;
+        return entity.isBaby() ? babyShadowScale : adultShadowScale;
     }
 }

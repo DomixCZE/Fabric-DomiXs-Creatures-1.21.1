@@ -9,23 +9,23 @@ public class CrocodileModel extends GeoModel<CrocodileEntity> {
     @Override
     public Identifier getModelResource(CrocodileEntity animatable) {
         return animatable.isBaby()
-                ? new Identifier(DomiXsCreatures.MOD_ID, "geo/baby_crocodile.geo.json")
-                : new Identifier(DomiXsCreatures.MOD_ID, "geo/crocodile.geo.json");
+                ? Identifier.of(DomiXsCreatures.MOD_ID, "geo/baby_crocodile.geo.json")
+                : Identifier.of(DomiXsCreatures.MOD_ID, "geo/crocodile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CrocodileEntity animatable) {
         if (animatable.isBaby()) {
             return switch (animatable.getVariant()) {
-                case ALBINO -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/baby_crocodile_albino.png");
-                case SAVANNA -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/baby_crocodile_savanna.png");
-                default -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/baby_crocodile.png");
+                case ALBINO -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/baby_crocodile_albino.png");
+                case SAVANNA -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/baby_crocodile_savanna.png");
+                default -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/baby_crocodile.png");
             };
         } else {
             return switch (animatable.getVariant()) {
-                case ALBINO -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/crocodile_albino.png");
-                case SAVANNA -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/crocodile_savanna.png");
-                default -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/crocodile.png");
+                case ALBINO -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/crocodile_albino.png");
+                case SAVANNA -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/crocodile_savanna.png");
+                default -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/crocodile.png");
             };
         }
     }
@@ -33,7 +33,7 @@ public class CrocodileModel extends GeoModel<CrocodileEntity> {
     @Override
     public Identifier getAnimationResource(CrocodileEntity animatable) {
         return animatable.isBaby()
-                ? new Identifier(DomiXsCreatures.MOD_ID, "animations/baby_crocodile.animation.json")
-                : new Identifier(DomiXsCreatures.MOD_ID, "animations/crocodile.animation.json");
+                ? Identifier.of(DomiXsCreatures.MOD_ID, "animations/baby_crocodile.animation.json")
+                : Identifier.of(DomiXsCreatures.MOD_ID, "animations/crocodile.animation.json");
     }
 }

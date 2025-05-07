@@ -1,0 +1,33 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:saddle"
+    },
+    "title": {
+      "translate": "advancements.domixs_creatures.strider_rider.title"
+    },
+    "description": {
+      "translate": "advancements.domixs_creatures.strider_rider.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ride_water_strider": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "entity": {
+          "type": "domixs-creatures:water_strider"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ride_water_strider"
+    ]
+  ]
+}

@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 
 public class ModDamageTypes {
     public static final RegistryKey<DamageType> BLEEDING = RegistryKey.of(
-            RegistryKeys.DAMAGE_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "bleeding"));
+            RegistryKeys.DAMAGE_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "bleeding"));
 
     public static final RegistryKey<DamageType> ELECTRIC = RegistryKey.of(
-            RegistryKeys.DAMAGE_TYPE, new Identifier(DomiXsCreatures.MOD_ID, "electric"));
+            RegistryKeys.DAMAGE_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "electric"));
 
     public static DamageSource of(World world, RegistryKey<DamageType> key) {
         RegistryEntry<DamageType> damageTypeEntry = world.getRegistryManager()

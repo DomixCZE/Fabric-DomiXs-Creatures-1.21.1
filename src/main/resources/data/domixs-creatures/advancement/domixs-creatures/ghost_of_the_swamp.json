@@ -1,0 +1,37 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/ghost_of_the_jungle",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:crocodile_scale_albino"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.ghost_of_the_swamp.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.ghost_of_the_swamp.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "albino_croc_scale": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:crocodile_scale_albino"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "albino_croc_scale"
+    ]
+  ]
+}

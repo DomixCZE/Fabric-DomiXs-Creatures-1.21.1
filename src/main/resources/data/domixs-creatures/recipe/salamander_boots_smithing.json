@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "domixs-creatures:fire_salamander_scales"
+  },
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "result": {
+    "id": "domixs-creatures:salamander_boots"
+  },
+  "template": {
+    "item": "domixs-creatures:salamander_upgrade_smithing_template"
+  }
+}

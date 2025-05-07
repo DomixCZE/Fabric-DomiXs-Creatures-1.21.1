@@ -13,16 +13,15 @@ public class DeafenEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity && entity.getWorld().isClient) {
         }
+        return super.applyUpdateEffect(entity, amplifier);
     }
 
     @Override
-    public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-        super.onRemoved(entity, attributes, amplifier);
-        if (entity instanceof PlayerEntity && entity.getWorld().isClient) {
-        }
+    public void onRemoved(AttributeContainer attributes) {
+        super.onRemoved(attributes);
     }
 
     @Override

@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class WormModel extends GeoModel<WormEntity> {
     @Override
     public Identifier getModelResource(WormEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "geo/worm.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/worm.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(WormEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/worm.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/worm.png");
     }
 
     @Override
     public Identifier getAnimationResource(WormEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "animations/worm.animation.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/worm.animation.json");
     }
 }

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_scales": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:fire_salamander_scales"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:salamander_armor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_scales",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:salamander_helmet_smithing",
+      "domixs-creatures:salamander_chestplate_smithing",
+      "domixs-creatures:salamander_leggings_smithing",
+      "domixs-creatures:salamander_boots_smithing"
+    ]
+  },
+  "sends_telemetry_event": false
+}

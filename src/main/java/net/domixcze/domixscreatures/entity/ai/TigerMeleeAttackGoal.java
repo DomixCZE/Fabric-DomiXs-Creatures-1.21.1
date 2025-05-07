@@ -7,12 +7,10 @@ import net.minecraft.entity.passive.TameableEntity;
 
 public class TigerMeleeAttackGoal extends MeleeAttackGoal {
     private final TigerEntity tiger;
-    private final double attackRange;
 
-    public TigerMeleeAttackGoal(TigerEntity tiger, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public TigerMeleeAttackGoal(TigerEntity tiger, double speed, boolean pauseWhenMobIdle) {
         super(tiger, speed, pauseWhenMobIdle);
         this.tiger = tiger;
-        this.attackRange = attackRange * attackRange;
     }
 
     @Override
@@ -31,10 +29,5 @@ public class TigerMeleeAttackGoal extends MeleeAttackGoal {
             }
         }
         return super.canStart();
-    }
-
-    @Override
-    protected double getSquaredMaxAttackDistance(LivingEntity target) {
-        return this.attackRange;
     }
 }

@@ -38,11 +38,11 @@ public class WhaleBarnacleLayer extends GeoRenderLayer<WhaleEntity> {
         }
 
         if (barnacleTexture != null) {
-            Identifier barnacleIdentifier = new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/" + barnacleTexture);
+            Identifier barnacleIdentifier = Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/" + barnacleTexture);
             RenderLayer entityCutoutNoCull = RenderLayer.getEntityCutoutNoCull(barnacleIdentifier);
 
             getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, entityCutoutNoCull,
-                    bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+                    bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
         }
     }
 }

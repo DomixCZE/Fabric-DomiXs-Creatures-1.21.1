@@ -9,12 +9,12 @@ public class AdventurerHatModel extends GeoModel<AdventurerHatItem> {
 
     @Override
     public Identifier getModelResource(AdventurerHatItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"geo/adventurer_hat.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"geo/adventurer_hat.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(AdventurerHatItem animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID,"textures/armor/adventurer_hat.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID,"textures/armor/adventurer_hat.png");
     }
 
     @Override

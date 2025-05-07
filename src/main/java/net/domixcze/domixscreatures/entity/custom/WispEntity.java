@@ -38,11 +38,10 @@ import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.UUID;
@@ -64,8 +63,8 @@ public class WispEntity extends TameableEntity implements GeoEntity {
     protected void initGoals() {
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
-        this.goalSelector.add(2, new WispMeleeAttackGoal(this, 1.0, false, 1.0f));
+        this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
+        this.goalSelector.add(2, new WispMeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(2, new FlyGoal(this, 1.0));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -152,7 +151,7 @@ public class WispEntity extends TameableEntity implements GeoEntity {
             this.setIsWearingSkull(false);
             this.dropSkull();
             this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(),
-                    SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                    SoundEvents.ITEM_ARMOR_EQUIP_GENERIC.value(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
             return ActionResult.SUCCESS;
         }
         //Tame with bones
@@ -181,7 +180,7 @@ public class WispEntity extends TameableEntity implements GeoEntity {
             }
 
             this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(),
-                    SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                    SoundEvents.ITEM_ARMOR_EQUIP_GENERIC.value(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
             return ActionResult.SUCCESS;
         }
         //Sitting using skull wand
@@ -260,10 +259,15 @@ public class WispEntity extends TameableEntity implements GeoEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(IS_WEARING_SKULL, true);
-        this.dataTracker.startTracking(SITTING, false);
+    public boolean isBreedingItem(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(IS_WEARING_SKULL, true);
+        builder.add(SITTING, false);
     }
 
     @Override
@@ -298,11 +302,6 @@ public class WispEntity extends TameableEntity implements GeoEntity {
                 this.setVelocity(this.getVelocity().multiply(0.91F));
             }
         }
-    }
-
-    @Override
-    public EntityView method_48926() {
-        return this.getWorld();
     }
 
     //SOUNDS

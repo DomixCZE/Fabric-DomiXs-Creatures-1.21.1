@@ -113,8 +113,8 @@ public class CrocodileEggBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        ItemStack itemStack = player.getMainHandStack();
         if (itemStack.isOf(world.getBlockState(pos).getBlock().asItem())) {
             int currentCount = state.get(EGGS);
 
@@ -189,7 +189,7 @@ public class CrocodileEggBlock extends Block {
     }
 
     public static boolean isHatchable(BlockView world, BlockPos pos) {
-        return world.getBlockState(pos).isIn(ModTags.Blocks.CROCODILE_EGG_HATCHABLE);//world.getBlockState(pos).isOf(Blocks.MUD);
+        return world.getBlockState(pos).isIn(ModTags.Blocks.CROCODILE_EGG_HATCHABLE);
     }
 
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {

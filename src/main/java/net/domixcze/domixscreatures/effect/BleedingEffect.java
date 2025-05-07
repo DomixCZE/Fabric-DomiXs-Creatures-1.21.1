@@ -16,9 +16,10 @@ public class BleedingEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (!entity.getWorld().isClient()) {
             entity.damage(ModDamageTypes.of(entity.getWorld(), ModDamageTypes.BLEEDING), 1.0F);
         }
+        return super.applyUpdateEffect(entity, amplifier);
     }
 }

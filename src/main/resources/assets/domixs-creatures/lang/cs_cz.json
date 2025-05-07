@@ -19,6 +19,10 @@
   "entity.domixs-creatures.vine": "Lijána",
   "entity.domixs-creatures.mole": "Krtek",
   "entity.domixs-creatures.worm": "Žížala",
+  "entity.domixs-creatures.porcupine": "Dikobraz",
+  "entity.domixs-creatures.water_strider": "Vodoměrka",
+  "entity.domixs-creatures.boar": "Prase Divoké",
+  "entity.domixs-creatures.bison": "Bizon",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -39,6 +43,10 @@
   "item.domixs-creatures.mud_golem_spawn_egg": "Vajíčko s Bahnitým Golemem",
   "item.domixs-creatures.mole_spawn_egg": "Vajíčko s Krtkem",
   "item.domixs-creatures.worm_spawn_egg": "Vajíčko se Žížalou",
+  "item.domixs-creatures.porcupine_spawn_egg": "Vajíčko s Dikobrazem",
+  "item.domixs-creatures.water_strider_spawn_egg": "Vajíčko s Vodoměrkou",
+  "item.domixs-creatures.boar_spawn_egg": "Vajíčko s Prasetem Divokým",
+  "item.domixs-creatures.bison_spawn_egg": "Vajíčko s Bizonem",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -57,6 +65,8 @@
   "item.domixs-creatures.bark": "Kůra",
   "item.domixs-creatures.warden_tendril": "Warden's Tendril",
   "item.domixs-creatures.worm": "Žížala",
+  "item.domixs-creatures.quill": "Bodlina",
+  "item.domixs-creatures.truffle": "Lanýž",
 
   "item.domixs-creatures.nightmare_amulet": "Amulet Nočních Můr",
 
@@ -68,6 +78,11 @@
   "item.domixs-creatures.medium_antler_hat": "Antler Hat",
   "item.domixs-creatures.large_antler_hat": "Antler Hat",
   "item.domixs-creatures.shaman_mask": "Maska Šamana",
+
+  "item.domixs-creatures.salamander_helmet": "Mločí Helma",
+  "item.domixs-creatures.salamander_chestplate": "Mločí Brnění",
+  "item.domixs-creatures.salamander_leggings": "Mločí Kalhoty",
+  "item.domixs-creatures.salamander_boots": "Mločí Boty",
 
   "item.domixs-creatures.small_antler": "Paroží",
   "item.domixs-creatures.medium_antler": "Paroží",
@@ -131,24 +146,42 @@
 
   "sounds.domixs-creatures.tiger_hurt": "Tigr byl zraněn",
 
-  "advancement.domixs-creatures.root": "Vítej v Domix's Creatures",
-  "advancement.domixs-creatures.my_ears": "MÉ UŠI!",
-  "advancement.domixs-creatures.ear_for_an_ear": "Ucho za Ucho",
-  "advancement.domixs-creatures.adventurer_hat": "Klobouk Dobrodruha",
-  "advancement.domixs-creatures.ghost_of_the_swamp": "Duch Bažiny",
-  "advancement.domixs-creatures.ghost_of_the_jungle": "Duch Džungle",
-  "advancement.domixs-creatures.king_of_the_forest": "Král Lesa",
+  "advancement.domixs-creatures.root.title": "Domix's Creatures",
+  "advancement.domixs-creatures.my_ears.title": "MÉ UŠI!",
+  "advancement.domixs-creatures.ear_for_an_ear.title": "Ucho za Ucho",
+  "advancement.domixs-creatures.adventurer_hat.title": "Klobouk Dobrodruha",
+  "advancement.domixs-creatures.ghost_of_the_swamp.title": "Duch Bažiny",
+  "advancement.domixs-creatures.ghost_of_the_jungle.title": "Duch Džungle",
+  "advancement.domixs-creatures.king_of_the_forest.title": "Král Lesa",
+  "advancements.domixs_creatures.fin-tastic_fortune.title": "Šupinové Štěstí",
+  "advancements.domixs_creatures.strider_rider.title": "Jezdec na Vodoměrce",
+  "advancements.domixs_creatures.an_earthy_snack.title": "Hlinitá Svačinka",
+  "advancements.domixs_creatures.salamander_armor.title": "Ohnivý Vzhled",
+  "advancement.domixs-creatures.boars_bounty.title": "Kořist Divokého Prasete",
 
-  "advancement.domixs-creatures.root.desc": "Užij si Mod :)",
-  "advancement.domixs-creatures.my_ears.desc": "Zapištěl na Tebe Spektrální Netopýr",
-  "advancement.domixs-creatures.ear_for_an_ear.desc": "Zabil jsi Spektrálního Netopýra a Získal jeho Ucho",
-  "advancement.domixs-creatures.adventurer_hat.desc": "Klobouk Dobrodruha",
-  "advancement.domixs-creatures.ghost_of_the_swamp.desc": "Získej Šupinu Vzácného Bílého Krokodýla",
-  "advancement.domixs-creatures.ghost_of_the_jungle.desc": "Ochoč Bílého Tigra",
-  "advancement.domixs-creatures.king_of_the_forest.desc": "Získej Velké Jelení Paroží",
+  "advancement.domixs-creatures.root.description": "Užij si Mod :)",
+  "advancement.domixs-creatures.my_ears.description": "Zapištěl na Tebe Spektrální Netopýr",
+  "advancement.domixs-creatures.ear_for_an_ear.description": "Zabil jsi Spektrálního Netopýra a Získal jeho Ucho",
+  "advancement.domixs-creatures.adventurer_hat.description": "Klobouk Dobrodruha",
+  "advancement.domixs-creatures.ghost_of_the_swamp.description": "Získej Šupinu Vzácného Bílého Krokodýla",
+  "advancement.domixs-creatures.ghost_of_the_jungle.description": "Ochoč Bílého Tigra",
+  "advancement.domixs-creatures.king_of_the_forest.description": "Získej Velké Jelení Paroží",
+  "advancements.domixs_creatures.strider_rider.description": "Osedlej Vodoměrku",
+  "advancements.domixs_creatures.an_earthy_snack.description": "Sněz Žížalu",
+  "advancements.domixs_creatures.salamander_armor.description": "Vylepši Své Netheritové Brnění",
+  "advancements.domixs_creatures.fin-tastic_fortune.description": "Sněz Zlatou Rybku",
+  "advancement.domixs-creatures.boars_bounty.description": "Nech Divoké Prase Najít ti Lanýž",
 
   "death.attack.bleeding": "%1$s vykrvácel",
   "death.attack.bleeding.player": "%1$s vykrvácel kvůli %2$s",
   "death.attack.electric": "%1$s byl zelektrizován",
-  "death.attack.electric.player": "%1$s byl zelektrizován kvůli %2$s"
+  "death.attack.electric.player": "%1$s byl zelektrizován kvůli %2$s",
+
+  "upgrade.domixs-creatures.salamander_upgrade": "Mločí Vylepšení",
+
+  "item.domixs-creatures.salamander_upgrade_smithing_template": "Kovářská Předloha",
+  "item.domixs-creatures.salamander_upgrade_template.applies_to": "Netheritové Brnění",
+  "item.domixs-creatures.salamander_upgrade_template.ingredients": "Šupiny Ohnivého Mloka",
+  "item.domixs-creatures.salamander_upgrade_template.base_slot_description": "Přidej Netheritové Brnění",
+  "item.domixs-creatures.salamander_upgrade_template.additions_slot_description": "Přidej Šupiny Ohnivého Mloka"
 }

@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class VineModel extends GeoModel<VineEntity> {
     @Override
     public Identifier getModelResource(VineEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "geo/vine.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/vine.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(VineEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/vine.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/vine.png");
     }
 
     @Override
     public Identifier getAnimationResource(VineEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "animations/vine.animation.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/vine.animation.json");
     }
 }

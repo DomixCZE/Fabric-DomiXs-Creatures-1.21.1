@@ -45,12 +45,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
@@ -76,7 +75,7 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, false, true));
         this.goalSelector.add(1, new CrocodileMateGoal(this, 1.0));
         this.goalSelector.add(1, new CrocodileLayEggGoal(this, 1.0));
-        this.goalSelector.add(2, new CrocodileMeleeAttackGoal(this, 1.0, true, 2.0f));
+        this.goalSelector.add(2, new CrocodileMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -122,10 +121,6 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
                 }
             }
         }
-    }
-
-    public boolean canBreatheInWater() {
-        return true;
     }
 
     public boolean isPushedByFluids() {
@@ -187,7 +182,7 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
                 }
             }
 
-            itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+            itemStack.damage(1, player, EquipmentSlot.MAINHAND);
             this.emitGameEvent(GameEvent.SHEAR, player);
             this.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
             return ActionResult.SUCCESS;
@@ -216,12 +211,12 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(OVERGROWN, false);
-        this.dataTracker.startTracking(HAS_EGG, false);
-        this.dataTracker.startTracking(SLEEPING, false);
-        this.dataTracker.startTracking(VARIANT, CrocodileVariants.NORMAL.getId());
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(OVERGROWN, false);
+        builder.add(HAS_EGG, false);
+        builder.add(SLEEPING, false);
+        builder.add(VARIANT, CrocodileVariants.NORMAL.getId());
     }
 
     @Nullable
@@ -239,8 +234,8 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         if (spawnReason == SpawnReason.NATURAL || spawnReason == SpawnReason.COMMAND || spawnReason == SpawnReason.SPAWN_EGG || spawnReason == SpawnReason.CHUNK_GENERATION) {
             RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
@@ -280,11 +275,11 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
-    public EntityDimensions getDimensions(EntityPose pose) {
+    protected EntityDimensions getBaseDimensions(EntityPose pose) {
         if (this.isBaby()) {
             return EntityDimensions.fixed(0.75F, 0.35F);
         }
-        return super.getDimensions(pose);
+        return this.getType().getDimensions();
     }
 
     @Override

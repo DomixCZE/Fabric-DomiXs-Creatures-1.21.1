@@ -9,6 +9,12 @@ public class MooseRenderer extends GeoEntityRenderer<MooseEntity> {
         super(renderManager, new MooseModel());
         this.addRenderLayer(new MooseAntlerLayer(this));
         this.addRenderLayer(new MooseSnowyLayer(this));
-        this.shadowRadius = 1.0F;
+    }
+
+    @Override
+    protected float getShadowRadius(MooseEntity entity) {
+        float adultShadowScale = 1.0f;
+        float babyShadowScale = 0.7f;
+        return entity.isBaby() ? babyShadowScale : adultShadowScale;
     }
 }

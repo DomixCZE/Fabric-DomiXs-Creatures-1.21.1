@@ -30,10 +30,10 @@ public class HippoMudLayer extends GeoRenderLayer<HippoEntity> {
             return;
         }
 
-        Identifier mudIdentifier = new Identifier(DomiXsCreatures.MOD_ID, texturePath + mudTexture);
+        Identifier mudIdentifier = Identifier.of(DomiXsCreatures.MOD_ID, texturePath + mudTexture);
         RenderLayer entityCutoutNoCull = RenderLayer.getEntityCutoutNoCull(mudIdentifier);
 
         getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, entityCutoutNoCull,
-                bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+                bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
     }
 }

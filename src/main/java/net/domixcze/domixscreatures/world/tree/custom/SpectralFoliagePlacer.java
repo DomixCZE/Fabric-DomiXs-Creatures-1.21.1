@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures.world.tree.custom;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.domixcze.domixscreatures.world.tree.ModFoliagePlacerTypes;
 import net.minecraft.util.math.BlockPos;
@@ -12,9 +13,9 @@ import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
 public class SpectralFoliagePlacer extends FoliagePlacer {
-    public static final Codec<SpectralFoliagePlacer> CODEC = RecordCodecBuilder.create(spectralFoliagePlacerInstance ->
+    public static final MapCodec<SpectralFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(spectralFoliagePlacerInstance ->
             fillFoliagePlacerFields(spectralFoliagePlacerInstance).and(Codec.intRange(0, 12).fieldOf("height")
-                    .forGetter(Instance -> Instance.height)).apply(spectralFoliagePlacerInstance, SpectralFoliagePlacer::new));
+                    .forGetter(instance -> instance.height)).apply(spectralFoliagePlacerInstance, SpectralFoliagePlacer::new));
 
     private final int height;
 

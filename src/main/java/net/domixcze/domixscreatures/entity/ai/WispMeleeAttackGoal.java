@@ -7,12 +7,10 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 public class WispMeleeAttackGoal extends MeleeAttackGoal {
 
     private final WispEntity wisp;
-    private final double attackRange;
 
-    public WispMeleeAttackGoal(WispEntity wisp, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public WispMeleeAttackGoal(WispEntity wisp, double speed, boolean pauseWhenMobIdle) {
         super(wisp, speed, pauseWhenMobIdle);
         this.wisp = wisp;
-        this.attackRange = attackRange * attackRange;
     }
 
     @Override
@@ -31,9 +29,5 @@ public class WispMeleeAttackGoal extends MeleeAttackGoal {
             }
         }
         return this.wisp.getTarget() != null && this.wisp.getTarget() != this.wisp && super.canStart();
-    }
-    @Override
-    protected double getSquaredMaxAttackDistance(LivingEntity target) {
-        return this.attackRange;
     }
 }

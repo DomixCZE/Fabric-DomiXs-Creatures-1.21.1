@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
     public static final ItemGroup MOD_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(DomiXsCreatures.MOD_ID, "mod_group"),
+            Identifier.of(DomiXsCreatures.MOD_ID, "mod_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.mod_group"))
                     .icon(() -> new ItemStack(ModItems.TAB_ICON)).entries((displayContext, entries) -> {
                         entries.add(ModItems.FIRE_SALAMANDER_SPAWN_EGG);
@@ -33,12 +33,18 @@ public class ModItemGroups {
                         entries.add(ModItems.MUD_GOLEM_SPAWN_EGG);
                         entries.add(ModItems.MOLE_SPAWN_EGG);
                         entries.add(ModItems.WORM_SPAWN_EGG);
+                        entries.add(ModItems.PORCUPINE_SPAWN_EGG);
+                        entries.add(ModItems.WATER_STRIDER_SPAWN_EGG);
+                        entries.add(ModItems.BOAR_SPAWN_EGG);
+                        entries.add(ModItems.BISON_SPAWN_EGG);
                         entries.add(ModItems.CROCODILE_SPAWN_EGG);
 
                         entries.add(ModBlocks.CROCODILE_EGG);
                         entries.add(ModItems.GOLDFISH_BUCKET);
                         entries.add(ModItems.GOLDFISH);
                         entries.add(ModItems.WORM);
+                        entries.add(ModItems.TRUFFLE);
+                        entries.add(ModItems.SPECTRAL_FRUIT);
                         entries.add(ModItems.SPECTRAL_BAT_WING);
                         entries.add(ModItems.SPECTRAL_BAT_EAR);
                         entries.add(ModItems.FIRE_SALAMANDER_SCALES);
@@ -46,6 +52,10 @@ public class ModItemGroups {
                         entries.add(ModItems.CROCODILE_SCALE_ALBINO);
                         entries.add(ModItems.CROCODILE_TOOTH);
                         entries.add(ModItems.SHARK_TOOTH);
+                        entries.add(ModItems.SMALL_ANTLER);
+                        entries.add(ModItems.MEDIUM_ANTLER);
+                        entries.add(ModItems.LARGE_ANTLER);
+                        entries.add(ModItems.QUILL);
                         entries.add(ModItems.SKULL);
                         entries.add(ModItems.SKULL_WAND);
                         entries.add(ModItems.NIGHTMARE_AMULET);
@@ -59,10 +69,13 @@ public class ModItemGroups {
                         entries.add(ModItems.SHAMAN_MASK);
                         entries.add(ModItems.CROCODILE_CHESTPLATE);
                         entries.add(ModItems.CROCODILE_CHESTPLATE_ALBINO);
+                        entries.add(ModItems.SALAMANDER_HELMET);
+                        entries.add(ModItems.SALAMANDER_CHESTPLATE);
+                        entries.add(ModItems.SALAMANDER_LEGGINGS);
+                        entries.add(ModItems.SALAMANDER_BOOTS);
+                        entries.add(ModItems.SALAMANDER_UPGRADE_SMITHING_TEMPLATE);
 
                         entries.add(ModItems.MUD_BLOSSOM_SEED);
-
-                        entries.add(ModItems.SPECTRAL_FRUIT);
 
                         entries.add(ModBlocks.BARNACLE_BLOCK);
                         entries.add(ModBlocks.CRACKED_GLASS_BLOCK);

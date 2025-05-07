@@ -3,24 +3,24 @@ package net.domixcze.domixscreatures.entity.client.magma_ball;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.entity.custom.MagmaBallEntity;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 
 public class MagmaBallModel extends GeoModel<MagmaBallEntity> {
     @Override
     public Identifier getModelResource(MagmaBallEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "geo/magma_ball.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/magma_ball.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MagmaBallEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/magma_ball.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/magma_ball.png");
     }
 
     @Override
     public Identifier getAnimationResource(MagmaBallEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "animations/magma_ball.animation.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/magma_ball.animation.json");
     }
 
     @Override

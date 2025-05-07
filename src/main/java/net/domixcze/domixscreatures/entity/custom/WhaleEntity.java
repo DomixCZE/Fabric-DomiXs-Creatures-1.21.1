@@ -38,12 +38,11 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beachable {
@@ -78,9 +77,9 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0);
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return dimensions.height * 0.65F;
-    }
+    }*/
 
     @Override
     public void takeKnockback(double strength, double x, double z) {
@@ -97,8 +96,8 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         if (world.getRandom().nextDouble() < 0.05) {
             this.setVariant(WhaleVariants.ALBINO);
@@ -139,11 +138,11 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, WhaleVariants.NORMAL.ordinal());
-        this.dataTracker.startTracking(BEACHED, false);
-        this.dataTracker.startTracking(BARNACLE_COUNT, 0);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(VARIANT, WhaleVariants.NORMAL.ordinal());
+        builder.add(BEACHED, false);
+        builder.add(BARNACLE_COUNT, 0);
     }
 
     public boolean isBeached() {
@@ -193,7 +192,7 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
                     this.dropItem(ModBlocks.BARNACLE_BLOCK);
                     this.setBarnacleCount(currentNumber - 1);
 
-                    itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
 
                     return ActionResult.SUCCESS;
                 }

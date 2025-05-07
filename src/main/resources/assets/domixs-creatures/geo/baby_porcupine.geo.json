@@ -1,0 +1,183 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "baby_porcupine",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "head",
+					"parent": "baby_porcupine",
+					"pivot": [0, 3.6, -1.5],
+					"cubes": [
+						{
+							"origin": [-1.5, 2.1, -5.5],
+							"size": [3, 3, 4],
+							"pivot": [0, 3.6, -1.5],
+							"rotation": [17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [8, 14], "uv_size": [3, 3]},
+								"east": {"uv": [12, 5], "uv_size": [4, 3]},
+								"south": {"uv": [0, 15], "uv_size": [3, 3]},
+								"west": {"uv": [12, 8], "uv_size": [4, 3]},
+								"up": {"uv": [12, 11], "uv_size": [3, 4]},
+								"down": {"uv": [5, 18], "uv_size": [3, -4]}
+							}
+						}
+					]
+				},
+				{
+					"name": "eyes",
+					"parent": "head",
+					"pivot": [0, 2.99859, -3.40743],
+					"rotation": [17.5, 0, 0],
+					"cubes": [
+						{
+							"origin": [-1.525, 2.49859, -4.40743],
+							"size": [3.05, 1, 2],
+							"uv": {
+								"north": {"uv": [17, 4], "uv_size": [3, 1]},
+								"east": {"uv": [15, 14], "uv_size": [2, 1]},
+								"south": {"uv": [18, 13], "uv_size": [3, 1]},
+								"west": {"uv": [19, 5], "uv_size": [2, 1]},
+								"up": {"uv": [14, 15], "uv_size": [3, 2]},
+								"down": {"uv": [16, 7], "uv_size": [3, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "baby_porcupine",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "main",
+					"parent": "body",
+					"pivot": [0, 3.5, 1.5],
+					"cubes": [
+						{
+							"origin": [-2.5, 1, -2],
+							"size": [5, 5, 7],
+							"uv": {
+								"north": {"uv": [0, 10], "uv_size": [5, 5]},
+								"east": {"uv": [0, 0], "uv_size": [7, 5]},
+								"south": {"uv": [12, 0], "uv_size": [5, 5]},
+								"west": {"uv": [0, 5], "uv_size": [7, 5]},
+								"up": {"uv": [7, 0], "uv_size": [5, 7]},
+								"down": {"uv": [7, 14], "uv_size": [5, -7]}
+							}
+						}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "body",
+					"pivot": [0, 5, 5],
+					"cubes": [
+						{
+							"origin": [-1.5, 5, 5],
+							"size": [3, 0, 3],
+							"pivot": [0, 5, 5],
+							"rotation": [-72.5, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [3, 0]},
+								"east": {"uv": [0, 0], "uv_size": [3, 0]},
+								"south": {"uv": [0, 0], "uv_size": [3, 0]},
+								"west": {"uv": [0, 0], "uv_size": [3, 0]},
+								"up": {"uv": [11, 15], "uv_size": [3, 3]},
+								"down": {"uv": [15, 14], "uv_size": [3, -3]}
+							}
+						}
+					]
+				},
+				{
+					"name": "left_leg_back",
+					"parent": "baby_porcupine",
+					"pivot": [1.25, 2, 3],
+					"cubes": [
+						{
+							"origin": [0.25, 0, 2],
+							"size": [2, 2, 2],
+							"uv": {
+								"north": {"uv": [0, 18], "uv_size": [2, 2]},
+								"east": {"uv": [5, 18], "uv_size": [2, 2]},
+								"south": {"uv": [18, 7], "uv_size": [2, 2]},
+								"west": {"uv": [18, 9], "uv_size": [2, 2]},
+								"up": {"uv": [10, 18], "uv_size": [2, 2]},
+								"down": {"uv": [18, 13], "uv_size": [2, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "right_leg_back",
+					"parent": "baby_porcupine",
+					"pivot": [-1.25, 2, 3],
+					"cubes": [
+						{
+							"origin": [-2.25, 0, 2],
+							"size": [2, 2, 2],
+							"uv": {
+								"north": {"uv": [12, 18], "uv_size": [2, 2]},
+								"east": {"uv": [18, 16], "uv_size": [2, 2]},
+								"south": {"uv": [18, 18], "uv_size": [2, 2]},
+								"west": {"uv": [19, 0], "uv_size": [2, 2]},
+								"up": {"uv": [2, 19], "uv_size": [2, 2]},
+								"down": {"uv": [19, 4], "uv_size": [2, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "right_leg_front",
+					"parent": "baby_porcupine",
+					"pivot": [-1.25, 2, 0],
+					"cubes": [
+						{
+							"origin": [-2.25, 0, -1],
+							"size": [2, 2, 2],
+							"uv": {
+								"north": {"uv": [17, 2], "uv_size": [2, 2]},
+								"east": {"uv": [3, 17], "uv_size": [2, 2]},
+								"south": {"uv": [8, 17], "uv_size": [2, 2]},
+								"west": {"uv": [14, 17], "uv_size": [2, 2]},
+								"up": {"uv": [17, 14], "uv_size": [2, 2]},
+								"down": {"uv": [16, 19], "uv_size": [2, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "left_leg_front",
+					"parent": "baby_porcupine",
+					"pivot": [1.25, 2, 0],
+					"cubes": [
+						{
+							"origin": [0.25, 0, -1],
+							"size": [2, 2, 2],
+							"uv": {
+								"north": {"uv": [5, 10], "uv_size": [2, 2]},
+								"east": {"uv": [5, 12], "uv_size": [2, 2]},
+								"south": {"uv": [3, 15], "uv_size": [2, 2]},
+								"west": {"uv": [16, 7], "uv_size": [2, 2]},
+								"up": {"uv": [16, 9], "uv_size": [2, 2]},
+								"down": {"uv": [17, 2], "uv_size": [2, -2]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

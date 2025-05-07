@@ -1,0 +1,37 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/root",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:adventurer_hat"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.adventurer_hat.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.adventurer_hat.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "adventurer_hat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:adventurer_hat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "adventurer_hat"
+    ]
+  ]
+}

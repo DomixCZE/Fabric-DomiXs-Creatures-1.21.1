@@ -13,6 +13,13 @@ public class HippoRenderer extends GeoEntityRenderer<HippoEntity> {
     }
 
     @Override
+    protected float getShadowRadius(HippoEntity entity) {
+        float adultShadowScale = 1.2f;
+        float babyShadowScale = 1.1f;
+        return entity.isBaby() ? babyShadowScale : adultShadowScale;
+    }
+
+    @Override
     public void render(HippoEntity entity, float entityYaw, float partialTick, MatrixStack poseStack,
                        VertexConsumerProvider bufferSource, int packedLight) {
         if (entity.isBaby()) {

@@ -1,15 +1,15 @@
 package net.domixcze.domixscreatures.block.custom;
 
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AbstractGlassBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CrackedGlassBlock extends AbstractGlassBlock {
+public class CrackedGlassBlock extends TransparentBlock {
     public CrackedGlassBlock(AbstractBlock.Settings settings) {
         super(settings);
     }

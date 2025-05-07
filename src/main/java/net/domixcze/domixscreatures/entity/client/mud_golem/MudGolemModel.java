@@ -8,17 +8,17 @@ import software.bernie.geckolib.model.GeoModel;
 public class MudGolemModel extends GeoModel<MudGolemEntity> {
     @Override
     public Identifier getModelResource(MudGolemEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "geo/mud_golem.geo.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/mud_golem.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MudGolemEntity animatable) {
         boolean isWet = animatable.getDataTracker().get(MudGolemEntity.WET_STATE);
-        return new Identifier(DomiXsCreatures.MOD_ID, isWet ? "textures/entity/mud_golem_wet.png" : "textures/entity/mud_golem_dry.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID, isWet ? "textures/entity/mud_golem_wet.png" : "textures/entity/mud_golem_dry.png");
     }
 
     @Override
     public Identifier getAnimationResource(MudGolemEntity animatable) {
-        return new Identifier(DomiXsCreatures.MOD_ID, "animations/mud_golem.animation.json");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/mud_golem.animation.json");
     }
 }

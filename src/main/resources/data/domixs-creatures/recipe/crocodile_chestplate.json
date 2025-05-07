@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "S": {
+      "item": "domixs-creatures:crocodile_scale"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:crocodile_chestplate"
+  }
+}

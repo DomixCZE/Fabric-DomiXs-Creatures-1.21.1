@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "domixs-creatures:item/salamander_leggings"
+  }
+}

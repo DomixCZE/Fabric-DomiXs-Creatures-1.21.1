@@ -11,13 +11,11 @@ import java.util.List;
 
 public class SharkMeleeAttackGoal extends MeleeAttackGoal {
     private final SharkEntity shark;
-    private final double attackRange;
     private final double detectionRange = 20.0;
 
-    public SharkMeleeAttackGoal(SharkEntity shark, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public SharkMeleeAttackGoal(SharkEntity shark, double speed, boolean pauseWhenMobIdle) {
         super(shark, speed, pauseWhenMobIdle);
         this.shark = shark;
-        this.attackRange = attackRange * attackRange;
     }
 
     @Override
@@ -55,12 +53,7 @@ public class SharkMeleeAttackGoal extends MeleeAttackGoal {
     }
 
     @Override
-    protected double getSquaredMaxAttackDistance(LivingEntity target) {
-        return this.attackRange;
-    }
-
-    @Override
-    protected void attack(LivingEntity target, double squaredDistance) {
-        super.attack(target, squaredDistance);
+    protected void attack(LivingEntity target) {
+        super.attack(target);
     }
 }

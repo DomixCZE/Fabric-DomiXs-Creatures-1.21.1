@@ -7,5 +7,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class MudGolemRenderer extends GeoEntityRenderer<MudGolemEntity> {
     public MudGolemRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new MudGolemModel());
+        this.addRenderLayer(new MudGolemSnowyLayer(this));
+        this.shadowRadius = 0.4F;
     }
 }

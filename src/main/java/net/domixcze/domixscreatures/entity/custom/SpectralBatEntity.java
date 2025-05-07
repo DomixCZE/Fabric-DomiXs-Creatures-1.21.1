@@ -2,7 +2,7 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.ScreechAttackGoal;
-import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
@@ -25,11 +25,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class SpectralBatEntity extends AnimalEntity implements GeoEntity {
@@ -72,15 +71,15 @@ public class SpectralBatEntity extends AnimalEntity implements GeoEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(BAT_FLAGS, (byte)0);
-        this.dataTracker.startTracking(SCREECHING, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(BAT_FLAGS, (byte)0);
+        builder.add(SCREECHING, false);
     }
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isOf(ModItems.SPECTRAL_FRUIT);
+        return stack.isIn(ModTags.Items.SPECTRAL_BAT_FOR_BREEDING);
     }
 
     @Override

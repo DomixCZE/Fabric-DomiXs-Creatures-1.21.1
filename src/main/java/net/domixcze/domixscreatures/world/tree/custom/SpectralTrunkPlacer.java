@@ -1,6 +1,6 @@
 package net.domixcze.domixscreatures.world.tree.custom;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
 import net.minecraft.block.BlockState;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class SpectralTrunkPlacer extends TrunkPlacer {
-    public static final Codec<SpectralTrunkPlacer> CODEC = RecordCodecBuilder.create(objectInstance ->
+    public static final MapCodec<SpectralTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(objectInstance ->
             fillTrunkPlacerFields(objectInstance).apply(objectInstance, SpectralTrunkPlacer::new));
 
     public SpectralTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight) {

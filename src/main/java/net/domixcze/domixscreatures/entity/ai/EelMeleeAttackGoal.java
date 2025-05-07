@@ -15,16 +15,14 @@ import java.util.List;
 
 public class EelMeleeAttackGoal extends MeleeAttackGoal {
     private final EelEntity eel;
-    private final double attackRange;
     private static final int ATTACK_RADIUS = 3;
     private static final int ATTACK_TIME = 40;
     public static final int COOLDOWN_TIME = EelEntity.ATTACK_COOLDOWN;
     private int attackDuration = 0;
 
-    public EelMeleeAttackGoal(EelEntity eel, double speed, boolean pauseWhenMobIdle, double attackRange) {
+    public EelMeleeAttackGoal(EelEntity eel, double speed, boolean pauseWhenMobIdle) {
         super(eel, speed, pauseWhenMobIdle);
         this.eel = eel;
-        this.attackRange = attackRange * attackRange;
     }
 
     @Override
@@ -67,11 +65,6 @@ public class EelMeleeAttackGoal extends MeleeAttackGoal {
             spawnParticles();
             applyEffectInRadius();
         }
-    }
-
-    @Override
-    protected double getSquaredMaxAttackDistance(LivingEntity target) {
-        return this.attackRange;
     }
 
     private void spawnParticles() {

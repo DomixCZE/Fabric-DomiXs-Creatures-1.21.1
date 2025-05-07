@@ -2,11 +2,13 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,6 +16,7 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
@@ -41,14 +44,15 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -69,13 +73,13 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
     public BeaverEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new BeaverMoveControl();
-        this.setStepHeight(1.2f);
     }
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 15.0D)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f);
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f)
+                .add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.2);
     }
 
     @Override
@@ -84,22 +88,22 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         this.goalSelector.add( 1, new StripLogGoal(this, 1,10));
         this.goalSelector.add(1, new StayNearHomeGoal(this, 1.0, 16, 10));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(2, new FollowParentGoal(this, 1.0));
+        this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.0));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return dimensions.height * 0.65F;
-    }
+    }*/
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(HAS_SNOW_LAYER, false);
-        this.dataTracker.startTracking(HOME_POS, BlockPos.ORIGIN);
-        this.dataTracker.startTracking(SLEEPING, false);
-        this.dataTracker.startTracking(VARIANT, BeaverVariants.BROWN.getId());
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(HAS_SNOW_LAYER, false);
+        builder.add(HOME_POS, BlockPos.ORIGIN);
+        builder.add(SLEEPING, false);
+        builder.add(VARIANT, BeaverVariants.BROWN.getId());
     }
 
     public boolean isSleeping() {
@@ -123,7 +127,15 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isOf(ModItems.WATER_LILY);
+        return stack.isIn(ModTags.Items.BEAVER_FOR_BREEDING);
+    }
+
+    @Override
+    protected EntityDimensions getBaseDimensions(EntityPose pose) {
+        if (this.isBaby()) {
+            return EntityDimensions.fixed(0.4F, 0.3F);
+        }
+        return this.getType().getDimensions();
     }
 
     @Nullable
@@ -163,7 +175,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
                 snowMeltTimer = 0;
 
                 if (!player.isCreative()) {
-                    itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
                 }
 
                 this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
@@ -211,13 +223,13 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
             return PlayState.STOP;
         }
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_beaver.swim", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_beaver.idle_swim", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.beaver.swim", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.beaver.idle_swim", Animation.LoopType.LOOP));
@@ -254,10 +266,6 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         }
     }
 
-    public boolean canBreatheInWater() {
-        return true;
-    }
-
     public boolean isPushedByFluids() {
         return false;
     }
@@ -286,9 +294,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
             this.moveControl = new BeaverMoveControl();
         }
 
-        boolean isSnowing = this.getWorld().isRaining() && isInSnowyBiome();
-
-        if (this.isInSnowyBiome() && isSnowing && !this.hasSnowLayer()) {
+        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
             snowTicks++;
             if (snowTicks >= 600) {
                 this.setHasSnowLayer(true);
@@ -302,6 +308,24 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
                 this.setHasSnowLayer(false);
                 snowMeltTimer = 0;
             }
+        }
+    }
+
+    public boolean isBeingSnowedOn() {
+        BlockPos blockPos = this.getBlockPos();
+        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
+    }
+
+    public boolean hasSnow(BlockPos pos) {
+        if (!this.getWorld().isRaining()) {
+            return false;
+        } else if (!this.getWorld().isSkyVisible(pos)) {
+            return false;
+        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
+            return false;
+        } else {
+            Biome biome = this.getWorld().getBiome(pos).value();
+            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
         }
     }
 
@@ -361,16 +385,22 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         private final int searchRadius;
         private BlockPos targetLogPos;
         private final Random random = new Random();
+        private final World world;
 
         public StripLogGoal(BeaverEntity beaver, double speed, int searchRadius) {
             this.beaver = beaver;
             this.speed = speed;
             this.searchRadius = searchRadius;
+            this.world = beaver.getWorld();
             this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
         }
 
         @Override
         public boolean canStart() {
+            if (!this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)){
+                return false;
+            }
+
             if (this.beaver.getRandom().nextInt(100) < 5) {
                 BlockPos beaverPos = this.beaver.getBlockPos();
                 World world = this.beaver.getWorld();

@@ -58,7 +58,7 @@ public class ScreechAttackGoal extends Goal {
         List<PlayerEntity> players = this.bat.getWorld().getEntitiesByClass(PlayerEntity.class, this.bat.getBoundingBox().expand(ATTACK_RANGE), player -> true);
         for (PlayerEntity player : players) {
             float volume = isProtectedFromScreech(player) ? 0.05f : 1f; // Lower volume for protected players
-            player.playSound(ModSounds.SPECTRAL_BAT_SCREECH, SoundCategory.HOSTILE, volume, 1f);
+            this.bat.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.SPECTRAL_BAT_SCREECH, SoundCategory.HOSTILE, volume, 1f);
         }
 
         this.spawnScreech();

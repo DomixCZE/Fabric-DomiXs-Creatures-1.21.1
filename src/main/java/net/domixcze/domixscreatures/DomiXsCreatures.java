@@ -12,18 +12,21 @@ import net.domixcze.domixscreatures.potion.ModPotions;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.structures.ModStructures;
 import net.domixcze.domixscreatures.util.ModLootTableModifiers;
+import net.domixcze.domixscreatures.util.QuillDispenserBehavior;
 import net.domixcze.domixscreatures.world.gen.ModEntityGeneration;
 import net.domixcze.domixscreatures.util.ModTrades;
 import net.domixcze.domixscreatures.world.tree.ModFoliagePlacerTypes;
 import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.potion.Potions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.bernie.geckolib.GeckoLib;
 
 public class DomiXsCreatures implements ModInitializer {
 	public static final String MOD_ID = "domixs-creatures";
@@ -43,23 +46,27 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.DEER, DeerEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.MOOSE, MooseEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.SHARK, SharkEntity.setAttributes());
-		FabricDefaultAttributeRegistry.register(ModEntities.EEL, SharkEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.EEL, EelEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.MUD_GOLEM, MudGolemEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.HIPPO, HippoEntity.setAttributes());
-		FabricDefaultAttributeRegistry.register(ModEntities.SHAMAN, HippoEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.SHAMAN, ShamanEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.VINE, VineEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.MOLE, MoleEntity.setAttributes());
-		FabricDefaultAttributeRegistry.register(ModEntities.WORM, MoleEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.WORM, WormEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.PORCUPINE, PorcupineEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.WATER_STRIDER, WaterStriderEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.BOAR, BoarEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.BISON, BisonEntity.setAttributes());
 
-		//FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
-
-		GeckoLib.initialize();
+		FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
 
 		ModTrades.registerCustomTrades();
 
 		ModLootTableModifiers.modifyLootTables();
 
 		ModEntities.registerModEntities();
+
+		DispenserBlock.registerBehavior(ModItems.QUILL, new QuillDispenserBehavior(ModItems.QUILL));
 
 		ModBlockEntities.registerBlockEntities();
 		ModBlocks.registerModBlocks();
@@ -109,5 +116,9 @@ public class DomiXsCreatures implements ModInitializer {
 		ModFoliagePlacerTypes.register();
 
 		ModStructures.registerStructureFeatures();
+
+		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+			builder.registerPotionRecipe(Potions.AWKWARD, ModItems.SPECTRAL_BAT_EAR, ModPotions.ECHOLOCATION_POTION);
+		});
 	}
 }

@@ -29,7 +29,7 @@ public class SawdustBlock extends Block {
     }
 
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    public boolean canPathfindThrough(BlockState state, NavigationType type) {
         return switch (type) {
             case LAND -> state.get(LAYERS) < 5;
             case WATER, AIR -> false;

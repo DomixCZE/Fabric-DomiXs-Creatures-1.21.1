@@ -3,7 +3,11 @@ package net.domixcze.domixscreatures.entity.ai;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.Biome;
 
+import java.util.EnumSet;
 import java.util.Random;
 
 public class SleepGoal extends Goal {
@@ -48,6 +52,8 @@ public class SleepGoal extends Goal {
         this.wakesWhenRainedOn = wakesWhenRainedOn;/*Determines if the entity wakes up when rain directly touches it*/
         this.wakesInWater = wakesInWater;/*Determines if the entity wakes up when it's in water*/
 
+        this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
+
     }
 
     private int getRandomCooldown() {
@@ -88,7 +94,7 @@ public class SleepGoal extends Goal {
             shouldSleep = false;
         }
 
-        if (wakesWhenRainedOn && this.entity.isTouchingWaterOrRain()) {
+        if (wakesWhenRainedOn && this.isBeingRainedOn()) {
             shouldSleep = false;
         }
 
@@ -114,6 +120,7 @@ public class SleepGoal extends Goal {
 
         if (this.entity.isSleeping()) {
             this.entity.getNavigation().stop();
+            this.entity.getLookControl().tick();
         }
     }
 
@@ -126,5 +133,23 @@ public class SleepGoal extends Goal {
     @Override
     public boolean shouldContinue() {
         return this.canStart();
+    }
+
+    private boolean isBeingRainedOn() {
+        BlockPos blockPos = this.entity.getBlockPos();
+        return this.entity.getWorld().isRaining() && (this.hasRain(blockPos) || this.hasRain(BlockPos.ofFloored(blockPos.getX(), this.entity.getBoundingBox().maxY, blockPos.getZ())));
+    }
+
+    private boolean hasRain(BlockPos pos) {
+        if (!this.entity.getWorld().isRaining()) {
+            return false;
+        } else if (!this.entity.getWorld().isSkyVisible(pos)) {
+            return false;
+        } else if (this.entity.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
+            return false;
+        } else {
+            Biome biome = this.entity.getWorld().getBiome(pos).value();
+            return biome.getPrecipitation(pos) == Biome.Precipitation.RAIN;
+        }
     }
 }

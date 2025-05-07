@@ -1,16 +1,16 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.HippoMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.client.hippo.HippoVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
@@ -23,13 +23,11 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -41,11 +39,11 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -78,10 +76,10 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SleepGoal(this, this, true, false, false, false, 3.0, 700, 800, true, false, false, true));
-        this.goalSelector.add(1, new HippoMeleeAttackGoal(this, 1.0, true, 2.1f));
+        this.goalSelector.add(1, new HippoMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(1, new RollInMudGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(2, new FollowParentGoal(this, 1.0));
+        this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.0));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
@@ -108,22 +106,18 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         return false;
     }
 
-    public boolean canBreatheInWater() {
-        return true;
-    }
-
     public boolean canBeLeashedBy(PlayerEntity player) {
         return false;
     }
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isOf(Items.MELON);
+        return stack.isIn(ModTags.Items.HIPPO_FOR_BREEDING);
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
         if (world.getRandom().nextDouble() < 0.05) {
             this.setVariant(HippoVariants.ALBINO);
@@ -131,6 +125,14 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
             this.setVariant(HippoVariants.NORMAL);
         }
         return entityData;
+    }
+
+    @Override
+    protected EntityDimensions getBaseDimensions(EntityPose pose) {
+        if (this.isBaby()) {
+            return EntityDimensions.fixed(1.7F, 1.5F);
+        }
+        return this.getType().getDimensions();
     }
 
     @Nullable
@@ -163,13 +165,13 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, HippoVariants.NORMAL.getId());
-        this.dataTracker.startTracking(SLEEPING, false);
-        this.dataTracker.startTracking(IS_ROLLING_IN_MUD, false);
-        this.dataTracker.startTracking(IS_MUDDY, false);
-        this.dataTracker.startTracking(IS_MUD_DRY, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(VARIANT, HippoVariants.NORMAL.getId());
+        builder.add(SLEEPING, false);
+        builder.add(IS_ROLLING_IN_MUD, false);
+        builder.add(IS_MUDDY, false);
+        builder.add(IS_MUD_DRY, false);
     }
 
     public boolean isRollingInMud() {
@@ -339,13 +341,13 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
             return PlayState.STOP;
         }
         if (this.isBaby()) {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.hippo.swim", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.hippo.idle_swim", Animation.LoopType.LOOP));
             }
         } else {
-            if (state.isMoving()) {
+            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.hippo.swim", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.hippo.idle_swim", Animation.LoopType.LOOP));

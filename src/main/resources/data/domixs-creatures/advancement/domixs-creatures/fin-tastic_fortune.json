@@ -1,0 +1,35 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/root",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:goldfish"
+    },
+    "title": {
+      "translate": "advancements.domixs_creatures.fin-tastic_fortune.title"
+    },
+    "description": {
+      "translate": "advancements.domixs_creatures.fin-tastic_fortune.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "eat_goldfish": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "domixs-creatures:goldfish"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eat_goldfish"
+    ]
+  ]
+}

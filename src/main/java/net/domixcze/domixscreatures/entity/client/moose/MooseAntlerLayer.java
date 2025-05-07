@@ -27,11 +27,11 @@ public class MooseAntlerLayer extends GeoRenderLayer<MooseEntity> {
             }
 
             if (antlerTexture != null) {
-                Identifier antlerIdentifier = new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/" + antlerTexture);
+                Identifier antlerIdentifier = Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/" + antlerTexture);
                 RenderLayer entityCutoutNoCull = RenderLayer.getEntityCutoutNoCull(antlerIdentifier);
 
                 getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, entityCutoutNoCull,
-                        bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+                        bufferSource.getBuffer(entityCutoutNoCull), partialTick, packedLight, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
             }
         }
     }

@@ -10,11 +10,11 @@ public class TigerModel extends GeoModel<TigerEntity> {
     @Override
     public Identifier getModelResource(TigerEntity animatable) {
         if (animatable.isBaby()) {
-            return new Identifier(DomiXsCreatures.MOD_ID, "geo/baby_tiger.geo.json");
+            return Identifier.of(DomiXsCreatures.MOD_ID, "geo/baby_tiger.geo.json");
         } else if (animatable.getVariant() == TigerVariants.DREAM || animatable.getVariant() == TigerVariants.ALBINO_DREAM) {
-            return new Identifier(DomiXsCreatures.MOD_ID, "geo/dream_tiger.geo.json");
+            return Identifier.of(DomiXsCreatures.MOD_ID, "geo/dream_tiger.geo.json");
         } else {
-            return new Identifier(DomiXsCreatures.MOD_ID, "geo/tiger.geo.json");
+            return Identifier.of(DomiXsCreatures.MOD_ID, "geo/tiger.geo.json");
         }
     }
 
@@ -22,16 +22,16 @@ public class TigerModel extends GeoModel<TigerEntity> {
     public Identifier getTextureResource(TigerEntity animatable) {
         if (animatable.isBaby()) {
             if (animatable.getVariant() == TigerVariants.ALBINO) {
-                return new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/baby_tiger_albino.png");
+                return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/baby_tiger_albino.png");
             } else {
-                return new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/baby_tiger.png");
+                return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/baby_tiger.png");
             }
         } else {
             return switch (animatable.getVariant()) {
-                case ALBINO -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/tiger_albino.png");
-                case DREAM -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/dream_tiger.png");
-                case ALBINO_DREAM -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/dream_tiger_albino.png");
-                default -> new Identifier(DomiXsCreatures.MOD_ID, "textures/entity/tiger.png");
+                case ALBINO -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/tiger_albino.png");
+                case DREAM -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/dream_tiger.png");
+                case ALBINO_DREAM -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/dream_tiger_albino.png");
+                default -> Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/tiger.png");
             };
         }
     }
@@ -39,11 +39,11 @@ public class TigerModel extends GeoModel<TigerEntity> {
     @Override
     public Identifier getAnimationResource(TigerEntity animatable) {
         if (animatable.isBaby()) {
-            return new Identifier(DomiXsCreatures.MOD_ID, "animations/baby_tiger.animation.json");
+            return Identifier.of(DomiXsCreatures.MOD_ID, "animations/baby_tiger.animation.json");
         } else if (animatable.getVariant() == TigerVariants.DREAM || animatable.getVariant() == TigerVariants.ALBINO_DREAM) {
-            return new Identifier(DomiXsCreatures.MOD_ID, "animations/dream_tiger.animation.json");
+            return Identifier.of(DomiXsCreatures.MOD_ID, "animations/dream_tiger.animation.json");
         } else {
-            return new Identifier(DomiXsCreatures.MOD_ID, "animations/tiger.animation.json");
+            return Identifier.of(DomiXsCreatures.MOD_ID, "animations/tiger.animation.json");
         }
     }
 }

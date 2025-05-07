@@ -9,6 +9,12 @@ public class DeerRenderer extends GeoEntityRenderer<DeerEntity> {
         super(renderManager, new DeerModel());
         this.addRenderLayer(new DeerAntlerLayer(this));
         this.addRenderLayer(new DeerSnowyLayer(this));
-        this.shadowRadius = 0.6F;
+    }
+
+    @Override
+    protected float getShadowRadius(DeerEntity entity) {
+        float adultShadowScale = 0.6f;
+        float babyShadowScale = 0.5f;
+        return entity.isBaby() ? babyShadowScale : adultShadowScale;
     }
 }
