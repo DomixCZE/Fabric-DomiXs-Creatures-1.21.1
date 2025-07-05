@@ -1,10 +1,9 @@
-package net.domixcze.domixscreatures.entity.custom;
-
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.HippoMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.WanderAroundGoal;
 import net.domixcze.domixscreatures.entity.client.hippo.HippoVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
@@ -13,7 +12,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.MoveControl;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.AnimalMateGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.pathing.AmphibiousSwimNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -80,7 +82,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(1, new RollInMudGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.0));
-        this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0));
+        this.goalSelector.add(3, new WanderAroundGoal(this, 1.0));
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
@@ -242,7 +244,19 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
+    public boolean damage(DamageSource source, float amount) {
+        if (super.damage(source, amount)) {
+            this.setSleeping(false);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void tick() {
+        if (this.isSleeping()) {
+            this.getNavigation().stop();
+        }
         super.tick();
 
         if (this.isTouchingWaterOrRain()) {
