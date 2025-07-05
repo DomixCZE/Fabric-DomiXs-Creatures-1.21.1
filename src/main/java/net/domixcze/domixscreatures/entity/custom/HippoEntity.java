@@ -1,3 +1,5 @@
+package net.domixcze.domixscreatures.entity.custom;
+
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.HippoMeleeAttackGoal;
