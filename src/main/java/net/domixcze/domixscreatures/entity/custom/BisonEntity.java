@@ -2,10 +2,15 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.*;
+import net.domixcze.domixscreatures.entity.ai.WanderAroundGoal;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.AnimalMateGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -90,7 +95,7 @@ public class BisonEntity extends AnimalEntity implements GeoEntity, EatsGrass, S
         this.goalSelector.add(3, new BisonMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(4, new MobEatGrassGoal(this));
         this.goalSelector.add(5, new BabyFollowParentGoal(this, 1.0));
-        this.goalSelector.add(6, new WanderAroundFarGoal(this, 0.75f));
+        this.goalSelector.add(6, new WanderAroundGoal(this, 0.75f));
         this.goalSelector.add(7, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ProtectBabiesGoal<>(this, BisonEntity.class, 8.0));
@@ -344,7 +349,19 @@ public class BisonEntity extends AnimalEntity implements GeoEntity, EatsGrass, S
     }
 
     @Override
+    public boolean damage(DamageSource source, float amount) {
+        if (super.damage(source, amount)) {
+            this.setSleeping(false);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void tick() {
+        if (this.isSleeping()) {
+            this.getNavigation().stop();
+        }
         super.tick();
 
         if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
