@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.effect;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.damage.ModDamageTypes;
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.LivingEntity;
@@ -10,8 +11,12 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.EntityEffectParticleEffect;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
@@ -82,9 +87,33 @@ public class ElectrifiedEffect extends StatusEffect {
                         1.0f, // Volume
                         1.0f  // Pitch
                 );
+
+                for (int i = 0; i < 5; i++) {
+                    double spreadX_Z = entity.getWidth();
+
+                    double spreadY_offset = entity.getHeight() * 0.2; // Lowest point at 20% of height
+                    double spreadY_range = entity.getHeight() * 0.6;  // Range from 20% to 80% (0.2 + 0.6 = 0.8)
+
+                    double spawnX = entity.getX() + (serverWorld.random.nextDouble() - 0.5) * spreadX_Z;
+                    double spawnY = entity.getY() + spreadY_offset + (serverWorld.random.nextDouble() * spreadY_range);
+                    double spawnZ = entity.getZ() + (serverWorld.random.nextDouble() - 0.5) * spreadX_Z;
+
+                    serverWorld.spawnParticles(
+                            ModParticles.ELECTRIC,
+                            spawnX, spawnY, spawnZ,
+                            1,
+                            0.0, 0.0, 0.0,
+                            0.0
+                    );
+                }
             }
         }
         return true;
+    }
+
+    @Override //disables the vanilla particles
+    public ParticleEffect createParticle(StatusEffectInstance effect) {
+        return EntityEffectParticleEffect.create(ParticleTypes.ENTITY_EFFECT, 0);
     }
 
     @Override

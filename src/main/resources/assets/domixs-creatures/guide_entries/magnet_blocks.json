@@ -1,0 +1,116 @@
+{
+  "entry_id": "domixs-creatures:magnet_blocks_entry",
+  "category": "blocks",
+  "title": "§lMagnet Blocks",
+  "button_text": "§lMagnet Blocks",
+  "pages": [
+    {
+      "text_content": [
+        "There are two types of Magnet Blocks: Negative and Positive."
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "domixs-creatures:negative_magnet_block",
+            "domixs-creatures:positive_magnet_block"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 70,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_icon.png",
+          "x": 1,
+          "y": 96,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "type": "item",
+          "id": "minecraft:cobblestone",
+          "x": 5,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:cobblestone",
+          "x": 5,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:cobblestone",
+          "x": 45,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:cobblestone",
+          "x": 45,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:cobblestone",
+          "x": 25,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "cycling_item",
+          "ids": [
+            "minecraft:iron_ingot",
+            "minecraft:redstone"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 25,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:magnetite_ingot",
+          "x": 5,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:magnetite_ingot",
+          "x": 25,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:magnetite_ingot",
+          "x": 45,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "When powered by Redstone, the Negative Magnet pushes iron items and entities with iron armor, while the Positive Magnet pulls them."
+      ]
+    }
+  ]
+}

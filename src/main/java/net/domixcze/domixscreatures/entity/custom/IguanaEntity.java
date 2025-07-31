@@ -66,7 +66,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 100,false, true, true, false, 3.0, 500, 700, true, false, true, true,1));
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
@@ -74,6 +74,11 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.25));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(3, new LookAroundGoal(this));
+    }
+
+    @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
     }
 
     @Override
@@ -221,9 +226,13 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
-                String action = isSitting() ? "is Sitting" : "is Following";
+                Text action = Text.translatable(isSitting()
+                        ? "message.domixs-creatures.action.sitting"
+                        : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " " + action + ".")
+                Text message = Text.literal(entityName.getString() + " ")
+                        .append(action)
+                        .append(".")
                         .styled(style -> style.withColor(Formatting.GREEN));
                 player.sendMessage(message, true);
 

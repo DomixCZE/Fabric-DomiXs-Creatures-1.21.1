@@ -1,0 +1,100 @@
+{
+  "entry_id": "domixs-creatures:deer_entry",
+  "category": "entities",
+  "title": "§lDeer",
+  "button_text": "§lDeer",
+  "pages": [
+    {
+      "text_content": [
+        "The Deer can be found in the Taiga biome."
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/deer_icon.png",
+          "x": 20,
+          "y": 70,
+          "width": 50,
+          "height": 74
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "There are three sizes of antlers: Small, Medium, and Large.",
+        "",
+        "If a deer is killed, it will drop 2 antlers of the corresponding size and raw deer venison."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:raw_deer_venison",
+          "x": 50,
+          "y": 130,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "2 antlers of the same size can be combined with 1 Leather to craft wearable antlers."
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_icon.png",
+          "x": 21,
+          "y": 96,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:large_antler",
+          "x": 25,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:leather",
+          "x": 45,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:large_antler",
+          "x": 65,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "Deer can be bred using Wheat.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "They can only breed if one has antlers and the other does not."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:wheat",
+          "x": 10,
+          "y": 60,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

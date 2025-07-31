@@ -37,7 +37,7 @@ public class VineEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0);
     }
 
     @Override
@@ -51,10 +51,6 @@ public class VineEntity extends HostileEntity implements GeoEntity {
         super.initDataTracker(builder);
         builder.add(IS_HOLDING_ENTITY, false);
     }
-
-    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.5F;
-    }*/
 
     public boolean isHoldingEntity() {
         return this.dataTracker.get(IS_HOLDING_ENTITY);

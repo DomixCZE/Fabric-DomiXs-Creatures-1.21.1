@@ -9,6 +9,8 @@ import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.fabricmc.fabric.mixin.content.registry.AxeItemAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -84,7 +86,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, false, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 100,false, true, true, false, 3.0, 500, 700, true, false, false, true, 1));
         this.goalSelector.add( 1, new StripLogGoal(this, 1,10));
         this.goalSelector.add(1, new StayNearHomeGoal(this, 1.0, 16, 10));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
@@ -93,10 +95,6 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         this.goalSelector.add(3, new LookAroundGoal(this));
     }
 
-    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.65F;
-    }*/
-
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
@@ -104,6 +102,11 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         builder.add(HOME_POS, BlockPos.ORIGIN);
         builder.add(SLEEPING, false);
         builder.add(VARIANT, BeaverVariants.BROWN.getId());
+    }
+
+    @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
     }
 
     public boolean isSleeping() {
@@ -401,9 +404,9 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
                 return false;
             }
 
-            if (this.beaver.getRandom().nextInt(100) < 5) {
-                BlockPos beaverPos = this.beaver.getBlockPos();
-                World world = this.beaver.getWorld();
+            if (beaver.getRandom().nextInt(100) < 5) {
+                BlockPos beaverPos = beaver.getBlockPos();
+                World world = beaver.getWorld();
 
                 for (BlockPos pos : BlockPos.iterateOutwards(beaverPos, searchRadius, searchRadius, searchRadius)) {
                     BlockState state = world.getBlockState(pos);
@@ -424,13 +427,13 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         @Override
         public void start() {
             if (this.targetLogPos != null) {
-                this.beaver.getNavigation().startMovingTo(this.targetLogPos.getX() + 0.5, this.targetLogPos.getY(), this.targetLogPos.getZ() + 0.5, this.speed);
+                beaver.getNavigation().startMovingTo(this.targetLogPos.getX() + 0.5, this.targetLogPos.getY(), this.targetLogPos.getZ() + 0.5, this.speed);
             }
         }
 
         @Override
         public void tick() {
-            if (this.targetLogPos != null && this.beaver.getBlockPos().isWithinDistance(this.targetLogPos, 1.5)) {
+            if (this.targetLogPos != null && beaver.getBlockPos().isWithinDistance(this.targetLogPos, 1.5)) {
                 stripLog(this.targetLogPos);
                 this.targetLogPos = null;
             }
@@ -455,7 +458,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         }
 
         private void stripLog(BlockPos logPos) {
-            World world = this.beaver.getWorld();
+            World world = beaver.getWorld();
             BlockState currentState = world.getBlockState(logPos);
             Block strippedLog = getStrippedLog(currentState.getBlock());
 
@@ -489,135 +492,137 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
     public static class StayNearHomeGoal extends Goal {
         private final BeaverEntity beaver;
         private final double speed;
-        private final int range;
-        private final int tolerance;
+        private final int innerRadius;
+        private final int totalRadius;
 
-        public StayNearHomeGoal(BeaverEntity beaver, double speed, int range, int tolerance) {
+        private BlockPos targetWaypoint;
+
+        public StayNearHomeGoal(BeaverEntity beaver, double speed, int innerRadius, int outerRadiusOffset) {
             this.beaver = beaver;
             this.speed = speed;
-            this.range = range;
-            this.tolerance = tolerance;
+            this.innerRadius = innerRadius;
+            this.totalRadius = innerRadius + outerRadiusOffset;
             this.setControls(EnumSet.of(Control.MOVE));
         }
 
         @Override
         public boolean canStart() {
-            if (beaver.isLeashed()) {
+            if (beaver.isLeashed()) return false;
+
+            BlockPos currentHome = beaver.getHomePos();
+
+            if (currentHome.equals(BlockPos.ORIGIN) || isHomeBlockValid(currentHome)) {
+                findNearestPileOfSticksAroundBeaver(totalRadius).ifPresentOrElse(
+                        beaver::setHomePos,
+                        () -> beaver.setHomePos(BlockPos.ORIGIN)
+                );
+                currentHome = beaver.getHomePos();
+            }
+
+            if (currentHome.equals(BlockPos.ORIGIN)) {
                 return false;
             }
 
-            BlockPos homePos = beaver.getHomePos();
-            if (homePos.equals(BlockPos.ORIGIN) || !isHomeBlockValid(homePos)) {
-                Optional<BlockPos> nearestBlock = findNearestPileOfSticks();
-                if (nearestBlock.isPresent()) {
-                    beaver.setHomePos(nearestBlock.get());
-                } else {
-                    beaver.setHomePos(BlockPos.ORIGIN);
-                }
-            }
+            double distSqToHome = beaver.getBlockPos().getSquaredDistance(currentHome);
 
-            if (!beaver.getHomePos().equals(BlockPos.ORIGIN)) {
-                double distance = beaver.getBlockPos().getSquaredDistance(beaver.getHomePos());
-                return distance > range * range || (distance > range * range && distance <= (range + tolerance) * (range + tolerance));
-            }
-
-            return false;
+            return distSqToHome > innerRadius * innerRadius;
         }
 
         @Override
         public void start() {
-            if (beaver.isLeashed()) {
-                return;
-            }
+            this.targetWaypoint = findRandomPositionNearHome(beaver.getHomePos(), innerRadius);
 
-            BlockPos homePos = beaver.getHomePos();
-            if (!homePos.equals(BlockPos.ORIGIN)) {
-                BlockPos targetPos = findRandomPositionNearHome();
-                if (targetPos != null) {
-                    beaver.getNavigation().startMovingTo(targetPos.getX() + 0.5, targetPos.getY(), targetPos.getZ() + 0.5, speed);
-                    beaver.getLookControl().lookAt(targetPos.getX() + 0.5, targetPos.getY(), targetPos.getZ() + 0.5);
-                }
+            if (this.targetWaypoint != null) {
+                beaver.getNavigation().startMovingTo(
+                        this.targetWaypoint.getX() + 0.5, this.targetWaypoint.getY(), this.targetWaypoint.getZ() + 0.5, speed
+                );
+                beaver.getLookControl().lookAt(
+                        this.targetWaypoint.getX() + 0.5, this.targetWaypoint.getY() + 0.5, this.targetWaypoint.getZ() + 0.5
+                );
+            } else {
+                beaver.getNavigation().stop();
             }
         }
 
         @Override
         public boolean shouldContinue() {
-            if (beaver.isLeashed()) {
+            if (beaver.isLeashed()) return false;
+
+            BlockPos currentHome = beaver.getHomePos();
+            if (currentHome.equals(BlockPos.ORIGIN) || isHomeBlockValid(currentHome)) {
                 return false;
             }
 
-            BlockPos homePos = beaver.getHomePos();
-            if (!homePos.equals(BlockPos.ORIGIN)) {
-                double distance = beaver.getBlockPos().getSquaredDistance(homePos);
-                if (distance > (range + tolerance) * (range + tolerance)) {
-                    Optional<BlockPos> nearestBlock = findNearestPileOfSticks();
-                    if (nearestBlock.isPresent()) {
-                        beaver.setHomePos(nearestBlock.get());
-                    } else {
-                        beaver.setHomePos(BlockPos.ORIGIN);
-                    }
-                    return false;
-                } else if (distance > range * range && distance <= (range + tolerance) * (range + tolerance)) {
-                    BlockPos targetPos = findRandomPositionNearHome();
-                    if (targetPos != null) {
-                        beaver.getNavigation().startMovingTo(targetPos.getX() + 0.5, targetPos.getY(), targetPos.getZ() + 0.5, speed);
-                    }
+            double distSqToHome = beaver.getBlockPos().getSquaredDistance(currentHome);
+
+            if (distSqToHome > totalRadius * totalRadius) {
+                if (!beaver.getWorld().isClient()) {
+                    beaver.setHomePos(BlockPos.ORIGIN);
                 }
-                return !beaver.getNavigation().isIdle();
+                return false;
             }
-            return false;
+
+            if (distSqToHome <= innerRadius * innerRadius) {
+                return false;
+            }
+
+            if (beaver.getNavigation().isIdle()) {
+                this.targetWaypoint = findRandomPositionNearHome(currentHome, innerRadius);
+                if (this.targetWaypoint != null) {
+                    beaver.getNavigation().startMovingTo(
+                            this.targetWaypoint.getX() + 0.5, this.targetWaypoint.getY(), this.targetWaypoint.getZ() + 0.5, speed
+                    );
+                    beaver.getLookControl().lookAt(
+                            this.targetWaypoint.getX() + 0.5, this.targetWaypoint.getY() + 0.5, this.targetWaypoint.getZ() + 0.5
+                    );
+                } else {
+                    return false;
+                }
+            }
+            return true;
         }
 
         @Override
         public void stop() {
-            if (beaver.isLeashed()) {
-                return;
-            }
-
-            BlockPos homePos = beaver.getHomePos();
-            if (!homePos.equals(BlockPos.ORIGIN)) {
-                if (!isHomeBlockValid(homePos)) {
-                    Optional<BlockPos> nearestBlock = findNearestPileOfSticks();
-                    if (nearestBlock.isPresent()) {
-                        beaver.setHomePos(nearestBlock.get());
-                    } else {
-                        beaver.setHomePos(BlockPos.ORIGIN);
-                    }
-                }
-            }
+            beaver.getNavigation().stop();
+            this.targetWaypoint = null;
         }
 
         private boolean isHomeBlockValid(BlockPos homePos) {
-            return beaver.getWorld().getBlockState(homePos).isOf(ModBlocks.PILE_OF_STICKS_BLOCK);
+            return !beaver.getWorld().isChunkLoaded(homePos) || !beaver.getWorld().getBlockState(homePos).isOf(ModBlocks.PILE_OF_STICKS_BLOCK);
         }
 
-        private Optional<BlockPos> findNearestPileOfSticks() {
+        private Optional<BlockPos> findNearestPileOfSticksAroundBeaver(int searchRadius) {
             BlockPos beaverPos = beaver.getBlockPos();
             World world = beaver.getWorld();
-            Box searchBox = new Box(beaverPos).expand(range + tolerance);
+            Box searchBox = new Box(beaverPos).expand(searchRadius);
 
-            for (BlockPos pos : BlockPos.iterate((int) searchBox.minX, (int) searchBox.minY, (int) searchBox.minZ,
+            for (BlockPos p : BlockPos.iterate(
+                    (int) searchBox.minX, (int) searchBox.minY, (int) searchBox.minZ,
                     (int) searchBox.maxX, (int) searchBox.maxY, (int) searchBox.maxZ)) {
-                if (world.getBlockState(pos).isOf(ModBlocks.PILE_OF_STICKS_BLOCK)) {
-                    return Optional.of(pos);
+                if (world.getBlockState(p).isOf(ModBlocks.PILE_OF_STICKS_BLOCK)) {
+                    return Optional.of(p);
                 }
             }
             return Optional.empty();
         }
 
-        private BlockPos findRandomPositionNearHome() {
-            BlockPos homePos = beaver.getHomePos();
-            if (!homePos.equals(BlockPos.ORIGIN)) {
-                World world = beaver.getWorld();
-                for (int i = 0; i < 10; i++) { // Try 10 random positions
-                    BlockPos randomPos = homePos.add(
-                            world.getRandom().nextInt(range * 2 + 1) - range,
-                            0,
-                            world.getRandom().nextInt(range * 2 + 1) - range);
+        private BlockPos findRandomPositionNearHome(BlockPos center, int radius) {
+            if (center.equals(BlockPos.ORIGIN)) return null;
 
-                    if (world.getBlockState(randomPos).isAir()) {
-                        return randomPos;
-                    }
+            World world = beaver.getWorld();
+            for (int i = 0; i < 10; i++) {
+                BlockPos randomPos = center.add(
+                        world.getRandom().nextInt(radius * 2 + 1) - radius,
+                        world.getRandom().nextInt(3) - 1,
+                        world.getRandom().nextInt(radius * 2 + 1) - radius
+                );
+
+                BlockState blockState = world.getBlockState(randomPos);
+                BlockState blockBelowState = world.getBlockState(randomPos.down());
+
+                if ((blockState.isAir() || blockState.isReplaceable()) && blockBelowState.isSolid()) {
+                    return randomPos;
                 }
             }
             return null;

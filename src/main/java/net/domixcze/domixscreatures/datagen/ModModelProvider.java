@@ -66,13 +66,43 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.BISON_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.SUN_BEAR_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.CATERPILLAR_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.BUTTERFLY_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.GORILLA_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PIRANHA_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.NEON_TETRA_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PEACOCK_BASS_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.BETTA_FISH_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.ARAPAIMA_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.ANGLERFISH_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.FRESHWATER_STINGRAY_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.CHEETAH_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.HERMIT_CRAB_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_EAR, Models.GENERATED);
         itemModelGenerator.register(ModItems.GOLDFISH_BUCKET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GOLDFISH, Models.GENERATED);
-        itemModelGenerator.register(ModItems.WORM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PIRANHA_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.NEON_TETRA_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PEACOCK_BASS_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BETTA_FISH_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ANGLERFISH_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FRESHWATER_STINGRAY_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.SKULL, Models.GENERATED);
         itemModelGenerator.register(ModItems.CROCODILE_SCALE, Models.GENERATED);
         itemModelGenerator.register(ModItems.CROCODILE_SCALE_ALBINO, Models.GENERATED);
@@ -84,6 +114,21 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SHARK_TOOTH, Models.GENERATED);
         itemModelGenerator.register(ModItems.QUILL, Models.GENERATED);
         itemModelGenerator.register(ModItems.TRUFFLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_SCALE_BLACK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_SCALE_GREEN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PEARL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COCONUT_SHELL, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.GOLDFISH, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WORM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SPECTRAL_FRUIT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.HONEYED_APPLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BANANA, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COOKED_BISON_MEAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_BISON_MEAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COOKED_DEER_VENISON, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_DEER_VENISON, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COCONUT_SLICE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.SMALL_ANTLER, Models.GENERATED);
         itemModelGenerator.register(ModItems.MEDIUM_ANTLER, Models.GENERATED);
@@ -99,6 +144,16 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.CROCODILE_CHESTPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.CROCODILE_CHESTPLATE_ALBINO, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.ARAPAIMA_HELMET_GREEN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_CHESTPLATE_GREEN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_LEGGINGS_GREEN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_BOOTS_GREEN, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.ARAPAIMA_HELMET_BLACK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_CHESTPLATE_BLACK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_LEGGINGS_BLACK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARAPAIMA_BOOTS_BLACK, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.SALAMANDER_HELMET, Models.GENERATED);
         itemModelGenerator.register(ModItems.SALAMANDER_CHESTPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.SALAMANDER_LEGGINGS, Models.GENERATED);
@@ -107,14 +162,20 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.TAB_ICON, Models.GENERATED);
         itemModelGenerator.register(ModItems.DEAFEN_ICON, Models.GENERATED);
-        itemModelGenerator.register(ModItems.SPECTRAL_FRUIT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ERASER, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.NIGHTMARE_AMULET, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.RAW_MAGNETITE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MAGNETITE_INGOT, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.GUIDE_BOOK, Models.GENERATED);
     }
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         BlockStateModelGenerator.BlockTexturePool spectralPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SPECTRAL_PLANKS);
+        BlockStateModelGenerator.BlockTexturePool palmPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PALM_PLANKS);
 
         spectralPool.stairs(ModBlocks.SPECTRAL_STAIRS);
         spectralPool.slab(ModBlocks.SPECTRAL_SLAB);
@@ -131,7 +192,26 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerTintableCross(ModBlocks.SPECTRAL_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
+        palmPool.stairs(ModBlocks.PALM_STAIRS);
+        palmPool.slab(ModBlocks.PALM_SLAB);
+        palmPool.fence(ModBlocks.PALM_FENCE);
+        palmPool.fenceGate(ModBlocks.PALM_FENCE_GATE);
+        palmPool.button(ModBlocks.PALM_BUTTON);
+        palmPool.pressurePlate(ModBlocks.PALM_PRESSURE_PLATE);
+        blockStateModelGenerator.registerDoor(ModBlocks.PALM_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.PALM_TRAPDOOR);
+
+        blockStateModelGenerator.registerLog(ModBlocks.PALM_LOG).log(ModBlocks.PALM_LOG).wood(ModBlocks.PALM_WOOD);
+        blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_PALM_LOG).log(ModBlocks.STRIPPED_PALM_LOG).wood(ModBlocks.STRIPPED_PALM_WOOD);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PALM_LEAVES);
+
+        blockStateModelGenerator.registerTintableCross(ModBlocks.PALM_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_GLASS_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PEARL_BLOCK);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MAGNETITE_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_MAGNETITE_ORE);
 
         blockStateModelGenerator.registerCrop(ModBlocks.MUD_BLOSSOM, MudBlossomBlock.AGE, 0, 1, 2, 3);
     }

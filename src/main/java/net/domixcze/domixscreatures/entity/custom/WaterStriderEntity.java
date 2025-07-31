@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.item.ModItems;
-import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -26,11 +26,11 @@ import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
@@ -125,6 +125,10 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
 
     @Override
     public boolean canBeSaddled() {
+        //Check the config setting first. If riding is disabled, saddling is also disabled.
+        if (!ModConfig.INSTANCE.enableWaterStriderRiding) {
+            return false;
+        }
         return this.isAlive() && !this.isBaby() && this.isTamed();
     }
 
@@ -172,6 +176,9 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
     @Nullable
     @Override
     public LivingEntity getControllingPassenger() {
+        if (!ModConfig.INSTANCE.enableWaterStriderRiding) {
+            return null; // No one can control it if riding is disabled.
+        }
         return this.isSaddled() ? (LivingEntity) this.getFirstPassenger() : null;
     }
 
@@ -224,6 +231,13 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
                 this.playSound(SoundEvents.ENTITY_GENERIC_EAT, 1.0F, 1.0F);
                 return ActionResult.SUCCESS;
             }
+        }
+
+        if (!ModConfig.INSTANCE.enableWaterStriderRiding) {
+            if (!this.getWorld().isClient()) {
+                player.sendMessage(Text.translatable("domixs-creatures.message.riding_disabled"), true);
+            }
+            return ActionResult.FAIL;
         }
 
         boolean isSaddle = itemStack.isOf(Items.SADDLE);

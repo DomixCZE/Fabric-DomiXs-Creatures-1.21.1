@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "minecraft:savanna"
+    "minecraft:savanna",
+
+    {
+      "id": "biomeswevegone:baobab_savanna",
+      "required": false
+    }
   ]
 }

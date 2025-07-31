@@ -4,7 +4,7 @@ import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.ai.Beachable;
 import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
 import net.domixcze.domixscreatures.entity.ai.SharkMeleeAttackGoal;
-import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.BleedingUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;
@@ -20,7 +20,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.WaterCreatureEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -82,27 +81,18 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
         boolean success = super.tryAttack(target);
 
         if (success && target instanceof LivingEntity livingTarget) {
-            if (!hasFullBleedingProtection(livingTarget)) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 200, 0)); // 200 ticks = 10 seconds
+            int protectionCount = BleedingUtil.getBleedingProtectionCount(livingTarget);
+
+            if (protectionCount == 0) {
+                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 350, 0));
+            } else if (protectionCount <= 2) {
+                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 250, 0));
+            } else if (protectionCount == 3) {
+                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 150, 0));
             }
         }
         return success;
     }
-
-    private boolean hasFullBleedingProtection(LivingEntity entity) {
-        return preventsBleeding(entity.getEquippedStack(EquipmentSlot.HEAD)) &&
-                preventsBleeding(entity.getEquippedStack(EquipmentSlot.CHEST)) &&
-                preventsBleeding(entity.getEquippedStack(EquipmentSlot.LEGS)) &&
-                preventsBleeding(entity.getEquippedStack(EquipmentSlot.FEET));
-    }
-
-    private boolean preventsBleeding(ItemStack stack) {
-        return stack.isIn(ModTags.Items.PREVENTS_BLEEDING);
-    }
-
-    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.65F;
-    }*/
 
     @Override
     protected EntityNavigation createNavigation(World world) {

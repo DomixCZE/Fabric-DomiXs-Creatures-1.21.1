@@ -17,10 +17,12 @@
   },
   "criteria": {
     "ride_water_strider": {
-      "trigger": "minecraft:started_riding",
+      "trigger": "minecraft:tick",
       "conditions": {
-        "entity": {
-          "type": "domixs-creatures:water_strider"
+        "player": {
+          "vehicle": {
+            "type": "domixs-creatures:water_strider"
+          }
         }
       }
     }

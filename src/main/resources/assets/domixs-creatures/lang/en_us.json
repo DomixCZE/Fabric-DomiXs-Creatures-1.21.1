@@ -23,6 +23,19 @@
   "entity.domixs-creatures.water_strider": "Water Strider",
   "entity.domixs-creatures.boar": "Boar",
   "entity.domixs-creatures.bison": "Bison",
+  "entity.domixs-creatures.sun_bear": "Sun Bear",
+  "entity.domixs-creatures.caterpillar": "Caterpillar",
+  "entity.domixs-creatures.butterfly": "Butterfly",
+  "entity.domixs-creatures.gorilla": "Gorilla",
+  "entity.domixs-creatures.piranha": "Piranha",
+  "entity.domixs-creatures.neon_tetra": "Neon Tetra",
+  "entity.domixs-creatures.peacock_bass": "Peacock Bass",
+  "entity.domixs-creatures.betta_fish": "Betta Fish",
+  "entity.domixs-creatures.arapaima": "Arapaima",
+  "entity.domixs-creatures.anglerfish": "Anglerfish",
+  "entity.domixs-creatures.freshwater_stingray": "Freshwater Stingray",
+  "entity.domixs-creatures.cheetah": "Cheetah",
+  "entity.domixs-creatures.hermit_crab": "Hermit Crab",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Fire Salamander Spawn Egg",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Spectral Bat Spawn Egg",
@@ -47,6 +60,19 @@
   "item.domixs-creatures.water_strider_spawn_egg": "Water Strider Spawn Egg",
   "item.domixs-creatures.boar_spawn_egg": "Boar Spawn Egg",
   "item.domixs-creatures.bison_spawn_egg": "Bison Spawn Egg",
+  "item.domixs-creatures.sun_bear_spawn_egg": "Sun Bear Spawn Egg",
+  "item.domixs-creatures.caterpillar_spawn_egg": "Caterpillar Spawn Egg",
+  "item.domixs-creatures.butterfly_spawn_egg": "Butterfly Spawn Egg",
+  "item.domixs-creatures.gorilla_spawn_egg": "Gorilla Spawn Egg",
+  "item.domixs-creatures.piranha_spawn_egg": "Piranha Spawn Egg",
+  "item.domixs-creatures.neon_tetra_spawn_egg": "Neon Tetra Spawn Egg",
+  "item.domixs-creatures.peacock_bass_spawn_egg": "Peacock Bass Spawn Egg",
+  "item.domixs-creatures.betta_fish_spawn_egg": "Betta Fish Spawn Egg",
+  "item.domixs-creatures.arapaima_spawn_egg": "Arapaima Spawn Egg",
+  "item.domixs-creatures.anglerfish_spawn_egg": "Anglerfish Spawn Egg",
+  "item.domixs-creatures.freshwater_stingray_spawn_egg": "Freshwater Stingray Spawn Egg",
+  "item.domixs-creatures.cheetah_spawn_egg": "Cheetah Spawn Egg",
+  "item.domixs-creatures.hermit_crab_spawn_egg": "Hermit Crab Spawn Egg",
 
   "item.domixs-creatures.fire_salamander_scales": "Fire Salamander Scales",
   "item.domixs-creatures.spectral_bat_wing": "Spectral Bat Wing",
@@ -55,6 +81,12 @@
   "item.domixs-creatures.crocodile_scale_albino": "Albino Crocodile Scale",
   "item.domixs-creatures.crocodile_tooth": "Crocodile Tooth",
   "item.domixs-creatures.shark_tooth": "Shark Tooth",
+  "item.domixs-creatures.piranha_bucket": "Bucket of Piranha",
+  "item.domixs-creatures.neon_tetra_bucket": "Bucket of Neon Tetra",
+  "item.domixs-creatures.peacock_bass_bucket": "Bucket of Peacock Bass",
+  "item.domixs-creatures.betta_fish_bucket": "Bucket of Betta Fish",
+  "item.domixs-creatures.anglerfish_bucket": "Bucket of Anglerfish",
+  "item.domixs-creatures.freshwater_stingray_bucket": "Bucket of Freshwater Stingray",
   "item.domixs-creatures.goldfish_bucket": "Bucket of Goldfish",
   "item.domixs-creatures.goldfish": "Goldfish",
   "item.domixs-creatures.skull": "Skull",
@@ -67,8 +99,29 @@
   "item.domixs-creatures.worm": "Worm",
   "item.domixs-creatures.quill": "Quill",
   "item.domixs-creatures.truffle": "Truffle",
+  "item.domixs-creatures.honeyed_apple": "Honeyed Apple",
+  "item.domixs-creatures.raw_deer_venison": "Raw Deer Venison",
+  "item.domixs-creatures.cooked_deer_venison": "Cooked Deer Venison",
+  "item.domixs-creatures.raw_bison_meat": "Raw Bison Meat",
+  "item.domixs-creatures.cooked_bison_meat": "Cooked Bison Meat",
+  "item.domixs-creatures.banana": "Banana",
+  "item.domixs-creatures.arapaima_scale_black": "Arapaima Scale",
+  "item.domixs-creatures.arapaima_scale_green": "Arapaima Scale",
+  "item.domixs-creatures.pearl": "Pearl",
+  "item.domixs-creatures.bug_net": "Bug Net",
+  "item.domixs-creatures.coconut_slice": "Coconut Slice",
+  "item.domixs-creatures.coconut_shell": "Coconut Shell",
+
+  "item.domixs-creatures.eraser": "Eraser",
+
+  "item.domixs-creatures.guide_book": "Guide Book",
+  "item.domixs-creatures.magnet": "Magnet",
+
+  "item.domixs-creatures.raw_magnetite": "Raw Magnetite",
+  "item.domixs-creatures.magnetite_ingot": "Magnetite Ingot",
 
   "item.domixs-creatures.nightmare_amulet": "Nightmare Amulet",
+  "item.domixs-creatures.conch_shell": "Conch Shell",
 
   "item.domixs-creatures.crocodile_chestplate": "Crocodile Chestplate",
   "item.domixs-creatures.crocodile_chestplate_albino": "Crocodile Chestplate Albino",
@@ -84,12 +137,24 @@
   "item.domixs-creatures.salamander_leggings": "Salamander Leggings",
   "item.domixs-creatures.salamander_boots": "Salamander Boots",
 
+  "item.domixs-creatures.arapaima_helmet_black": "Arapaima Helmet",
+  "item.domixs-creatures.arapaima_chestplate_black": "Arapaima Chestplate",
+  "item.domixs-creatures.arapaima_leggings_black": "Arapaima Leggings",
+  "item.domixs-creatures.arapaima_boots_black": "Arapaima Boots",
+
+  "item.domixs-creatures.arapaima_helmet_green": "Arapaima Helmet",
+  "item.domixs-creatures.arapaima_chestplate_green": "Arapaima Chestplate",
+  "item.domixs-creatures.arapaima_leggings_green": "Arapaima Leggings",
+  "item.domixs-creatures.arapaima_boots_green": "Arapaima Boots",
+
   "item.domixs-creatures.small_antler": "Antler",
   "item.domixs-creatures.medium_antler": "Antler",
   "item.domixs-creatures.large_antler": "Antler",
 
   "item.domixs-creatures.mud_blossom_seed": "Mud Blossom Seed",
 
+  "domixs-creatures.tooltip.bug_net.contains": "Contains: %s",
+  "domixs-creatures.tooltip.bug_net.empty": "Empty",
   "domixs-creatures.tooltip.small_antler": "Size: Small",
   "domixs-creatures.tooltip.medium_antler": "Size: Medium",
   "domixs-creatures.tooltip.large_antler": "Size: Large",
@@ -98,6 +163,7 @@
   "effect.domixs-creatures.echolocation": "Echolocation",
   "effect.domixs-creatures.bleeding": "Bleeding",
   "effect.domixs-creatures.electrified": "Electrified",
+  "effect.domixs-creatures.ocean_blessing": "Ocean's Blessing",
 
   "item.minecraft.potion.effect.echolocation_potion": "Potion of Echolocation",
 
@@ -107,6 +173,11 @@
   "block.domixs-creatures.pile_of_sticks_block": "Pile of Sticks Block",
   "block.domixs-creatures.sawdust_block": "Sawdust Block",
   "block.domixs-creatures.molehill_block": "Molehill",
+  "block.domixs-creatures.pearl_block": "Pearl Block",
+  "block.domixs-creatures.magnetite_ore": "Magnetite Ore",
+  "block.domixs-creatures.deepslate_magnetite_ore": "Deepslate Magnetite Ore",
+  "block.domixs-creatures.negative_magnet_block": "Negative Magnet Block",
+  "block.domixs-creatures.positive_magnet_block": "Positive Magnet Block",
 
   "block.domixs-creatures.spectral_log": "Spectral Log",
   "block.domixs-creatures.stripped_spectral_log": "Stripped Spectral Log",
@@ -123,6 +194,23 @@
   "block.domixs-creatures.spectral_trapdoor": "Spectral Trapdoor",
   "block.domixs-creatures.spectral_leaves": "Spectral Leaves",
   "block.domixs-creatures.spectral_sapling": "Spectral Sapling",
+
+  "block.domixs-creatures.palm_log": "Palm Log",
+  "block.domixs-creatures.stripped_palm_log": "Stripped Palm Log",
+  "block.domixs-creatures.palm_wood": "Palm Wood",
+  "block.domixs-creatures.stripped_palm_wood": "Stripped Palm Wood",
+  "block.domixs-creatures.palm_planks": "Palm Planks",
+  "block.domixs-creatures.palm_slab": "Palm Slab",
+  "block.domixs-creatures.palm_stairs": "Palm Stairs",
+  "block.domixs-creatures.palm_fence": "Palm Fence",
+  "block.domixs-creatures.palm_fence_gate": "Palm Fence Gate",
+  "block.domixs-creatures.palm_button": "Palm Button",
+  "block.domixs-creatures.palm_pressure_plate": "Palm Pressure Plate",
+  "block.domixs-creatures.palm_door": "Palm Door",
+  "block.domixs-creatures.palm_trapdoor": "Palm Trapdoor",
+  "block.domixs-creatures.palm_leaves": "Palm Leaves",
+  "block.domixs-creatures.palm_sapling": "Palm Sapling",
+  "block.domixs-creatures.coconut_block": "Coconut",
 
   "sounds.domixs-creatures.zap": "Zap",
 
@@ -148,6 +236,12 @@
 
   "sounds.domixs-creatures.tiger_hurt": "Tiger hurts",
 
+  "sounds.domixs-creatures.conch_shell_use": "Conch shell plays",
+  "sounds.domixs-creatures.coconut_land": "Coconut Lands",
+
+  "sounds.domixs-creatures.guide_book_entry": "Guide Book Entry",
+  "sounds.domixs-creatures.guide_book_bookmark": "Guide Book Bookmark",
+
   "advancement.domixs-creatures.root.title": "Domix's Creatures",
   "advancement.domixs-creatures.my_ears.title": "MY EARS!",
   "advancement.domixs-creatures.ear_for_an_ear.title": "Ear for an Ear",
@@ -160,6 +254,7 @@
   "advancements.domixs_creatures.an_earthy_snack.title": "An Earthy Snack",
   "advancements.domixs_creatures.salamander_armor.title": "Fiery Looks",
   "advancement.domixs-creatures.boars_bounty.title": "Boar's Bounty",
+  "advancements.domixs_creatures.arapaima_armor.title": "Fish Mode",
 
   "advancement.domixs-creatures.root.description": "Enjoy the Mod :)",
   "advancement.domixs-creatures.my_ears.description": "Get Screamed on by a Spectral Bat",
@@ -173,6 +268,7 @@
   "advancements.domixs_creatures.salamander_armor.description": "Upgrade Your Netherite Armor",
   "advancements.domixs_creatures.fin-tastic_fortune.description": "Eat a Goldfish",
   "advancement.domixs-creatures.boars_bounty.description": "Have a Boar Find You a Truffle",
+  "advancements.domixs_creatures.arapaima_armor.description": "Become One With The Fish",
 
   "death.attack.bleeding": "%1$s bled out.",
   "death.attack.bleeding.player": "%1$s bled out due to %2$s.",
@@ -187,6 +283,9 @@
   "item.domixs-creatures.salamander_upgrade_template.base_slot_description": "Add Netherite Armor",
   "item.domixs-creatures.salamander_upgrade_template.additions_slot_description": "Add Fire Salamander Scales",
 
+  "message.domixs-creatures.action.sitting": "is Sitting",
+  "message.domixs-creatures.action.following": "is Following",
+
   "tag.item.domixs-creatures.crocodile_for_breeding": "Crocodile for Breeding",
   "tag.item.domixs-creatures.beaver_for_breeding": "Beaver for Breeding",
   "tag.item.domixs-creatures.boar_for_breeding": "Boar for Breeding",
@@ -199,10 +298,63 @@
   "tag.item.domixs-creatures.spectral_bat_for_breeding": "Spectral Bats for Breeding",
   "tag.item.domixs-creatures.tiger_for_breeding": "Tiger for Breeding",
   "tag.item.domixs-creatures.bison_for_breeding": "Bison for Breeding",
+  "tag.item.domixs-creatures.sun_bear_for_breeding": "Sun Bear for Breeding",
+  "tag.item.domixs-creatures.butterfly_for_breeding": "Butterfly for Breeding",
+  "tag.item.domixs-creatures.gorilla_for_breeding": "Gorilla for Breeding",
+  "tag.item.domixs-creatures.cheetah_for_breeding": "Cheetah for Breeding",
+
+  "tag.item.domixs-creatures.hermit_crab_tempt": "Hermit Crab Tempt",
+
   "tag.item.domixs-creatures.prevents_bleeding": "Prevents Bleeding",
   "tag.item.domixs-creatures.antlers": "Antlers",
   "tag.item.domixs-creatures.all_items": "All Items",
+  "tag.item.domixs-creatures.raw_meat": "Raw Meat",
   "tag.item.domixs-creatures.conductive_items": "Conductive Items",
   "tag.item.domixs-creatures.drops_from_boar_digging": "Drops From Boar Digging",
-  "tag.item.domixs-creatures.spectral_logs": "Spectral Logs"
+  "tag.item.domixs-creatures.spectral_logs": "Spectral Logs",
+  "tag.item.domixs-creatures.palm_logs": "Palm Logs",
+  "tag.item.domixs-creatures.reflective_armor": "Reflective Armor",
+  "tag.item.domixs-creatures.can_break_coconut": "Can Break Coconut",
+  "tag.item.domixs-creatures.magnetic_items": "Magnetic Items",
+
+
+  "category.domixs-creatures.general": "Domix's Creatures",
+  "key.domixs-creatures.open_config": "Open Config",
+
+  "domixs-creatures.config.title": "Domix's Creatures Config",
+  "domixs-creatures.config.category.general": "Domix's Creatures",
+
+  "domixs-creatures.config.option.enableWaterStriderRiding": "Water Strider Riding",
+  "domixs-creatures.config.option.enableWaterStriderRiding.tooltip": "If disabled you won't be able to ride/saddle the Water Strider",
+  "domixs-creatures.message.riding_disabled": "Riding Disabled!",
+
+  "domixs-creatures.config.option.hermitCrabDailyTradeLimit": "Hermit Crab Daily Trade Limit",
+  "domixs-creatures.config.option.hermitCrabDailyTradeLimit.tooltip": "How many times a hermit crab can trade in a day",
+
+  "domixs-creatures.config.option.enableSleepParticles": "Sleep Particle Spawning",
+  "domixs-creatures.config.option.enableSleepParticles.tooltip": "If disabled the ZZZ particles won't spawn above sleeping entities",
+
+  "domixs-creatures.config.option.enableFireSalamanderSmelting": "Fire Salamander Smelting",
+  "domixs-creatures.config.option.enableFireSalamanderSmelting.tooltip": "If disabled tamed fire salamanders will not be able to smelt items",
+
+  "domixs-creatures.config.option.enableFireSalamanderMagmaBallAttack": "Fire Salamander Magma Ball Attack",
+  "domixs-creatures.config.option.enableFireSalamanderMagmaBallAttack.tooltip": "If disabled the fire salamander won't be able to use it's magma ball attack",
+
+  "domixs-creatures.config.option.enableSpectralBatScreechAttack": "Spectral Bat Screech Attack",
+  "domixs-creatures.config.option.enableSpectralBatScreechAttack.tooltip": "If disabled the spectral bat won't be able to use it's screech attack",
+
+  "domixs-creatures.config.option.enableCaterpillarTransformation": "Caterpillar Transformation",
+  "domixs-creatures.config.option.enableCaterpillarTransformation.tooltip": "If disabled the caterpillar won't be able to transform into a butterfly",
+
+  "domixs-creatures.config.option.enablePorcupineQuillAttack": "Porcupine Quill Attack",
+  "domixs-creatures.config.option.enablePorcupineQuillAttack.tooltip": "If disabled the porcupine won't be able to shoot it's quills when it gets damaged",
+
+  "domixs-creatures.config.option.enableCoconutBongSound": "Enable Coconut 'Bong' Sound",
+  "domixs-creatures.config.option.enableCoconutBongSound.tooltip": "If enabled, coconuts will play a 'bong' sound when they land.",
+
+  "domixs-creatures.config.option.enable_coconut_positive_effect_removal": "Coconut Positive Effect Removal",
+  "domixs-creatures.config.option.enable_coconut_positive_effect_removal.tooltip": "If disabled eating the coconut slice won't remove any positive effects",
+
+  "domixs-creatures.config.option.enable_coconut_negative_effect_removal": "Coconut Negative Effect Removal",
+  "domixs-creatures.config.option.enable_coconut_negative_effect_removal.tooltip": "If disabled eating the coconut slice won't remove any negative effects"
 }

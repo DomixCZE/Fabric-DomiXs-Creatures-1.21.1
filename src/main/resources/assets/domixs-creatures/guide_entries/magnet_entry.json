@@ -1,0 +1,94 @@
+{
+  "entry_id": "domixs-creatures:magnet_entry",
+  "category": "items",
+  "title": "§lMagnet",
+  "button_text": "§lMagnet",
+  "pages": [
+    {
+      "text_content": [
+        "The magnet can be bound to any item and will either pull the bound item type to you or push it away."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:magnet",
+          "x": 70,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_icon.png",
+          "x": 1,
+          "y": 96,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "type": "item",
+          "id": "minecraft:iron_ingot",
+          "x": 5,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:iron_ingot",
+          "x": 5,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:iron_ingot",
+          "x": 45,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:iron_ingot",
+          "x": 45,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:magnetite_ingot",
+          "x": 5,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:magnetite_ingot",
+          "x": 45,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:redstone",
+          "x": 25,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "To bind an item, simply right-click with the desired item on the magnet. To unbind it, right-click the magnet again.",
+        "",
+        "To activate the magnet hold §6§lright-click§r to pull and §6§lshift§r + §6§lright-click§r to push."
+      ]
+    }
+  ]
+}

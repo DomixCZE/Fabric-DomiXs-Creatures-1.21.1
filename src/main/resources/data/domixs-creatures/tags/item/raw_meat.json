@@ -1,0 +1,14 @@
+{
+  "values": [
+    "domixs-creatures:raw_bison_meat",
+    "domixs-creatures:raw_deer_venison",
+    "minecraft:beef",
+    "minecraft:chicken",
+    "minecraft:mutton",
+    "minecraft:porkchop",
+    "minecraft:rabbit",
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:tropical_fish"
+  ]
+}

@@ -7,7 +7,9 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public class ModSounds {
-    public static final SoundEvent ZAP= registerSoundEvent("zap");
+    public static final SoundEvent ZAP = registerSoundEvent("zap");
+
+    public static final SoundEvent CONCH_SHELL_USE = registerSoundEvent("conch_shell_use");
 
     public static final SoundEvent EEL_ATTACK = registerSoundEvent("eel_attack");
 
@@ -30,6 +32,16 @@ public class ModSounds {
     public static final SoundEvent VINE_HURT = registerSoundEvent("vine_hurt");
 
     public static final SoundEvent TIGER_HURT = registerSoundEvent("tiger_hurt");
+
+    public static final SoundEvent COCONUT_LAND = registerSoundEvent("coconut_land");
+
+    public static final SoundEvent GUIDE_BOOK_ENTRY = registerSoundEvent("guide_book_entry");
+    public static final SoundEvent GUIDE_BOOK_BOOKMARK = registerSoundEvent("guide_book_bookmark");
+
+    public static final SoundEvent MAGNET_IN = registerSoundEvent("magnet_in");
+    public static final SoundEvent MAGNET_OUT = registerSoundEvent("magnet_out");
+
+    public static final SoundEvent MAGNET = registerSoundEvent("magnet");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(DomiXsCreatures.MOD_ID, name);

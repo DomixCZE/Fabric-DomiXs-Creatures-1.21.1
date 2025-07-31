@@ -16,12 +16,18 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(ItemTags.PLANKS)
-                .add(ModBlocks.SPECTRAL_PLANKS.asItem());
+                .add(ModBlocks.SPECTRAL_PLANKS.asItem())
+                .add(ModBlocks.PALM_PLANKS.asItem());
 
         getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
                 .add(ModBlocks.SPECTRAL_LOG.asItem())
                 .add(ModBlocks.SPECTRAL_WOOD.asItem())
                 .add(ModBlocks.STRIPPED_SPECTRAL_LOG.asItem())
-                .add(ModBlocks.STRIPPED_SPECTRAL_WOOD.asItem());
+                .add(ModBlocks.STRIPPED_SPECTRAL_WOOD.asItem())
+
+                .add(ModBlocks.PALM_LOG.asItem())
+                .add(ModBlocks.PALM_WOOD.asItem())
+                .add(ModBlocks.STRIPPED_PALM_LOG.asItem())
+                .add(ModBlocks.STRIPPED_PALM_WOOD.asItem());
     }
 }

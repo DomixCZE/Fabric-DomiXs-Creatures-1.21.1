@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_sapling"
+    "domixs-creatures:spectral_sapling",
+    "domixs-creatures:palm_sapling"
   ]
 }

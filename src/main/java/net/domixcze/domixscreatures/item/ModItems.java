@@ -4,13 +4,14 @@ import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.item.custom.*;
+import net.domixcze.domixscreatures.item.guide.GuideBookItem;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class ModItems {
     public static final Item FIRE_SALAMANDER_SPAWN_EGG = registerItem("fire_salamander_spawn_egg", new SpawnEggItem(ModEntities.FIRE_SALAMANDER, 0x3c3947, 0xe66410,
@@ -59,56 +60,124 @@ public class ModItems {
             new Item.Settings()));
     public static final Item BISON_SPAWN_EGG = registerItem("bison_spawn_egg", new SpawnEggItem(ModEntities.BISON, 0x513c29, 0x49362d,
             new Item.Settings()));
+    public static final Item SUN_BEAR_SPAWN_EGG = registerItem("sun_bear_spawn_egg", new SpawnEggItem(ModEntities.SUN_BEAR, 0x090812, 0xc28854,
+            new Item.Settings()));
+    public static final Item CATERPILLAR_SPAWN_EGG = registerItem("caterpillar_spawn_egg", new SpawnEggItem(ModEntities.CATERPILLAR, 0x628d04, 0xce9100,
+            new Item.Settings()));
+    public static final Item BUTTERFLY_SPAWN_EGG = registerItem("butterfly_spawn_egg", new SpawnEggItem(ModEntities.BUTTERFLY, 0x391b24, 0xc11102,
+            new Item.Settings()));
+    public static final Item GORILLA_SPAWN_EGG = registerItem("gorilla_spawn_egg", new SpawnEggItem(ModEntities.GORILLA, 0x2b2a27, 0x3f3b3b,
+            new Item.Settings()));
+    public static final Item PIRANHA_SPAWN_EGG = registerItem("piranha_spawn_egg", new SpawnEggItem(ModEntities.PIRANHA, 0x577b82, 0xd5690f,
+            new Item.Settings()));
+    public static final Item NEON_TETRA_SPAWN_EGG = registerItem("neon_tetra_spawn_egg", new SpawnEggItem(ModEntities.NEON_TETRA, 0x03c2e2, 0xcf3232,
+            new Item.Settings()));
+    public static final Item PEACOCK_BASS_SPAWN_EGG = registerItem("peacock_bass_spawn_egg", new SpawnEggItem(ModEntities.PEACOCK_BASS, 0x737e41, 0x0e1006,
+            new Item.Settings()));
+    public static final Item BETTA_FISH_SPAWN_EGG = registerItem("betta_fish_spawn_egg", new SpawnEggItem(ModEntities.BETTA_FISH, 0xcc7d93, 0xc8c6d3,
+            new Item.Settings()));
+    public static final Item ARAPAIMA_SPAWN_EGG = registerItem("arapaima_spawn_egg", new SpawnEggItem(ModEntities.ARAPAIMA, 0x4c5e20, 0x9c3a40,
+            new Item.Settings()));
+    public static final Item ANGLERFISH_SPAWN_EGG = registerItem("anglerfish_spawn_egg", new SpawnEggItem(ModEntities.ANGLERFISH, 0x232d3d, 0xa1ffd8,
+            new Item.Settings()));
+    public static final Item FRESHWATER_STINGRAY_SPAWN_EGG = registerItem("freshwater_stingray_spawn_egg", new SpawnEggItem(ModEntities.FRESHWATER_STINGRAY, 0xa0864b, 0x4b432e,
+            new Item.Settings()));
+    public static final Item CHEETAH_SPAWN_EGG = registerItem("cheetah_spawn_egg", new SpawnEggItem(ModEntities.CHEETAH, 0xf0b058, 0x78481f,
+            new Item.Settings()));
+    public static final Item HERMIT_CRAB_SPAWN_EGG = registerItem("hermit_crab_spawn_egg", new SpawnEggItem(ModEntities.HERMIT_CRAB, 0xb25c32, 0xb97aa8,
+            new Item.Settings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
+    public static final Item PIRANHA_BUCKET = registerItem("piranha_bucket", new EntityBucketItem(ModEntities.PIRANHA, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
+    public static final Item NEON_TETRA_BUCKET = registerItem("neon_tetra_bucket", new EntityBucketItem(ModEntities.NEON_TETRA, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
+    public static final Item PEACOCK_BASS_BUCKET = registerItem("peacock_bass_bucket", new EntityBucketItem(ModEntities.PEACOCK_BASS, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
+    public static final Item BETTA_FISH_BUCKET = registerItem("betta_fish_bucket", new EntityBucketItem(ModEntities.BETTA_FISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
+    public static final Item ANGLERFISH_BUCKET = registerItem("anglerfish_bucket", new EntityBucketItem(ModEntities.ANGLERFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
+    public static final Item FRESHWATER_STINGRAY_BUCKET = registerItem("freshwater_stingray_bucket", new EntityBucketItem(ModEntities.FRESHWATER_STINGRAY, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));
 
     public static final Item GOLDFISH = registerItem("goldfish", new Item(new Item.Settings().food(ModFoodComponents.GOLDFISH)));
     public static final Item WORM = registerItem("worm", new Item(new Item.Settings().food(ModFoodComponents.WORM)));
     public static final Item SPECTRAL_FRUIT = registerItem("spectral_fruit", new Item(new Item.Settings().food(ModFoodComponents.SPECTRAL_FRUIT)));
+    public static final Item HONEYED_APPLE = registerItem("honeyed_apple", new Item(new Item.Settings().food(ModFoodComponents.HONEYED_APPLE)));
+    public static final Item BANANA = registerItem("banana", new Item(new Item.Settings().food(ModFoodComponents.BANANA)));
+    public static final Item RAW_BISON_MEAT = registerItem("raw_bison_meat", new Item(new Item.Settings().food(ModFoodComponents.BISON_MEAT)));
+    public static final Item COOKED_BISON_MEAT = registerItem("cooked_bison_meat", new Item(new Item.Settings().food(ModFoodComponents.COOKED_BISON_MEAT)));
+    public static final Item RAW_DEER_VENISON = registerItem("raw_deer_venison", new Item(new Item.Settings().food(ModFoodComponents.DEER_VENISON)));
+    public static final Item COOKED_DEER_VENISON = registerItem("cooked_deer_venison", new Item(new Item.Settings().food(ModFoodComponents.COOKED_DEER_VENISON)));
+    public static final Item COCONUT_SLICE = registerItem("coconut_slice", new CoconutSliceItem(new Item.Settings().food(ModFoodComponents.COCONUT_SLICE)));
 
     public static final Item SKULL = registerItem("skull", new Item(new Item.Settings()));
     public static final Item FIRE_SALAMANDER_SCALES = registerItem("fire_salamander_scales", new Item(new Item.Settings().fireproof()));
     public static final Item SPECTRAL_BAT_WING = registerItem("spectral_bat_wing", new Item(new Item.Settings()));
     public static final Item SPECTRAL_BAT_EAR = registerItem("spectral_bat_ear", new Item(new Item.Settings()));
     public static final Item CROCODILE_SCALE = registerItem("crocodile_scale", new Item(new Item.Settings()));
-    public static final Item CROCODILE_SCALE_ALBINO = registerItem("crocodile_scale_albino", new Item(new Item.Settings()));
+    public static final Item CROCODILE_SCALE_ALBINO = registerItem("crocodile_scale_albino", new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
     public static final Item CROCODILE_TOOTH = registerItem("crocodile_tooth", new Item(new Item.Settings()));
     public static final Item WATER_LILY = registerItem("water_lily", new Item(new Item.Settings()));
     public static final Item BARK = registerItem("bark", new Item(new Item.Settings()));
     public static final Item SAWDUST = registerItem("sawdust", new Item(new Item.Settings()));
-    public static final Item WARDEN_TENDRIL = registerItem("warden_tendril", new Item(new Item.Settings()));
+    public static final Item WARDEN_TENDRIL = registerItem("warden_tendril", new Item(new Item.Settings().rarity(Rarity.RARE)));
     public static final Item SHARK_TOOTH = registerItem("shark_tooth", new Item(new Item.Settings()));
     public static final Item QUILL = registerItem("quill", new QuillItem(new Item.Settings()));
     public static final Item TRUFFLE = registerItem("truffle", new Item(new Item.Settings()));
+    public static final Item CONCH_SHELL = registerItem("conch_shell", new ConchShellItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
+    public static final Item ARAPAIMA_SCALE_BLACK = registerItem("arapaima_scale_black", new Item(new Item.Settings()));
+    public static final Item ARAPAIMA_SCALE_GREEN = registerItem("arapaima_scale_green", new Item(new Item.Settings()));
+    public static final Item PEARL = registerItem("pearl", new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
+    public static final Item COCONUT_SHELL = registerItem("coconut_shell", new Item(new Item.Settings()));
+
+    public static final Item GUIDE_BOOK = registerItem("guide_book", new GuideBookItem(new Item.Settings().maxCount(1)));
 
     public static final Item SMALL_ANTLER = registerItem("small_antler", new SmallAntlerItem(new Item.Settings()));
     public static final Item MEDIUM_ANTLER = registerItem("medium_antler", new MediumAntlerItem(new Item.Settings()));
     public static final Item LARGE_ANTLER = registerItem("large_antler", new LargeAntlerItem(new Item.Settings()));
 
-    public static final Item ADVENTURER_HAT = registerItem("adventurer_hat", new AdventurerHatItem(RegistryEntry.of(ModArmorMaterials.COSMETIC), ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
-    public static final Item SONIC_BLOCKERS = registerItem("sonic_blockers", new SonicBlockersItem(RegistryEntry.of(ModArmorMaterials.UTILITY), ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
-    public static final Item SHAMAN_MASK = registerItem("shaman_mask", new ShamanMaskItem(RegistryEntry.of(ModArmorMaterials.COSMETIC), ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
+    public static final Item ADVENTURER_HAT = registerItem("adventurer_hat", new AdventurerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
+    public static final Item SONIC_BLOCKERS = registerItem("sonic_blockers", new SonicBlockersItem(ModArmorMaterials.UTILITY, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(47)).maxCount(1)));
+    public static final Item SHAMAN_MASK = registerItem("shaman_mask", new ShamanMaskItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
-    public static final Item SMALL_ANTLER_HAT = registerItem("small_antler_hat", new SmallAntlerHatItem(RegistryEntry.of(ModArmorMaterials.COSMETIC), ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
-    public static final Item MEDIUM_ANTLER_HAT = registerItem("medium_antler_hat", new MediumAntlerHatItem(RegistryEntry.of(ModArmorMaterials.COSMETIC), ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
-    public static final Item LARGE_ANTLER_HAT = registerItem("large_antler_hat", new LargeAntlerHatItem(RegistryEntry.of(ModArmorMaterials.COSMETIC), ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
+    public static final Item SMALL_ANTLER_HAT = registerItem("small_antler_hat", new SmallAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
+    public static final Item MEDIUM_ANTLER_HAT = registerItem("medium_antler_hat", new MediumAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
+    public static final Item LARGE_ANTLER_HAT = registerItem("large_antler_hat", new LargeAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
 
-    public static final Item CROCODILE_CHESTPLATE = registerItem("crocodile_chestplate", new CrocodileChestplateItem(RegistryEntry.of(ModArmorMaterials.CROCODILE), ArmorItem.Type.CHESTPLATE, new Item.Settings().maxCount(1)));
-    public static final Item CROCODILE_CHESTPLATE_ALBINO = registerItem("crocodile_chestplate_albino", new CrocodileChestplateAlbinoItem(RegistryEntry.of(ModArmorMaterials.CROCODILE_ALBINO), ArmorItem.Type.CHESTPLATE, new Item.Settings().maxCount(1)));
-    public static final Item SALAMANDER_HELMET = registerItem("salamander_helmet", new SalamanderHelmetItem(RegistryEntry.of(ModArmorMaterials.SALAMANDER), ArmorItem.Type.HELMET, new Item.Settings().fireproof().maxCount(1)));
-    public static final Item SALAMANDER_CHESTPLATE = registerItem("salamander_chestplate", new SalamanderChestplateItem(RegistryEntry.of(ModArmorMaterials.SALAMANDER), ArmorItem.Type.CHESTPLATE, new Item.Settings().fireproof().maxCount(1)));
-    public static final Item SALAMANDER_LEGGINGS = registerItem("salamander_leggings", new SalamanderLeggingsItem(RegistryEntry.of(ModArmorMaterials.SALAMANDER), ArmorItem.Type.LEGGINGS, new Item.Settings().fireproof().maxCount(1)));
-    public static final Item SALAMANDER_BOOTS = registerItem("salamander_boots", new SalamanderBootsItem(RegistryEntry.of(ModArmorMaterials.SALAMANDER), ArmorItem.Type.BOOTS, new Item.Settings().fireproof().maxCount(1)));
+    public static final Item CROCODILE_CHESTPLATE = registerItem("crocodile_chestplate", new CrocodileChestplateItem(ModArmorMaterials.CROCODILE, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(20))));
+    public static final Item CROCODILE_CHESTPLATE_ALBINO = registerItem("crocodile_chestplate_albino", new CrocodileChestplateAlbinoItem(ModArmorMaterials.CROCODILE_ALBINO, ArmorItem.Type.CHESTPLATE, new Item.Settings().rarity(Rarity.RARE).maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(20))));
+    public static final Item SALAMANDER_HELMET = registerItem("salamander_helmet", new SalamanderHelmetItem(ModArmorMaterials.SALAMANDER, ArmorItem.Type.HELMET, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(40))));
+    public static final Item SALAMANDER_CHESTPLATE = registerItem("salamander_chestplate", new SalamanderChestplateItem(ModArmorMaterials.SALAMANDER, ArmorItem.Type.CHESTPLATE, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(40))));
+    public static final Item SALAMANDER_LEGGINGS = registerItem("salamander_leggings", new SalamanderLeggingsItem(ModArmorMaterials.SALAMANDER, ArmorItem.Type.LEGGINGS, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(40))));
+    public static final Item SALAMANDER_BOOTS = registerItem("salamander_boots", new SalamanderBootsItem(ModArmorMaterials.SALAMANDER, ArmorItem.Type.BOOTS, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(40))));
+
+    public static final Item ARAPAIMA_HELMET_BLACK = registerItem("arapaima_helmet_black", new ArapaimaHelmetBlackItem(ModArmorMaterials.ARAPAIMA_BLACK, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(15))));
+    public static final Item ARAPAIMA_CHESTPLATE_BLACK = registerItem("arapaima_chestplate_black", new ArapaimaChestplateBlackItem(ModArmorMaterials.ARAPAIMA_BLACK, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(15))));
+    public static final Item ARAPAIMA_LEGGINGS_BLACK = registerItem("arapaima_leggings_black", new ArapaimaLeggingsBlackItem(ModArmorMaterials.ARAPAIMA_BLACK, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(15))));
+    public static final Item ARAPAIMA_BOOTS_BLACK = registerItem("arapaima_boots_black", new ArapaimaBootsBlackItem(ModArmorMaterials.ARAPAIMA_BLACK, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(15))));
+
+    public static final Item ARAPAIMA_HELMET_GREEN = registerItem("arapaima_helmet_green", new ArapaimaHelmetGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(15))));
+    public static final Item ARAPAIMA_CHESTPLATE_GREEN = registerItem("arapaima_chestplate_green", new ArapaimaChestplateGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(15))));
+    public static final Item ARAPAIMA_LEGGINGS_GREEN = registerItem("arapaima_leggings_green", new ArapaimaLeggingsGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(15))));
+    public static final Item ARAPAIMA_BOOTS_GREEN = registerItem("arapaima_boots_green", new ArapaimaBootsGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(15))));
 
     public static final Item SALAMANDER_UPGRADE_SMITHING_TEMPLATE = registerItem("salamander_upgrade_smithing_template",
             new SalamanderUpgradeSmithingTemplateItem(new Item.Settings()));
 
+    public static final Item BUG_NET = registerItem("bug_net", new BugNetItem(new Item.Settings().maxCount(1).maxDamage(3)));
     public static final Item SKULL_WAND = registerItem("skull_wand", new Item(new Item.Settings().maxCount(1)));
-    public static final Item NIGHTMARE_AMULET = registerItem("nightmare_amulet", new NightmareAmuletItem(new Item.Settings().maxCount(1)));
+    public static final Item NIGHTMARE_AMULET = registerItem("nightmare_amulet", new NightmareAmuletItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
     public static final Item DEAFEN_ICON = registerItem("deafen_icon", new Item(new Item.Settings()));
     public static final Item TAB_ICON = registerItem("tab_icon", new Item(new Item.Settings()));
+    public static final Item ERASER = registerItem("eraser", new EraserItem(new Item.Settings().maxCount(1)));
+
+    public static final Item MAGNET = registerItem("magnet", new MagnetItem(new Item.Settings().maxCount(1)));
+    public static final Item RAW_MAGNETITE = registerItem("raw_magnetite", new Item(new Item.Settings()));
+    public static final Item MAGNETITE_INGOT = registerItem("magnetite_ingot", new Item(new Item.Settings()));
 
     public static final Item MUD_BLOSSOM_SEED = registerItem("mud_blossom_seed", new AliasedBlockItem(ModBlocks.MUD_BLOSSOM, new Item.Settings()));
 

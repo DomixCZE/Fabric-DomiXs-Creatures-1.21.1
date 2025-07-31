@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:crocodile_chestplate",
+    "domixs-creatures:crocodile_chestplate_albino",
+    "domixs-creatures:salamander_chestplate",
+    "domixs-creatures:arapaima_chestplate_black",
+    "domixs-creatures:arapaima_chestplate_green"
+  ]
+}

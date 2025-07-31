@@ -1,0 +1,81 @@
+{
+  "entry_id": "domixs-creatures:beaver_entry",
+  "category": "entities",
+  "title": "§lBeaver",
+  "button_text": "§lBeaver",
+  "pages": [
+    {
+      "text_content": [
+        "The Beaver can be found around the Beaver House structure in the Forest. There are always 3 beavers per Beaver House."
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/beaver_icon.png",
+          "x": 20,
+          "y": 120,
+          "width": 64,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "Beaver Houses are made from Piles of Sticks. If you break a naturally generated one you have a chance to find a Water Lily which can be used to breed the Beavers."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:water_lily",
+          "x": 50,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "The Beaver will pick a nearby Pile of Sticks as its home position and will stay in a 16 block radius around the block."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:pile_of_sticks_block",
+          "x": 30,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "If you bring the Beaver 26 blocks from its home position it will forget that position and wander randomly until it finds a new pile of sticks."
+      ]
+    },
+    {
+      "text_content": [
+        "If the Beaver gets near a Log it can strip it. When this happens it will drop bark and has a chance to drop sawdust."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:bark",
+          "x": 10,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:sawdust",
+          "x": 50,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

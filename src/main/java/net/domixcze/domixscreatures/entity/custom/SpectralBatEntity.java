@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.entity.custom;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.ScreechAttackGoal;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
@@ -78,6 +79,11 @@ public class SpectralBatEntity extends AnimalEntity implements GeoEntity {
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return !this.isHanging();
+    }
+
+    @Override
     public boolean isBreedingItem(ItemStack stack) {
         return stack.isIn(ModTags.Items.SPECTRAL_BAT_FOR_BREEDING);
     }
@@ -85,6 +91,9 @@ public class SpectralBatEntity extends AnimalEntity implements GeoEntity {
     @Override
     public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
         return false;
+    }
+
+    protected void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition) {
     }
 
     @Nullable

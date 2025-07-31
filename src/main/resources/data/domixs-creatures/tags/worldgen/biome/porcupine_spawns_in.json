@@ -2,6 +2,28 @@
   "replace": false,
   "values": [
     "minecraft:savanna_plateau",
-    "minecraft:savanna"
+    "minecraft:savanna",
+    {
+      "id": "biomeswevegone:baobab_savanna",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ironwood_gour",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:xeric_plains",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:oak_savanna",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:cedar_thicket",
+      "required": false
+    }
   ]
 }

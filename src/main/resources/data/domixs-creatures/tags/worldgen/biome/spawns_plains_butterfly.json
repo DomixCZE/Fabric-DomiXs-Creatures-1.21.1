@@ -1,0 +1,71 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:plains",
+    "minecraft:meadow",
+    {
+      "id": "biomesoplenty:grassland",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:prairie",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:pasture",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:scrubland",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:lavender_field",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:prairie",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:allium_shrubland",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:amaranth_grassland",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:rose_fields",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:heather_fields",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:prairie",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:blooming_highlands",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:marigold_meadows",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:lavender_fields",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:carnation_fields",
+      "required": false
+    }
+  ]
+}

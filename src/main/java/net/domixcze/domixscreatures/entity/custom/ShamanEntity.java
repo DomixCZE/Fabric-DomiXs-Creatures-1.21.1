@@ -15,7 +15,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.potion.Potions;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -48,7 +47,7 @@ public class ShamanEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 250.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2);
     }
 

@@ -8,7 +8,7 @@
   "entity.domixs-creatures.crocodile": "Krokodýl",
   "entity.domixs-creatures.beaver": "Bobr",
   "entity.domixs-creatures.iguana": "Leguán",
-  "entity.domixs-creatures.tiger": "Tiger",
+  "entity.domixs-creatures.tiger": "Tigr",
   "entity.domixs-creatures.deer": "Jelen",
   "entity.domixs-creatures.moose": "Los",
   "entity.domixs-creatures.shark": "Žralok",
@@ -23,6 +23,19 @@
   "entity.domixs-creatures.water_strider": "Vodoměrka",
   "entity.domixs-creatures.boar": "Prase Divoké",
   "entity.domixs-creatures.bison": "Bizon",
+  "entity.domixs-creatures.sun_bear": "Medvěd Malajský",
+  "entity.domixs-creatures.caterpillar": "Housenka",
+  "entity.domixs-creatures.butterfly": "Motýl",
+  "entity.domixs-creatures.gorilla": "Gorila",
+  "entity.domixs-creatures.piranha": "Piraňa",
+  "entity.domixs-creatures.neon_tetra": "Neonka",
+  "entity.domixs-creatures.peacock_bass": "Paví Okoun",
+  "entity.domixs-creatures.betta_fish": "Bojovnice Pestrá",
+  "entity.domixs-creatures.arapaima": "Arapaima",
+  "entity.domixs-creatures.anglerfish": "Ďas",
+  "entity.domixs-creatures.freshwater_stingray": "Sladkovodní Rejnok",
+  "entity.domixs-creatures.cheetah": "Gepard",
+  "entity.domixs-creatures.hermit_crab": "Krab Poustevník",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -47,6 +60,19 @@
   "item.domixs-creatures.water_strider_spawn_egg": "Vajíčko s Vodoměrkou",
   "item.domixs-creatures.boar_spawn_egg": "Vajíčko s Prasetem Divokým",
   "item.domixs-creatures.bison_spawn_egg": "Vajíčko s Bizonem",
+  "item.domixs-creatures.sun_bear_spawn_egg": "Vajíčko s Medvědem Malajským",
+  "item.domixs-creatures.caterpillar_spawn_egg": "Vajíčko s Housenkou",
+  "item.domixs-creatures.butterfly_spawn_egg": "Vajíčko s Motýlem",
+  "item.domixs-creatures.gorilla_spawn_egg": "Vajíčko s Gorilou",
+  "item.domixs-creatures.piranha_spawn_egg": "Vajíčko s Piraní",
+  "item.domixs-creatures.neon_tetra_spawn_egg": "Vajíčko s Neonkou",
+  "item.domixs-creatures.peacock_bass_spawn_egg": "Vajíčko s Pavím Okounem",
+  "item.domixs-creatures.betta_fish_spawn_egg": "Vajíčko s Bojovnicí Pestrou",
+  "item.domixs-creatures.arapaima_spawn_egg": "Vajíčko s Arapaimou",
+  "item.domixs-creatures.anglerfish_spawn_egg": "Vajíčko s Ďasem",
+  "item.domixs-creatures.freshwater_stingray_spawn_egg": "Vajíčko se Sladkovodním Rejnokem",
+  "item.domixs-creatures.cheetah_spawn_egg": "Vajíčko s Gepardem",
+  "item.domixs-creatures.hermit_crab_spawn_egg": "Vajíčko s Krabem Poustevníkem",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -55,6 +81,12 @@
   "item.domixs-creatures.crocodile_scale_albino": "Šupina Albínského Krokodýla",
   "item.domixs-creatures.crocodile_tooth": "Zub Krokodýla",
   "item.domixs-creatures.shark_tooth": "Zub Žraloka",
+  "item.domixs-creatures.piranha_bucket": "Kbelík s Piraní",
+  "item.domixs-creatures.neon_tetra_bucket": "Kbelík s Neonkou",
+  "item.domixs-creatures.peacock_bass_bucket": "Kbelík s Pavím Okounem",
+  "item.domixs-creatures.betta_fish_bucket": "Kbelík s Bojovnicí Pestrou",
+  "item.domixs-creatures.anglerfish_bucket": "Kbelík s Ďasem",
+  "item.domixs-creatures.freshwater_stingray_bucket": "Kbelík se Sladkovodním Rejnokem",
   "item.domixs-creatures.goldfish_bucket": "Kbelík se Zlatou Rybkou",
   "item.domixs-creatures.goldfish": "Zlatá Rybka",
   "item.domixs-creatures.skull": "Lebka",
@@ -67,8 +99,29 @@
   "item.domixs-creatures.worm": "Žížala",
   "item.domixs-creatures.quill": "Bodlina",
   "item.domixs-creatures.truffle": "Lanýž",
+  "item.domixs-creatures.honeyed_apple": "Medové Jablko",
+  "item.domixs-creatures.raw_deer_venison": "Syrové Jelení Maso",
+  "item.domixs-creatures.cooked_deer_venison": "Pečené Jelení Maso",
+  "item.domixs-creatures.raw_bison_meat": "Syrové Bizoní Maso",
+  "item.domixs-creatures.cooked_bison_meat": "Pečené Bizoní Maso",
+  "item.domixs-creatures.banana": "Banán",
+  "item.domixs-creatures.arapaima_scale_black": "Černá Šupina Arapaimy",
+  "item.domixs-creatures.arapaima_scale_green": "Zelená Šupina Arapaimy",
+  "item.domixs-creatures.pearl": "Perla",
+  "item.domixs-creatures.bug_net": "Síťka",
+  "item.domixs-creatures.coconut_slice": "Kokosový Plátek",
+  "item.domixs-creatures.coconut_shell": "Kokosová Skořápka",
+
+  "item.domixs-creatures.eraser": "Guma",
+
+  "item.domixs-creatures.guide_book": "Příručka",
+  "item.domixs-creatures.magnet": "Magnet",
+
+  "item.domixs-creatures.raw_magnetite": "Vytěžený Magnetit",
+  "item.domixs-creatures.magnetite_ingot": "Magnetitový Ingot",
 
   "item.domixs-creatures.nightmare_amulet": "Amulet Nočních Můr",
+  "item.domixs-creatures.conch_shell": "Lastura",
 
   "item.domixs-creatures.crocodile_chestplate": "Krokodýlí Brnění",
   "item.domixs-creatures.crocodile_chestplate_albino": "Albínské Krokodýlí Brnění",
@@ -84,10 +137,22 @@
   "item.domixs-creatures.salamander_leggings": "Mločí Kalhoty",
   "item.domixs-creatures.salamander_boots": "Mločí Boty",
 
+  "item.domixs-creatures.arapaima_helmet_black": "Arapaimí Helma",
+  "item.domixs-creatures.arapaima_chestplate_black": "Arapaimí Brnění",
+  "item.domixs-creatures.arapaima_leggings_black": "Arapaimí Kalhoty",
+  "item.domixs-creatures.arapaima_boots_black": "Arapaimí Boty",
+
+  "item.domixs-creatures.arapaima_helmet_green": "Arapaimí Helma",
+  "item.domixs-creatures.arapaima_chestplate_green": "Arapaimí Brnění",
+  "item.domixs-creatures.arapaima_leggings_green": "Arapaimí Kalhoty",
+  "item.domixs-creatures.arapaima_boots_green": "Arapaimí Boty",
+
   "item.domixs-creatures.small_antler": "Paroží",
   "item.domixs-creatures.medium_antler": "Paroží",
   "item.domixs-creatures.large_antler": "Paroží",
 
+  "domixs-creatures.tooltip.bug_net.contains": "Obsahuje: %s",
+  "domixs-creatures.tooltip.bug_net.empty": "Prázdné",
   "domixs-creatures.tooltip.small_antler": "Velikost: Malé",
   "domixs-creatures.tooltip.medium_antler": "Velikost: Střední",
   "domixs-creatures.tooltip.large_antler": "Velikost: Velké",
@@ -96,6 +161,7 @@
   "effect.domixs-creatures.echolocation": "Echolokace",
   "effect.domixs-creatures.bleeding": "Krvácení",
   "effect.domixs-creatures.electrified": "Elektrizovaný",
+  "effect.domixs-creatures.ocean_blessing": "Požehnání Oceánu",
 
   "item.minecraft.potion.effect.echolocation_potion": "Lektvar Echolokace",
 
@@ -105,6 +171,11 @@
   "block.domixs-creatures.pile_of_sticks_block": "Hromádka Klacíků",
   "block.domixs-creatures.sawdust_block": "Hromádka Pilin",
   "block.domixs-creatures.molehill_block": "Krtina",
+  "block.domixs-creatures.pearl_block": "Perlový Blok",
+  "block.domixs-creatures.magnetite_ore": "Magnetitová Ruda",
+  "block.domixs-creatures.deepslate_magnetite_ore": "Hlubinná Magnetitová Ruda",
+  "block.domixs-creatures.negative_magnet_block": "Blok Negativního Magnetu",
+  "block.domixs-creatures.positive_magnet_block": "Blok Pozitivního Magnetu",
 
   "block.domixs-creatures.spectral_log": "Spektrální Kmen",
   "block.domixs-creatures.stripped_spectral_log": "Oloupaný Spektrální Kmen",
@@ -121,6 +192,23 @@
   "block.domixs-creatures.spectral_trapdoor": "Spektrální Poklop",
   "block.domixs-creatures.spectral_leaves": "Spektrální Listí",
   "block.domixs-creatures.spectral_sapling": "Sazenice Spektrálního Stromu",
+
+  "block.domixs-creatures.palm_log": "Palmový Kmen",
+  "block.domixs-creatures.stripped_palm_log": "Oloupaný Palmový Kmen",
+  "block.domixs-creatures.palm_wood": "Palmové Dřevo",
+  "block.domixs-creatures.stripped_palm_wood": "Oloupané Palmové Dřevo",
+  "block.domixs-creatures.palm_planks": "Palmová Prkna",
+  "block.domixs-creatures.palm_slab": "Palmový Půlblok",
+  "block.domixs-creatures.palm_stairs": "Palmové Schody",
+  "block.domixs-creatures.palm_fence": "Palmový Plot",
+  "block.domixs-creatures.palm_fence_gate": "Palmová Branka",
+  "block.domixs-creatures.palm_button": "Palmové Tlačítko",
+  "block.domixs-creatures.palm_pressure_plate": "Palmová Nášlapná Deska",
+  "block.domixs-creatures.palm_door": "Palmové Dveře",
+  "block.domixs-creatures.palm_trapdoor": "Palmový Poklop",
+  "block.domixs-creatures.palm_leaves": "Palmové Listí",
+  "block.domixs-creatures.palm_sapling": "Sazenice Palmového Stromu",
+  "block.domixs-creatures.coconut_block": "Kokos",
 
   "sounds.domixs-creatures.zap": "Elektřina",
 
@@ -146,6 +234,12 @@
 
   "sounds.domixs-creatures.tiger_hurt": "Tigr byl zraněn",
 
+  "sounds.domixs-creatures.conch_shell_use": "Lastura hraje",
+  "sounds.domixs-creatures.coconut_land": "Kokos Dopad",
+
+  "sounds.domixs-creatures.guide_book_entry": "Příručka Záznam",
+  "sounds.domixs-creatures.guide_book_bookmark": "Příručka Záložka",
+
   "advancement.domixs-creatures.root.title": "Domix's Creatures",
   "advancement.domixs-creatures.my_ears.title": "MÉ UŠI!",
   "advancement.domixs-creatures.ear_for_an_ear.title": "Ucho za Ucho",
@@ -158,6 +252,7 @@
   "advancements.domixs_creatures.an_earthy_snack.title": "Hlinitá Svačinka",
   "advancements.domixs_creatures.salamander_armor.title": "Ohnivý Vzhled",
   "advancement.domixs-creatures.boars_bounty.title": "Kořist Divokého Prasete",
+  "advancements.domixs_creatures.arapaima_armor.title": "Rybí Mód",
 
   "advancement.domixs-creatures.root.description": "Užij si Mod :)",
   "advancement.domixs-creatures.my_ears.description": "Zapištěl na Tebe Spektrální Netopýr",
@@ -171,6 +266,7 @@
   "advancements.domixs_creatures.salamander_armor.description": "Vylepši Své Netheritové Brnění",
   "advancements.domixs_creatures.fin-tastic_fortune.description": "Sněz Zlatou Rybku",
   "advancement.domixs-creatures.boars_bounty.description": "Nech Divoké Prase Najít ti Lanýž",
+  "advancements.domixs_creatures.arapaima_armor.description": "Staň se Jedním s Rybami",
 
   "death.attack.bleeding": "%1$s vykrvácel",
   "death.attack.bleeding.player": "%1$s vykrvácel kvůli %2$s",
@@ -183,5 +279,49 @@
   "item.domixs-creatures.salamander_upgrade_template.applies_to": "Netheritové Brnění",
   "item.domixs-creatures.salamander_upgrade_template.ingredients": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.salamander_upgrade_template.base_slot_description": "Přidej Netheritové Brnění",
-  "item.domixs-creatures.salamander_upgrade_template.additions_slot_description": "Přidej Šupiny Ohnivého Mloka"
+  "item.domixs-creatures.salamander_upgrade_template.additions_slot_description": "Přidej Šupiny Ohnivého Mloka",
+
+  "message.domixs-creatures.action.sitting": "Sedí",
+  "message.domixs-creatures.action.following": "Následuje",
+
+
+  "category.domixs-creatures.general": "Domix's Creatures",
+  "key.domixs-creatures.open_config": "Nastavení",
+
+  "domixs-creatures.config.title": "Domix's Creatures Nastavení",
+  "domixs-creatures.config.category.general": "Domix's Creatures",
+
+  "domixs-creatures.config.option.enableWaterStriderRiding": "Jízda na Vodoměrce",
+  "domixs-creatures.config.option.enableWaterStriderRiding.tooltip": "Pokud vypnuto není možné jezdit/osedlat vodoměrku",
+  "domixs-creatures.message.riding_disabled": "Ježdění Vypnuto",
+
+  "domixs-creatures.config.option.hermitCrabDailyTradeLimit": "Denní limit obchodování pro kraba poustevníka",
+  "domixs-creatures.config.option.hermitCrabDailyTradeLimit.tooltip": "Kolikrát za den může krab poustevník obchodovat",
+
+  "domixs-creatures.config.option.enableSleepParticles": "Effect spaní",
+  "domixs-creatures.config.option.enableSleepParticles.tooltip": "Pokud vypnuto ZZZ efekt se nebude objevovat nad spícími stvořeními",
+
+  "domixs-creatures.config.option.enableFireSalamanderSmelting": "Vypalování ohnivého mloka",
+  "domixs-creatures.config.option.enableFireSalamanderSmelting.tooltip": "Pokud vypnuto ohnivý mlok nebude moci vypalovat předměty",
+
+  "domixs-creatures.config.option.enableFireSalamanderMagmaBallAttack": "Útok ohnivého mloka",
+  "domixs-creatures.config.option.enableFireSalamanderMagmaBallAttack.tooltip": "Pokud vypnuto ohnivý mlok nebude moci vytvořit magmatickou kouli pro svůj útok",
+
+  "domixs-creatures.config.option.enableSpectralBatScreechAttack": "Pištění spektrálního netopýra",
+  "domixs-creatures.config.option.enableSpectralBatScreechAttack.tooltip": "Pokud vypnuto spektrální netopýr nebude moci použít svůj pištící útok",
+
+  "domixs-creatures.config.option.enableCaterpillarTransformation": "Proměna Housenky",
+  "domixs-creatures.config.option.enableCaterpillarTransformation.tooltip": "Pokud vypnuto housenka se nebude moci proměnít na motýla",
+
+  "domixs-creatures.config.option.enablePorcupineQuillAttack": "Bodlinový útok Ježury",
+  "domixs-creatures.config.option.enablePorcupineQuillAttack.tooltip": "Pokud vypnuto ježura nebude střílet bodliny když je zraněna",
+
+  "domixs-creatures.config.option.enableCoconutBongSound": "'Bong' Zvukový Efekt Pro Kokosi",
+  "domixs-creatures.config.option.enableCoconutBongSound.tooltip": "Pokud zapnuto kokosi přehrají 'bong' zvukový efekt když dopadnou na zem",
+
+  "domixs-creatures.config.option.enable_coconut_positive_effect_removal": "Kokos Odstraňování Pozitivních Efektů",
+  "domixs-creatures.config.option.enable_coconut_positive_effect_removal.tooltip": "Pokud vypnuto snězení kokosu neodstraní žádné pozitivní efekty",
+
+  "domixs-creatures.config.option.enable_coconut_negative_effect_removal": "Kokos Odstraňování Negativních Efektů",
+  "domixs-creatures.config.option.enable_coconut_negative_effect_removal.tooltip": "Pokud vypnuto snězení kokosu neodstraní žádné negativní efekty"
 }

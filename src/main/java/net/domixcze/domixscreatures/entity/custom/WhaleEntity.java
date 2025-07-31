@@ -77,10 +77,6 @@ public class WhaleEntity extends WaterCreatureEntity implements GeoEntity, Beach
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0);
     }
 
-    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.65F;
-    }*/
-
     @Override
     public void takeKnockback(double strength, double x, double z) {
         super.takeKnockback(strength * 0.1, x, z);

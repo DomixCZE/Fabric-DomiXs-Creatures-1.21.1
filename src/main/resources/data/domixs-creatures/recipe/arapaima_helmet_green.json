@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SHS",
+    "S S"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:leather_helmet"
+    },
+    "S": {
+      "item": "domixs-creatures:arapaima_scale_green"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:arapaima_helmet_green"
+  }
+}

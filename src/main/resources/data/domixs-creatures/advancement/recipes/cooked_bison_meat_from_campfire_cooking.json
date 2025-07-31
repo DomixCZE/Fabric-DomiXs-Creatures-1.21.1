@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bison_meat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "domixs-creatures:raw_bison_meat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:cooked_bison_meat_from_campfire_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bison_meat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:cooked_bison_meat_from_campfire_cooking"
+    ]
+  }
+}

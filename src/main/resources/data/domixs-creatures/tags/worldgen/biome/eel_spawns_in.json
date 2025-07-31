@@ -2,6 +2,32 @@
   "replace": false,
   "values": [
     "minecraft:deep_ocean",
-    "minecraft:swamp"
+    "minecraft:swamp",
+    {
+      "id": "biomesoplenty:rainforest",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:bayou",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:bayou",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:cypress_wetlands",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:cypress_swamplands",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:white_mangrove_marshes",
+      "required": false
+    }
   ]
 }

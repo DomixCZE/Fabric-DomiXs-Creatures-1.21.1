@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_button"
+    "domixs-creatures:spectral_button",
+    "domixs-creatures:palm_button"
   ]
 }

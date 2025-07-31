@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:sand",
+    "minecraft:red_sand",
+    {
+      "id": "natures_spirit:pink_sand",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:white_sand",
+      "required": false
+    }
+  ]
+}

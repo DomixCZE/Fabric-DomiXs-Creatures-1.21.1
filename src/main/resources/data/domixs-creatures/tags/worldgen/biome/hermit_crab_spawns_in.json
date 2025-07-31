@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:beach",
+    {
+      "id": "biomesoplenty:tropics",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:tropical_shores",
+      "required": false
+    }
+  ]
+}

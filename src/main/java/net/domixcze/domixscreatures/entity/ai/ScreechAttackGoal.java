@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.custom.SpectralBatEntity;
 import net.domixcze.domixscreatures.item.ModItems;
@@ -8,10 +9,12 @@ import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -38,6 +41,10 @@ public class ScreechAttackGoal extends Goal {
 
     @Override
     public boolean canStart() {
+        if (!ModConfig.INSTANCE.enableSpectralBatScreechAttack) {
+            return false;
+        }
+
         if (this.bat.isHanging()) {
             return false;
         }
@@ -87,8 +94,8 @@ public class ScreechAttackGoal extends Goal {
     }
 
     private boolean isProtectedFromScreech(PlayerEntity player) {
-        return player.getInventory().armor.get(3) != null
-                && player.getInventory().armor.get(3).isOf(ModItems.SONIC_BLOCKERS);
+        player.getInventory();
+        return player.getInventory().armor.get(3).isOf(ModItems.SONIC_BLOCKERS);
     }
 
 
@@ -127,6 +134,7 @@ public class ScreechAttackGoal extends Goal {
                 Vec3d normalized = offsetToTarget.normalize();
 
                 Set<Entity> hitEntities = new HashSet<>();
+                Set<PlayerEntity> hitBlockerPlayers = new HashSet<>();
                 int particleCount = (int) Math.floor(offsetToTarget.length()) + 7;
 
                 for (int i = 1; i <= particleCount; ++i) {
@@ -140,11 +148,21 @@ public class ScreechAttackGoal extends Goal {
                     hitEntities.addAll(entitiesHit);
 
                     for (Entity hitEntity : hitEntities) {
-                        if (hitEntity instanceof PlayerEntity player && isProtectedFromScreech(player)) {
-                            continue; // Skip protected players
+                        if (hitEntity instanceof PlayerEntity player) {
+                            if (isProtectedFromScreech(player)) {
+                                if (!hitBlockerPlayers.contains(player)) {
+                                    ItemStack helmet = player.getInventory().armor.get(3);
+                                    if (!helmet.isEmpty() && helmet.isOf(ModItems.SONIC_BLOCKERS)) {
+                                        helmet.damage(1, player, EquipmentSlot.HEAD);
+                                        hitBlockerPlayers.add(player);
+                                    }
+                                }
+                                continue;
+                            }
                         }
+
                         if (hitEntity instanceof LivingEntity livingEntity) {
-                            livingEntity.damage(bat.getDamageSources().mobAttack/*.sonicBoom*/(bat), DAMAGE);
+                            livingEntity.damage(bat.getDamageSources().mobAttack(bat), DAMAGE);
                         }
                     }
                 }

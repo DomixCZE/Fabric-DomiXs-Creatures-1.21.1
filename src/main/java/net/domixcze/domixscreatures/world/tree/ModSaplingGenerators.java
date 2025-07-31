@@ -13,4 +13,12 @@ public class ModSaplingGenerators {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty());
+
+    public static final SaplingGenerator PALM =
+            new SaplingGenerator("palm", 0f, Optional.empty(),
+                    Optional.empty(),
+                    Optional.of(ModConfiguredFeatures.PALM_KEY),
+                    Optional.empty(),
+                    Optional.empty(),
+                    Optional.empty());
 }

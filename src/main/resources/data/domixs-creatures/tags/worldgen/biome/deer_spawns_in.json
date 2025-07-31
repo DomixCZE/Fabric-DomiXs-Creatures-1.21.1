@@ -17,6 +17,38 @@
     {
       "id": "biomesoplenty:seasonal_forest",
       "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:cika_woods",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:maple_taiga",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:dacite_ridges",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:maple_woodlands",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:aspen_forest",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:fir_forest",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:coniferous_covert",
+      "required": false
     }
   ]
 }

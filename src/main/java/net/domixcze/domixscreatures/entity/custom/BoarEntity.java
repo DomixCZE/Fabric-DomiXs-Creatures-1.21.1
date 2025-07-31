@@ -77,7 +77,7 @@ public class BoarEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, true, false, true, false, 5.0, 500, 700, true, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 100,true, false, true, false, 5.0, 500, 700, true, false, true, true, 2));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new BoarMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(2, new AnimalMateGoal(this, 1.0));
@@ -87,6 +87,11 @@ public class BoarEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         this.goalSelector.add(6, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ProtectBabiesGoal<>(this, BoarEntity.class, 8.0));
+    }
+
+    @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
     }
 
     @Override

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:savanna",
+
+    {
+      "id": "biomeswevegone:baobab_savanna",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ironwood_gour",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:xeric_plains",
+      "required": false
+    }
+  ]
+}

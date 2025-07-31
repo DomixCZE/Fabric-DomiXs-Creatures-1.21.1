@@ -24,6 +24,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.IllagerEntity;
+import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -42,7 +44,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -72,7 +73,7 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, false, 3.0, 500, 700, true, false, false, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 120,false, true, true, false, 3.0, 500, 700, true, false, false, true, 2));
         this.goalSelector.add(1, new CrocodileMateGoal(this, 1.0));
         this.goalSelector.add(1, new CrocodileLayEggGoal(this, 1.0));
         this.goalSelector.add(2, new CrocodileMeleeAttackGoal(this, 1.0, true));
@@ -81,8 +82,10 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
         this.targetSelector.add(1, new RevengeGoal(this));
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, CodEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, IllagerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, VillagerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, CodEntity.class, true));
     }
 
     public static DefaultAttributeContainer.Builder setAttributes() {
@@ -121,6 +124,11 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
     }
 
     public boolean isPushedByFluids() {
@@ -349,6 +357,7 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         return geocache;
     }
 
+    @Override
     public boolean isBreedingItem(ItemStack stack) {
         return stack.isIn(ModTags.Items.CROCODILE_FOR_BREEDING);
     }

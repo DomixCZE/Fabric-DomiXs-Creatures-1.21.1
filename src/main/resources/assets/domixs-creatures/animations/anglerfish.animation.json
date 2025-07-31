@@ -1,0 +1,220 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.anglerfish.swim": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"lantern_main": {
+					"rotation": {
+						"0.0": {
+							"vector": [-35, 0, 0]
+						},
+						"0.5": {
+							"vector": [-32.5, 0, 0]
+						},
+						"1.0": {
+							"vector": [-35, 0, 0]
+						}
+					}
+				},
+				"lantern_middle": {
+					"rotation": {
+						"vector": [40, 0, 0]
+					}
+				},
+				"lantern_tip": {
+					"rotation": {
+						"vector": [65, 0, 0]
+					}
+				},
+				"lower_jaw": {
+					"rotation": {
+						"0.0": {
+							"vector": [30, 0, 0]
+						},
+						"0.5": {
+							"vector": [25, 0, 0]
+						},
+						"1.0": {
+							"vector": [30, 0, 0]
+						}
+					}
+				},
+				"tail_main": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -5, 0]
+						},
+						"0.5": {
+							"vector": [0, 5, 0]
+						},
+						"1.0": {
+							"vector": [0, -5, 0]
+						}
+					}
+				},
+				"tail_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -7.5, 0]
+						},
+						"0.5": {
+							"vector": [0, 7.5, 0]
+						},
+						"1.0": {
+							"vector": [0, -7.5, 0]
+						}
+					}
+				},
+				"left_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 45]
+						},
+						"0.5": {
+							"vector": [0, 0, 40]
+						},
+						"1.0": {
+							"vector": [0, 0, 45]
+						}
+					}
+				},
+				"right_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -45]
+						},
+						"0.5": {
+							"vector": [0, 0, -40]
+						},
+						"1.0": {
+							"vector": [0, 0, -45]
+						}
+					}
+				},
+				"anglerfish": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 2.5, 0]
+						},
+						"0.5": {
+							"vector": [0, -2.5, 0]
+						},
+						"1.0": {
+							"vector": [0, 2.5, 0]
+						}
+					}
+				}
+			}
+		},
+		"animation.anglerfish.idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"lantern_main": {
+					"rotation": {
+						"0.0": {
+							"vector": [-35, 0, 0]
+						},
+						"0.5": {
+							"vector": [-33, 0, 0]
+						},
+						"1.0": {
+							"vector": [-35, 0, 0]
+						}
+					}
+				},
+				"lantern_middle": {
+					"rotation": {
+						"vector": [40, 0, 0]
+					}
+				},
+				"lantern_tip": {
+					"rotation": {
+						"vector": [65, 0, 0]
+					}
+				},
+				"lower_jaw": {
+					"rotation": {
+						"0.0": {
+							"vector": [27.5, 0, 0]
+						},
+						"0.5": {
+							"vector": [25, 0, 0]
+						},
+						"1.0": {
+							"vector": [27.5, 0, 0]
+						}
+					}
+				},
+				"tail_main": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -1, 0]
+						},
+						"0.5": {
+							"vector": [0, 1, 0]
+						},
+						"1.0": {
+							"vector": [0, -1, 0]
+						}
+					}
+				},
+				"tail_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -1, 0]
+						},
+						"0.5": {
+							"vector": [0, 1, 0]
+						},
+						"1.0": {
+							"vector": [0, -1, 0]
+						}
+					}
+				},
+				"left_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 45]
+						},
+						"0.5": {
+							"vector": [0, 0, 40]
+						},
+						"1.0": {
+							"vector": [0, 0, 45]
+						}
+					}
+				},
+				"right_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -45]
+						},
+						"0.5": {
+							"vector": [0, 0, -40]
+						},
+						"1.0": {
+							"vector": [0, 0, -45]
+						}
+					}
+				},
+				"anglerfish": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0.5, 0]
+						},
+						"0.5": {
+							"vector": [0, -0.5, 0]
+						},
+						"1.0": {
+							"vector": [0, 0.5, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

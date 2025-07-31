@@ -2,6 +2,7 @@ package net.domixcze.domixscreatures.world.tree;
 
 import com.mojang.serialization.MapCodec;
 import net.domixcze.domixscreatures.DomiXsCreatures;
+import net.domixcze.domixscreatures.world.tree.custom.PalmTrunkPlacer;
 import net.domixcze.domixscreatures.world.tree.custom.SpectralTrunkPlacer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -11,6 +12,7 @@ import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
 public class ModTrunkPlacerTypes {
     public static final TrunkPlacerType<SpectralTrunkPlacer> SPECTRAL_TRUNK_PLACER = registerTrunkPlacerType("spectral_trunk_placer", SpectralTrunkPlacer.CODEC);
+    public static final TrunkPlacerType<PalmTrunkPlacer> PALM_TRUNK_PLACER = registerTrunkPlacerType("spalm_trunk_placer", PalmTrunkPlacer.CODEC);
 
     private static <P extends TrunkPlacer> TrunkPlacerType<P> registerTrunkPlacerType(String id, MapCodec<P> codec) {
         return Registry.register(Registries.TRUNK_PLACER_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, id), new TrunkPlacerType<>(codec));

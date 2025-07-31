@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_pressure_plate"
+    "domixs-creatures:spectral_pressure_plate",
+    "domixs-creatures:palm_pressure_plate"
   ]
 }

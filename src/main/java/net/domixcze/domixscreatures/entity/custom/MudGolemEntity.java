@@ -27,7 +27,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EntityView;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -195,9 +194,13 @@ public class MudGolemEntity extends TameableEntity implements GeoEntity {
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
-                String action = isSitting() ? "is Sitting" : "is Following";
+                Text action = Text.translatable(isSitting()
+                        ? "message.domixs-creatures.action.sitting"
+                        : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " " + action + ".")
+                Text message = Text.literal(entityName.getString() + " ")
+                        .append(action)
+                        .append(".")
                         .styled(style -> style.withColor(Formatting.GREEN));
                 player.sendMessage(message, true);
 

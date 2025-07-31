@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deer_venison": {
+      "conditions": {
+        "items": [
+          {
+            "items": "domixs-creatures:raw_deer_venison"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:cooked_deer_venison_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deer_venison"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:cooked_deer_venison_from_smoking"
+    ]
+  }
+}

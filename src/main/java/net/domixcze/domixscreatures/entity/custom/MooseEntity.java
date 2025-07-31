@@ -70,7 +70,7 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, true, false, true, false, 5.0, 500, 700, true, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 120,true, false, true, false, 5.0, 500, 700, true, false, true, true,2));
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new MooseMeleeAttackGoal(this, 1.0, true));
@@ -79,7 +79,7 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
         this.goalSelector.add(5, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ProtectBabiesGoal<>(this, MooseEntity.class, 8.0));
-        this.targetSelector.add(2, (new RevengeGoal(this)));
+        this.targetSelector.add(2, new RevengeGoal(this));
     }
 
     @Override
@@ -92,8 +92,14 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
+    }
+
+    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
         controllers.add(new AnimationController<>(this, "sleep_controller", 5, this::sleepPredicate));
     }
 
@@ -112,6 +118,22 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
                 state.getController().setAnimation(RawAnimation.begin().then("animation.moose.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.moose.idle", Animation.LoopType.LOOP));
+            }
+        }
+        return PlayState.CONTINUE;
+    }
+
+    private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> state) {
+        if (!this.isTouchingWater()) {
+            return PlayState.STOP;
+        }
+        if (this.isBaby()) {
+            if (this.isTouchingWater()) {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.baby_moose.swim", Animation.LoopType.LOOP));
+            }
+        } else {
+            if (this.isTouchingWater()) {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.moose.swim", Animation.LoopType.LOOP));
             }
         }
         return PlayState.CONTINUE;

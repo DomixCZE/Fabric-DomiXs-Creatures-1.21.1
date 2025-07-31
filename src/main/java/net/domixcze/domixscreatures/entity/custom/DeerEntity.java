@@ -18,8 +18,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.passive.PolarBearEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,6 +25,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -56,11 +55,14 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> ANTLER_SIZE = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static final TrackedData<Boolean> SLEEPING = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> IS_RUNNING = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.fixed(0.6F, 1.2F);
     private static final EntityDimensions ADULT_DIMENSIONS = EntityDimensions.fixed(0.8F, 1.5F);
     private static final EntityDimensions SLEEPING_BABY_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
     private static final EntityDimensions SLEEPING_ADULT_DIMENSIONS = EntityDimensions.fixed(0.8F, 0.8F);
+
+    private static final double MOB_RUNNING_VELOCITY_THRESHOLD = 0.05 * 0.05;
 
     public DeerEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -74,13 +76,10 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, true, false, true, true, 7.0, 500, 700, true, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 100,true, false, true, true, 7.0, 500, 700, true, false, true, true, 1));
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(2, new FleeGoal<>(this, PlayerEntity.class, 10.0f, 1.0, 1.5));
-        this.goalSelector.add(2, new FleeGoal<>(this, WolfEntity.class, 10.0f, 1.0, 1.5));
-        this.goalSelector.add(2, new FleeGoal<>(this, PolarBearEntity.class, 10.0f, 1.0, 1.5));
-        this.goalSelector.add(2, new FleeGoal<>(this, TigerEntity.class, 10.0f, 1.0, 1.5));
+        this.goalSelector.add(2, new FleeGoal<>(this, LivingEntity.class, ModTags.EntityTypes.DEER_FLEE_FROM, 10.0f,1.0,1.5));
         this.goalSelector.add(3, new BabyFollowParentGoal(this, 1.25));
         this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.75f, 1));
         this.goalSelector.add(4, new LookAroundGoal(this));
@@ -93,6 +92,20 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         builder.add(VARIANT, DeerVariants.BROWN.ordinal());
         builder.add(ANTLER_SIZE, DeerAntlerSize.NONE.ordinal());
         builder.add(SLEEPING, false);
+        builder.add(IS_RUNNING, false);
+    }
+
+    @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
+    }
+
+    public boolean isRunning() {
+        return this.dataTracker.get(IS_RUNNING);
+    }
+
+    public void setRunning(boolean running) {
+        this.dataTracker.set(IS_RUNNING, running);
     }
 
     public boolean isSleeping() {
@@ -139,6 +152,14 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
             if (snowMeltTimer >= 200) {
                 this.setHasSnowLayer(false);
                 snowMeltTimer = 0;
+            }
+        }
+
+        if (!this.getWorld().isClient()) {
+            boolean currentlyMovingFast = this.getVelocity().horizontalLengthSquared() > MOB_RUNNING_VELOCITY_THRESHOLD;
+
+            if (this.isRunning() != currentlyMovingFast) {
+                this.setRunning(currentlyMovingFast);
             }
         }
     }
@@ -291,6 +312,7 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         nbt.putBoolean("Sleeping", this.isSleeping());
         nbt.putInt("Variant", this.getVariant().ordinal());
         nbt.putInt("AntlerSize", this.getAntlerSize().ordinal());
+        nbt.putBoolean("IsRunning", this.isRunning());
     }
 
     @Override
@@ -302,6 +324,7 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         this.setSleeping(nbt.getBoolean("Sleeping"));
         this.setVariant(DeerVariants.values()[nbt.getInt("Variant")]);
         this.setAntlerSize(DeerAntlerSize.values()[nbt.getInt("AntlerSize")]);
+        this.setRunning(nbt.getBoolean("IsRunning"));
     }
 
     public boolean isBeingSnowedOn() {
@@ -340,6 +363,7 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
         controllers.add(new AnimationController<>(this, "sleep_controller", 5, this::sleepPredicate));
     }
 
@@ -354,13 +378,31 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_deer.idle", Animation.LoopType.LOOP));
             }
         } else {
-            if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+            if (this.isRunning()) {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.deer.run", Animation.LoopType.LOOP));
+            } else if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.deer.walk", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.deer.idle", Animation.LoopType.LOOP));
             }
         }
 
+        return PlayState.CONTINUE;
+    }
+
+    private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> state) {
+        if (!this.isTouchingWater()) {
+            return PlayState.STOP;
+        }
+        if (this.isBaby()) {
+            if (this.isTouchingWater()) {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.baby_deer.swim", Animation.LoopType.LOOP));
+            }
+        } else {
+            if (this.isTouchingWater()) {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.deer.swim", Animation.LoopType.LOOP));
+            }
+        }
         return PlayState.CONTINUE;
     }
 
@@ -384,8 +426,13 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     static class FleeGoal<T extends LivingEntity> extends FleeEntityGoal<T> {
         private final DeerEntity deer;
 
-        public FleeGoal(DeerEntity deer, Class<T> fleeFromType, float distance, double slowSpeed, double fastSpeed) {
-            super(deer, fleeFromType, distance, slowSpeed, fastSpeed, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR::test);
+        public FleeGoal(DeerEntity deer, Class<T> fleeFromType, TagKey<EntityType<?>> fleeFromTag, float distance, double slowSpeed, double fastSpeed) {
+            super(deer, fleeFromType, distance, slowSpeed, fastSpeed,
+                    (targetEntity) -> {
+                        boolean isInTag = targetEntity != null && targetEntity.getType().isIn(fleeFromTag);
+                        boolean passesDefaultChecks = EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(targetEntity);
+                        return isInTag && passesDefaultChecks;
+                    });
             this.deer = deer;
         }
 
@@ -397,6 +444,18 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         @Override
         public boolean shouldContinue() {
             return !this.deer.isSleeping() && super.shouldContinue();
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.deer.setRunning(true);
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            this.deer.setRunning(false);
         }
     }
 

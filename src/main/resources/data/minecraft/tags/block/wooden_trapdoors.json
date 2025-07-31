@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_trapdoor"
+    "domixs-creatures:spectral_trapdoor",
+    "domixs-creatures:palm_trapdoor"
   ]
 }

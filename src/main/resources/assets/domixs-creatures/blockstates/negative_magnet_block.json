@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=down,powered=false": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "x": 90
+    },
+    "facing=down,powered=true": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "x": 90
+    },
+    "facing=east,powered=false": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "y": 90
+    },
+    "facing=east,powered=true": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "y": 90
+    },
+    "facing=north,powered=false": {
+      "model": "domixs-creatures:block/negative_magnet_block"
+    },
+    "facing=north,powered=true": {
+      "model": "domixs-creatures:block/negative_magnet_block"
+    },
+    "facing=south,powered=false": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "y": 180
+    },
+    "facing=up,powered=false": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "x": 270
+    },
+    "facing=up,powered=true": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "x": 270
+    },
+    "facing=west,powered=false": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "domixs-creatures:block/negative_magnet_block",
+      "y": 270
+    }
+  }
+}

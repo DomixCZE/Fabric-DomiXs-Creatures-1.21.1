@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:jungle",
+    {
+      "id": "biomesoplenty:rainforest",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:tropics",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:tropical_rainforest",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:tropical_woods",
+      "required": false
+    }
+  ]
+}

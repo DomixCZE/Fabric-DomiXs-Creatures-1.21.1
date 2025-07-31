@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "attached=true,facing=north": { "model": "domixs-creatures:block/coconut_block_attached", "y": 180 },
+    "attached=true,facing=south": { "model": "domixs-creatures:block/coconut_block_attached" },
+    "attached=true,facing=east":  { "model": "domixs-creatures:block/coconut_block_attached", "y": 270 },
+    "attached=true,facing=west":  { "model": "domixs-creatures:block/coconut_block_attached", "y": 90 },
+    "attached=true,facing=up":    { "model": "domixs-creatures:block/coconut_block_attached" },
+    "attached=true,facing=down":  { "model": "domixs-creatures:block/coconut_block_attached" },
+
+    "attached=false,facing=north": { "model": "domixs-creatures:block/coconut_block", "y": 180 },
+    "attached=false,facing=south": { "model": "domixs-creatures:block/coconut_block" },
+    "attached=false,facing=east":  { "model": "domixs-creatures:block/coconut_block", "y": 270 },
+    "attached=false,facing=west":  { "model": "domixs-creatures:block/coconut_block", "y": 90 },
+    "attached=false,facing=up":    { "model": "domixs-creatures:block/coconut_block" },
+    "attached=false,facing=down":  { "model": "domixs-creatures:block/coconut_block" }
+  }
+}

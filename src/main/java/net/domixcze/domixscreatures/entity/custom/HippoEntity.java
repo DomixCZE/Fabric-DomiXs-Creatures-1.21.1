@@ -23,9 +23,12 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -75,7 +78,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, true, false, false, false, 3.0, 700, 800, true, false, false, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 150,true, false, false, false, 3.0, 700, 800, true, false, false, true,3));
         this.goalSelector.add(1, new HippoMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(1, new RollInMudGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
@@ -84,7 +87,9 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, CrocodileEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, IllagerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, VillagerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, CrocodileEntity.class, true));
     }
 
     protected EntityNavigation createNavigation(World world) {
@@ -106,7 +111,8 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         return false;
     }
 
-    public boolean canBeLeashedBy(PlayerEntity player) {
+    @Override
+    public boolean canBeLeashed() {
         return false;
     }
 

@@ -40,11 +40,11 @@
               }
             }
           ],
-          "name": "minecraft:beef"
+          "name": "domixs-creatures:raw_bison_meat"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "domixscreatures:entities/bison"
+  "random_sequence": "domixs-creatures:entities/bison"
 }

@@ -1,0 +1,43 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/root",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:arapaima_chestplate_black"
+    },
+    "title": {
+      "translate": "advancements.domixs_creatures.arapaima_armor.title"
+    },
+    "description": {
+      "translate": "advancements.domixs_creatures.arapaima_armor.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "arapaima_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["domixs-creatures:arapaima_helmet_black"] },
+          { "items": ["domixs-creatures:arapaima_chestplate_black"] },
+          { "items": ["domixs-creatures:arapaima_leggings_black"] },
+          { "items": ["domixs-creatures:arapaima_boots_black"] },
+          { "items": ["domixs-creatures:arapaima_helmet_green"] },
+          { "items": ["domixs-creatures:arapaima_chestplate_green"] },
+          { "items": ["domixs-creatures:arapaima_leggings_green"] },
+          { "items": ["domixs-creatures:arapaima_boots_green"] }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "arapaima_armor"
+    ]
+  ],
+  "rewards": {
+    "experience": 80
+  }
+}

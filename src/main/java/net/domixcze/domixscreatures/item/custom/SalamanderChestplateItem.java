@@ -30,7 +30,7 @@ public class SalamanderChestplateItem extends ArmorItem implements GeoItem {
 
     private static final Map<ArmorMaterial, StatusEffectInstance> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<ArmorMaterial, StatusEffectInstance>())
-                    .put(ModArmorMaterials.SALAMANDER, new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20, 0,
+                    .put(ModArmorMaterials.SALAMANDER.value(), new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20, 0,
                             false, false, false)).build();
 
     public SalamanderChestplateItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {

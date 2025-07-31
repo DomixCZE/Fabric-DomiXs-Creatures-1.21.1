@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:jungle",
+    "minecraft:sparse_jungle",
+    {
+      "id": "biomesoplenty:rainforest",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:crag_gardens",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:tropical_rainforest",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:tropical_woods",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:sparse_tropical_woods",
+      "required": false
+    }
+  ]
+}

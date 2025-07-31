@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.entity.ai;
 
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.FireSalamanderEntity;
 import net.domixcze.domixscreatures.entity.custom.MagmaBallEntity;
@@ -20,6 +21,10 @@ public class FireSalamanderMagmaBallAttackGoal extends Goal {
 
     @Override
     public boolean canStart() {
+        if (!ModConfig.INSTANCE.enableFireSalamanderMagmaBallAttack) {
+            return false;
+        }
+
         LivingEntity target = this.salamander.getTarget();
         return target != null
                 && !this.salamander.isObsidianVariant()

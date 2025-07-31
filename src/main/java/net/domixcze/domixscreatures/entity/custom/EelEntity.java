@@ -4,12 +4,14 @@ import net.domixcze.domixscreatures.entity.ai.Beachable;
 import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
 import net.domixcze.domixscreatures.entity.ai.EelMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.eel.EelVariants;
+import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.SwimAroundGoal;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.ai.pathing.SwimNavigation;
@@ -70,13 +72,10 @@ public class EelEntity extends WaterCreatureEntity implements GeoEntity, Beachab
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, CodEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, SalmonEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, CodEntity.class, true));
+        this.targetSelector.add(2, new RevengeGoal(this));
     }
-
-    /*protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.40F;
-    }*/
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {

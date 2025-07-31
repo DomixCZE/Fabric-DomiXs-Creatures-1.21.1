@@ -1,0 +1,163 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.freshwater_stingray.swim": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 7.5, 0]
+						},
+						"0.25": {
+							"vector": [0, -7.5, 0]
+						},
+						"0.5": {
+							"vector": [0, 7.5, 0]
+						}
+					}
+				},
+				"back_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [-2.5, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [-2.5, 0, 0]
+						}
+					}
+				},
+				"front_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [2.5, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [2.5, 0, 0]
+						}
+					}
+				},
+				"left_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -7.5]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, -7.5]
+						}
+					}
+				},
+				"right_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 7.5]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 7.5]
+						}
+					}
+				}
+			}
+		},
+		"animation.freshwater_stingray.idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 1, 0]
+						},
+						"0.5": {
+							"vector": [0, -1, 0]
+						},
+						"1.0": {
+							"vector": [0, 1, 0]
+						}
+					}
+				},
+				"back_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [-2.5, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [-2.5, 0, 0]
+						}
+					}
+				},
+				"front_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [2.5, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [2.5, 0, 0]
+						}
+					}
+				},
+				"left_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -2.5]
+						},
+						"0.5": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, -2.5]
+						}
+					}
+				},
+				"right_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 2.5]
+						},
+						"0.5": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, 2.5]
+						}
+					}
+				}
+			}
+		},
+		"animation.freshwater_stingray.beached": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"eyes": {
+					"scale": {
+						"vector": [1, 0, 1]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [0, 15, 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

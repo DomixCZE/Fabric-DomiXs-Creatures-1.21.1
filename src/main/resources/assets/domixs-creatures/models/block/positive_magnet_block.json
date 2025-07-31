@@ -1,0 +1,22 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "front": "domixs-creatures:block/positive_magnet_front",
+    "back": "domixs-creatures:block/magnet_back",
+    "side": "domixs-creatures:block/positive_magnet_side",
+    "particle": "domixs-creatures:block/positive_magnet_front"
+  },
+  "elements": [
+    {   "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "down", "rotation": 270 },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "up", "rotation": 90 },
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#front", "cullface": "north" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#back", "cullface": "south" },
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "west" },
+        "east":  { "uv": [ 16, 16, 0, 0 ], "texture": "#side", "cullface": "east" }
+      }
+    }
+  ]
+}

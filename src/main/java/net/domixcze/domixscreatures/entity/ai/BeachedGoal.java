@@ -17,7 +17,7 @@ public class BeachedGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        return entity.isOnGround() || !entity.isTouchingWater();
+        return entity.isOnGround() && !entity.isTouchingWater();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.entity.custom;
 
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.FireSalamanderMagmaBallAttackGoal;
 import net.domixcze.domixscreatures.entity.ai.FireSalamanderMeleeAttackGoal;
@@ -18,9 +19,12 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -288,7 +292,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
             this.setVariant(FireSalamanderVariants.OBSIDIAN);
         }
 
-        if (!this.smeltingItem.isEmpty()) {
+        if (ModConfig.INSTANCE.enableFireSalamanderSmelting && !this.smeltingItem.isEmpty()) {
             if (this.smeltingTimer > 0) {
                 this.smeltingTimer--;
             } else {
@@ -325,16 +329,20 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
-                String action = isSitting() ? "is Sitting" : "is Following";
+                Text action = Text.translatable(isSitting()
+                        ? "message.domixs-creatures.action.sitting"
+                        : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " " + action + ".")
+                Text message = Text.literal(entityName.getString() + " ")
+                        .append(action)
+                        .append(".")
                         .styled(style -> style.withColor(Formatting.GREEN));
                 player.sendMessage(message, true);
 
                 return ActionResult.PASS;
             }
 
-            if (canSmelt(itemstack) && smeltingItem.isEmpty()) {
+            if (ModConfig.INSTANCE.enableFireSalamanderSmelting && canSmelt(itemstack) && smeltingItem.isEmpty()) {
                 startSmelting(itemstack);
                 if (!player.getAbilities().creativeMode) {
                     itemstack.decrement(1);

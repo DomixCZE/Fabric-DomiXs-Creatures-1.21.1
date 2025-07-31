@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "domixs-creatures:block/stripped_palm_log_top",
+    "side": "domixs-creatures:block/stripped_palm_log"
+  }
+}

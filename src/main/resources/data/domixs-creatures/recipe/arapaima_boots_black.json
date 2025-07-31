@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "S S"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:leather_boots"
+    },
+    "S": {
+      "item": "domixs-creatures:arapaima_scale_black"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:arapaima_boots_black"
+  }
+}

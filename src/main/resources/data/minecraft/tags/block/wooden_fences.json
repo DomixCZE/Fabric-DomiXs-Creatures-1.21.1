@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_fence"
+    "domixs-creatures:spectral_fence",
+    "domixs-creatures:palm_fence"
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "S": {
+      "item": "domixs-creatures:arapaima_scale_green"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:arapaima_chestplate_green"
+  }
+}

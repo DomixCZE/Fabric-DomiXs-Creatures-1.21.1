@@ -1,7 +1,6 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.item.ModItems;
-import net.minecraft.entity.Bucketable;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -17,7 +16,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class GoldfishEntity extends FishEntity implements GeoEntity, Bucketable {
+public class GoldfishEntity extends FishEntity implements GeoEntity {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
     public GoldfishEntity(EntityType<? extends FishEntity> entityType, World world) {
@@ -37,7 +36,7 @@ public class GoldfishEntity extends FishEntity implements GeoEntity, Bucketable 
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllers.add(new AnimationController<>(this, "controller", 3, this::predicate));
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {

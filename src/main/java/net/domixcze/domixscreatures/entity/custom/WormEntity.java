@@ -52,7 +52,8 @@ public class WormEntity extends AnimalEntity implements GeoEntity {
         this.goalSelector.add(1, new WanderAroundGoal(this, 0.5));
     }
 
-    public boolean canBeLeashedBy(PlayerEntity player) {
+    @Override
+    public boolean canBeLeashed() {
         return false;
     }
 

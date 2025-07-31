@@ -18,6 +18,34 @@
     {
       "id": "biomesoplenty:scrubland",
       "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:prairie",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:amaranth_grassland",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:marigold_meadows",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:prairie",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:shrubby_highlands",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:blooming_highlands",
+      "required": false
     }
   ]
 }

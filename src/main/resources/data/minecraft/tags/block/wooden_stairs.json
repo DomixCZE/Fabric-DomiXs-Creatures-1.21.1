@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_stairs"
+    "domixs-creatures:spectral_stairs",
+    "domixs-creatures:palm_stairs"
   ]
 }

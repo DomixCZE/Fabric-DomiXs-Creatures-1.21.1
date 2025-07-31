@@ -1,0 +1,126 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:jungle",
+    "minecraft:dark_forest",
+    "minecraft:flower_forest",
+    "minecraft:forest",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:old_growth_spruce_taiga",
+    "minecraft:taiga",
+    "minecraft:plains",
+    "minecraft:meadow",
+    {
+      "id": "biomesoplenty:grassland",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:prairie",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:pasture",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:scrubland",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:rainforest",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:lavender_field",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:aspen_glade",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:seasonal_forest",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:maple_woods",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:woodland",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:old_growth_woodland",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:tropics",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:tropical_rainforest",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:orchard",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:prairie",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:allium_shrubland",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:temperate_grove",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:amaranth_grassland",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:rose_fields",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:tropical_woods",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:wisteria_forest",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:heather_fields",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:prairie",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:blooming_highlands",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:marigold_meadows",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:lavender_fields",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:carnation_fields",
+      "required": false
+    }
+  ]
+}

@@ -86,6 +86,11 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return false;
+    }
+
+    @Override
     public int getLimitPerChunk() {
         return 1;
     }

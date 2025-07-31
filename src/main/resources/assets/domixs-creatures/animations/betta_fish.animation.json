@@ -1,0 +1,174 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.betta_fish.swim": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"left_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -17.5]
+						},
+						"0.25": {
+							"vector": [0, 0, -20]
+						},
+						"0.5": {
+							"vector": [0, 0, -17.5]
+						}
+					}
+				},
+				"right_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 17.5]
+						},
+						"0.25": {
+							"vector": [0, 0, 20]
+						},
+						"0.5": {
+							"vector": [0, 0, 17.5]
+						}
+					}
+				},
+				"bottom_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 5]
+						},
+						"0.25": {
+							"vector": [0, 0, -5]
+						},
+						"0.5": {
+							"vector": [0, 0, 5]
+						}
+					}
+				},
+				"back_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -5]
+						},
+						"0.25": {
+							"vector": [0, 0, 5]
+						},
+						"0.5": {
+							"vector": [0, 0, -5]
+						}
+					}
+				},
+				"tail_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -5, 0]
+						},
+						"0.25": {
+							"vector": [0, 5, 0]
+						},
+						"0.5": {
+							"vector": [0, -5, 0]
+						}
+					}
+				},
+				"betta_fish": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 2.5, 0]
+						},
+						"0.25": {
+							"vector": [0, -2.5, 0]
+						},
+						"0.5": {
+							"vector": [0, 2.5, 0]
+						}
+					}
+				}
+			}
+		},
+		"animation.betta_fish.idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"left_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -17.5]
+						},
+						"0.5": {
+							"vector": [0, 0, -20]
+						},
+						"1.0": {
+							"vector": [0, 0, -17.5]
+						}
+					}
+				},
+				"right_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 17.5]
+						},
+						"0.5": {
+							"vector": [0, 0, 20]
+						},
+						"1.0": {
+							"vector": [0, 0, 17.5]
+						}
+					}
+				},
+				"bottom_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 5]
+						},
+						"0.5": {
+							"vector": [0, 0, -5]
+						},
+						"1.0": {
+							"vector": [0, 0, 5]
+						}
+					}
+				},
+				"back_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -5]
+						},
+						"0.5": {
+							"vector": [0, 0, 5]
+						},
+						"1.0": {
+							"vector": [0, 0, -5]
+						}
+					}
+				},
+				"tail_fin": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -5, 0]
+						},
+						"0.5": {
+							"vector": [0, 5, 0]
+						},
+						"1.0": {
+							"vector": [0, -5, 0]
+						}
+					}
+				},
+				"betta_fish": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 2.5, 0]
+						},
+						"0.5": {
+							"vector": [0, -2.5, 0]
+						},
+						"1.0": {
+							"vector": [0, 2.5, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

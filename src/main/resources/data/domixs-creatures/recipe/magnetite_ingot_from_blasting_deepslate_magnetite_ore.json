@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 120,
+  "experience": 0.8,
+  "group": "magnetite_ingot",
+  "ingredient": {
+    "item": "domixs-creatures:deepslate_magnetite_ore"
+  },
+  "result": {
+    "id": "domixs-creatures:magnetite_ingot"
+  }
+}

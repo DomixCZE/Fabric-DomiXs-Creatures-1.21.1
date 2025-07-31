@@ -6,11 +6,31 @@
     ]
   },
 
-
   "eel_attack": {
     "subtitle": "sounds.domixs-creatures.eel_attack",
     "sounds": [
       "domixs-creatures:eel_attack"
+    ]
+  },
+
+  "conch_shell_use": {
+    "subtitle": "sounds.domixs-creatures.conch_shell_use",
+    "sounds": [
+      "domixs-creatures:conch_shell_use"
+    ]
+  },
+
+  "coconut_land": {
+    "subtitle": "sounds.domixs-creatures.coconut_land",
+    "sounds": [
+      "domixs-creatures:coconut_land"
+    ]
+  },
+
+  "magnet": {
+    "subtitle": "sounds.domixs-creatures.magnet",
+    "sounds": [
+      "domixs-creatures:magnet"
     ]
   },
 
@@ -102,6 +122,32 @@
     "subtitle": "sounds.domixs-creatures.tiger_hurt",
     "sounds": [
       "domixs-creatures:tiger_hurt"
+    ]
+  },
+
+  "guide_book_entry": {
+    "subtitle": "sounds.domixs-creatures.guide_book_entry",
+    "sounds": [
+      "domixs-creatures:guide_book_entry"
+    ]
+  },
+  "guide_book_bookmark": {
+    "subtitle": "sounds.domixs-creatures.guide_book_bookmark",
+    "sounds": [
+      "domixs-creatures:guide_book_bookmark"
+    ]
+  },
+
+  "magnet_in": {
+    "subtitle": "sounds.domixs-creatures.magnet_in",
+    "sounds": [
+      "domixs-creatures:magnet_in"
+    ]
+  },
+  "magnet_out": {
+    "subtitle": "sounds.domixs-creatures.magnet_out",
+    "sounds": [
+      "domixs-creatures:magnet_out"
     ]
   }
 }

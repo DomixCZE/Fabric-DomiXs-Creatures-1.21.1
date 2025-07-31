@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_slab"
+    "domixs-creatures:spectral_slab",
+    "domixs-creatures:palm_slab"
   ]
 }

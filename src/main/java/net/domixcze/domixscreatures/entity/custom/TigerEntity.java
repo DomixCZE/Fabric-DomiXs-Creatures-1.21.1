@@ -18,8 +18,10 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -75,7 +77,7 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, true, false, true, false, 3.0, 500, 700, true, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 120,true, false, true, false, 3.0, 500, 700, true, false, true, true,2));
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(1, new TigerMeleeAttackGoal(this, 1.0, true));
@@ -87,6 +89,15 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
 
         this.targetSelector.add(1, new AttackWithOwnerGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, IllagerEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, VillagerEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, SunBearEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, DeerEntity.class, true));
+    }
+
+    @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
     }
 
     @Override
@@ -499,9 +510,13 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
-                String action = isSitting() ? "is Sitting" : "is Following";
+                Text action = Text.translatable(isSitting()
+                        ? "message.domixs-creatures.action.sitting"
+                        : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " " + action + ".")
+                Text message = Text.literal(entityName.getString() + " ")
+                        .append(action)
+                        .append(".")
                         .styled(style -> style.withColor(Formatting.GREEN));
                 player.sendMessage(message, true);
 

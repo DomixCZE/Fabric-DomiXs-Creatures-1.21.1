@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:spectral_fence_gate"
+    "domixs-creatures:spectral_fence_gate",
+    "domixs-creatures:palm_fence_gate"
   ]
 }

@@ -23,13 +23,15 @@ public class MagmaBallEntity extends Entity implements GeoEntity {
 
     private int lifeTime = 100;
 
+    private Vec3d cachedVelocity = Vec3d.ZERO;
+    private boolean hasLaunched = false;
+
     public MagmaBallEntity(EntityType<? extends Entity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
-
     }
 
     @Override
@@ -58,10 +60,24 @@ public class MagmaBallEntity extends Entity implements GeoEntity {
             this.addVelocity(0, -0.04, 0);
         }
 
-        if (this.age == 1) {
+        if (!hasLaunched && this.age >= 1) {
             Vec3d direction = this.getRotationVector();
             double speed = 0.2;
-            this.setVelocity(direction.multiply(speed));
+            cachedVelocity = direction.multiply(speed);
+            this.setVelocity(cachedVelocity);
+            hasLaunched = true;
+        }
+
+        if (!isBlockedAhead() || isSliding()) {
+            Vec3d currentVel = this.getVelocity();
+
+            // Blend current velocity and cached velocity for smooth transition
+            double blendFactor = 0.2;
+            Vec3d newVel = currentVel.multiply(1 - blendFactor).add(cachedVelocity.multiply(blendFactor));
+
+            if (currentVel.squaredDistanceTo(newVel) > 0.0001) {
+                this.setVelocity(newVel);
+            }
         }
 
         this.move(MovementType.SELF, this.getVelocity());
@@ -104,6 +120,24 @@ public class MagmaBallEntity extends Entity implements GeoEntity {
             this.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, 0.15F, 1.0F);
             this.discard();
         }
+    }
+
+    private boolean isSliding() {
+        Vec3d velocity = this.getVelocity();
+        Vec3d forward = this.getRotationVector().normalize();
+
+        double dot = velocity.normalize().dotProduct(forward);
+        return velocity.lengthSquared() > 0.01 && dot < 0.95;
+    }
+
+    private boolean isBlockedAhead() {
+        Vec3d forward = this.getRotationVector().normalize();
+        BlockPos ahead = this.getBlockPos().add(
+                (int) Math.round(forward.x),
+                0,
+                (int) Math.round(forward.z)
+        );
+        return !this.getWorld().getBlockState(ahead).isAir();
     }
 
     private void spawnLavaParticles() {

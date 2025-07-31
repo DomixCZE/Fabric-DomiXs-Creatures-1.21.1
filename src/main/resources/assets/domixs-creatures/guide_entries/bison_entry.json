@@ -1,0 +1,58 @@
+{
+  "entry_id": "domixs-creatures:bison_entry",
+  "category": "entities",
+  "title": "§lBison",
+  "button_text": "§lBison",
+  "pages": [
+    {
+      "text_content": [
+        "The Bison can be found in grassy biomes like Plains and Meadows"
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/bison_icon.png",
+          "x": 20,
+          "y": 80,
+          "width": 70,
+          "height": 70
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "A Bison will only attack if it's babies are nearby.",
+        "If you stand near an adult bison for too long it will charge at you."
+      ]
+    },
+    {
+      "text_content": [
+        "They can be bred with wheat.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "If Killed the Bison will drop Bison Meat"
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "minecraft:textures/item/wheat.png",
+          "x": 10,
+          "y": 60,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/item/raw_bison_meat.png",
+          "x": 50,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

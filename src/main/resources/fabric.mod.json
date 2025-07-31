@@ -33,6 +33,7 @@
 		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"geckolib": ">=4.7.5.1",
+		"cloth-config": ">=15.0.140",
 		"fabric-api": "*"
 	},
 	"suggests": {

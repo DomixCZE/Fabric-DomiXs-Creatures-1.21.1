@@ -13,10 +13,10 @@ public class BisonMeleeAttackGoal extends MeleeAttackGoal {
 
     @Override
     public boolean canStart() {
-        if (this.bison.isBaby()) {
+        if (bison.isBaby()) {
             return false;
         }
-        if (this.bison.isSleeping()) {
+        if (bison.isSleeping()) {
             return false;
         }
         return super.canStart();

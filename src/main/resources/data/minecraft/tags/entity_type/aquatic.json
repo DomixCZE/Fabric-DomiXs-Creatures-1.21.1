@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:goldfish",
+    "domixs-creatures:whale",
+    "domixs-creatures:shark",
+    "domixs-creatures:beaver",
+    "domixs-creatures:crocodile",
+    "domixs-creatures:hippo",
+    "domixs-creatures:eel",
+    "domixs-creatures:piranha",
+    "domixs-creatures:neon_tetra",
+    "domixs-creatures:peacock_bass",
+    "domixs-creatures:betta_fish",
+    "domixs-creatures:arapaima",
+    "domixs-creatures:anglerfish",
+    "domixs-creatures:freshwater_stingray",
+    "domixs-creatures:hermit_crab"
+  ]
+}

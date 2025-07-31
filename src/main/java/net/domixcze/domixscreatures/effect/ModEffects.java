@@ -18,6 +18,8 @@ public class ModEffects {
             new BleedingEffect(StatusEffectCategory.HARMFUL, 13898772));
     public static final RegistryEntry<StatusEffect> ELECTRIFIED = registerStatusEffect("electrified",
             new ElectrifiedEffect(StatusEffectCategory.HARMFUL, 13099489));
+    public static final RegistryEntry<StatusEffect> OCEAN_BLESSING = registerStatusEffect("ocean_blessing",
+            new OceanBlessingEffect(StatusEffectCategory.BENEFICIAL, 13099489));
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(DomiXsCreatures.MOD_ID, name), statusEffect);

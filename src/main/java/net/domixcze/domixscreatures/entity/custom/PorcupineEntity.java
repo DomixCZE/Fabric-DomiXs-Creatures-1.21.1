@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.entity.custom;
 
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
@@ -69,6 +70,11 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
+    }
+
+    @Override
     public boolean isBreedingItem(ItemStack stack) {
         return stack.isIn(ModTags.Items.PORCUPINE_FOR_BREEDING);
     }
@@ -86,7 +92,7 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, false, true, true, true, 7.0, 500, 700, true, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 100,false, true, true, true, 7.0, 500, 700, true, false, true, true,1));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new BabyFollowParentGoal(this, 0.8));
@@ -110,7 +116,7 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if (!this.getWorld().isClient() && !this.isDead() && !this.isBaby() && getQuillsAvailable() > 0) {
+        if (ModConfig.INSTANCE.enablePorcupineQuillAttack && !this.getWorld().isClient() && !this.isDead() && !this.isBaby() && getQuillsAvailable() > 0) {
             boolean wasHurt = super.damage(source, amount);
             LivingEntity attacker = source.getAttacker() instanceof LivingEntity ? (LivingEntity) source.getAttacker() : null;
             if (wasHurt && attacker != null) {

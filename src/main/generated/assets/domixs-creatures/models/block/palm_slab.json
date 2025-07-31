@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "domixs-creatures:block/palm_planks",
+    "side": "domixs-creatures:block/palm_planks",
+    "top": "domixs-creatures:block/palm_planks"
+  }
+}

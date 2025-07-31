@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "minecraft:hanging_roots",
-    "domixs-creatures:truffle"
+    "domixs-creatures:truffle",
+    "domixs-creatures:worm"
   ]
 }

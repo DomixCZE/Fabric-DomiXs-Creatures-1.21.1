@@ -8,7 +8,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -23,7 +22,6 @@ import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -83,7 +81,7 @@ public class BisonEntity extends AnimalEntity implements GeoEntity, EatsGrass, S
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new SleepGoal(this, this, false, true, false, false, 5.0, 600, 800, false, false, true, true));
+        this.goalSelector.add(0, new SleepGoal(this, this, 150,false, true, false, false, 5.0, 600, 800, false, false, true, true,3));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new ChargeGoal(this));
@@ -94,7 +92,7 @@ public class BisonEntity extends AnimalEntity implements GeoEntity, EatsGrass, S
         this.goalSelector.add(7, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ProtectBabiesGoal<>(this, BisonEntity.class, 8.0));
-        this.targetSelector.add(2, (new RevengeGoal(this)));
+        this.targetSelector.add(2, new RevengeGoal(this));
     }
 
     @Override

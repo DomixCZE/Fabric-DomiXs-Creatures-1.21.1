@@ -2,6 +2,7 @@ package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.custom.EelEntity;
+import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -80,7 +81,7 @@ public class EelMeleeAttackGoal extends MeleeAttackGoal {
                 double xOffset = Math.cos(radians) * pulseRadius;
                 double zOffset = Math.sin(radians) * pulseRadius;
 
-                serverWorld.spawnParticles(ParticleTypes.ELECTRIC_SPARK, centerX + xOffset, centerY, centerZ + zOffset, 1, 0, 0, 0, 0.1);
+                serverWorld.spawnParticles(ModParticles.ELECTRIC/*ParticleTypes.ELECTRIC_SPARK*/, centerX + xOffset, centerY, centerZ + zOffset, 1, 0, 0, 0, 0.1);
             }
         }
     }
