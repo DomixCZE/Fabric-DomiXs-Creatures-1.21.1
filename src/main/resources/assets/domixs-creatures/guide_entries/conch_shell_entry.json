@@ -1,0 +1,30 @@
+{
+  "entry_id": "domixs-creatures:coconut_entry",
+  "category": "items",
+  "title": "§lConch Shell",
+  "button_text": "§lConch Shell",
+  "pages": [
+    {
+      "text_content": [
+        "The Conch Shell can only be acquired by trading with hermit crabs.",
+        "",
+        "Playing the Conch Shell with §6§lright-click§r will give the player the Ocean's Blessing effect for 5 minutes."
+      ]
+    },
+    {
+      "text_content": [
+        "The Ocean's Blessing effect causes the hermit crabs daily trade limit to increase by 5."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:conch_shell",
+          "x": 30,
+          "y": 90,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

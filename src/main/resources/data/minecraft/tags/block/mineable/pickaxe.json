@@ -6,6 +6,7 @@
     "domixs-creatures:magnetite_ore",
     "domixs-creatures:deepslate_magnetite_ore",
     "domixs-creatures:negative_magnet_block",
-    "domixs-creatures:positive_magnet_block"
+    "domixs-creatures:positive_magnet_block",
+    "domixs-creatures:block_of_magnetite"
   ]
 }

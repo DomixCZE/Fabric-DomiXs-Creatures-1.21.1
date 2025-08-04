@@ -69,7 +69,8 @@ public class CheetahEntity extends AnimalEntity implements GeoEntity, Sleepy, Sn
         this.goalSelector.add(5, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ProtectBabiesGoal<>(this, CheetahEntity.class, 8.0));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, DeerEntity.class, true));
+        this.targetSelector.add(2, new RevengeGoal(this));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, DeerEntity.class, true));
     }
 
     @Override

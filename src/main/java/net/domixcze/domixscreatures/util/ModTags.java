@@ -96,6 +96,9 @@ public class ModTags {
         public static final TagKey<Item> ANTLERS =
                 createTag("antlers");
 
+        public static final TagKey<Item> TEETH =
+                createTag("teeth");
+
         public static final TagKey<Item> ALL_ITEMS =
                 createTag("all_items");
 

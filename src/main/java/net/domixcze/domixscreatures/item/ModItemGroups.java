@@ -122,6 +122,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.DEEPSLATE_MAGNETITE_ORE);
                         entries.add(ModItems.RAW_MAGNETITE);
                         entries.add(ModItems.MAGNETITE_INGOT);
+                        entries.add(ModBlocks.BLOCK_OF_MAGNETITE);
                         entries.add(ModBlocks.NEGATIVE_MAGNET_BLOCK);
                         entries.add(ModBlocks.POSITIVE_MAGNET_BLOCK);
                         entries.add(ModItems.MAGNET);

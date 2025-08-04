@@ -176,6 +176,7 @@
   "block.domixs-creatures.deepslate_magnetite_ore": "Hlubinná Magnetitová Ruda",
   "block.domixs-creatures.negative_magnet_block": "Blok Negativního Magnetu",
   "block.domixs-creatures.positive_magnet_block": "Blok Pozitivního Magnetu",
+  "block.domixs-creatures.block_of_magnetite": "Block Magnetitu",
 
   "block.domixs-creatures.spectral_log": "Spektrální Kmen",
   "block.domixs-creatures.stripped_spectral_log": "Oloupaný Spektrální Kmen",
@@ -253,6 +254,7 @@
   "advancements.domixs_creatures.salamander_armor.title": "Ohnivý Vzhled",
   "advancement.domixs-creatures.boars_bounty.title": "Kořist Divokého Prasete",
   "advancements.domixs_creatures.arapaima_armor.title": "Rybí Mód",
+  "advancement.domixs-creatures.conch_shell.title": "Sláva Kouzelné Lastuře",
 
   "advancement.domixs-creatures.root.description": "Užij si Mod :)",
   "advancement.domixs-creatures.my_ears.description": "Zapištěl na Tebe Spektrální Netopýr",
@@ -267,6 +269,7 @@
   "advancements.domixs_creatures.fin-tastic_fortune.description": "Sněz Zlatou Rybku",
   "advancement.domixs-creatures.boars_bounty.description": "Nech Divoké Prase Najít ti Lanýž",
   "advancements.domixs_creatures.arapaima_armor.description": "Staň se Jedním s Rybami",
+  "advancement.domixs-creatures.conch_shell.description": "Najdi Lasturu",
 
   "death.attack.bleeding": "%1$s vykrvácel",
   "death.attack.bleeding.player": "%1$s vykrvácel kvůli %2$s",

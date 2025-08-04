@@ -209,6 +209,7 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_GLASS_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PEARL_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLOCK_OF_MAGNETITE);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MAGNETITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_MAGNETITE_ORE);

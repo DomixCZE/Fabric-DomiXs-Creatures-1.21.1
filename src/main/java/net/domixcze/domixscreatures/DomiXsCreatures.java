@@ -14,11 +14,8 @@ import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.potion.ModPotions;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.structures.ModStructures;
-import net.domixcze.domixscreatures.util.ModEvents;
-import net.domixcze.domixscreatures.util.ModLootTableModifiers;
-import net.domixcze.domixscreatures.util.QuillDispenserBehavior;
+import net.domixcze.domixscreatures.util.*;
 import net.domixcze.domixscreatures.world.gen.ModEntityGeneration;
-import net.domixcze.domixscreatures.util.ModTrades;
 import net.domixcze.domixscreatures.world.gen.ModWorldGeneration;
 import net.domixcze.domixscreatures.world.tree.ModFoliagePlacerTypes;
 import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
@@ -29,11 +26,17 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.item.Item;
 import net.minecraft.potion.Potions;
+import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 public class DomiXsCreatures implements ModInitializer {
 	public static final String MOD_ID = "domixs-creatures";
@@ -164,6 +167,8 @@ public class DomiXsCreatures implements ModInitializer {
 		FuelRegistry.INSTANCE.add(ModBlocks.PALM_FENCE_GATE, 300);
 		FuelRegistry.INSTANCE.add(ModBlocks.PALM_STAIRS, 300);
 		FuelRegistry.INSTANCE.add(ModBlocks.PALM_SLAB, 150);
+
+		ModCompostables.register();
 
 		ModTrunkPlacerTypes.register();
 		ModFoliagePlacerTypes.register();

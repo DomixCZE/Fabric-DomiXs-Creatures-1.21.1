@@ -1,0 +1,37 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/boars_bounty",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:conch_shell"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.conch_shell.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.conch_shell.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "conch_shell": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:conch_shell"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "conch_shell"
+    ]
+  ]
+}

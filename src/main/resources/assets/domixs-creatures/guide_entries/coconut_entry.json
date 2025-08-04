@@ -1,0 +1,52 @@
+{
+  "entry_id": "domixs-creatures:coconut_entry",
+  "category": "items",
+  "title": "§lCoconut",
+  "button_text": "§lCoconut",
+  "pages": [
+    {
+      "text_content": [
+        "Coconuts can be found growing on palm trees in beach biomes. They can be knocked down with a projectile.",
+        "",
+        "",
+        "To split a coconut, simply §6§lright-click§r it with an axe. This will yield 2 Coconut Slices."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:coconut_block",
+          "x": 70,
+          "y": 85,
+          "width": 28,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "A Coconut Slice can be eaten, and it will remove one random effect from the player.",
+        "",
+        "",
+        "Once eaten, a Coconut Slice will turn into a Coconut Shell."
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:coconut_slice",
+          "x": 70,
+          "y": 75,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:coconut_shell",
+          "x": 50,
+          "y": 130,
+          "width": 28,
+          "height": 28
+        }
+      ]
+    }
+  ]
+}

@@ -178,6 +178,7 @@
   "block.domixs-creatures.deepslate_magnetite_ore": "Deepslate Magnetite Ore",
   "block.domixs-creatures.negative_magnet_block": "Negative Magnet Block",
   "block.domixs-creatures.positive_magnet_block": "Positive Magnet Block",
+  "block.domixs-creatures.block_of_magnetite": "Block of Magnetite",
 
   "block.domixs-creatures.spectral_log": "Spectral Log",
   "block.domixs-creatures.stripped_spectral_log": "Stripped Spectral Log",
@@ -255,6 +256,7 @@
   "advancements.domixs_creatures.salamander_armor.title": "Fiery Looks",
   "advancement.domixs-creatures.boars_bounty.title": "Boar's Bounty",
   "advancements.domixs_creatures.arapaima_armor.title": "Fish Mode",
+  "advancement.domixs-creatures.conch_shell.title": "All Hail The Magic Conch",
 
   "advancement.domixs-creatures.root.description": "Enjoy the Mod :)",
   "advancement.domixs-creatures.my_ears.description": "Get Screamed on by a Spectral Bat",
@@ -269,6 +271,7 @@
   "advancements.domixs_creatures.fin-tastic_fortune.description": "Eat a Goldfish",
   "advancement.domixs-creatures.boars_bounty.description": "Have a Boar Find You a Truffle",
   "advancements.domixs_creatures.arapaima_armor.description": "Become One With The Fish",
+  "advancement.domixs-creatures.conch_shell.description": "Find The Conch Shell",
 
   "death.attack.bleeding": "%1$s bled out.",
   "death.attack.bleeding.player": "%1$s bled out due to %2$s.",
@@ -307,6 +310,7 @@
 
   "tag.item.domixs-creatures.prevents_bleeding": "Prevents Bleeding",
   "tag.item.domixs-creatures.antlers": "Antlers",
+  "tag.item.domixs-creatures.teeth": "Teeth",
   "tag.item.domixs-creatures.all_items": "All Items",
   "tag.item.domixs-creatures.raw_meat": "Raw Meat",
   "tag.item.domixs-creatures.conductive_items": "Conductive Items",

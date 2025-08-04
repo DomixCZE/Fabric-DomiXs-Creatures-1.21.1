@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.block.entity;
 import net.domixcze.domixscreatures.block.custom.PositiveMagnetBlock;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.ModTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -35,13 +36,6 @@ import java.util.List;
 import java.util.Set;
 
 public class PositiveMagnetBlockEntity extends BlockEntity {
-
-    private static final Set<Item> IRON_ARMOR_ITEMS = new HashSet<>(Set.of(
-            Items.IRON_HELMET,
-            Items.IRON_CHESTPLATE,
-            Items.IRON_LEGGINGS,
-            Items.IRON_BOOTS
-    ));
 
     @Environment(EnvType.CLIENT)
     private SoundInstance activeMagnetSound;
@@ -174,14 +168,14 @@ public class PositiveMagnetBlockEntity extends BlockEntity {
     private static boolean isAffectedEntity(Entity entity) {
         if (entity instanceof LivingEntity living && isWearingIronArmor(living)) return true;
         if (entity instanceof ItemEntity itemEntity) {
-            return IRON_ARMOR_ITEMS.contains(itemEntity.getStack().getItem());
+            return itemEntity.getStack().isIn(ModTags.Items.MAGNETIC_ITEMS);
         }
         return false;
     }
 
     private static boolean isWearingIronArmor(LivingEntity entity) {
         for (ItemStack stack : entity.getArmorItems()) {
-            if (IRON_ARMOR_ITEMS.contains(stack.getItem())) return true;
+            if (stack.isIn(ModTags.Items.MAGNETIC_ITEMS)) return true;
         }
         return false;
     }

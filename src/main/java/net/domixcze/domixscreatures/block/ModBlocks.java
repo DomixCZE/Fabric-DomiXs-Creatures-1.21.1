@@ -111,6 +111,9 @@ public class ModBlocks {
     public static final Block MOLEHILL_BLOCK = registerBlock("molehill_block",
             new MolehillBlock(AbstractBlock.Settings.copy(Blocks.DIRT).nonOpaque()));
 
+    public static final Block COCONUT_BLOCK = registerBlock("coconut_block",
+            new CoconutBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
+
     public static final Block MAGNETITE_ORE = registerBlock("magnetite_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(0, 2),
                     AbstractBlock.Settings.create().strength(3f).requiresTool()));
@@ -121,11 +124,10 @@ public class ModBlocks {
     public static final Block POSITIVE_MAGNET_BLOCK = registerBlock("positive_magnet_block",
             new PositiveMagnetBlock(AbstractBlock.Settings.create().strength(3.0f).requiresTool()));
     public static final Block NEGATIVE_MAGNET_BLOCK = registerBlock("negative_magnet_block",
-            new NegativeMagnetBlock(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).strength(3.0f).requiresTool()));
+            new NegativeMagnetBlock(AbstractBlock.Settings.create().strength(3.0f).requiresTool()));
 
-    public static final Block COCONUT_BLOCK = registerBlock("coconut_block",
-            new CoconutBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
-
+    public static final Block BLOCK_OF_MAGNETITE = registerBlock("block_of_magnetite",
+            new Block(AbstractBlock.Settings.create().strength(2.5f).requiresTool().sounds(BlockSoundGroup.METAL)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

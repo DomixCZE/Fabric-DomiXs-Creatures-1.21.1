@@ -87,6 +87,7 @@ public class BoarEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         this.goalSelector.add(6, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ProtectBabiesGoal<>(this, BoarEntity.class, 8.0));
+        this.targetSelector.add(2, new RevengeGoal(this));
     }
 
     @Override
