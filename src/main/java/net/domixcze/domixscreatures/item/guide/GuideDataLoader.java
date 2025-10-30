@@ -91,14 +91,14 @@ public class GuideDataLoader implements IdentifiableResourceReloadListener {
                     }
 
                     LightweightMenuEntry lightweightEntry = new LightweightMenuEntry(
-                            Text.literal(json.button_text),
-                            Text.literal(json.title),
+                            json.button_text,
+                            json.title,
                             id,
                             category
                     );
 
                     List<List<LightweightMenuEntry>> categoryPages = LOADED_MENU_ENTRIES.get(category);
-                    if (categoryPages.isEmpty() || categoryPages.getFirst().size() >= 8) {
+                    if (categoryPages.isEmpty() || categoryPages.getLast().size() >= 8) {
                         categoryPages.add(new ArrayList<>());
                     }
                     categoryPages.getLast().add(lightweightEntry);
@@ -142,7 +142,7 @@ public class GuideDataLoader implements IdentifiableResourceReloadListener {
                 List<Text> textContent = new ArrayList<>();
                 if (pageJson.text_content != null) {
                     for (String textLine : pageJson.text_content) {
-                        textContent.add(Text.literal(textLine));
+                        textContent.add(Text.translatable(textLine));
                     }
                 }
 

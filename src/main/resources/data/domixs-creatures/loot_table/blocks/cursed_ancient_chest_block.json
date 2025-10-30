@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:ancient_chest_block",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "domixs-creatures:cursed_ancient_chest_block",
+              "properties": {
+                "cursed": "false"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

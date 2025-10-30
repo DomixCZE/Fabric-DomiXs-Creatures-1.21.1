@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "shape=straight_ns": { "model": "domixs-creatures:block/track_straight", "y": 90 },
+    "shape=straight_ew": { "model": "domixs-creatures:block/track_straight" },
+
+    "shape=curve_ne": { "model": "domixs-creatures:block/track_curve" },
+    "shape=curve_nw": { "model": "domixs-creatures:block/track_curve", "y": 270 },
+    "shape=curve_se": { "model": "domixs-creatures:block/track_curve", "y": 90 },
+    "shape=curve_sw": { "model": "domixs-creatures:block/track_curve", "y": 180 },
+
+    "shape=t_north": { "model": "domixs-creatures:block/track_t" },
+    "shape=t_east":  { "model": "domixs-creatures:block/track_t", "y": 90 },
+    "shape=t_south": { "model": "domixs-creatures:block/track_t", "y": 180 },
+    "shape=t_west":  { "model": "domixs-creatures:block/track_t", "y": 270 },
+
+    "shape=cross": { "model": "domixs-creatures:block/track_cross" }
+  }
+}

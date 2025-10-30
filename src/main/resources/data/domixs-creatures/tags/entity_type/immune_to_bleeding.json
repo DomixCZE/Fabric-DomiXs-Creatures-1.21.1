@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:blaze",
+    "minecraft:breeze",
+    "minecraft:allay",
+    "minecraft:vex",
+    "minecraft:skeleton_horse",
+    "minecraft:skeleton",
+    "minecraft:stray",
+    "minecraft:bogged",
+    "minecraft:wither_skeleton",
+    "minecraft:shulker",
+    "minecraft:breeze",
+    "minecraft:slime",
+    "minecraft:snow_golem",
+    "domixs-creatures:caterpillar",
+    "domixs-creatures:butterfly",
+    "domixs-creatures:mud_golem",
+    "domixs-creatures:vine",
+    "domixs-creatures:ancient_skeleton"
+  ]
+}

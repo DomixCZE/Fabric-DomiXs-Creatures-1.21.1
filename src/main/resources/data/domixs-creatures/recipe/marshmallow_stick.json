@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "M": {
+      "item": "domixs-creatures:marshmallow"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:marshmallow_stick"
+  }
+}

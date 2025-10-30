@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=bottom": { "model": "domixs-creatures:block/red_net_block_bottom" },
+    "half=top": { "model": "domixs-creatures:block/red_net_block_top" }
+  }
+}

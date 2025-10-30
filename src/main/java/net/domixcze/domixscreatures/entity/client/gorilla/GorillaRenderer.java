@@ -29,24 +29,24 @@ public class GorillaRenderer extends GeoEntityRenderer<GorillaEntity> {
     }
 
     @Override
-    public void renderRecursively(MatrixStack matrices, GorillaEntity entity, GeoBone bone, RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight,
-                                  int packedOverlay, int colour) {
+    public void renderRecursively(MatrixStack matrices, GorillaEntity entity, GeoBone bone, RenderLayer renderType,
+                                  VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender,
+                                  float partialTick, int packedLight, int packedOverlay, int colour) {
 
         if (bone.getName().equals("right_arm") && entity.isEating()) {
             matrices.push();
 
-            matrices.translate(-0.1D, 0.05D, -0.5D); //x = left/right y = forward/back z = up/down
+            this.getGeoModel().getBone("right_arm").ifPresent(arm -> {
+                matrices.translate(arm.getPivotX() / 16f, arm.getPivotY() / 16f, arm.getPivotZ() / 16f);
+                if (arm.getRotX() != 0 || arm.getRotY() != 0 || arm.getRotZ() != 0) {
+                    matrices.multiply(new Quaternionf().rotationXYZ(arm.getRotX(), arm.getRotY(), arm.getRotZ()));
+                }
+            });
+
+            matrices.translate(-0.2D, -1.1D, -0.2D);
             matrices.multiply(new Quaternionf().rotationY((float) Math.toRadians(90)));
-            matrices.multiply(new Quaternionf().rotationZ((float) Math.toRadians(-60)));
-            matrices.multiply(new Quaternionf().rotationX((float) Math.toRadians(30)));
-
-            float bobbing = MathHelper.sin(entity.age * 0.26f) * -0.003f;
-            matrices.translate(0.0D, bobbing, 0.0D);
-            matrices.scale(1.0f, 1.0f, 1.0f);
-
-            MinecraftClient itemRenderer = MinecraftClient.getInstance();
-
-            itemRenderer.getItemRenderer().renderItem(
+            matrices.multiply(new Quaternionf().rotationZ((float) Math.toRadians(-120)));
+            MinecraftClient.getInstance().getItemRenderer().renderItem(
                     entity,
                     new ItemStack(ModItems.BANANA),
                     ModelTransformationMode.THIRD_PERSON_RIGHT_HAND,
@@ -56,13 +56,13 @@ public class GorillaRenderer extends GeoEntityRenderer<GorillaEntity> {
                     entity.getWorld(),
                     packedLight,
                     packedOverlay,
-                    entity.getRandom().nextInt()
+                    entity.getId()
             );
 
             matrices.pop();
         }
 
-        super.renderRecursively(matrices, entity, bone, renderType, bufferSource, buffer, isReRender, partialTick,
-                packedLight, packedOverlay, colour);
+        super.renderRecursively(matrices, entity, bone, renderType, bufferSource, buffer,
+                isReRender, partialTick, packedLight, packedOverlay, colour);
     }
 }

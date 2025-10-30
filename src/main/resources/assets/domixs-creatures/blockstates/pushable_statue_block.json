@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "powered=false": { "model": "domixs-creatures:block/pushable_statue_block" },
+    "powered=true":  { "model": "domixs-creatures:block/pushable_statue_block_powered" }
+  }
+}

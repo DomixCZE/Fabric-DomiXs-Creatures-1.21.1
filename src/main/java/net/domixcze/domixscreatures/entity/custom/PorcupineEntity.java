@@ -8,6 +8,7 @@ import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineVariants;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -190,19 +191,34 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
         this.snowMeltTimer = nbt.getInt("SnowMeltTimer");
     }
 
-    public boolean isInSnowyBiome() {
-        BlockPos pos = this.getBlockPos();
-        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
-        Biome biome = biomeEntry.value();
-        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-    }
-
+    @Override
     public boolean hasSnowLayer() {
         return this.dataTracker.get(HAS_SNOW_LAYER);
     }
 
+    @Override
     public void setHasSnowLayer(boolean hasSnow) {
         this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
+    }
+
+    @Override
+    public int getSnowTicks() {
+        return this.snowTicks;
+    }
+
+    @Override
+    public void setSnowTicks(int ticks) {
+        this.snowTicks = ticks;
+    }
+
+    @Override
+    public int getSnowMeltTimer() {
+        return this.snowMeltTimer;
+    }
+
+    @Override
+    public void setSnowMeltTimer(int timer) {
+        this.snowMeltTimer = timer;
     }
 
     public PorcupineVariants getVariant() {
@@ -217,24 +233,23 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemStack.isIn(ItemTags.SHOVELS)) {
-            if (this.hasSnowLayer()) {
+        if (itemStack.isOf(Items.BRUSH) && this.hasSnowLayer()) {
+            if (!this.getWorld().isClient) {
                 this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
+                this.snowMeltTimer = 0;
 
-                if (!player.isCreative()) {
-                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
-                }
-
-                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
-
-                if (!this.getWorld().isClient) {
-                    int count = 3 + this.getWorld().random.nextInt(2);
-                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
-                }
-
-                return ActionResult.SUCCESS;
+                int count = 3 + this.getWorld().random.nextInt(2);
+                this.dropStack(new ItemStack(Items.SNOWBALL, count));
             }
+
+            SnowLayerUtil.spawnSnowParticles(this);
+
+            this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+            if (!player.isCreative()) {
+                itemStack.damage(1, player, EquipmentSlot.MAINHAND);
+            }
+
+            return ActionResult.SUCCESS;
         }
         return super.interactMob(player, hand);
     }
@@ -247,43 +262,11 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
         return this.getType().getDimensions();
     }
 
-    public boolean isBeingSnowedOn() {
-        BlockPos blockPos = this.getBlockPos();
-        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
-    }
-
-    public boolean hasSnow(BlockPos pos) {
-        if (!this.getWorld().isRaining()) {
-            return false;
-        } else if (!this.getWorld().isSkyVisible(pos)) {
-            return false;
-        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
-            return false;
-        } else {
-            Biome biome = this.getWorld().getBiome(pos).value();
-            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-        }
-    }
-
     @Override
     public void tick() {
         super.tick();
 
-        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
-            snowTicks++;
-            if (snowTicks >= 600) {
-                this.setHasSnowLayer(true);
-                snowTicks = 0;
-            }
-        }
-
-        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
-            snowMeltTimer++;
-            if (snowMeltTimer >= 200) {
-                this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
-            }
-        }
+        SnowLayerUtil.handleSnowLayerTick(this, this);
 
         if (!this.getWorld().isClient && !this.isBaby()) {
             if (getQuillsAvailable() < MAX_QUILL_CLUSTERS) {

@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:taiga",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:old_growth_spruce_taiga",
+    {
+      "id": "biomesoplenty:coniferous_forest",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:dacite_ridges",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:black_forest",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:coniferous_covert",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:fir_forest",
+      "required": false
+    }
+  ]
+}

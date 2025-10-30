@@ -4,12 +4,15 @@ import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.*;
 import net.domixcze.domixscreatures.entity.client.moose.MooseAntlerSize;
 import net.domixcze.domixscreatures.entity.client.moose.MooseVariants;
+import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -22,6 +25,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -92,13 +96,20 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     }
 
     @Override
+    public void takeKnockback(double strength, double x, double z) {
+        super.takeKnockback(strength * 0.2, x, z);
+    }
+
+    @Override
     public boolean canBeLeashed() {
         return !this.isSleeping();
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        AnimationController<MooseEntity> landController = new AnimationController<>(this, "land_controller", 5, this::landPredicate);
+        landController.triggerableAnim("attack", RawAnimation.begin().then("animation.moose.attack", Animation.LoopType.PLAY_ONCE));
+        controllers.add(landController);
         controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
         controllers.add(new AnimationController<>(this, "sleep_controller", 5, this::sleepPredicate));
     }
@@ -265,80 +276,62 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     public void tick() {
         super.tick();
 
-        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
-            snowTicks++;
-            if (snowTicks >= 600) {
-                this.setHasSnowLayer(true);
-                snowTicks = 0;
-            }
-        }
-
-        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
-            snowMeltTimer++;
-            if (snowMeltTimer >= 200) {
-                this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
-            }
-        }
+        SnowLayerUtil.handleSnowLayerTick(this, this);
     }
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemStack.isIn(ItemTags.SHOVELS)) {
-            if (this.hasSnowLayer()) {
+        if (itemStack.isOf(Items.BRUSH) && this.hasSnowLayer()) {
+            if (!this.getWorld().isClient) {
                 this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
+                this.snowMeltTimer = 0;
 
-                if (!player.isCreative()) {
-                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
-                }
-
-                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
-
-                if (!this.getWorld().isClient) {
-                    int count = 5 + this.getWorld().random.nextInt(4);
-                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
-                }
-
-                return ActionResult.SUCCESS;
+                int count = 3 + this.getWorld().random.nextInt(2);
+                this.dropStack(new ItemStack(Items.SNOWBALL, count));
             }
+
+            SnowLayerUtil.spawnSnowParticles(this);
+
+            this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+            if (!player.isCreative()) {
+                itemStack.damage(1, player, EquipmentSlot.MAINHAND);
+            }
+
+            return ActionResult.SUCCESS;
         }
         return super.interactMob(player, hand);
     }
 
-    public boolean isBeingSnowedOn() {
-        BlockPos blockPos = this.getBlockPos();
-        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
-    }
-
-    public boolean hasSnow(BlockPos pos) {
-        if (!this.getWorld().isRaining()) {
-            return false;
-        } else if (!this.getWorld().isSkyVisible(pos)) {
-            return false;
-        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
-            return false;
-        } else {
-            Biome biome = this.getWorld().getBiome(pos).value();
-            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-        }
-    }
-
-    public boolean isInSnowyBiome() {
-        BlockPos pos = this.getBlockPos();
-        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
-        Biome biome = biomeEntry.value();
-        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-    }
-
+    @Override
     public boolean hasSnowLayer() {
         return this.dataTracker.get(HAS_SNOW_LAYER);
     }
 
+    @Override
     public void setHasSnowLayer(boolean hasSnow) {
         this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
+    }
+
+    @Override
+    public int getSnowTicks() {
+        return this.snowTicks;
+    }
+
+    @Override
+    public void setSnowTicks(int ticks) {
+        this.snowTicks = ticks;
+    }
+
+    @Override
+    public int getSnowMeltTimer() {
+        return this.snowMeltTimer;
+    }
+
+    @Override
+    public void setSnowMeltTimer(int timer) {
+        this.snowMeltTimer = timer;
     }
 
     @Override
@@ -388,6 +381,16 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
 
     public void setAntlerSize(MooseAntlerSize size) {
         this.dataTracker.set(ANTLER_SIZE, size.ordinal());
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.MOOSE_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.MOOSE_DEATH;
     }
 
     @Override

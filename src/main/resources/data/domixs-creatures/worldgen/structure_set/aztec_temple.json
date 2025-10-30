@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "domixs-creatures:aztec_temple",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1379411435,
+    "spacing": 20,
+    "separation": 8
+  }
+}

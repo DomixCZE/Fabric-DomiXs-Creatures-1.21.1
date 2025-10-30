@@ -178,7 +178,9 @@ public class PiranhaEntity extends SchoolingFishEntity implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 3, this::predicate));
+        AnimationController<PiranhaEntity> Controller = new AnimationController<>(this, "controller", 3, this::predicate);
+        Controller.triggerableAnim("attack", RawAnimation.begin().then("animation.piranha.attack", Animation.LoopType.PLAY_ONCE));
+        controllers.add(Controller);
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {

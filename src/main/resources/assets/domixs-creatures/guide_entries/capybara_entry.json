@@ -1,0 +1,28 @@
+{
+  "entry_id": "domixs-creatures:capybara_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.capybara",
+  "button_text": "guide.title.domixs-creatures.capybara",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.capybara_page1"
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/capybara_icon.png",
+          "x": 10,
+          "y": 90,
+          "width": 96,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.capybara_page2"
+      ]
+    }
+  ]
+}

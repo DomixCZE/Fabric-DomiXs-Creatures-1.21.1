@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": [
-              "domixs-creatures:all_items"
-            ]
+            "tag": "domixs-creatures:all_items"
           }
         ]
       },

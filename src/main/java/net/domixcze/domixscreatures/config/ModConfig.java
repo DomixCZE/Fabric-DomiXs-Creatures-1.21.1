@@ -21,11 +21,13 @@ public class ModConfig {
     public boolean enableSpectralBatScreechAttack = true;
     public boolean enableCaterpillarTransformation = true;
     public boolean enablePorcupineQuillAttack = true;
-
     public boolean enableCoconutPositiveEffectRemoval = true;
+
+    public boolean enableBeaverLogStripping = true;
+    public boolean enableRaccoonStealing = true;
     public boolean enableCoconutNegativeEffectRemoval = true;
 
-    public boolean enableCoconutBongSound = false;
+    public boolean enableCoconutBonkSound = false;
 
     public int hermitCrabDailyTradeLimit = 20;
 

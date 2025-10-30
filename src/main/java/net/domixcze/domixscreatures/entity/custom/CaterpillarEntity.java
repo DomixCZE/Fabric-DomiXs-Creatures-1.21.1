@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.entity.custom;
 import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.caterpillar.CaterpillarVariants;
+import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -13,7 +14,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
@@ -85,8 +85,8 @@ public class CaterpillarEntity extends AnimalEntity implements GeoEntity {
 
     private void transformIntoButterfly() {
         if (!this.getWorld().isClient && this.getWorld() instanceof ServerWorld serverWorld) {
-            int amount = this.random.nextInt(2);
-            this.dropStack(new ItemStack(net.minecraft.item.Items.STRING, amount));
+            int amount = this.random.nextInt(3);
+            this.dropStack(new ItemStack(ModItems.SILK, amount));
 
             ButterflyEntity butterfly = new ButterflyEntity(ModEntities.BUTTERFLY, this.getWorld());
             butterfly.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());

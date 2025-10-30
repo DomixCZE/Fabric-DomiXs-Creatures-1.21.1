@@ -2,14 +2,13 @@ package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.entity.custom.TigerEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.passive.TameableEntity;
 
-public class TigerMeleeAttackGoal extends MeleeAttackGoal {
+public class TigerMeleeAttackGoal extends ModMeleeAttackGoal<TigerEntity> {
     private final TigerEntity tiger;
 
     public TigerMeleeAttackGoal(TigerEntity tiger, double speed, boolean pauseWhenMobIdle) {
-        super(tiger, speed, pauseWhenMobIdle);
+        super(tiger, speed, pauseWhenMobIdle, 10, "land_controller", null);
         this.tiger = tiger;
     }
 

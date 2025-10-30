@@ -215,6 +215,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         }
     }
 
+
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
@@ -313,7 +314,9 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        AnimationController<HippoEntity> landController = new AnimationController<>(this, "land_controller", 5, this::landPredicate);
+        landController.triggerableAnim("attack", RawAnimation.begin().then("animation.hippo.attack", Animation.LoopType.PLAY_ONCE));
+        controllers.add(landController);
         controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
         controllers.add(new AnimationController<>(this, "sleep_controller", 5, this::sleepPredicate));
     }

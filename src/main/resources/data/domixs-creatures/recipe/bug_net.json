@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "STS",
-    "STS",
+    "NTN",
+    "NTN",
     " T "
   ],
   "key": {
-    "S": {
-      "item": "minecraft:string"
+    "N": {
+      "item": "domixs-creatures:net"
     },
     "T": {
       "item": "minecraft:stick"

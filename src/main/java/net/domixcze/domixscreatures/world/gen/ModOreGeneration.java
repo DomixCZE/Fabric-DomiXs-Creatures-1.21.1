@@ -9,5 +9,11 @@ public class ModOreGeneration {
     public static void generateOres() {
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES,
                 ModPlacedFeatures.MAGNETITE_ORE_KEY);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.JADE_ORE_KEY);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.LIMESTONE_PLACED_KEY);
     }
 }

@@ -2,28 +2,33 @@ package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.entity.custom.PiranhaEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
 import java.util.List;
 
-public class PiranhaMeleeAttackGoal extends MeleeAttackGoal {
+public class PiranhaMeleeAttackGoal extends ModMeleeAttackGoal<PiranhaEntity> {
     private final PiranhaEntity piranha;
 
     public PiranhaMeleeAttackGoal(PiranhaEntity piranha, double speed, boolean pauseWhenMobIdle) {
-        super(piranha, speed, pauseWhenMobIdle);
+        super(piranha, speed, pauseWhenMobIdle, 10, "controller", null);
         this.piranha = piranha;
     }
 
     @Override
     public boolean canStart() {
         LivingEntity target = piranha.getTarget();
-        return target != null && target.isAlive() && target.isTouchingWater();
+        if (target != null && target.isAlive() && target.isTouchingWater() && piranha.isTouchingWater()) {
+            return super.canStart();
+        }
+        return false;
     }
 
     @Override
     public boolean shouldContinue() {
         LivingEntity target = piranha.getTarget();
-        return target != null && target.isAlive() && target.isTouchingWater() && super.shouldContinue();
+        if (target != null && target.isAlive() && target.isTouchingWater() && piranha.isTouchingWater()) {
+            return super.shouldContinue();
+        }
+        return false;
     }
 
     @Override

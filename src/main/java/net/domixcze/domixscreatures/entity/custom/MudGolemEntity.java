@@ -168,14 +168,14 @@ public class MudGolemEntity extends TameableEntity implements GeoEntity {
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getStackInHand(hand);
+        ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemstack.getItem() == Items.WHEAT_SEEDS && !isTamed()) {
+        if (itemStack.getItem() == Items.WHEAT_SEEDS && !isTamed()) {
             if (this.getWorld().isClient()) {
                 return ActionResult.CONSUME;
             } else {
                 if (!player.getAbilities().creativeMode) {
-                    itemstack.decrement(1);
+                    itemStack.decrement(1);
                 }
 
                 if (this.random.nextInt(3) == 0) {
@@ -190,7 +190,7 @@ public class MudGolemEntity extends TameableEntity implements GeoEntity {
         }
 
         if (isTamed() && !this.getWorld().isClient()) {
-            if (itemstack.getItem() == Items.STICK && hand == Hand.MAIN_HAND) {
+            if (itemStack.getItem() == Items.STICK && hand == Hand.MAIN_HAND) {
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
@@ -208,13 +208,13 @@ public class MudGolemEntity extends TameableEntity implements GeoEntity {
             }
         }
 
-        if (itemstack.isIn(ItemTags.SHOVELS)) {
+        if (itemStack.isIn(ItemTags.SHOVELS)) {
             if (this.hasSnowLayer()) {
                 this.setHasSnowLayer(false);
                 snowMeltTimer = 0;
 
                 if (!player.isCreative()) {
-                    itemstack.damage(1, player, EquipmentSlot.MAINHAND);
+                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
                 }
 
                 this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);

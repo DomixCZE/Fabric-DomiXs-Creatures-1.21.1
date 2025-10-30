@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
@@ -9,6 +10,7 @@ import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.mixin.content.registry.AxeItemAccessor;
 import net.minecraft.block.Block;
@@ -36,10 +38,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -47,9 +48,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -57,9 +56,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.EnumSet;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowLayerable {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
@@ -172,24 +169,23 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemStack.isIn(ItemTags.SHOVELS)) {
-            if (this.hasSnowLayer()) {
+        if (itemStack.isOf(Items.BRUSH) && this.hasSnowLayer()) {
+            if (!this.getWorld().isClient) {
                 this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
+                this.snowMeltTimer = 0;
 
-                if (!player.isCreative()) {
-                    itemStack.damage(1, player, EquipmentSlot.MAINHAND);
-                }
-
-                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
-
-                if (!this.getWorld().isClient) {
-                    int count = 3 + this.getWorld().random.nextInt(2);
-                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
-                }
-
-                return ActionResult.SUCCESS;
+                int count = 3 + this.getWorld().random.nextInt(2);
+                this.dropStack(new ItemStack(Items.SNOWBALL, count));
             }
+
+            SnowLayerUtil.spawnSnowParticles(this);
+
+            this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+            if (!player.isCreative()) {
+                itemStack.damage(1, player, EquipmentSlot.MAINHAND);
+            }
+
+            return ActionResult.SUCCESS;
         }
         return super.interactMob(player, hand);
     }
@@ -297,54 +293,37 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
             this.moveControl = new BeaverMoveControl();
         }
 
-        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
-            snowTicks++;
-            if (snowTicks >= 600) {
-                this.setHasSnowLayer(true);
-                snowTicks = 0;
-            }
-        }
-
-        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
-            snowMeltTimer++;
-            if (snowMeltTimer >= 200) {
-                this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
-            }
-        }
+        SnowLayerUtil.handleSnowLayerTick(this, this);
     }
 
-    public boolean isBeingSnowedOn() {
-        BlockPos blockPos = this.getBlockPos();
-        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
-    }
-
-    public boolean hasSnow(BlockPos pos) {
-        if (!this.getWorld().isRaining()) {
-            return false;
-        } else if (!this.getWorld().isSkyVisible(pos)) {
-            return false;
-        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
-            return false;
-        } else {
-            Biome biome = this.getWorld().getBiome(pos).value();
-            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-        }
-    }
-
-    public boolean isInSnowyBiome() {
-        BlockPos pos = this.getBlockPos();
-        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
-        Biome biome = biomeEntry.value();
-        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-    }
-
+    @Override
     public boolean hasSnowLayer() {
         return this.dataTracker.get(HAS_SNOW_LAYER);
     }
 
+    @Override
     public void setHasSnowLayer(boolean hasSnow) {
         this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
+    }
+
+    @Override
+    public int getSnowTicks() {
+        return this.snowTicks;
+    }
+
+    @Override
+    public void setSnowTicks(int ticks) {
+        this.snowTicks = ticks;
+    }
+
+    @Override
+    public int getSnowMeltTimer() {
+        return this.snowMeltTimer;
+    }
+
+    @Override
+    public void setSnowMeltTimer(int timer) {
+        this.snowMeltTimer = timer;
     }
 
     public void setHomePos(BlockPos pos) {
@@ -382,6 +361,22 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         }
     }
 
+    public static final Map<Block, Block> STRIPPED_LOGS = new HashMap<>();
+
+    static {
+        STRIPPED_LOGS.put(Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
+        STRIPPED_LOGS.put(Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
+        STRIPPED_LOGS.put(Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
+        STRIPPED_LOGS.put(Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
+        STRIPPED_LOGS.put(Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
+        STRIPPED_LOGS.put(Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
+        STRIPPED_LOGS.put(Blocks.MANGROVE_LOG, Blocks.STRIPPED_MANGROVE_LOG);
+        STRIPPED_LOGS.put(Blocks.CHERRY_LOG, Blocks.STRIPPED_CHERRY_LOG);
+
+        STRIPPED_LOGS.put(ModBlocks.SPECTRAL_LOG, ModBlocks.STRIPPED_SPECTRAL_LOG);
+        STRIPPED_LOGS.put(ModBlocks.PALM_LOG, ModBlocks.STRIPPED_PALM_LOG);
+    }
+
     public static class StripLogGoal extends Goal {
         private final BeaverEntity beaver;
         private final double speed;
@@ -400,7 +395,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
 
         @Override
         public boolean canStart() {
-            if (!this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)){
+            if (!this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) || !ModConfig.INSTANCE.enableBeaverLogStripping) {
                 return false;
             }
 
@@ -471,6 +466,15 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
 
                 world.setBlockState(logPos, newState);
 
+                world.playSound(
+                        null,
+                        logPos,
+                        SoundEvents.ITEM_AXE_STRIP,
+                        SoundCategory.BLOCKS,
+                        1.0F,
+                        1.0F
+                );
+
                 if (random.nextDouble() < 0.2) { //20%
                     Block.dropStack(world, logPos, new ItemStack(ModItems.SAWDUST));
                 }
@@ -479,13 +483,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
         }
 
         private Block getStrippedLog(Block log) {
-            if (log == Blocks.OAK_LOG) return Blocks.STRIPPED_OAK_LOG;
-            if (log == Blocks.SPRUCE_LOG) return Blocks.STRIPPED_SPRUCE_LOG;
-            if (log == Blocks.BIRCH_LOG) return Blocks.STRIPPED_BIRCH_LOG;
-            if (log == Blocks.JUNGLE_LOG) return Blocks.STRIPPED_JUNGLE_LOG;
-            if (log == Blocks.ACACIA_LOG) return Blocks.STRIPPED_ACACIA_LOG;
-            if (log == Blocks.DARK_OAK_LOG) return Blocks.STRIPPED_DARK_OAK_LOG;
-            return null;
+            return STRIPPED_LOGS.get(log);
         }
     }
 

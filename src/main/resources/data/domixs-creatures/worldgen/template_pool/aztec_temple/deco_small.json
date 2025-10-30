@@ -1,0 +1,24 @@
+{
+  "name": "domixs-creatures:aztec_temple/deco_small",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/deco/chest",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/deco/pots",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

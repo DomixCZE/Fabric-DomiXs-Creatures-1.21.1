@@ -18,6 +18,8 @@ import java.util.List;
 public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PALM_PLACED_KEY = registerKey("palm_placed");
     public static final RegistryKey<PlacedFeature> MAGNETITE_ORE_KEY = registerKey("magnetite_ore_placed");
+    public static final RegistryKey<PlacedFeature> JADE_ORE_KEY = registerKey("jade_ore_placed");
+    public static final RegistryKey<PlacedFeature> LIMESTONE_PLACED_KEY = registerKey("limestone_placed");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -36,6 +38,16 @@ public class ModPlacedFeatures {
                 ModOrePlacement.modifiersWithCount(7,
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-50), YOffset.fixed(50))
                         ));
+
+        register(context, JADE_ORE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.JADE_ORE_KEY),
+                ModOrePlacement.modifiersWithCount(5,
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-30), YOffset.fixed(30))
+                ));
+
+        register(context, LIMESTONE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.LIMESTONE_KEY),
+                ModOrePlacement.modifiersWithCount(4,
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(50))
+                ));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

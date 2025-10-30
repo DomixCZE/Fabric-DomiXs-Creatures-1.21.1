@@ -1,17 +1,22 @@
 {
   "entry_id": "domixs-creatures:arapaima_entry",
   "category": "entities",
-  "title": "§lArapaima",
-  "button_text": "§lArapaima",
+  "title": "guide.title.domixs-creatures.arapaima",
+  "button_text": "guide.title.domixs-creatures.arapaima",
   "pages": [
     {
       "text_content": [
-        "The Arapaima can be found in tropical biomes like the Mangrove Swamp or the Jungle."
+        "guide.entry.domixs-creatures.arapaima_page1"
       ],
       "images": [
         {
-          "type": "texture",
-          "id": "domixs-creatures:textures/gui/arapaima_icon.png",
+          "type": "cycling_texture",
+          "ids": [
+            "domixs-creatures:textures/gui/arapaima_icon_1.png",
+            "domixs-creatures:textures/gui/arapaima_icon_2.png",
+            "domixs-creatures:textures/gui/arapaima_icon_3.png"
+          ],
+          "frame_duration_ticks": 40,
           "x": 10,
           "y": 100,
           "width": 96,
@@ -21,7 +26,7 @@
     },
     {
       "text_content": [
-        "Over time the arapaima can lose some of its scales which can be used to make the arapaima armor."
+        "guide.entry.domixs-creatures.arapaima_page2"
       ],
       "images": [
         {

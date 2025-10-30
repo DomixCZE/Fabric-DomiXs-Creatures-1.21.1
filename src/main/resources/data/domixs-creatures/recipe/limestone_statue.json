@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "JLJ"
+  ],
+  "key": {
+    "J": {
+      "item": "domixs-creatures:jade"
+    },
+    "L": {
+      "item": "domixs-creatures:limestone_bricks"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:limestone_statue"
+  }
+}

@@ -15,6 +15,7 @@ public class ModParticles {
     public static final SimpleParticleType BLOOD_PUDDLE = register("blood_puddle");
     public static final SimpleParticleType FALLING_BLOOD = register("falling_blood");
     public static final SimpleParticleType ELECTRIC = register("electric");
+    public static final SimpleParticleType UNICORN_DUST = register("unicorn_dust");
 
     public static final SimpleParticleType NEGATIVE_MAGNET = register("negative_magnet");
     public static final SimpleParticleType POSITIVE_MAGNET = register("positive_magnet");

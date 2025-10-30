@@ -22,6 +22,22 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.create(NegativeMagnetBlockEntity::new,
                                     ModBlocks.NEGATIVE_MAGNET_BLOCK).build());
 
+    public static final BlockEntityType<FishTrapBlockEntity> FISH_TRAP_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "fish_trap_block_entity"),
+                    BlockEntityType.Builder.create(FishTrapBlockEntity::new,
+                            ModBlocks.FISH_TRAP_BLOCK).build());
+
+    public static final BlockEntityType<AncientChestBlockEntity> ANCIENT_CHEST_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "ancient_chest_block_entity"),
+                    BlockEntityType.Builder.create(AncientChestBlockEntity::new,
+                            ModBlocks.ANCIENT_CHEST_BLOCK).build());
+
+    public static final BlockEntityType<CursedAncientChestBlockEntity> CURSED_ANCIENT_CHEST_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "cursed_ancient_chest_block_entity"),
+                    BlockEntityType.Builder.create(CursedAncientChestBlockEntity::new,
+                            ModBlocks.CURSED_ANCIENT_CHEST_BLOCK).build());
+
+
     public static void registerBlockEntities() {
         DomiXsCreatures.LOGGER.info("Registering Block Entities for " + DomiXsCreatures.MOD_ID);
     }

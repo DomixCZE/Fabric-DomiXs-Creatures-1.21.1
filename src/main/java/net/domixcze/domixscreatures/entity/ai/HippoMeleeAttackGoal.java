@@ -1,13 +1,12 @@
 package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.entity.custom.HippoEntity;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
-public class HippoMeleeAttackGoal extends MeleeAttackGoal {
+public class HippoMeleeAttackGoal extends ModMeleeAttackGoal<HippoEntity> {
     private final HippoEntity hippo;
 
     public HippoMeleeAttackGoal(HippoEntity hippo, double speed, boolean pauseWhenMobIdle) {
-        super(hippo, speed, pauseWhenMobIdle);
+        super(hippo, speed, pauseWhenMobIdle, 10, "land_controller", null);
         this.hippo = hippo;
     }
 

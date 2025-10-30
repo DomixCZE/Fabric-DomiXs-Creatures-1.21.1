@@ -1,0 +1,92 @@
+{
+  "entry_id": "domixs-creatures:net_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.net",
+  "button_text": "guide.title.domixs-creatures.net",
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.net_page1"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 70,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_icon.png",
+          "x": 1,
+          "y": 96,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "type": "item",
+          "id": "minecraft:string",
+          "x": 5,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:string",
+          "x": 45,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:string",
+          "x": 25,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:string",
+          "x": 5,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:string",
+          "x": 45,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.net_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "domixs-creatures:bug_net",
+            "domixs-creatures:white_net_block"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 30,
+          "y": 100,
+          "width": 48,
+          "height": 48
+        }
+      ]
+    }
+  ]
+}

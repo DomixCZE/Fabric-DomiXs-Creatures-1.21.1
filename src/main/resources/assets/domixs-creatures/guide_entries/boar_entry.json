@@ -1,20 +1,20 @@
 {
   "entry_id": "domixs-creatures:boar_entry",
   "category": "entities",
-  "title": "§lBoar",
-  "button_text": "§lBoar",
+  "title": "guide.title.domixs-creatures.boar",
+  "button_text": "guide.title.domixs-creatures.boar",
   "pages": [
     {
       "text_content": [
-        "The Boar can be found in Taiga biomes.",
-        "A Boar will only attack if it's babies are nearby."
+        "guide.entry.domixs-creatures.boar_page1_line1",
+        "guide.entry.domixs-creatures.boar_page1_line2"
       ],
       "images": [
         {
           "type": "texture",
           "id": "domixs-creatures:textures/gui/boar_icon.png",
           "x": 20,
-          "y": 100,
+          "y": 110,
           "width": 48,
           "height": 48
         }
@@ -22,24 +22,25 @@
     },
     {
       "text_content": [
-        "Occasionally, you can see Boars digging in Taiga Biomes. There's a 30% chance they will dig up an item, and a 50% chance that item will be a Truffle"
+        "guide.entry.domixs-creatures.boar_page2"
       ]
     },
     {
       "text_content": [
-        " Truffles can be used to breed Boars.",
+        "guide.entry.domixs-creatures.boar_page3_line1",
         "",
         "",
         "",
         "",
-        "If Killed the Boar will drop Porkchop"
+        "",
+        "guide.entry.domixs-creatures.boar_page3_line2"
       ],
       "images": [
         {
           "type": "item",
           "id": "domixs-creatures:truffle",
           "x": 10,
-          "y": 70,
+          "y": 80,
           "width": 32,
           "height": 32
         },
@@ -47,7 +48,7 @@
           "type": "item",
           "id": "minecraft:porkchop",
           "x": 50,
-          "y": 120,
+          "y": 80,
           "width": 32,
           "height": 32
         }

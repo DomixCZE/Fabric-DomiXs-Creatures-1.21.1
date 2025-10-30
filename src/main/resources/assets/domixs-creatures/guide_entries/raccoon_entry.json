@@ -1,0 +1,61 @@
+{
+  "entry_id": "domixs-creatures:raccoon_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.raccoon",
+  "button_text": "guide.title.domixs-creatures.raccoon",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.raccoon_page1"
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/raccoon_icon.png",
+          "x": 10,
+          "y": 110,
+          "width": 64,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.raccoon_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.raccoon_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.raccoon_page3_line1",
+        "",
+        "",
+        "guide.entry.domixs-creatures.raccoon_page3_line2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "domixs-creatures:worm",
+            "domixs-creatures:marshmallow",
+            "minecraft:bread",
+            "minecraft:apple",
+            "minecraft:potato",
+            "minecraft:baked_potato",
+            "minecraft:carrot",
+            "minecraft:sweet_berries",
+            "minecraft:glow_berries",
+            "minecraft:beetroot"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 40,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

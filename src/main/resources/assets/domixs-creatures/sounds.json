@@ -20,6 +20,55 @@
     ]
   },
 
+  "copper_trumpet_1": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet1"
+    ]
+  },
+  "copper_trumpet_2": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet2"
+    ]
+  },
+  "copper_trumpet_exposed_1": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet3"
+    ]
+  },
+  "copper_trumpet_exposed_2": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet4"
+    ]
+  },
+  "copper_trumpet_weathered_1": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet5"
+    ]
+  },
+  "copper_trumpet_weathered_2": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet6"
+    ]
+  },
+  "copper_trumpet_oxidized_1": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet7"
+    ]
+  },
+  "copper_trumpet_oxidized_2": {
+    "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
+    "sounds": [
+      "domixs-creatures:copper_trumpet8"
+    ]
+  },
+
   "coconut_land": {
     "subtitle": "sounds.domixs-creatures.coconut_land",
     "sounds": [
@@ -31,6 +80,40 @@
     "subtitle": "sounds.domixs-creatures.magnet",
     "sounds": [
       "domixs-creatures:magnet"
+    ]
+  },
+
+  "statue_push": {
+    "subtitle": "sounds.domixs-creatures.statue_push",
+    "sounds": [
+      "domixs-creatures:statue_push_1",
+      "domixs-creatures:statue_push_2"
+    ]
+  },
+
+  "spike_trap_extend": {
+    "subtitle": "sounds.domixs-creatures.spike_trap_extend",
+    "sounds": [
+      "domixs-creatures:spike_trap_extend"
+    ]
+  },
+  "spike_trap_retract": {
+    "subtitle": "sounds.domixs-creatures.spike_trap_retract",
+    "sounds": [
+      "domixs-creatures:spike_trap_retract"
+    ]
+  },
+
+  "ancient_chest_open": {
+    "subtitle": "sounds.domixs-creatures.ancient_chest_open",
+    "sounds": [
+      "domixs-creatures:ancient_chest_open"
+    ]
+  },
+  "ancient_chest_close": {
+    "subtitle": "sounds.domixs-creatures.ancient_chest_close",
+    "sounds": [
+      "domixs-creatures:ancient_chest_close"
     ]
   },
 
@@ -50,16 +133,45 @@
     ]
   },
 
-  "hippo_ambient": {
-    "subtitle": "sounds.domixs-creatures.hippo_ambient",
+  "capybara_hurt": {
+    "subtitle": "sounds.domixs-creatures.capybara_hurt",
     "sounds": [
-      "domixs-creatures:hippo_ambient"
+      "domixs-creatures:capybara_hurt"
     ]
   },
-  "hippo_hurt": {
-    "subtitle": "sounds.domixs-creatures.hippo_hurt",
+
+  "bison_ambient": {
+    "subtitle": "sounds.domixs-creatures.bison_ambient",
     "sounds": [
-      "domixs-creatures:hippo_hurt"
+      "domixs-creatures:bison_ambient_1",
+      "domixs-creatures:bison_ambient_2",
+      "domixs-creatures:bison_ambient_3"
+    ]
+  },
+  "bison_hurt": {
+    "subtitle": "sounds.domixs-creatures.bison_hurt",
+    "sounds": [
+      "domixs-creatures:bison_hurt_1",
+      "domixs-creatures:bison_hurt_2"
+    ]
+  },
+  "bison_death": {
+    "subtitle": "sounds.domixs-creatures.bison_death",
+    "sounds": [
+      "domixs-creatures:bison_death"
+    ]
+  },
+
+  "moose_hurt": {
+    "subtitle": "sounds.domixs-creatures.moose_hurt",
+    "sounds": [
+      "domixs-creatures:moose_hurt"
+    ]
+  },
+  "moose_death": {
+    "subtitle": "sounds.domixs-creatures.moose_death",
+    "sounds": [
+      "domixs-creatures:moose_death"
     ]
   },
 
@@ -74,6 +186,39 @@
     "subtitle": "sounds.domixs-creatures.fire_salamander_death",
     "sounds": [
       "domixs-creatures:fire_salamander_death"
+    ]
+  },
+
+  "hippo_ambient": {
+    "subtitle": "sounds.domixs-creatures.hippo_ambient",
+    "sounds": [
+      "domixs-creatures:hippo_ambient"
+    ]
+  },
+  "hippo_hurt": {
+    "subtitle": "sounds.domixs-creatures.hippo_hurt",
+    "sounds": [
+      "domixs-creatures:hippo_hurt"
+    ]
+  },
+
+  "raccoon_ambient": {
+    "subtitle": "sounds.domixs-creatures.raccoon_ambient",
+    "sounds": [
+      "domixs-creatures:raccoon_ambient_1",
+      "domixs-creatures:raccoon_ambient_2"
+    ]
+  },
+  "raccoon_hurt": {
+    "subtitle": "sounds.domixs-creatures.raccoon_hurt",
+    "sounds": [
+      "domixs-creatures:raccoon_hurt"
+    ]
+  },
+  "raccoon_death": {
+    "subtitle": "sounds.domixs-creatures.raccoon_death",
+    "sounds": [
+      "domixs-creatures:raccoon_death"
     ]
   },
 
@@ -115,6 +260,12 @@
     "subtitle": "sounds.domixs-creatures.crocodile_death",
     "sounds": [
       "domixs-creatures:crocodile_death"
+    ]
+  },
+  "crocodile_attack": {
+    "subtitle": "sounds.domixs-creatures.crocodile_attack",
+    "sounds": [
+      "domixs-creatures:crocodile_attack"
     ]
   },
 

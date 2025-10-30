@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_marshmallow": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:marshmallow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:marshmallow_stick"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_marshmallow",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:marshmallow_stick"
+    ]
+  }
+}

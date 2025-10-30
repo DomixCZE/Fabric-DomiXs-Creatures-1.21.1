@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "domixs-creatures:block/pushable_statue_bottom",
+    "up": "domixs-creatures:block/pushable_statue_top",
+    "north": "domixs-creatures:block/pushable_statue_face_powered",
+    "south": "domixs-creatures:block/pushable_statue_face_powered",
+    "east": "domixs-creatures:block/pushable_statue_face_powered",
+    "west": "domixs-creatures:block/pushable_statue_face_powered",
+    "particle": "minecraft:block/stone"
+  }
+}

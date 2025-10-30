@@ -1,8 +1,12 @@
 package net.domixcze.domixscreatures;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.block.client.AncientChestBlockRenderer;
+import net.domixcze.domixscreatures.block.client.CursedAncientChestBlockRenderer;
+import net.domixcze.domixscreatures.block.entity.ModBlockEntities;
 import net.domixcze.domixscreatures.config.ModConfigScreen;
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.client.ancient_skeleton.AncientSkeletonRenderer;
 import net.domixcze.domixscreatures.entity.client.anglerfish.AnglerfishRenderer;
 import net.domixcze.domixscreatures.entity.client.arapaima.ArapaimaRenderer;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverRenderer;
@@ -10,6 +14,7 @@ import net.domixcze.domixscreatures.entity.client.betta_fish.BettaFishRenderer;
 import net.domixcze.domixscreatures.entity.client.bison.BisonRenderer;
 import net.domixcze.domixscreatures.entity.client.boar.BoarRenderer;
 import net.domixcze.domixscreatures.entity.client.butterfly.ButterflyRenderer;
+import net.domixcze.domixscreatures.entity.client.capybara.CapybaraRenderer;
 import net.domixcze.domixscreatures.entity.client.caterpillar.CaterpillarRenderer;
 import net.domixcze.domixscreatures.entity.client.cheetah.CheetahRenderer;
 import net.domixcze.domixscreatures.entity.client.crocodile.CrocodileRenderer;
@@ -21,6 +26,7 @@ import net.domixcze.domixscreatures.entity.client.goldfish.GoldfishRenderer;
 import net.domixcze.domixscreatures.entity.client.gorilla.GorillaRenderer;
 import net.domixcze.domixscreatures.entity.client.hermit_crab.HermitCrabRenderer;
 import net.domixcze.domixscreatures.entity.client.hippo.HippoRenderer;
+import net.domixcze.domixscreatures.entity.client.hyena.HyenaRenderer;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaRenderer;
 import net.domixcze.domixscreatures.entity.client.magma_ball.MagmaBallRenderer;
 import net.domixcze.domixscreatures.entity.client.mole.MoleRenderer;
@@ -31,18 +37,22 @@ import net.domixcze.domixscreatures.entity.client.peacock_bass.PeacockBassRender
 import net.domixcze.domixscreatures.entity.client.piranha.PiranhaRenderer;
 import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineRenderer;
 import net.domixcze.domixscreatures.entity.client.quill_projectile.QuillProjectileRenderer;
+import net.domixcze.domixscreatures.entity.client.raccoon.RaccoonRenderer;
 import net.domixcze.domixscreatures.entity.client.shaman.ShamanRenderer;
 import net.domixcze.domixscreatures.entity.client.shark.SharkRenderer;
 import net.domixcze.domixscreatures.entity.client.spectral_bat.SpectralBatRenderer;
 import net.domixcze.domixscreatures.entity.client.sun_bear.SunBearRenderer;
 import net.domixcze.domixscreatures.entity.client.test.TestRenderer;
 import net.domixcze.domixscreatures.entity.client.tiger.TigerRenderer;
+import net.domixcze.domixscreatures.entity.client.unicorn.UnicornRenderer;
 import net.domixcze.domixscreatures.entity.client.vine.VineRenderer;
 import net.domixcze.domixscreatures.entity.client.water_strider.WaterStriderRenderer;
 import net.domixcze.domixscreatures.entity.client.whale.WhaleRenderer;
 import net.domixcze.domixscreatures.entity.client.wisp.WispRenderer;
 import net.domixcze.domixscreatures.entity.client.worm.WormRenderer;
 import net.domixcze.domixscreatures.particle.*;
+import net.domixcze.domixscreatures.screen.ModScreenHandlers;
+import net.domixcze.domixscreatures.screen.custom.FishTrapScreen;
 import net.domixcze.domixscreatures.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -50,10 +60,12 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.particle.GlowParticle;
 import net.minecraft.client.particle.SonicBoomParticle;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
@@ -100,6 +112,11 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.FRESHWATER_STINGRAY, FreshwaterStingrayRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHEETAH, CheetahRenderer::new);
         EntityRendererRegistry.register(ModEntities.HERMIT_CRAB, HermitCrabRenderer::new);
+        EntityRendererRegistry.register(ModEntities.RACCOON, RaccoonRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CAPYBARA, CapybaraRenderer::new);
+        EntityRendererRegistry.register(ModEntities.HYENA, HyenaRenderer::new);
+        EntityRendererRegistry.register(ModEntities.ANCIENT_SKELETON, AncientSkeletonRenderer::new);
+        EntityRendererRegistry.register(ModEntities.UNICORN, UnicornRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.MAGMA_BALL, MagmaBallRenderer::new);
         EntityRendererRegistry.register(ModEntities.QUILL_PROJECTILE, QuillProjectileRenderer::new);
@@ -115,6 +132,7 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.ELECTRIC, ElectricParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.NEGATIVE_MAGNET, GlowParticle.ElectricSparkFactory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.POSITIVE_MAGNET, GlowParticle.ElectricSparkFactory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.UNICORN_DUST, UnicornDustParticle.Factory::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CRACKED_GLASS_BLOCK, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PILE_OF_STICKS_BLOCK, RenderLayer.getCutout());
@@ -127,10 +145,53 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALM_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALM_TRAPDOOR, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FISH_TRAP_BLOCK, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPIKE_TRAP_BLOCK, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CYAN_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_BLUE_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GREEN_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIME_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PURPLE_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGENTA_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PINK_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.YELLOW_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ORANGE_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RED_NET_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BROWN_NET_BLOCK, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RED_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ORANGE_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.YELLOW_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GREEN_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIME_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CYAN_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_BLUE_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PURPLE_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGENTA_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PINK_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BROWN_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRAY_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LIGHT_GRAY_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WHITE_TABLE_CLOTH_BLOCK, RenderLayer.getCutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPECTRAL_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALM_SAPLING, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MUD_BLOSSOM, RenderLayer.getCutout());
+
+        HandledScreens.register(ModScreenHandlers.FISH_TRAP_SCREEN_HANDLER, FishTrapScreen::new);
+
+        BlockEntityRendererFactories.register(ModBlockEntities.ANCIENT_CHEST_BLOCK_ENTITY, ctx -> new AncientChestBlockRenderer());
+        BlockEntityRendererFactories.register(ModBlockEntities.CURSED_ANCIENT_CHEST_BLOCK_ENTITY, ctx -> new CursedAncientChestBlockRenderer());
 
         OPEN_CONFIG_KEY = new KeyBinding(
                 "key.domixs-creatures.open_config",

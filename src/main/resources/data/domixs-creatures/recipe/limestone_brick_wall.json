@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "domixs-creatures:limestone_bricks"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:limestone_brick_wall"
+  }
+}

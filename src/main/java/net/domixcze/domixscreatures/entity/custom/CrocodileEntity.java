@@ -53,6 +53,9 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+
 public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
@@ -245,15 +248,33 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
-        if (spawnReason == SpawnReason.NATURAL || spawnReason == SpawnReason.COMMAND || spawnReason == SpawnReason.SPAWN_EGG || spawnReason == SpawnReason.CHUNK_GENERATION) {
-            RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
+        if (spawnReason == SpawnReason.NATURAL
+                || spawnReason == SpawnReason.COMMAND
+                || spawnReason == SpawnReason.SPAWN_EGG
+                || spawnReason == SpawnReason.CHUNK_GENERATION) {
 
-            if (world.getRandom().nextDouble() < 0.05) {
-                this.setVariant(CrocodileVariants.ALBINO);
-            } else if (biomeEntry.isIn(ModTags.Biomes.SPAWNS_SAVANNA_CROCODILE)) {
-                this.setVariant(CrocodileVariants.SAVANNA);
+            Random random = world.getRandom();
+            LocalDate date = LocalDate.now();
+
+            int day = date.getDayOfMonth();
+            int month = date.getMonthValue();
+
+            // 5% chance to spawn a Halloween croc ONLY from Oct 30 to Nov 1
+            boolean isHalloweenPeriod =
+                    (month == 10 && day >= 30) || (month == 11 && day == 1);
+
+            if (isHalloweenPeriod && random.nextFloat() < 0.05F) {
+                this.setVariant(CrocodileVariants.HALLOWEEN);
             } else {
-                this.setVariant(CrocodileVariants.NORMAL);
+                RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
+
+                if (random.nextDouble() < 0.05) {
+                    this.setVariant(CrocodileVariants.ALBINO);
+                } else if (biomeEntry.isIn(ModTags.Biomes.SPAWNS_SAVANNA_CROCODILE)) {
+                    this.setVariant(CrocodileVariants.SAVANNA);
+                } else {
+                    this.setVariant(CrocodileVariants.NORMAL);
+                }
             }
         }
 
@@ -283,6 +304,11 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
+    public void takeKnockback(double strength, double x, double z) {
+        super.takeKnockback(strength * 0.2, x, z);
+    }
+
+    @Override
     protected EntityDimensions getBaseDimensions(EntityPose pose) {
         if (this.isBaby()) {
             return EntityDimensions.fixed(0.75F, 0.35F);
@@ -292,7 +318,9 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        AnimationController<CrocodileEntity> landController = new AnimationController<>(this, "land_controller", 5, this::landPredicate);
+        landController.triggerableAnim("attack", RawAnimation.begin().then("animation.crocodile.attack", Animation.LoopType.PLAY_ONCE));
+        controllers.add(landController);
         controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
         controllers.add(new AnimationController<>(this, "sleep_controller", 5, this::sleepPredicate));
     }
@@ -470,16 +498,23 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         if (this.isSleeping()) {
             return null;
         }
+        if (this.getVariant() == CrocodileVariants.HALLOWEEN) {
+            return SoundEvents.ENTITY_SKELETON_AMBIENT;
+        }
         return ModSounds.CROCODILE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.CROCODILE_HURT;
+        return this.getVariant() == CrocodileVariants.HALLOWEEN
+                ? SoundEvents.ENTITY_SKELETON_HURT
+                : ModSounds.CROCODILE_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.CROCODILE_DEATH;
+        return this.getVariant() == CrocodileVariants.HALLOWEEN
+                ? SoundEvents.ENTITY_SKELETON_DEATH
+                : ModSounds.CROCODILE_DEATH;
     }
 }

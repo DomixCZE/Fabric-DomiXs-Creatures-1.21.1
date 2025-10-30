@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glow_berries",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glow_ink_sac",
+          "weight": 10
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

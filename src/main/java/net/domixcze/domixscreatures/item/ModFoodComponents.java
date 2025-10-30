@@ -17,6 +17,11 @@ public class ModFoodComponents {
     public static final FoodComponent COCONUT_SLICE = new FoodComponent.Builder().nutrition(2).saturationModifier(0.20f)
             .build();
 
+    public static final FoodComponent COOKED_MARSHMALLOW = new FoodComponent.Builder().nutrition(2).saturationModifier(0.50f)
+            .build();
+    public static final FoodComponent BURNT_MARSHMALLOW = new FoodComponent.Builder().nutrition(1).saturationModifier(-0.50f)
+            .build();
+
     public static final FoodComponent GOLDFISH = new FoodComponent.Builder().nutrition(2).saturationModifier(0.30f)
             .statusEffect(new StatusEffectInstance(StatusEffects.LUCK, 6000), 1.0f).build();
 
@@ -33,5 +38,11 @@ public class ModFoodComponents {
             .build();
 
     public static final FoodComponent COOKED_DEER_VENISON = new FoodComponent.Builder().nutrition(5).saturationModifier(1.0f)
+            .build();
+
+    public static final FoodComponent EEL_MEAT = new FoodComponent.Builder().nutrition(2).saturationModifier(0.20f)
+            .build();
+
+    public static final FoodComponent COOKED_EEL_MEAT = new FoodComponent.Builder().nutrition(4).saturationModifier(0.80f)
             .build();
 }

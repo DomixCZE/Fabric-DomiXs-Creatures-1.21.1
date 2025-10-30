@@ -1,12 +1,12 @@
 {
   "entry_id": "domixs-creatures:magnet_blocks_entry",
   "category": "blocks",
-  "title": "§lMagnet Blocks",
-  "button_text": "§lMagnet Blocks",
+  "title": "guide.title.domixs-creatures.magnet_blocks",
+  "button_text": "guide.title.domixs-creatures.magnet_blocks",
   "pages": [
     {
       "text_content": [
-        "There are two types of Magnet Blocks: Negative and Positive."
+        "guide.entry.domixs-creatures.magnet_blocks_page1"
       ],
       "images": [
         {
@@ -109,7 +109,7 @@
     },
     {
       "text_content": [
-        "When powered by Redstone, the Negative Magnet pushes iron items and entities with iron armor, while the Positive Magnet pulls them."
+        "guide.entry.domixs-creatures.magnet_blocks_page2"
       ]
     }
   ]

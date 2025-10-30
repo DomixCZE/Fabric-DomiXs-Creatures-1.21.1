@@ -92,6 +92,16 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.HERMIT_CRAB_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.RACCOON_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.CAPYBARA_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.HYENA_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.ANCIENT_SKELETON_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.UNICORN_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
@@ -118,6 +128,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ARAPAIMA_SCALE_GREEN, Models.GENERATED);
         itemModelGenerator.register(ModItems.PEARL, Models.GENERATED);
         itemModelGenerator.register(ModItems.COCONUT_SHELL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SILK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.NET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.UNICORN_DUST, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.GOLDFISH, Models.GENERATED);
         itemModelGenerator.register(ModItems.WORM, Models.GENERATED);
@@ -128,11 +141,18 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_BISON_MEAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.COOKED_DEER_VENISON, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_DEER_VENISON, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_EEL_MEAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COOKED_EEL_MEAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.COCONUT_SLICE, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.MARSHMALLOW, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.SMALL_ANTLER, Models.GENERATED);
         itemModelGenerator.register(ModItems.MEDIUM_ANTLER, Models.GENERATED);
         itemModelGenerator.register(ModItems.LARGE_ANTLER, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.RACCOON_TAIL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RACCOON_HAT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.SMALL_ANTLER_HAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.MEDIUM_ANTLER_HAT, Models.GENERATED);
@@ -154,6 +174,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ARAPAIMA_LEGGINGS_BLACK, Models.GENERATED);
         itemModelGenerator.register(ModItems.ARAPAIMA_BOOTS_BLACK, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.JADE_CROWN, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.SALAMANDER_HELMET, Models.GENERATED);
         itemModelGenerator.register(ModItems.SALAMANDER_CHESTPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.SALAMANDER_LEGGINGS, Models.GENERATED);
@@ -168,6 +190,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.RAW_MAGNETITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.MAGNETITE_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_JADE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.JADE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.GUIDE_BOOK, Models.GENERATED);
     }
@@ -176,6 +200,16 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         BlockStateModelGenerator.BlockTexturePool spectralPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SPECTRAL_PLANKS);
         BlockStateModelGenerator.BlockTexturePool palmPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PALM_PLANKS);
+
+        BlockStateModelGenerator.BlockTexturePool limestonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.LIMESTONE_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool mossyLimestonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOSSY_LIMESTONE_BRICKS);
+
+        limestonePool.stairs(ModBlocks.LIMESTONE_BRICK_STAIRS);
+        limestonePool.slab(ModBlocks.LIMESTONE_BRICK_SLAB);
+        limestonePool.wall(ModBlocks.LIMESTONE_BRICK_WALL);
+        mossyLimestonePool.stairs(ModBlocks.MOSSY_LIMESTONE_BRICK_STAIRS);
+        mossyLimestonePool.slab(ModBlocks.MOSSY_LIMESTONE_BRICK_SLAB);
+        mossyLimestonePool.wall(ModBlocks.MOSSY_LIMESTONE_BRICK_WALL);
 
         spectralPool.stairs(ModBlocks.SPECTRAL_STAIRS);
         spectralPool.slab(ModBlocks.SPECTRAL_SLAB);
@@ -210,9 +244,15 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_GLASS_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PEARL_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLOCK_OF_MAGNETITE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLOCK_OF_JADE);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MAGNETITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_MAGNETITE_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.JADE_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_JADE_ORE);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.LIMESTONE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBBLED_LIMESTONE);
 
         blockStateModelGenerator.registerCrop(ModBlocks.MUD_BLOSSOM, MudBlossomBlock.AGE, 0, 1, 2, 3);
     }

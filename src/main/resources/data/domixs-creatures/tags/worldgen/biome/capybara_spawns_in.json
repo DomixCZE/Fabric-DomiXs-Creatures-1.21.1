@@ -1,0 +1,35 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:mangrove_swamp",
+    "minecraft:swamp",
+    {
+      "id": "biomesoplenty:floodplain",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:bayou",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:bayou",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:cypress_wetlands",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:tropical_basin",
+      "required": false
+    },
+    {
+      "id": "natures_spirit:bamboo_wetlands",
+      "required": false
+    }
+  ]
+}

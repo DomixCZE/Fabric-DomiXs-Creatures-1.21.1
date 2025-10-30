@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "domixs-creatures:block/chiseled_limestone" },
+      { "model": "domixs-creatures:block/chiseled_limestone", "y": 90 },
+      { "model": "domixs-creatures:block/chiseled_limestone", "y": 180 },
+      { "model": "domixs-creatures:block/chiseled_limestone", "y": 270 }
+    ]
+  }
+}

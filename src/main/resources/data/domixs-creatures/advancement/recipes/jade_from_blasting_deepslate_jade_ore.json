@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_jade_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "domixs-creatures:deepslate_jade_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:jade_from_blasting_deepslate_jade_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deepslate_jade_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:jade_from_blasting_deepslate_jade_ore"
+    ]
+  }
+}

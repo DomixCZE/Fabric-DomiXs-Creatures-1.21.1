@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "cursed=false,facing=north,waterlogged=false": { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=north,waterlogged=true":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=south,waterlogged=false": { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=south,waterlogged=true":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=west,waterlogged=false":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=west,waterlogged=true":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=east,waterlogged=false":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=false,facing=east,waterlogged=true":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=north,waterlogged=false":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=north,waterlogged=true":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=south,waterlogged=false":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=south,waterlogged=true":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=west,waterlogged=false":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=west,waterlogged=true":    { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=east,waterlogged=false":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "cursed=true,facing=east,waterlogged=true":    { "model": "domixs-creatures:block/ancient_chest_block" }
+  }
+}

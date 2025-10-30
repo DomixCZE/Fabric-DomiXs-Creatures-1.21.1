@@ -1,0 +1,87 @@
+{
+  "entry_id": "domixs-creatures:butterfly_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.butterfly",
+  "button_text": "guide.title.domixs-creatures.butterfly",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_texture",
+          "ids": [
+            "domixs-creatures:textures/gui/butterfly_icon_1.png",
+            "domixs-creatures:textures/gui/butterfly_icon_2.png",
+            "domixs-creatures:textures/gui/butterfly_icon_3.png",
+            "domixs-creatures:textures/gui/butterfly_icon_4.png",
+            "domixs-creatures:textures/gui/butterfly_icon_5.png",
+            "domixs-creatures:textures/gui/butterfly_icon_6.png",
+            "domixs-creatures:textures/gui/butterfly_icon_7.png",
+            "domixs-creatures:textures/gui/butterfly_icon_8.png",
+            "domixs-creatures:textures/gui/butterfly_icon_9.png",
+            "domixs-creatures:textures/gui/butterfly_icon_10.png"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 0,
+          "y": 80,
+          "width": 96,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page3_line1",
+        "",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page3_line2"
+      ],
+      "images": [
+        {
+          "type": "cycling_texture",
+          "ids": [
+            "domixs-creatures:textures/gui/caterpillar_icon_1.png",
+            "domixs-creatures:textures/gui/caterpillar_icon_2.png"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 60,
+          "y": 62,
+          "width": 48,
+          "height": 24
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/caterpillar_cocoon_icon.png",
+          "x": 20,
+          "y": 135,
+          "width": 48,
+          "height": 24
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page4"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 20,
+          "y": 75,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

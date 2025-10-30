@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "domixs-creatures:mossy_limestone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:mossy_limestone_brick_wall"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "domixs-creatures:block/track_base",
+  "textures": {
+    "top": "domixs-creatures:block/track_t"
+  }
+}

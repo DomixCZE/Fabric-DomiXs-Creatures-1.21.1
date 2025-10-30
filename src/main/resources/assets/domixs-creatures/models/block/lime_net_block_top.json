@@ -1,0 +1,7 @@
+{
+	"parent": "domixs-creatures:block/white_net_block_top",
+	"textures": {
+		"1": "domixs-creatures:block/lime_net_block",
+		"particle": "domixs-creatures:block/lime_net_block"
+	}
+}

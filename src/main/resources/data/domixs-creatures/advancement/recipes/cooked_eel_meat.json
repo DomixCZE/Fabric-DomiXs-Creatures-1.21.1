@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_eel_meat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "domixs-creatures:raw_eel_meat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:cooked_eel_meat"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_eel_meat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:cooked_eel_meat"
+    ]
+  }
+}

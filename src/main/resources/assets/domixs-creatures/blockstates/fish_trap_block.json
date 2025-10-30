@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "waterlogged=true": [
+      { "model": "domixs-creatures:block/fish_trap_block" }
+    ],
+    "waterlogged=false": [
+      { "model": "domixs-creatures:block/fish_trap_block" }
+    ]
+  }
+}

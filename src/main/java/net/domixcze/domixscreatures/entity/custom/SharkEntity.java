@@ -101,7 +101,9 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "water_controller",5 , this::waterPredicate));
+        AnimationController<SharkEntity> waterController = new AnimationController<>(this, "water_controller", 5, this::waterPredicate);
+        waterController.triggerableAnim("attack", RawAnimation.begin().then("animation.shark.attack", Animation.LoopType.PLAY_ONCE));
+        controllers.add(waterController);
     }
 
     private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> State) {

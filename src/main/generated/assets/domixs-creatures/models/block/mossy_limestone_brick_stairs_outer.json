@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "domixs-creatures:block/mossy_limestone_bricks",
+    "side": "domixs-creatures:block/mossy_limestone_bricks",
+    "top": "domixs-creatures:block/mossy_limestone_bricks"
+  }
+}

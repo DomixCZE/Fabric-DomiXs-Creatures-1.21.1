@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:raccoon_tail",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "max": 1,
+                "min": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

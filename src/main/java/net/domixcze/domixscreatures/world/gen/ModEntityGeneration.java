@@ -2,10 +2,7 @@ package net.domixcze.domixscreatures.world.gen;
 
 import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.custom.AnglerfishEntity;
-import net.domixcze.domixscreatures.entity.custom.FireSalamanderEntity;
-import net.domixcze.domixscreatures.entity.custom.WispEntity;
-import net.domixcze.domixscreatures.entity.custom.WormEntity;
+import net.domixcze.domixscreatures.entity.custom.*;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -117,6 +114,21 @@ public class ModEntityGeneration {
                 ModEntities.HERMIT_CRAB, 15, 1, 2);
         SpawnRestriction.register(ModEntities.HERMIT_CRAB, SpawnLocationTypes.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.RACCOON_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.RACCOON, 10, 1, 2);
+        SpawnRestriction.register(ModEntities.RACCOON, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.CAPYBARA_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.CAPYBARA, 10, 1, 3);
+        SpawnRestriction.register(ModEntities.CAPYBARA, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.UNICORN_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.UNICORN, 10, 1, 1);
+        SpawnRestriction.register(ModEntities.UNICORN, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, UnicornEntity::canSpawn);
 
 
 

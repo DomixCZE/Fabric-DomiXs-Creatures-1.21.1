@@ -122,7 +122,7 @@ public class ModEntities {
     public static final EntityType<BisonEntity> BISON = Registry.register(
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "bison"),
             EntityType.Builder.create(BisonEntity::new, SpawnGroup.CREATURE)
-                    .dimensions(1.5f, 1.5f).build());
+                    .dimensions(1.6f, 2.0f).build());
 
     public static final EntityType<SunBearEntity> SUN_BEAR = Registry.register(
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "sun_bear"),
@@ -189,6 +189,32 @@ public class ModEntities {
             EntityType.Builder.create(HermitCrabEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.4f, 0.4f).build());
 
+    public static final EntityType<RaccoonEntity> RACCOON = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "raccoon"),
+            EntityType.Builder.create(RaccoonEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 0.5f).build());
+
+    public static final EntityType<CapybaraEntity> CAPYBARA = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "capybara"),
+            EntityType.Builder.create(CapybaraEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(1.2f, 1.0f).build());
+
+    public static final EntityType<HyenaEntity> HYENA = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "hyena"),
+            EntityType.Builder.create(HyenaEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.7f, 0.9f).build());
+
+    public static final EntityType<AncientSkeletonEntity> ANCIENT_SKELETON = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "ancient_skeleton"),
+            EntityType.Builder.create(AncientSkeletonEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 2.0f).build());
+
+    public static final EntityType<UnicornEntity> UNICORN = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "unicorn"),
+            EntityType.Builder.create(UnicornEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(1.4f, 1.6f).build());
+
+
 
 
     public static final EntityType<MagmaBallEntity> MAGMA_BALL = Registry.register(
@@ -200,7 +226,6 @@ public class ModEntities {
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "quill_projectile"),
             EntityType.Builder.<QuillProjectileEntity>create(QuillProjectileEntity::new, SpawnGroup.MISC)
                     .dimensions(0.25f, 0.25f).build());
-
 
 
     public static final EntityType<TestEntity> TEST = Registry.register(

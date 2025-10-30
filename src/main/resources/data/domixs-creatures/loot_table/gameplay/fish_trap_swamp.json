@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:seagrass",
+          "weight": 60
+        },
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:crocodile_tooth",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:crocodile_scale",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:crocodile_scale_albino",
+          "weight": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

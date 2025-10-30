@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "domixs-creatures:block/limestone_bricks"
+  }
+}

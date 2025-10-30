@@ -1,0 +1,23 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made by DomixCZE",
+	"textures": {
+		"1": "domixs-creatures:block/red_table_cloth_side",
+		"particle": "domixs-creatures:block/red_table_cloth_top"
+	},
+	"elements": [
+		{
+			"from": [0, -7, -0.01],
+			"to": [16, 0, -0.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -16, 0.225]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 7], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 7], "texture": "#1"},
+				"south": {"uv": [16, 0, 0, 7], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 7], "texture": "#1"},
+				"up": {"uv": [16, 0, 0, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#1"}
+			}
+		}
+	]
+}

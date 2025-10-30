@@ -1,12 +1,10 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
-import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
+import net.domixcze.domixscreatures.entity.ai.*;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaVariants;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -131,37 +129,34 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         }
     }
 
-    public boolean isBeingSnowedOn() {
-        BlockPos blockPos = this.getBlockPos();
-        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
-    }
-
-    public boolean hasSnow(BlockPos pos) {
-        if (!this.getWorld().isRaining()) {
-            return false;
-        } else if (!this.getWorld().isSkyVisible(pos)) {
-            return false;
-        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
-            return false;
-        } else {
-            Biome biome = this.getWorld().getBiome(pos).value();
-            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-        }
-    }
-
-    public boolean isInSnowyBiome() {
-        BlockPos pos = this.getBlockPos();
-        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
-        Biome biome = biomeEntry.value();
-        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-    }
-
+    @Override
     public boolean hasSnowLayer() {
         return this.dataTracker.get(HAS_SNOW_LAYER);
     }
 
+    @Override
     public void setHasSnowLayer(boolean hasSnow) {
         this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
+    }
+
+    @Override
+    public int getSnowTicks() {
+        return this.snowTicks;
+    }
+
+    @Override
+    public void setSnowTicks(int ticks) {
+        this.snowTicks = ticks;
+    }
+
+    @Override
+    public int getSnowMeltTimer() {
+        return this.snowMeltTimer;
+    }
+
+    @Override
+    public void setSnowMeltTimer(int timer) {
+        this.snowMeltTimer = timer;
     }
 
     @Override
@@ -200,14 +195,14 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getStackInHand(hand);
+        ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemstack.getItem() == Items.JUNGLE_LEAVES && !isTamed()) {
+        if (itemStack.getItem() == Items.JUNGLE_LEAVES && !isTamed()) {
             if (this.getWorld().isClient()) {
                 return ActionResult.CONSUME;
             } else {
                 if (!player.getAbilities().creativeMode) {
-                    itemstack.decrement(1);
+                    itemStack.decrement(1);
                 }
 
                 if (this.random.nextInt(3) == 0) {
@@ -222,7 +217,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         }
 
         if (isTamed() && !this.getWorld().isClient()) {
-            if (itemstack.getItem() == Items.STICK && hand == Hand.MAIN_HAND) {
+            if (itemStack.getItem() == Items.STICK && hand == Hand.MAIN_HAND) {
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
@@ -240,7 +235,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
             }
         }
 
-        if (isTamed() && !this.isBaby() && hand == Hand.MAIN_HAND && itemstack.isEmpty()) {
+        if (isTamed() && !this.isBaby() && hand == Hand.MAIN_HAND && itemStack.isEmpty()) {
             if (!this.hasVehicle()) {
                 if (player.getShoulderEntityLeft().isEmpty()) {
                     if (!isPlayerBeingRiddenByIguana(player)) {
@@ -255,24 +250,23 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
             }
         }
 
-        if (itemstack.isIn(ItemTags.SHOVELS)) {
-            if (this.hasSnowLayer()) {
+        if (itemStack.isOf(Items.BRUSH) && this.hasSnowLayer()) {
+            if (!this.getWorld().isClient) {
                 this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
+                this.snowMeltTimer = 0;
 
-                if (!player.isCreative()) {
-                    itemstack.damage(1, player, EquipmentSlot.MAINHAND);
-                }
-
-                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
-
-                if (!this.getWorld().isClient) {
-                    int count = 3 + this.getWorld().random.nextInt(2);
-                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
-                }
-
-                return ActionResult.SUCCESS;
+                int count = 3 + this.getWorld().random.nextInt(2);
+                this.dropStack(new ItemStack(Items.SNOWBALL, count));
             }
+
+            SnowLayerUtil.spawnSnowParticles(this);
+
+            this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+            if (!player.isCreative()) {
+                itemStack.damage(1, player, EquipmentSlot.MAINHAND);
+            }
+
+            return ActionResult.SUCCESS;
         }
         return super.interactMob(player, hand);
     }
@@ -289,22 +283,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     @Override
     public void tick() {
         super.tick();
-
-        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
-            snowTicks++;
-            if (snowTicks >= 600) {
-                this.setHasSnowLayer(true);
-                snowTicks = 0;
-            }
-        }
-
-        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
-            snowMeltTimer++;
-            if (snowMeltTimer >= 200) {
-                this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
-            }
-        }
+        SnowLayerUtil.handleSnowLayerTick(this, this);
     }
 
     @Override

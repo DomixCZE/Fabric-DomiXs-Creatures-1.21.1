@@ -1,12 +1,12 @@
 {
   "entry_id": "domixs-creatures:deer_entry",
   "category": "entities",
-  "title": "§lDeer",
-  "button_text": "§lDeer",
+  "title": "guide.title.domixs-creatures.deer",
+  "button_text": "guide.title.domixs-creatures.deer",
   "pages": [
     {
       "text_content": [
-        "The Deer can be found in the Taiga biome."
+        "guide.entry.domixs-creatures.deer_page1"
       ],
       "images": [
         {
@@ -21,9 +21,9 @@
     },
     {
       "text_content": [
-        "There are three sizes of antlers: Small, Medium, and Large.",
+        "guide.entry.domixs-creatures.deer_page2_line1",
         "",
-        "If a deer is killed, it will drop 2 antlers of the corresponding size and raw deer venison."
+        "guide.entry.domixs-creatures.deer_page2_line2"
       ],
       "images": [
         {
@@ -38,7 +38,7 @@
     },
     {
       "text_content": [
-        "2 antlers of the same size can be combined with 1 Leather to craft wearable antlers."
+        "guide.entry.domixs-creatures.deer_page3"
       ],
       "images": [
         {
@@ -77,13 +77,13 @@
     },
     {
       "text_content": [
-        "Deer can be bred using Wheat.",
+        "guide.entry.domixs-creatures.deer_page4_line1",
         "",
         "",
         "",
         "",
         "",
-        "They can only breed if one has antlers and the other does not."
+        "guide.entry.domixs-creatures.deer_page4_line2"
       ],
       "images": [
         {

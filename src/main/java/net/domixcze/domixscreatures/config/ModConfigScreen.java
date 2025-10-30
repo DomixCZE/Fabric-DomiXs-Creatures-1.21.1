@@ -69,6 +69,16 @@ public class ModConfigScreen {
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableSpectralBatScreechAttack = newValue)
                 .build());
 
+        // raccoon stealing
+        general.addEntry(entryBuilder.startBooleanToggle(
+                        Text.translatable("domixs-creatures.config.option.enableRaccoonStealing"),
+                        ModConfig.INSTANCE.enableRaccoonStealing
+                )
+                .setDefaultValue(true)
+                .setTooltip(Text.translatable("domixs-creatures.config.option.enableRaccoonStealing.tooltip"))
+                .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableRaccoonStealing = newValue)
+                .build());
+
         // caterpillar transformation
         general.addEntry(entryBuilder.startBooleanToggle(
                         Text.translatable("domixs-creatures.config.option.enableCaterpillarTransformation"),
@@ -101,28 +111,38 @@ public class ModConfigScreen {
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.hermitCrabDailyTradeLimit = newValue)
                 .build());
 
-        // coconut "bong" sound effect
+        // coconut "bonk" sound effect
         general.addEntry(entryBuilder.startBooleanToggle(
-                        Text.translatable("domixs-creatures.config.option.enableCoconutBongSound"),
-                        ModConfig.INSTANCE.enableCoconutBongSound
+                        Text.translatable("domixs-creatures.config.option.enableCoconutBonkSound"),
+                        ModConfig.INSTANCE.enableCoconutBonkSound
                 )
                 .setDefaultValue(false)
-                .setTooltip(Text.translatable("domixs-creatures.config.option.enableCoconutBongSound.tooltip"))
-                .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableCoconutBongSound = newValue)
+                .setTooltip(Text.translatable("domixs-creatures.config.option.enableCoconutBonkSound.tooltip"))
+                .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableCoconutBonkSound = newValue)
                 .build());
 
         // Coconut Positive Effect Removal
-        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enable_coconut_positive_effect_removal"), ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval)
+        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enableCoconutPositiveEffectRemoval"), ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval)
                 .setDefaultValue(true)
-                .setTooltip(Text.translatable("domixs-creatures.config.option.enable_coconut_positive_effect_removal.tooltip"))
+                .setTooltip(Text.translatable("domixs-creatures.config.option.enableCoconutPositiveEffectRemoval.tooltip"))
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval = newValue)
                 .build());
 
         // Coconut Negative Effect Removal
-        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enable_coconut_negative_effect_removal"), ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval)
+        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enableCoconutNegativeEffectRemoval"), ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval)
                 .setDefaultValue(true)
-                .setTooltip(Text.translatable("domixs-creatures.config.option.enable_coconut_negative_effect_removal.tooltip"))
+                .setTooltip(Text.translatable("domixs-creatures.config.option.enableCoconutNegativeEffectRemoval.tooltip"))
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval = newValue)
+                .build());
+
+        // Beaver Log Stripping
+        general.addEntry(entryBuilder.startBooleanToggle(
+                        Text.translatable("domixs-creatures.config.option.enableBeaverLogStripping"),
+                        ModConfig.INSTANCE.enableBeaverLogStripping
+                )
+                .setDefaultValue(true)
+                .setTooltip(Text.translatable("domixs-creatures.config.option.enableBeaverLogStripping.tooltip"))
+                .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableBeaverLogStripping = newValue)
                 .build());
 
         return builder.build();

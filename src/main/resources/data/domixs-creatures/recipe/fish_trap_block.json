@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SNS",
+    "N N",
+    "SNS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "N": {
+      "item": "domixs-creatures:net"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:fish_trap_block"
+  }
+}

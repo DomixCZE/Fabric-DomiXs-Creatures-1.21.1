@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.util;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -7,6 +8,10 @@ import net.minecraft.item.ItemStack;
 public class BleedingUtil {
     public static boolean hasFullBleedingProtection(LivingEntity entity) {
         return getBleedingProtectionCount(entity) == 4;
+    }
+
+    public static boolean isImmuneToBleeding(Entity entity) {
+        return entity.getType().isIn(ModTags.EntityTypes.IMMUNE_TO_BLEEDING);
     }
 
      //Counts how many armor pieces are tagged to prevent bleeding.

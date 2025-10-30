@@ -1,0 +1,7 @@
+{
+	"parent": "domixs-creatures:block/red_table_cloth_side",
+	"textures": {
+		"1": "domixs-creatures:block/lime_table_cloth_side",
+		"particle": "domixs-creatures:block/lime_table_cloth_side"
+	}
+}

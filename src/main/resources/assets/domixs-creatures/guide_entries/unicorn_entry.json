@@ -1,0 +1,65 @@
+{
+  "entry_id": "domixs-creatures:unicorn_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.unicorn",
+  "button_text": "guide.title.domixs-creatures.unicorn",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_texture",
+          "ids": [
+            "domixs-creatures:textures/gui/unicorn_icon_1.png",
+            "domixs-creatures:textures/gui/unicorn_icon_2.png",
+            "domixs-creatures:textures/gui/unicorn_icon_3.png",
+            "domixs-creatures:textures/gui/unicorn_icon_4.png"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 40,
+          "y": 90,
+          "width": 64,
+          "height": 72
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.unicorn_page2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.unicorn_page3_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page4"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:unicorn_dust",
+          "x": 50,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page5_line1",
+        "",
+        "guide.entry.domixs-creatures.unicorn_page5_line2"
+      ]
+    }
+  ]
+}

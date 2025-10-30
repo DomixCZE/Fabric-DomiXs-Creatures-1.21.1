@@ -6,9 +6,7 @@ import net.domixcze.domixscreatures.entity.ai.FireSalamanderMagmaBallAttackGoal;
 import net.domixcze.domixscreatures.entity.ai.FireSalamanderMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
@@ -19,12 +17,9 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -47,6 +42,7 @@ import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
@@ -110,7 +106,17 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0f)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0f)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f);
+    }
+
+    @Override
+    public boolean tryAttack(Entity target) {
+        boolean success = super.tryAttack(target);
+        if (success) {
+            target.setOnFireFor(5);
+        }
+        return success;
     }
 
     @Nullable
@@ -247,7 +253,9 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        AnimationController<FireSalamanderEntity> landController = new AnimationController<>(this, "land_controller", 5, this::landPredicate);
+        landController.triggerableAnim("attack", RawAnimation.begin().then("animation.fire_salamander.attack", Animation.LoopType.PLAY_ONCE));
+        controllers.add(landController);
         controllers.add(new AnimationController<>(this, "lava_controller", 5, this::lavaPredicate));
     }
 
@@ -303,14 +311,14 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getStackInHand(hand);
+        ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemstack.getItem() == Items.MAGMA_CREAM && !isTamed() && isObsidianVariant()) {
+        if (itemStack.getItem() == Items.MAGMA_CREAM && !isTamed() && isObsidianVariant()) {
             if (this.getWorld().isClient()) {
                 return ActionResult.CONSUME;
             } else {
                 if (!player.getAbilities().creativeMode) {
-                    itemstack.decrement(1);
+                    itemStack.decrement(1);
                 }
 
                 if (!this.getWorld().isClient()) {
@@ -325,7 +333,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         }
 
         if (isTamed() && !this.getWorld().isClient()) {
-            if (itemstack.getItem() == Items.BLAZE_ROD && hand == Hand.MAIN_HAND) {
+            if (itemStack.getItem() == Items.BLAZE_ROD && hand == Hand.MAIN_HAND) {
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
@@ -342,10 +350,10 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
                 return ActionResult.PASS;
             }
 
-            if (ModConfig.INSTANCE.enableFireSalamanderSmelting && canSmelt(itemstack) && smeltingItem.isEmpty()) {
-                startSmelting(itemstack);
+            if (ModConfig.INSTANCE.enableFireSalamanderSmelting && canSmelt(itemStack) && smeltingItem.isEmpty()) {
+                startSmelting(itemStack);
                 if (!player.getAbilities().creativeMode) {
-                    itemstack.decrement(1);
+                    itemStack.decrement(1);
                 }
                 return ActionResult.SUCCESS;
             }
@@ -375,8 +383,9 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         }
     }
 
-    public boolean canBeLeashedBy(PlayerEntity player) {
-        return true;
+    @Override
+    public boolean canBeLeashed() {
+        return false;
     }
 
     @Override

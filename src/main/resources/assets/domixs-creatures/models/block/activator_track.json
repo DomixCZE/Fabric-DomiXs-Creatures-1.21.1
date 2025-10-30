@@ -1,0 +1,7 @@
+{
+  "parent": "domixs-creatures:block/track_base",
+  "textures": {
+    "top": "domixs-creatures:block/activator_track",
+    "particle": "minecraft:block/stone_bricks"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/a_bears_necessity",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:copper_trumpet"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.thats_peak.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.thats_peak.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "played_trumpet_near_capybara": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "played_trumpet_near_capybara"
+    ]
+  ]
+}

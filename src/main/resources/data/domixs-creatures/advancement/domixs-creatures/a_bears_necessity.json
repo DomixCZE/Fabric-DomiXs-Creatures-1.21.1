@@ -1,0 +1,28 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/boars_bounty",
+  "display": {
+    "icon": {
+      "id": "minecraft:honeycomb"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.a_bears_necessity.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.a_bears_necessity.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gave_honey_to_bear": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "gave_honey_to_bear"
+    ]
+  ]
+}

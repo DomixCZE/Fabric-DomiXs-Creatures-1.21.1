@@ -12,6 +12,7 @@ import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.item.guide.GuideDataLoader;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.potion.ModPotions;
+import net.domixcze.domixscreatures.screen.ModScreenHandlers;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.structures.ModStructures;
 import net.domixcze.domixscreatures.util.*;
@@ -26,17 +27,11 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.item.Item;
 import net.minecraft.potion.Potions;
-import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Map;
 
 public class DomiXsCreatures implements ModInitializer {
 	public static final String MOD_ID = "domixs-creatures";
@@ -82,9 +77,15 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.ANGLERFISH, AnglerfishEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.FRESHWATER_STINGRAY, FreshwaterStingrayEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.HERMIT_CRAB, HermitCrabEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.RACCOON, RaccoonEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.CAPYBARA, CapybaraEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.HYENA, HyenaEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.ANCIENT_SKELETON, AncientSkeletonEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.UNICORN, UnicornEntity.setAttributes());
 
 		FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
 
+		ModScreenHandlers.registerScreenHandlers();
 		ModEvents.registerModEvents();
 
 		ModTrades.registerCustomTrades();
@@ -141,6 +142,24 @@ public class DomiXsCreatures implements ModInitializer {
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PALM_SLAB, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PALM_STAIRS, 5, 20);
 
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.WHITE_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.LIGHT_GRAY_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.GRAY_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.BLACK_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.BLUE_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.CYAN_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.LIGHT_BLUE_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.GREEN_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.LIME_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PURPLE_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.MAGENTA_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PINK_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.YELLOW_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.ORANGE_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.RED_NET_BLOCK, 40, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.BROWN_NET_BLOCK, 40, 60);
+
+		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.FISH_TRAP_BLOCK, 10, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PILE_OF_STICKS_BLOCK, 30, 60);
 
 		FuelRegistry.INSTANCE.add(ModBlocks.PILE_OF_STICKS_BLOCK, 150);
@@ -168,6 +187,8 @@ public class DomiXsCreatures implements ModInitializer {
 		FuelRegistry.INSTANCE.add(ModBlocks.PALM_STAIRS, 300);
 		FuelRegistry.INSTANCE.add(ModBlocks.PALM_SLAB, 150);
 
+		FuelRegistry.INSTANCE.add(ModBlocks.FISH_TRAP_BLOCK, 300);
+
 		ModCompostables.register();
 
 		ModTrunkPlacerTypes.register();
@@ -177,6 +198,10 @@ public class DomiXsCreatures implements ModInitializer {
 
 		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
 			builder.registerPotionRecipe(Potions.AWKWARD, ModItems.SPECTRAL_BAT_EAR, ModPotions.ECHOLOCATION_POTION);
+		});
+
+		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+			builder.registerPotionRecipe(Potions.AWKWARD, ModItems.RAW_EEL_MEAT, ModPotions.ELECTRIFYING_POTION);
 		});
 	}
 }

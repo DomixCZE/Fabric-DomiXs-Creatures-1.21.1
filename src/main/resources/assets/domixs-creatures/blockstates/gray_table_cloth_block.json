@@ -1,0 +1,9 @@
+{
+  "multipart": [
+    { "apply": { "model": "domixs-creatures:block/gray_table_cloth_top" } },
+    { "when": { "north": true }, "apply": { "model": "domixs-creatures:block/gray_table_cloth_side", "y": 0 } },
+    { "when": { "south": true }, "apply": { "model": "domixs-creatures:block/gray_table_cloth_side", "y": 180 } },
+    { "when": { "west": true }, "apply": { "model": "domixs-creatures:block/gray_table_cloth_side", "y": 270 } },
+    { "when": { "east": true }, "apply": { "model": "domixs-creatures:block/gray_table_cloth_side", "y": 90 } }
+  ]
+}

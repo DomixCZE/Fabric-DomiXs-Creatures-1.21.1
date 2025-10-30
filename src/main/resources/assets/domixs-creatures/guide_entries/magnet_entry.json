@@ -1,12 +1,12 @@
 {
   "entry_id": "domixs-creatures:magnet_entry",
   "category": "items",
-  "title": "§lMagnet",
-  "button_text": "§lMagnet",
+  "title": "guide.title.domixs-creatures.magnet",
+  "button_text": "guide.title.domixs-creatures.magnet",
   "pages": [
     {
       "text_content": [
-        "The magnet can be bound to any item and will either pull the bound item type to you or push it away."
+        "guide.entry.domixs-creatures.magnet_page1"
       ],
       "images": [
         {
@@ -85,9 +85,9 @@
     },
     {
       "text_content": [
-        "To bind an item, simply right-click with the desired item on the magnet. To unbind it, right-click the magnet again.",
+        "guide.entry.domixs-creatures.magnet_page2_line1",
         "",
-        "To activate the magnet hold §6§lright-click§r to pull and §6§lshift§r + §6§lright-click§r to push."
+        "guide.entry.domixs-creatures.magnet_page2_line2"
       ]
     }
   ]

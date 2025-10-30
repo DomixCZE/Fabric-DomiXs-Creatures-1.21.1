@@ -1,5 +1,5 @@
 {
-  "parent": "domixs-creatures:domixs-creatures/boars_bounty",
+  "parent": "domixs-creatures:domixs-creatures/root",
   "display": {
     "icon": {
       "id": "domixs-creatures:conch_shell"

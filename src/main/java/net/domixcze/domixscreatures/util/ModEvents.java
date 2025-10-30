@@ -1,10 +1,18 @@
 package net.domixcze.domixscreatures.util;
 
+import net.domixcze.domixscreatures.effect.ModEffects;
+import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.item.custom.MacuahuitlItem;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 
@@ -12,9 +20,37 @@ public class ModEvents {
 
     public static void registerModEvents() {
         ServerLivingEntityEvents.ALLOW_DAMAGE.register(ModEvents::onLivingEntityDamage);
+
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+                ItemStack maskStack = hasPoisonImmunityItem(player);
+                if (!maskStack.isEmpty() && player.hasStatusEffect(StatusEffects.POISON)) {
+                    player.removeStatusEffect(StatusEffects.POISON);
+
+                    if (!player.getWorld().isClient) {
+                        maskStack.damage(1, player, EquipmentSlot.HEAD);
+                    }
+                }
+            }
+        });
     }
 
     private static boolean onLivingEntityDamage(LivingEntity entity, DamageSource source, float amount) {
+        if (source.getAttacker() instanceof LivingEntity attacker) {
+            ItemStack heldStack = attacker.getMainHandStack();
+
+            if (heldStack.getItem() instanceof MacuahuitlItem
+                    && !attacker.getWorld().isClient()
+                    && !(attacker instanceof PlayerEntity)) {
+
+                heldStack.damage(1, attacker, EquipmentSlot.MAINHAND);
+
+                if (attacker.getWorld().random.nextFloat() < 0.15f) { // 15% chance
+                    entity.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 100, 0));
+                }
+            }
+        }
+
         if (source.getSource() != null && source.getSource().getType().isIn(ModTags.EntityTypes.REFLECTABLE_PROJECTILES)) {
             int reflectiveArmorPieces = 0;
             for (ItemStack armorStack : entity.getArmorItems()) {
@@ -56,5 +92,13 @@ public class ModEvents {
         }
 
         return true;
+    }
+
+    private static ItemStack hasPoisonImmunityItem(LivingEntity entity) {
+        ItemStack stack = entity.getEquippedStack(EquipmentSlot.HEAD);
+        if (stack.isOf(ModItems.SHAMAN_MASK)) {
+            return stack;
+        }
+        return ItemStack.EMPTY;
     }
 }

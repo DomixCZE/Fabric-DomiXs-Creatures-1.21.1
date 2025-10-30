@@ -10,5 +10,54 @@ public class ModModelPredicates {
                 (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
                         && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
         );
+
+        ModelPredicateProviderRegistry.register(ModItems.DEATH_WHISTLE, Identifier.of("blowing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+
+
+        ModelPredicateProviderRegistry.register(ModItems.MARSHMALLOW_STICK, Identifier.of("cooking"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.COOKED_MARSHMALLOW_STICK, Identifier.of("cooking"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+
+
+        ModelPredicateProviderRegistry.register(ModItems.COPPER_TRUMPET, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.COPPER_TRUMPET_EXPOSED, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.COPPER_TRUMPET_WEATHERED, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.COPPER_TRUMPET_OXIDIZED, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.WAXED_COPPER_TRUMPET, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.WAXED_COPPER_TRUMPET_EXPOSED, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.WAXED_COPPER_TRUMPET_WEATHERED, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+        ModelPredicateProviderRegistry.register(ModItems.WAXED_COPPER_TRUMPET_OXIDIZED, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
     }
 }

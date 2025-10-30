@@ -1,13 +1,12 @@
 package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.entity.custom.GorillaEntity;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
-public class GorillaMeleeAttackGoal extends MeleeAttackGoal {
+public class GorillaMeleeAttackGoal extends ModMeleeAttackGoal<GorillaEntity> {
     private final GorillaEntity gorilla;
 
     public GorillaMeleeAttackGoal(GorillaEntity gorilla, double speed, boolean pauseWhenMobIdle) {
-        super(gorilla, speed, pauseWhenMobIdle);
+        super(gorilla, speed, pauseWhenMobIdle, 10, "land_controller", null);
         this.gorilla = gorilla;
     }
 

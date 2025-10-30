@@ -5,6 +5,7 @@ import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.item.custom.*;
 import net.domixcze.domixscreatures.item.guide.GuideBookItem;
+import net.domixcze.domixscreatures.sound.ModSounds;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -86,6 +87,16 @@ public class ModItems {
             new Item.Settings()));
     public static final Item HERMIT_CRAB_SPAWN_EGG = registerItem("hermit_crab_spawn_egg", new SpawnEggItem(ModEntities.HERMIT_CRAB, 0xb25c32, 0xb97aa8,
             new Item.Settings()));
+    public static final Item RACCOON_SPAWN_EGG = registerItem("raccoon_spawn_egg", new SpawnEggItem(ModEntities.RACCOON, 0x5a5a5a, 0x1e1e1e,
+            new Item.Settings()));
+    public static final Item CAPYBARA_SPAWN_EGG = registerItem("capybara_spawn_egg", new SpawnEggItem(ModEntities.CAPYBARA, 0xa96b38, 0x854b28,
+            new Item.Settings()));
+    public static final Item HYENA_SPAWN_EGG = registerItem("hyena_spawn_egg", new SpawnEggItem(ModEntities.HYENA, 0x7a6045, 0x4a3a30,
+            new Item.Settings()));
+    public static final Item ANCIENT_SKELETON_SPAWN_EGG = registerItem("ancient_skeleton_spawn_egg", new SpawnEggItem(ModEntities.ANCIENT_SKELETON, 0x5d423a, 0x9a6c61,
+            new Item.Settings()));
+    public static final Item UNICORN_SPAWN_EGG = registerItem("unicorn_spawn_egg", new SpawnEggItem(ModEntities.UNICORN, 0xe8f3f5, 0xce96e4,
+            new Item.Settings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));
@@ -111,7 +122,14 @@ public class ModItems {
     public static final Item COOKED_BISON_MEAT = registerItem("cooked_bison_meat", new Item(new Item.Settings().food(ModFoodComponents.COOKED_BISON_MEAT)));
     public static final Item RAW_DEER_VENISON = registerItem("raw_deer_venison", new Item(new Item.Settings().food(ModFoodComponents.DEER_VENISON)));
     public static final Item COOKED_DEER_VENISON = registerItem("cooked_deer_venison", new Item(new Item.Settings().food(ModFoodComponents.COOKED_DEER_VENISON)));
+    public static final Item RAW_EEL_MEAT = registerItem("raw_eel_meat", new Item(new Item.Settings().food(ModFoodComponents.EEL_MEAT)));
+    public static final Item COOKED_EEL_MEAT = registerItem("cooked_eel_meat", new Item(new Item.Settings().food(ModFoodComponents.COOKED_EEL_MEAT)));
+
     public static final Item COCONUT_SLICE = registerItem("coconut_slice", new CoconutSliceItem(new Item.Settings().food(ModFoodComponents.COCONUT_SLICE)));
+    public static final Item MARSHMALLOW = registerItem("marshmallow", new Item(new Item.Settings().maxCount(16)));
+    public static final Item MARSHMALLOW_STICK = registerItem("marshmallow_stick", new MarshmallowStickItem(new Item.Settings().maxCount(1)));
+    public static final Item COOKED_MARSHMALLOW_STICK = registerItem("cooked_marshmallow_stick", new CookedMarshmallowStickItem(new Item.Settings().maxCount(1).food(ModFoodComponents.COOKED_MARSHMALLOW)));
+    public static final Item BURNT_MARSHMALLOW_STICK = registerItem("burnt_marshmallow_stick", new Item(new Item.Settings().maxCount(1).food(ModFoodComponents.BURNT_MARSHMALLOW)));
 
     public static final Item SKULL = registerItem("skull", new Item(new Item.Settings()));
     public static final Item FIRE_SALAMANDER_SCALES = registerItem("fire_salamander_scales", new Item(new Item.Settings().fireproof()));
@@ -132,6 +150,9 @@ public class ModItems {
     public static final Item ARAPAIMA_SCALE_GREEN = registerItem("arapaima_scale_green", new Item(new Item.Settings()));
     public static final Item PEARL = registerItem("pearl", new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
     public static final Item COCONUT_SHELL = registerItem("coconut_shell", new Item(new Item.Settings()));
+    public static final Item SILK = registerItem("silk", new Item(new Item.Settings()));
+    public static final Item NET = registerItem("net", new Item(new Item.Settings()));
+    public static final Item UNICORN_DUST = registerItem("unicorn_dust", new UnicornDustItem(new Item.Settings()));
 
     public static final Item GUIDE_BOOK = registerItem("guide_book", new GuideBookItem(new Item.Settings().maxCount(1)));
 
@@ -139,9 +160,12 @@ public class ModItems {
     public static final Item MEDIUM_ANTLER = registerItem("medium_antler", new MediumAntlerItem(new Item.Settings()));
     public static final Item LARGE_ANTLER = registerItem("large_antler", new LargeAntlerItem(new Item.Settings()));
 
+    public static final Item RACCOON_TAIL = registerItem("raccoon_tail", new Item(new Item.Settings()));
+    public static final Item RACCOON_HAT = registerItem("raccoon_hat", new RaccoonHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
+
     public static final Item ADVENTURER_HAT = registerItem("adventurer_hat", new AdventurerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
     public static final Item SONIC_BLOCKERS = registerItem("sonic_blockers", new SonicBlockersItem(ModArmorMaterials.UTILITY, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(47)).maxCount(1)));
-    public static final Item SHAMAN_MASK = registerItem("shaman_mask", new ShamanMaskItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
+    public static final Item SHAMAN_MASK = registerItem("shaman_mask", new ShamanMaskItem(ModArmorMaterials.UTILITY, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(40)).maxCount(1).rarity(Rarity.UNCOMMON)));
 
     public static final Item SMALL_ANTLER_HAT = registerItem("small_antler_hat", new SmallAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
     public static final Item MEDIUM_ANTLER_HAT = registerItem("medium_antler_hat", new MediumAntlerHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
@@ -164,12 +188,22 @@ public class ModItems {
     public static final Item ARAPAIMA_LEGGINGS_GREEN = registerItem("arapaima_leggings_green", new ArapaimaLeggingsGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(15))));
     public static final Item ARAPAIMA_BOOTS_GREEN = registerItem("arapaima_boots_green", new ArapaimaBootsGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(15))));
 
+    public static final Item JADE_CROWN = registerItem("jade_crown", new JadeCrownItem(ModArmorMaterials.JADE, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(25)).rarity(Rarity.UNCOMMON)));
+
     public static final Item SALAMANDER_UPGRADE_SMITHING_TEMPLATE = registerItem("salamander_upgrade_smithing_template",
             new SalamanderUpgradeSmithingTemplateItem(new Item.Settings()));
 
     public static final Item BUG_NET = registerItem("bug_net", new BugNetItem(new Item.Settings().maxCount(1).maxDamage(3)));
     public static final Item SKULL_WAND = registerItem("skull_wand", new Item(new Item.Settings().maxCount(1)));
     public static final Item NIGHTMARE_AMULET = registerItem("nightmare_amulet", new NightmareAmuletItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
+    public static final Item COPPER_TRUMPET = registerItem("copper_trumpet", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_1, ModSounds.COPPER_TRUMPET_2));
+    public static final Item COPPER_TRUMPET_EXPOSED = registerItem("copper_trumpet_exposed", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_EXPOSED_1, ModSounds.COPPER_TRUMPET_EXPOSED_2));
+    public static final Item COPPER_TRUMPET_WEATHERED = registerItem("copper_trumpet_weathered", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_WEATHERED_1, ModSounds.COPPER_TRUMPET_WEATHERED_2));
+    public static final Item COPPER_TRUMPET_OXIDIZED = registerItem("copper_trumpet_oxidized", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_OXIDIZED_1, ModSounds.COPPER_TRUMPET_OXIDIZED_2));
+    public static final Item WAXED_COPPER_TRUMPET = registerItem("waxed_copper_trumpet", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_1, ModSounds.COPPER_TRUMPET_2));
+    public static final Item WAXED_COPPER_TRUMPET_EXPOSED = registerItem("waxed_copper_trumpet_exposed", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_EXPOSED_1, ModSounds.COPPER_TRUMPET_EXPOSED_2));
+    public static final Item WAXED_COPPER_TRUMPET_WEATHERED = registerItem("waxed_copper_trumpet_weathered", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_WEATHERED_1, ModSounds.COPPER_TRUMPET_WEATHERED_2));
+    public static final Item WAXED_COPPER_TRUMPET_OXIDIZED = registerItem("waxed_copper_trumpet_oxidized", new CopperTrumpetItem(new Item.Settings().maxCount(1), ModSounds.COPPER_TRUMPET_OXIDIZED_1, ModSounds.COPPER_TRUMPET_OXIDIZED_2));
 
     public static final Item DEAFEN_ICON = registerItem("deafen_icon", new Item(new Item.Settings()));
     public static final Item TAB_ICON = registerItem("tab_icon", new Item(new Item.Settings()));
@@ -179,7 +213,14 @@ public class ModItems {
     public static final Item RAW_MAGNETITE = registerItem("raw_magnetite", new Item(new Item.Settings()));
     public static final Item MAGNETITE_INGOT = registerItem("magnetite_ingot", new Item(new Item.Settings()));
 
+    public static final Item RAW_JADE = registerItem("raw_jade", new Item(new Item.Settings()));
+    public static final Item JADE = registerItem("jade", new Item(new Item.Settings()));
+
     public static final Item MUD_BLOSSOM_SEED = registerItem("mud_blossom_seed", new AliasedBlockItem(ModBlocks.MUD_BLOSSOM, new Item.Settings()));
+
+    public static final Item MACUAHUITL = registerItem("macuahuitl", new MacuahuitlItem(ModToolMaterials.MACUAHUITL, new Item.Settings(), 3, -3.0F));
+
+    public static final Item DEATH_WHISTLE = registerItem("death_whistle", new DeathWhistleItem(new Item.Settings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(DomiXsCreatures.MOD_ID, name), item);

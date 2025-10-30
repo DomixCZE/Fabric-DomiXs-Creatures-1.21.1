@@ -1,0 +1,95 @@
+{
+  "entry_id": "domixs-creatures:bug_net_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.bug_net",
+  "button_text": "guide.title.domixs-creatures.bug_net",
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.bug_net_page1"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:bug_net",
+          "x": 70,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_icon.png",
+          "x": 1,
+          "y": 96,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 45,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 5,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 45,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 5,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:stick",
+          "x": 25,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:stick",
+          "x": 25,
+          "y": 120,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:stick",
+          "x": 25,
+          "y": 100,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.bug_net_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.bug_net_page2_line2"
+      ]
+    }
+  ]
+}

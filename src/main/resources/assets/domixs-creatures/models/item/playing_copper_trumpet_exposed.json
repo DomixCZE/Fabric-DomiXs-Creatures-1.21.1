@@ -1,0 +1,26 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "domixs-creatures:item/copper_trumpet_exposed"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, -125, 30 ],
+      "translation": [ -1, 2, 2 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, 55, -30 ],
+      "translation": [ -1, 2, 2 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, -55, 30 ],
+      "translation": [ -1, -2.5, -7.5 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 125, -30 ],
+      "translation": [ 0, -2.5, -7.5 ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    "CCC",
+    "C  "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:copper_trumpet"
+  }
+}

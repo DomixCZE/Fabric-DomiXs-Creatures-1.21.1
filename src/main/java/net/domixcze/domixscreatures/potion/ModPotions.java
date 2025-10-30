@@ -14,7 +14,10 @@ import net.minecraft.util.Identifier;
 public class ModPotions {
 
     public static final RegistryEntry<Potion> ECHOLOCATION_POTION = registerPotion("echolocation_potion",
-            new Potion(new StatusEffectInstance(ModEffects.ECHOLOCATION, 200, 0)));
+            new Potion(new StatusEffectInstance(ModEffects.ECHOLOCATION, 800, 0)));
+
+    public static final RegistryEntry<Potion> ELECTRIFYING_POTION = registerPotion("electrifying_potion",
+            new Potion(new StatusEffectInstance(ModEffects.ELECTRIFIED, 400, 0)));
 
     private static RegistryEntry<Potion> registerPotion(String name, Potion potion) {
         return Registry.registerReference(Registries.POTION, Identifier.of(DomiXsCreatures.MOD_ID, name), potion);

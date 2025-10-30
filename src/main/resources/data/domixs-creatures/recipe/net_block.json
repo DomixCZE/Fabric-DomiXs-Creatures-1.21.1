@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NN",
+    "NN"
+  ],
+  "key": {
+    "N": {
+      "item": "domixs-creatures:net"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:white_net_block"
+  }
+}

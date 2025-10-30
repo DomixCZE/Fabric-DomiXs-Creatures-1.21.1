@@ -32,22 +32,26 @@ public class SunBearRenderer extends GeoEntityRenderer<SunBearEntity> {
     }
 
     @Override
-    public void renderRecursively(MatrixStack matrices, SunBearEntity entity, GeoBone bone, RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight,
-                                  int packedOverlay, int colour) {
+    public void renderRecursively(MatrixStack matrices, SunBearEntity entity, GeoBone bone, RenderLayer renderType,
+                                  VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender,
+                                  float partialTick, int packedLight, int packedOverlay, int colour) {
 
         if (bone.getName().equals("right_paw_front") && entity.isEating()) {
             matrices.push();
 
-            matrices.translate(0.0D, 0.1D, -0.31D);
+            this.getGeoModel().getBone("right_paw_front").ifPresent(paw -> {
+                matrices.translate(paw.getPivotX() / 16f, paw.getPivotY() / 16f, paw.getPivotZ() / 16f);
+                matrices.multiply(new Quaternionf().rotationXYZ(
+                        paw.getRotX() * 0.3f,
+                        paw.getRotY() * 0.3f,
+                        paw.getRotZ() * 0.3f
+                ));
+            });
+
+            matrices.translate(-0.15D, -0.48D, -0.1D);
             matrices.multiply(new Quaternionf().fromAxisAngleRad(new Vector3f(1, 0, 0), (float) Math.toRadians(90)));
 
-            float bobbing = MathHelper.sin(entity.age * 0.26f) * -0.003f;
-            matrices.translate(0.0D, bobbing, 0.0D);
-            matrices.scale(1.0f, 1.0f, 1.0f);
-
-            MinecraftClient itemRenderer = MinecraftClient.getInstance();
-
-            itemRenderer.getItemRenderer().renderItem(
+            MinecraftClient.getInstance().getItemRenderer().renderItem(
                     entity,
                     new ItemStack(Items.HONEYCOMB),
                     ModelTransformationMode.THIRD_PERSON_RIGHT_HAND,
@@ -57,13 +61,13 @@ public class SunBearRenderer extends GeoEntityRenderer<SunBearEntity> {
                     entity.getWorld(),
                     packedLight,
                     packedOverlay,
-                    entity.getRandom().nextInt()
+                    entity.getId()
             );
 
             matrices.pop();
         }
 
-        super.renderRecursively(matrices, entity, bone, renderType, bufferSource, buffer, isReRender, partialTick,
-                packedLight, packedOverlay, colour);
+        super.renderRecursively(matrices, entity, bone, renderType, bufferSource, buffer,
+                isReRender, partialTick, packedLight, packedOverlay, colour);
     }
 }

@@ -40,7 +40,7 @@ public class ConchShellItem extends Item {
 
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
-        return 500; // How long the "use" animation plays
+        return 500;
     }
 
     @Override

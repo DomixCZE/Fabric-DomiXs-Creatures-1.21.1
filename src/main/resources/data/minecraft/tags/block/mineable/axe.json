@@ -17,6 +17,8 @@
     "domixs-creatures:palm_door",
     "domixs-creatures:palm_trapdoor",
     "domixs-creatures:palm_button",
-    "domixs-creatures:palm_pressure_plate"
+    "domixs-creatures:palm_pressure_plate",
+
+    "domixs-creatures:fish_trap_block"
   ]
 }

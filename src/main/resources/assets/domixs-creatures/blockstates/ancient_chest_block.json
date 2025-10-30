@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,waterlogged=false": { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=north,waterlogged=true":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=south,waterlogged=false": { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=south,waterlogged=true":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=west,waterlogged=false":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=west,waterlogged=true":   { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=east,waterlogged=false":  { "model": "domixs-creatures:block/ancient_chest_block" },
+    "facing=east,waterlogged=true":   { "model": "domixs-creatures:block/ancient_chest_block" }
+  }
+}

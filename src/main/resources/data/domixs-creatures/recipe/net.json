@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    " S ",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:net"
+  }
+}

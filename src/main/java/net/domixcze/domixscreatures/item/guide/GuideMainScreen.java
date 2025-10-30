@@ -137,7 +137,14 @@ public class GuideMainScreen extends Screen {
         }
     }
 
-    public record LightweightMenuEntry(Text buttonText, Text entryTitle, Identifier jsonLocation, Category category) {}
+    public record LightweightMenuEntry(String buttonTextKey, String entryTitleKey, Identifier jsonLocation, Category category) {
+        public Text getButtonText() {
+            return Text.translatable(buttonTextKey);
+        }
+        public Text getEntryTitle() {
+            return Text.translatable(entryTitleKey);
+        }
+    }
 
     // Screen State Variables
     private PageType currentPage = PageType.MENU;
@@ -210,7 +217,7 @@ public class GuideMainScreen extends Screen {
                             currentButtonY,
                             100,
                             20,
-                            entry.buttonText(),
+                            entry.getButtonText(),
                             (b) -> openEntry(entry.jsonLocation())
                     ));
                 }
@@ -285,7 +292,7 @@ public class GuideMainScreen extends Screen {
         for (List<LightweightMenuEntry> pageList : GuideDataLoader.getLoadedMenuEntries().getOrDefault(currentCategory, List.of())) {
             for (LightweightMenuEntry lightweightEntry : pageList) {
                 if (lightweightEntry.jsonLocation().equals(entryJsonId)) {
-                    entryTitle = lightweightEntry.entryTitle();
+                    entryTitle = lightweightEntry.getEntryTitle();
                     break findEntryTitle;
                 }
             }

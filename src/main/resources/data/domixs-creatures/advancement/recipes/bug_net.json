@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_string": {
+    "has_net": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:string"
+              "domixs-creatures:net"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_string",
+      "has_net",
       "has_the_recipe"
     ]
   ],
@@ -30,6 +30,5 @@
     "recipes": [
       "domixs-creatures:bug_net"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

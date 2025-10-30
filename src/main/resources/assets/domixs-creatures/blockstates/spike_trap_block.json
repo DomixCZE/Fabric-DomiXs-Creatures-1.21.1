@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "extended=true":  { "model": "domixs-creatures:block/spike_trap_block_extended" },
+    "extended=false": { "model": "domixs-creatures:block/spike_trap_block" }
+  }
+}

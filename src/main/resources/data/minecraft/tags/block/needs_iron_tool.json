@@ -1,12 +1,15 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:pearl_block",
     "domixs-creatures:barnacle_block",
     "domixs-creatures:magnetite_ore",
     "domixs-creatures:deepslate_magnetite_ore",
     "domixs-creatures:negative_magnet_block",
     "domixs-creatures:positive_magnet_block",
-    "domixs-creatures:block_of_magnetite"
+    "domixs-creatures:block_of_magnetite",
+
+    "domixs-creatures:block_of_jade",
+    "domixs-creatures:jade_ore",
+    "domixs-creatures:deepslate_jade_ore"
   ]
 }

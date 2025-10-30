@@ -13,6 +13,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -107,6 +108,11 @@ public class VineEntity extends HostileEntity implements GeoEntity {
         if (source == this.getDamageSources().magic()) {
             return false;
         }
+
+        if (source.isIn(DamageTypeTags.IS_FIRE)) {
+            amount *= 2.0F;
+        }
+
         return super.damage(source, amount);
     }
 

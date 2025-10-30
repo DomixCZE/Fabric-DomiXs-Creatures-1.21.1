@@ -372,7 +372,7 @@ public class HermitCrabEntity extends AnimalEntity implements GeoEntity {
 
     private static class HermitCrabDanceGoal extends Goal {
         private final HermitCrabEntity crab;
-        private final int searchRadius = 8; // Max distance for jukebox (like parrots)
+        private final int searchRadius = 8;
 
         public HermitCrabDanceGoal(HermitCrabEntity crab) {
             this.crab = crab;
@@ -401,28 +401,20 @@ public class HermitCrabEntity extends AnimalEntity implements GeoEntity {
             this.crab.setDancing(false);
         }
 
-        /**
-         * Checks if a jukebox is actively playing a record within the search radius.
-         */
         private boolean isJukeboxPlayingNearby() {
             BlockPos entityPos = this.crab.getBlockPos();
-            // Iterate through blocks in a cube around the crab
             for (int x = -searchRadius; x <= searchRadius; x++) {
                 for (int y = -searchRadius; y <= searchRadius; y++) {
                     for (int z = -searchRadius; z <= searchRadius; z++) {
                         BlockPos currentPos = entityPos.add(x, y, z);
                         BlockState blockState = this.crab.getWorld().getBlockState(currentPos);
 
-                        // First, check if it's a Jukebox block
                         if (blockState.isOf(Blocks.JUKEBOX)) {
-                            // Then, get its BlockEntity
                             BlockEntity blockEntity = this.crab.getWorld().getBlockEntity(currentPos);
 
-                            // Check if the BlockEntity is a JukeboxBlockEntity
                             if (blockEntity instanceof JukeboxBlockEntity jukeboxBlockEntity) {
-                                // NEW: Access the manager and then call isPlaying()
                                 if (jukeboxBlockEntity.getManager().isPlaying()) {
-                                    return true; // Found a jukebox that is currently playing!
+                                    return true;
                                 }
                             }
                         }

@@ -1,0 +1,75 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.raccoon_hat.walk": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [-77.51152, 0.54094, -2.44081]
+						},
+						"0.25": {
+							"vector": [-77.51152, -0.54094, 2.44081]
+						},
+						"0.5": {
+							"vector": [-77.51152, 0.54094, -2.44081]
+						},
+						"0.75": {
+							"vector": [-77.51152, -0.54094, 2.44081]
+						},
+						"1.0": {
+							"vector": [-77.51152, 0.54094, -2.44081]
+						}
+					},
+					"position": {
+						"vector": [0, 1, 2]
+					}
+				}
+			}
+		},
+		"animation.raccoon_hat.fall": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [75, 0, 0]
+						},
+						"0.125": {
+							"vector": [67.5, 0, 0]
+						},
+						"0.25": {
+							"vector": [75, 0, 0]
+						},
+						"0.375": {
+							"vector": [67.5, 0, 0]
+						},
+						"0.5": {
+							"vector": [75, 0, 0]
+						}
+					},
+					"position": {
+						"vector": [0, -3, 2]
+					}
+				}
+			}
+		},
+		"animation.raccoon_hat.idle": {
+			"loop": true,
+			"bones": {
+				"tail": {
+					"rotation": {
+						"vector": [-77.5, 0, 0]
+					},
+					"position": {
+						"vector": [0, 1, 2]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

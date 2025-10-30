@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:orange_dye" },
+    { "tag": "domixs-creatures:net_blocks" }
+  ],
+  "result": {
+    "id": "domixs-creatures:orange_net_block",
+    "count": 1
+  }
+}

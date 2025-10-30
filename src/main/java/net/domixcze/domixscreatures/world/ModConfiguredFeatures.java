@@ -26,6 +26,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> SPECTRAL_KEY = registerKey("spectral");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PALM_KEY = registerKey("palm");
     public static final RegistryKey<ConfiguredFeature<?, ?>> MAGNETITE_ORE_KEY = registerKey("magnetite_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> JADE_ORE_KEY = registerKey("jade_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> LIMESTONE_KEY = registerKey("limestone");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         // Spectral tree
@@ -57,6 +59,20 @@ public class ModConfiguredFeatures {
                         OreFeatureConfig.createTarget(deepslateReplaceables, ModBlocks.DEEPSLATE_MAGNETITE_ORE.getDefaultState()));
 
         register(context, MAGNETITE_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldMagnetiteOres, 10));
+
+        // Jade ore
+        List<OreFeatureConfig.Target> overworldJadeOres =
+                List.of(OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.JADE_ORE.getDefaultState()),
+                        OreFeatureConfig.createTarget(deepslateReplaceables, ModBlocks.DEEPSLATE_JADE_ORE.getDefaultState()));
+
+        register(context, JADE_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldJadeOres, 5));
+
+        // Limestone
+        RuleTest baseStone = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
+        List<OreFeatureConfig.Target> limestoneTargets =
+                List.of(OreFeatureConfig.createTarget(baseStone, ModBlocks.LIMESTONE.getDefaultState()));
+
+        register(context, LIMESTONE_KEY, Feature.ORE, new OreFeatureConfig(limestoneTargets, 32));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

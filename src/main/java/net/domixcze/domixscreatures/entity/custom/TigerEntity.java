@@ -7,6 +7,7 @@ import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -218,58 +219,41 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
         this.dataTracker.set(AMULET_USED, used);
     }
 
-    public boolean isBeingSnowedOn() {
-        BlockPos blockPos = this.getBlockPos();
-        return this.getWorld().isRaining() && this.isInSnowyBiome() && (this.hasSnow(blockPos) || this.hasSnow(BlockPos.ofFloored(blockPos.getX(), this.getBoundingBox().maxY, blockPos.getZ())));
-    }
-
-    public boolean hasSnow(BlockPos pos) {
-        if (!this.getWorld().isRaining()) {
-            return false;
-        } else if (!this.getWorld().isSkyVisible(pos)) {
-            return false;
-        } else if (this.getWorld().getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY()) {
-            return false;
-        } else {
-            Biome biome = this.getWorld().getBiome(pos).value();
-            return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-        }
-    }
-
-    public boolean isInSnowyBiome() {
-        BlockPos pos = this.getBlockPos();
-        RegistryEntry<Biome> biomeEntry = this.getWorld().getBiome(pos);
-        Biome biome = biomeEntry.value();
-        return biome.getPrecipitation(pos) == Biome.Precipitation.SNOW;
-    }
-
+    @Override
     public boolean hasSnowLayer() {
         return this.dataTracker.get(HAS_SNOW_LAYER);
     }
 
+    @Override
     public void setHasSnowLayer(boolean hasSnow) {
         this.dataTracker.set(HAS_SNOW_LAYER, hasSnow);
+    }
+
+    @Override
+    public int getSnowTicks() {
+        return this.snowTicks;
+    }
+
+    @Override
+    public void setSnowTicks(int ticks) {
+        this.snowTicks = ticks;
+    }
+
+    @Override
+    public int getSnowMeltTimer() {
+        return this.snowMeltTimer;
+    }
+
+    @Override
+    public void setSnowMeltTimer(int timer) {
+        this.snowMeltTimer = timer;
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        if (!this.hasSnowLayer() && this.isBeingSnowedOn()) {
-            snowTicks++;
-            if (snowTicks >= 600) {
-                this.setHasSnowLayer(true);
-                snowTicks = 0;
-            }
-        }
-
-        if ((this.isTouchingWater() || !this.isInSnowyBiome()) && this.hasSnowLayer()) {
-            snowMeltTimer++;
-            if (snowMeltTimer >= 200) {
-                this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
-            }
-        }
+        SnowLayerUtil.handleSnowLayerTick(this, this);
 
         if (!this.getWorld().isClient() && this.isTamed() && this.getOwner() instanceof ServerPlayerEntity player) {
             if (this.getWorld().isNight()) {
@@ -374,7 +358,17 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "land_controller", 5, this::landPredicate));
+        AnimationController<TigerEntity> landController =
+                new AnimationController<>(this, "land_controller", 5, this::landPredicate);
+
+        if (this.getVariant() == TigerVariants.DREAM || this.getVariant() == TigerVariants.ALBINO_DREAM) {
+            landController.triggerableAnim("attack",
+                    RawAnimation.begin().then("animation.dream_tiger.attack", Animation.LoopType.PLAY_ONCE));
+        } else {
+            landController.triggerableAnim("attack",
+                    RawAnimation.begin().then("animation.tiger.attack", Animation.LoopType.PLAY_ONCE));
+        }
+        controllers.add(landController);
         controllers.add(new AnimationController<>(this, "sleep_controller", 5, this::sleepPredicate));
         controllers.add(new AnimationController<>(this, "water_controller", 5, this::waterPredicate));
     }
@@ -465,14 +459,14 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getStackInHand(hand);
+        ItemStack itemStack = player.getStackInHand(hand);
 
-        if ((itemstack.getItem() == Items.BEEF) && !this.isTamed()) {
+        if ((itemStack.getItem() == Items.BEEF) && !this.isTamed()) {
             if (this.getWorld().isClient()) {
                 return ActionResult.CONSUME;
             } else {
                 if (!player.getAbilities().creativeMode) {
-                    itemstack.decrement(1);
+                    itemStack.decrement(1);
                 }
 
                 if (this.random.nextInt(15) == 0) {
@@ -484,10 +478,11 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
                 this.playSound(SoundEvents.ENTITY_GENERIC_EAT, 1.0F, 1.0F);
                 return ActionResult.SUCCESS;
             }
-        } else if (itemstack.getItem() == ModItems.NIGHTMARE_AMULET && this.isTamed() && !this.getWorld().isClient() && !this.hasAmulet() && !this.isBaby()) {
+
+        } else if (itemStack.getItem() == ModItems.NIGHTMARE_AMULET && this.isTamed() && !this.getWorld().isClient() && !this.hasAmulet() && !this.isBaby()) {
             this.setAmuletUsed(true);
             if (!player.getAbilities().creativeMode) {
-                itemstack.decrement(1);
+                itemStack.decrement(1);
             }
             this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE, this.getSoundCategory(), 1.0F, 1.0F);
             if (this.getWorld() instanceof ServerWorld serverWorld) {
@@ -506,7 +501,7 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
         }
 
         if (isTamed() && !this.getWorld().isClient()) {
-            if (isTamed() && hand == Hand.MAIN_HAND && itemstack.isEmpty()) {
+            if (isTamed() && hand == Hand.MAIN_HAND && itemStack.isEmpty()) {
                 setSit(player, !isSitting());
 
                 Text entityName = this.getDisplayName();
@@ -524,26 +519,24 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
             }
         }
 
-        if (itemstack.isIn(ItemTags.SHOVELS)) {
-            if (this.hasSnowLayer()) {
+        if (itemStack.isOf(Items.BRUSH) && this.hasSnowLayer()) {
+            if (!this.getWorld().isClient) {
                 this.setHasSnowLayer(false);
-                snowMeltTimer = 0;
+                this.snowMeltTimer = 0;
 
-                if (!player.isCreative()) {
-                    itemstack.damage(1, player, EquipmentSlot.MAINHAND);
-                }
-
-                this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
-
-                if (!this.getWorld().isClient) {
-                    int count = 5 + this.getWorld().random.nextInt(4);
-                    this.dropStack(new ItemStack(Items.SNOWBALL, count));
-                }
-
-                return ActionResult.SUCCESS;
+                int count = 3 + this.getWorld().random.nextInt(2);
+                this.dropStack(new ItemStack(Items.SNOWBALL, count));
             }
-        }
 
+            SnowLayerUtil.spawnSnowParticles(this);
+
+            this.playSound(SoundEvents.BLOCK_SNOW_BREAK, 1.0F, 1.0F);
+            if (!player.isCreative()) {
+                itemStack.damage(1, player, EquipmentSlot.MAINHAND);
+            }
+
+            return ActionResult.SUCCESS;
+        }
         return super.interactMob(player, hand);
     }
 

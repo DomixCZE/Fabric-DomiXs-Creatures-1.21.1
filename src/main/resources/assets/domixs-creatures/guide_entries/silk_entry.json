@@ -1,0 +1,97 @@
+{
+  "entry_id": "domixs-creatures:silk_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.silk",
+  "button_text": "guide.title.domixs-creatures.silk",
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.silk_page1"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 60,
+          "y": 110,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.silk_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:white_table_cloth_block",
+          "x": 70,
+          "y": 105,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_icon.png",
+          "x": 1,
+          "y": 86,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 25,
+          "y": 110,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 5,
+          "y": 110,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 5,
+          "y": 130,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 45,
+          "y": 110,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 45,
+          "y": 130,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 25,
+          "y": 130,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    }
+  ]
+}

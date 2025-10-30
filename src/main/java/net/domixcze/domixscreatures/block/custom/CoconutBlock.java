@@ -12,7 +12,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -23,7 +22,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.ItemScatterer;
@@ -147,13 +145,13 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
     @Override
     public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
         if (!world.isClient && state.get(ATTACHED)) {
-            FallingBlockEntity falling = FallingBlockEntity.spawnFromBlock(world, hit.getBlockPos(), state.with(ATTACHED, false));
-            falling.setHurtEntities(2.0F, 10);
+            FallingBlockEntity.spawnFromBlock(world, hit.getBlockPos(), state.with(ATTACHED, false));
         }
     }
 
     private void spawnFallingCoconut(World world, BlockPos pos, BlockState state) {
         FallingBlockEntity falling = FallingBlockEntity.spawnFromBlock(world, pos, state);
+        falling.setHurtEntities(2.0F, 10);
     }
 
     @Override
@@ -179,7 +177,7 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
 
     @Override
     public void onLanding(World world, BlockPos pos, BlockState fallingState, BlockState currentStateInWorld, FallingBlockEntity entity) {
-        SoundEvent landSound = ModConfig.INSTANCE.enableCoconutBongSound ? ModSounds.COCONUT_LAND : SoundEvents.BLOCK_WOOD_PLACE;
+        SoundEvent landSound = ModConfig.INSTANCE.enableCoconutBonkSound ? ModSounds.COCONUT_LAND : SoundEvents.BLOCK_WOOD_PLACE;
         world.playSound(null, pos, landSound, SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 

@@ -1,0 +1,45 @@
+{
+  "entry_id": "domixs-creatures:unicorn_dust_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.unicorn_dust",
+  "button_text": "guide.title.domixs-creatures.unicorn_dust",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_dust_page1"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:unicorn_dust",
+          "x": 50,
+          "y": 110,
+          "width": 40,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_dust_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "minecraft:dirt",
+            "minecraft:coarse_dirt",
+            "minecraft:mycelium",
+            "minecraft:podzol",
+            "minecraft:mud"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 20,
+          "y": 90,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    }
+  ]
+}

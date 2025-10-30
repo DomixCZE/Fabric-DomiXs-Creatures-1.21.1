@@ -32,7 +32,7 @@ public class AnglerfishEntity extends FishEntity implements GeoEntity {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return FishEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 2.0F);
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2F);
     }
 
     public static boolean canSpawn(EntityType<AnglerfishEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {

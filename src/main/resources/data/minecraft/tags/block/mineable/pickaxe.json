@@ -7,6 +7,27 @@
     "domixs-creatures:deepslate_magnetite_ore",
     "domixs-creatures:negative_magnet_block",
     "domixs-creatures:positive_magnet_block",
-    "domixs-creatures:block_of_magnetite"
+    "domixs-creatures:block_of_magnetite",
+    "domixs-creatures:spike_trap_block",
+    "domixs-creatures:block_of_jade",
+    "domixs-creatures:jade_ore",
+    "domixs-creatures:deepslate_jade_ore",
+    "domixs-creatures:limestone",
+    "domixs-creatures:cobbled_limestone",
+    "domixs-creatures:limestone_bricks",
+    "domixs-creatures:limestone_brick_slab",
+    "domixs-creatures:limestone_brick_stairs",
+    "domixs-creatures:limestone_brick_wall",
+    "domixs-creatures:mossy_limestone_bricks",
+    "domixs-creatures:mossy_limestone_brick_slab",
+    "domixs-creatures:mossy_limestone_brick_stairs",
+    "domixs-creatures:mossy_limestone_brick_wall",
+    "domixs-creatures:chiseled_limestone",
+    "domixs-creatures:limestone_statue",
+    "domixs-creatures:track_block",
+    "domixs-creatures:activator_track_block",
+    "domixs-creatures:pushable_statue_block",
+    "domixs-creatures:ancient_chest_block",
+    "domixs-creatures:cursed_ancient_chest_block"
   ]
 }

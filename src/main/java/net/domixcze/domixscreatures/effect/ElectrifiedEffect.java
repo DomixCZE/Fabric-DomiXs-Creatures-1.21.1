@@ -118,7 +118,7 @@ public class ElectrifiedEffect extends StatusEffect {
 
     @Override
     public boolean isInstant() {
-        return true;
+        return false;
     }
 
     @Override

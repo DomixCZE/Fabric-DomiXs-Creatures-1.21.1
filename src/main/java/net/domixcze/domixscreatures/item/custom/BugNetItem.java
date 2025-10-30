@@ -1,8 +1,6 @@
 package net.domixcze.domixscreatures.item.custom;
 
-//import net.domixcze.domixscreatures.component.CapturedEntityComponent;
 import net.domixcze.domixscreatures.component.ModDataComponents;
-import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

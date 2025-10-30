@@ -2,6 +2,7 @@ package net.domixcze.domixscreatures.effect;
 
 import net.domixcze.domixscreatures.damage.ModDamageTypes;
 import net.domixcze.domixscreatures.particle.ModParticles;
+import net.domixcze.domixscreatures.util.BleedingUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -23,6 +24,10 @@ public class BleedingEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if (BleedingUtil.isImmuneToBleeding(entity)) {
+            return false;
+        }
+
         if (!entity.getWorld().isClient()) {
             entity.damage(ModDamageTypes.of(entity.getWorld(), ModDamageTypes.BLEEDING), 1.0F);
 

@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.NoPenaltySolidTargeting;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.goal.AnimalMateGoal;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -61,7 +62,8 @@ public class ButterflyEntity extends AnimalEntity implements GeoEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(1, new ButterflyWanderAroundGoal(this));
+        this.goalSelector.add(1, new TemptGoal(this, 1.0, (stack) -> stack.isIn(ModTags.Items.BUTTERFLY_FOR_BREEDING), false));
+        this.goalSelector.add(2, new ButterflyWanderAroundGoal(this));
     }
 
     @Override

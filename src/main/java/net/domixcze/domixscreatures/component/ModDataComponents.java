@@ -20,6 +20,9 @@ public class ModDataComponents {
     public static final ComponentType<BoundItemComponent> BOUND_ITEM =
             register("bound_item", builder -> builder.codec(BoundItemComponent.CODEC));
 
+    public static final ComponentType<DeathWhistleComponent> DEATH_WHISTLE =
+            register("death_whistle_sound", builder -> builder.codec(DeathWhistleComponent.CODEC));
+
     private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(
                 Registries.DATA_COMPONENT_TYPE,
@@ -43,5 +46,12 @@ public class ModDataComponents {
         public static final Codec<BoundItemComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 ItemStack.CODEC.fieldOf("stack").forGetter(BoundItemComponent::stack)
         ).apply(instance, BoundItemComponent::new));
+    }
+
+    public record DeathWhistleComponent(Identifier soundId, Identifier entityTypeId) {
+        public static final Codec<DeathWhistleComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Identifier.CODEC.fieldOf("sound").forGetter(DeathWhistleComponent::soundId),
+                Identifier.CODEC.fieldOf("entity_type").forGetter(DeathWhistleComponent::entityTypeId)
+        ).apply(instance, DeathWhistleComponent::new));
     }
 }

@@ -1,0 +1,23 @@
+{
+  "entry_id": "domixs-creatures:macuahuitl_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.macuahuitl",
+  "button_text": "guide.title.domixs-creatures.macuahuitl",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.macuahuitl_page1"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:macuahuitl",
+          "x": 30,
+          "y": 110,
+          "width": 40,
+          "height": 40
+        }
+      ]
+    }
+  ]
+}

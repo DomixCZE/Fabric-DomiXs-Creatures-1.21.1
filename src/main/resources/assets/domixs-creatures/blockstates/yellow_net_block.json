@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=bottom": { "model": "domixs-creatures:block/yellow_net_block_bottom" },
+    "half=top": { "model": "domixs-creatures:block/yellow_net_block_top" }
+  }
+}

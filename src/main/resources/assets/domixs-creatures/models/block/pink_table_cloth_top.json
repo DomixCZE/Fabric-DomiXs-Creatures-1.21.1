@@ -1,0 +1,7 @@
+{
+	"parent": "domixs-creatures:block/red_table_cloth_top",
+	"textures": {
+		"1": "domixs-creatures:block/pink_table_cloth_top",
+		"particle": "domixs-creatures:block/pink_table_cloth_top"
+	}
+}

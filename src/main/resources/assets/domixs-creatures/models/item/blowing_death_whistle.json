@@ -1,0 +1,28 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "domixs-creatures:item/death_whistle"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, -125, -25 ],
+      "translation": [ -1, 2, 2 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, 55, 25 ],
+      "translation": [ -1, 2, 2 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, -55, -25 ],
+      "translation": [ -1, -2.5, -7.5 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 125, 25 ],
+      "translation": [ 0, -2.5, -7.5 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    }
+  }
+}

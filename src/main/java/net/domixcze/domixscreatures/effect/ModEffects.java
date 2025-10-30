@@ -12,12 +12,16 @@ public class ModEffects {
 
     public static final RegistryEntry<StatusEffect> DEAFEN = registerStatusEffect("deafen",
             new DeafenEffect(StatusEffectCategory.HARMFUL, 3124687));
+
     public static final RegistryEntry<StatusEffect> ECHOLOCATION = registerStatusEffect("echolocation",
             new EcholocationEffect(StatusEffectCategory.BENEFICIAL, 14124217));
+
     public static final RegistryEntry<StatusEffect> BLEEDING = registerStatusEffect("bleeding",
             new BleedingEffect(StatusEffectCategory.HARMFUL, 13898772));
+
     public static final RegistryEntry<StatusEffect> ELECTRIFIED = registerStatusEffect("electrified",
             new ElectrifiedEffect(StatusEffectCategory.HARMFUL, 13099489));
+
     public static final RegistryEntry<StatusEffect> OCEAN_BLESSING = registerStatusEffect("ocean_blessing",
             new OceanBlessingEffect(StatusEffectCategory.BENEFICIAL, 13099489));
 

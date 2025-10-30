@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "domixs-creatures:block/activator_track"
+    },
+    "powered=true": {
+      "model": "domixs-creatures:block/activator_track_powered"
+    }
+  }
+}

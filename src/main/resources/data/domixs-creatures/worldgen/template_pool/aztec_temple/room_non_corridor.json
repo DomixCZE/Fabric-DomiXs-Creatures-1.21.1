@@ -1,0 +1,60 @@
+{
+  "name": "domixs-creatures:aztec_temple/room_non_corridor",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/room_non_corridor/room_1",
+        "processors": "domixs-creatures:temple_decay"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/room_non_corridor/room_2",
+        "processors": "domixs-creatures:temple_decay"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/room_non_corridor/room_3",
+        "processors": "domixs-creatures:temple_decay"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/room_non_corridor/room_4",
+        "processors": "domixs-creatures:temple_decay"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/room_non_corridor/fallback_1",
+        "processors": "domixs-creatures:temple_decay"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/room_non_corridor/fallback_2",
+        "processors": "domixs-creatures:temple_decay"
+      }
+    }
+  ]
+}

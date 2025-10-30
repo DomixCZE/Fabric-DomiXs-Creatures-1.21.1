@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:pearl_block",
+    "domixs-creatures:spike_trap_block",
+
+    "domixs-creatures:track_block",
+    "domixs-creatures:activator_track_block",
+    "domixs-creatures:pushable_statue_block"
+  ]
+}

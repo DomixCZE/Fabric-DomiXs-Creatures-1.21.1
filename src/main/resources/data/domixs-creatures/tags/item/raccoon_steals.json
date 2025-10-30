@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:worm",
+    "domixs-creatures:marshmallow",
+    "minecraft:bread",
+    "minecraft:apple",
+    "minecraft:potato",
+    "minecraft:baked_potato",
+    "minecraft:carrot",
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:beetroot"
+  ]
+}

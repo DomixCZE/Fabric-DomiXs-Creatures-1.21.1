@@ -6,29 +6,51 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "domixs-creatures:raw_bison_meat",
           "functions": [
             {
-              "add": false,
+              "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "max": 5.0,
-                "min": 2.0
-              },
-              "function": "minecraft:set_count"
+                "min": 2.0,
+                "max": 5.0
+              }
             },
             {
+              "function": "minecraft:furnace_smelt",
               "conditions": [
                 {
-                  "condition": "minecraft:entity_properties",
-                  "entity": "this",
-                  "predicate": {
-                    "flags": {
-                      "is_on_fire": true
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:entity_properties",
+                      "entity": "this",
+                      "predicate": {
+                        "flags": {
+                          "is_on_fire": true
+                        }
+                      }
+                    },
+                    {
+                      "condition": "minecraft:entity_properties",
+                      "entity": "direct_attacker",
+                      "predicate": {
+                        "equipment": {
+                          "mainhand": {
+                            "predicates": {
+                              "minecraft:enchantments": [
+                                {
+                                  "enchantments": "#minecraft:smelts_loot"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
-              ],
-              "function": "minecraft:furnace_smelt"
+              ]
             },
             {
               "function": "minecraft:enchanted_count_increase",
@@ -39,8 +61,36 @@
                 "max": 1.0
               }
             }
-          ],
-          "name": "domixs-creatures:raw_bison_meat"
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 3.0
+              }
+            },
+            {
+              "function": "minecraft:enchanted_count_increase",
+              "enchantment": "minecraft:looting",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 1.0
+              }
+            }
+          ]
         }
       ],
       "rolls": 1.0

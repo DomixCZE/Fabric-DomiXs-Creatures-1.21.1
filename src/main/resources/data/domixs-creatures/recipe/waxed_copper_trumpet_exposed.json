@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "domixs-creatures:copper_trumpet_exposed"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:waxed_copper_trumpet_exposed"
+  }
+}

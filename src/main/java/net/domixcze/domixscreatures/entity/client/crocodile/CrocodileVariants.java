@@ -3,7 +3,8 @@ package net.domixcze.domixscreatures.entity.client.crocodile;
 public enum CrocodileVariants {
     NORMAL(0, "normal"),
     ALBINO(1, "albino"),
-    SAVANNA(2, "savanna");
+    SAVANNA(2, "savanna"),
+    HALLOWEEN(3, "halloween");
 
     private static final CrocodileVariants[] BY_ID = values();
     private final int id;

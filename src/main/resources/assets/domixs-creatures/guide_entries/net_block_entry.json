@@ -1,0 +1,123 @@
+{
+  "entry_id": "domixs-creatures:net_block_entry",
+  "category": "blocks",
+  "title": "guide.title.domixs-creatures.net_block",
+  "button_text": "guide.title.domixs-creatures.net_block",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.net_block_page1_line1",
+        "guide.entry.domixs-creatures.net_block_page1_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:white_net_block",
+          "x": 60,
+          "y": 115,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_small_icon.png",
+          "x": 1,
+          "y": 110,
+          "width": 48,
+          "height": 48
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 5,
+          "y": 115,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 30,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 30,
+          "y": 115,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:net",
+          "x": 5,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.net_block_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "domixs-creatures:white_net_block",
+            "domixs-creatures:light_gray_net_block",
+            "domixs-creatures:gray_net_block",
+            "domixs-creatures:black_net_block",
+            "domixs-creatures:brown_net_block",
+            "domixs-creatures:red_net_block",
+            "domixs-creatures:orange_net_block",
+            "domixs-creatures:yellow_net_block",
+            "domixs-creatures:purple_net_block",
+            "domixs-creatures:magenta_net_block",
+            "domixs-creatures:pink_net_block",
+            "domixs-creatures:blue_net_block",
+            "domixs-creatures:cyan_net_block",
+            "domixs-creatures:light_blue_net_block",
+            "domixs-creatures:green_net_block",
+            "domixs-creatures:lime_net_block"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 60,
+          "y": 115,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/crafting_grid_small_icon.png",
+          "x": 1,
+          "y": 110,
+          "width": 48,
+          "height": 48
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:white_net_block",
+          "x": 5,
+          "y": 115,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "item",
+          "id": "minecraft:red_dye",
+          "x": 30,
+          "y": 140,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    }
+  ]
+}

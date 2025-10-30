@@ -1,12 +1,12 @@
 {
   "entry_id": "domixs-creatures:beaver_entry",
   "category": "entities",
-  "title": "§lBeaver",
-  "button_text": "§lBeaver",
+  "title": "guide.title.domixs-creatures.beaver",
+  "button_text": "guide.title.domixs-creatures.beaver",
   "pages": [
     {
       "text_content": [
-        "The Beaver can be found around the Beaver House structure in the Forest. There are always 3 beavers per Beaver House."
+        "guide.entry.domixs-creatures.beaver_page1"
       ],
       "images": [
         {
@@ -21,14 +21,14 @@
     },
     {
       "text_content": [
-        "Beaver Houses are made from Piles of Sticks. If you break a naturally generated one you have a chance to find a Water Lily which can be used to breed the Beavers."
+        "guide.entry.domixs-creatures.beaver_page2"
       ],
       "images": [
         {
           "type": "item",
           "id": "domixs-creatures:water_lily",
           "x": 50,
-          "y": 120,
+          "y": 130,
           "width": 32,
           "height": 32
         }
@@ -36,7 +36,7 @@
     },
     {
       "text_content": [
-        "The Beaver will pick a nearby Pile of Sticks as its home position and will stay in a 16 block radius around the block."
+        "guide.entry.domixs-creatures.beaver_page3"
       ],
       "images": [
         {
@@ -51,12 +51,12 @@
     },
     {
       "text_content": [
-        "If you bring the Beaver 26 blocks from its home position it will forget that position and wander randomly until it finds a new pile of sticks."
+        "guide.entry.domixs-creatures.beaver_page4"
       ]
     },
     {
       "text_content": [
-        "If the Beaver gets near a Log it can strip it. When this happens it will drop bark and has a chance to drop sawdust."
+        "guide.entry.domixs-creatures.beaver_page5"
       ],
       "images": [
         {

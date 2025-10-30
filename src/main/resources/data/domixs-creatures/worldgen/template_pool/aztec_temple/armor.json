@@ -1,0 +1,33 @@
+{
+  "name": "domixs-creatures:aztec_temple/armor",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 15,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/deco/armor_gold",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 7,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/deco/armor_empty",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "domixs-creatures:aztec_temple/deco/armor_jade",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

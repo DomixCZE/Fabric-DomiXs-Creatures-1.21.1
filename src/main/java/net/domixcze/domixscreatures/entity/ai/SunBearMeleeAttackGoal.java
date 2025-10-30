@@ -1,13 +1,12 @@
 package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.entity.custom.SunBearEntity;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
-public class SunBearMeleeAttackGoal extends MeleeAttackGoal {
+public class SunBearMeleeAttackGoal extends ModMeleeAttackGoal<SunBearEntity> {
     private final SunBearEntity bear;
 
     public SunBearMeleeAttackGoal(SunBearEntity bear, double speed, boolean pauseWhenMobIdle) {
-        super(bear, speed, pauseWhenMobIdle);
+        super(bear, speed, pauseWhenMobIdle, 10, "land_controller", null);
         this.bear = bear;
     }
 

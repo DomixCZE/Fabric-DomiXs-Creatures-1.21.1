@@ -1,13 +1,12 @@
 package net.domixcze.domixscreatures.entity.ai;
 
 import net.domixcze.domixscreatures.entity.custom.CheetahEntity;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
-public class CheetahMeleeAttackGoal extends MeleeAttackGoal {
+public class CheetahMeleeAttackGoal extends ModMeleeAttackGoal<CheetahEntity> {
     private final CheetahEntity cheetah;
 
     public CheetahMeleeAttackGoal(CheetahEntity cheetah, double speed, boolean pauseWhenMobIdle) {
-        super(cheetah, speed, pauseWhenMobIdle);
+        super(cheetah, speed, pauseWhenMobIdle, 10, "land_controller", null);
         this.cheetah = cheetah;
     }
 
