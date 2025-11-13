@@ -41,6 +41,7 @@
   "entity.domixs-creatures.hyena": "Hyena",
   "entity.domixs-creatures.ancient_skeleton": "Starověký Kostlivec",
   "entity.domixs-creatures.unicorn": "Jednorožec",
+  "entity.domixs-creatures.catfish": "Sumec",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -83,6 +84,7 @@
   "item.domixs-creatures.hyena_spawn_egg": "Vajíčko s Hyenou",
   "item.domixs-creatures.ancient_skeleton_spawn_egg": "Vajíčko se Starověkým Kostlivcem",
   "item.domixs-creatures.unicorn_spawn_egg": "Vajíčko s Jednorožcem",
+  "item.domixs-creatures.catfish_spawn_egg": "Vajíčko se Sumcem",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -242,6 +244,11 @@
   "block.domixs-creatures.block_of_jade": "Blok Nefritu",
   "block.domixs-creatures.deepslate_jade_ore": "Hlubinná Nefritová Ruda",
   "block.domixs-creatures.jade_ore": "Nefritová Ruda",
+
+  "block.domixs-creatures.clovers": "Jetel",
+  "block.domixs-creatures.fireweed_bush": "Ohňovka Křovitá",
+  "block.domixs-creatures.crimson_bloom": "Karmínový Květ",
+  "block.domixs-creatures.blue_sage": "Modrá Šalvěj",
 
   "block.domixs-creatures.white_net_block": "Bílá Síť",
   "block.domixs-creatures.light_gray_net_block": "Světle Šedá Net",

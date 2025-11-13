@@ -1,9 +1,11 @@
 package net.domixcze.domixscreatures.item.custom;
 
+import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Fertilizable;
+import net.minecraft.block.TallPlantBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,9 +37,11 @@ public class UnicornDustItem extends Item {
             return ActionResult.SUCCESS;
         }
 
-        if (growFertilizable(stack, world, pos)) {
-            spawnParticlesAndSound((ServerWorld) world, pos, player);
-            return ActionResult.SUCCESS;
+        if (!(state.isOf(Blocks.GRASS_BLOCK))) {
+            if (growFertilizable(stack, world, pos)) {
+                spawnParticlesAndSound((ServerWorld) world, pos, player);
+                return ActionResult.SUCCESS;
+            }
         }
 
         boolean used = false;
@@ -69,7 +73,7 @@ public class UnicornDustItem extends Item {
 
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
-                if (random.nextFloat() < 0.65F) {
+                if (random.nextFloat() < 0.8F) {
                     BlockPos pos = center.add(dx, 0, dz);
                     BlockState state = world.getBlockState(pos);
 
@@ -78,17 +82,24 @@ public class UnicornDustItem extends Item {
                             || state.isOf(Blocks.MYCELIUM)) {
                         world.setBlockState(pos, Blocks.GRASS_BLOCK.getDefaultState(), 3);
 
-                        if (world.isAir(pos.up()) && random.nextFloat() < 0.10F) {
-                            if (random.nextBoolean()) {
-                                world.setBlockState(pos.up(), Blocks.DANDELION.getDefaultState(), 3);
+                        if (world.isAir(pos.up()) && random.nextFloat() < 0.35F) {
+                            float r = random.nextFloat();
+                            if (r < 0.55F) {
+                                world.setBlockState(pos.up(), Blocks.SHORT_GRASS.getDefaultState(), 3);
+                            } else if (r < 0.65F) {
+                                placeTallGrass(world, pos.up());
                             } else {
-                                world.setBlockState(pos.up(), Blocks.TALL_GRASS.getDefaultState(), 3);
+                                placeFlowers(world, pos.up(), random);
                             }
                         }
                     }
                 }
             }
         }
+    }
+
+    private void placeTallGrass(ServerWorld world, BlockPos pos) {
+        TallPlantBlock.placeAt(world, Blocks.TALL_GRASS.getDefaultState(), pos, 3);
     }
 
     private void spawnParticlesAndSound(ServerWorld world, BlockPos pos, PlayerEntity player) {
@@ -126,10 +137,13 @@ public class UnicornDustItem extends Item {
             BlockState targetState = serverWorld.getBlockState(target);
 
             if (targetState.isOf(Blocks.GRASS_BLOCK) && serverWorld.isAir(target.up())) {
-                if (random.nextInt(5) == 0) {
-                    serverWorld.setBlockState(target.up(), Blocks.DANDELION.getDefaultState(), 3);
+                float r = random.nextFloat();
+                if (r < 0.55F) {
+                    serverWorld.setBlockState(target.up(), Blocks.SHORT_GRASS.getDefaultState(), 3);
+                } else if (r < 0.65F) {
+                    placeTallGrass(serverWorld, target.up());
                 } else {
-                    serverWorld.setBlockState(target.up(), Blocks.TALL_GRASS.getDefaultState(), 3);
+                    placeFlowers(serverWorld, target.up(), random);
                 }
                 used = true;
             }
@@ -139,6 +153,17 @@ public class UnicornDustItem extends Item {
             stack.decrement(1);
         }
         return used;
+    }
+
+    private void placeFlowers(ServerWorld world, BlockPos pos, Random random) {
+        BlockState[] customFlowers = new BlockState[]{
+                ModBlocks.FIREWEED_BUSH.getDefaultState(),
+                ModBlocks.BLUE_SAGE.getDefaultState(),
+                ModBlocks.CRIMSON_BLOOM.getDefaultState()
+        };
+
+        BlockState chosen = customFlowers[random.nextInt(customFlowers.length)];
+        world.setBlockState(pos, chosen, 3);
     }
 
     private void spawnSparkleParticles(ServerWorld world, BlockPos pos) {

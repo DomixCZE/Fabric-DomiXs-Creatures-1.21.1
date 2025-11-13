@@ -2,9 +2,12 @@ package net.domixcze.domixscreatures.item;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.potion.ModPotions;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -27,6 +30,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BUTTERFLY_SPAWN_EGG);
                         entries.add(ModItems.CAPYBARA_SPAWN_EGG);
                         entries.add(ModItems.CATERPILLAR_SPAWN_EGG);
+                        entries.add(ModItems.CATFISH_SPAWN_EGG);
                         entries.add(ModItems.CHEETAH_SPAWN_EGG);
                         entries.add(ModItems.CROCODILE_SPAWN_EGG);
                         entries.add(ModItems.DEER_SPAWN_EGG);
@@ -145,6 +149,13 @@ public class ModItemGroups {
 
                         entries.add(ModItems.MACUAHUITL);
 
+                        entries.add(PotionContentsComponent.createStack(Items.POTION, ModPotions.ECHOLOCATION_POTION));
+                        entries.add(PotionContentsComponent.createStack(Items.POTION, ModPotions.ELECTRIFYING_POTION));
+                        entries.add(PotionContentsComponent.createStack(Items.SPLASH_POTION, ModPotions.ECHOLOCATION_POTION));
+                        entries.add(PotionContentsComponent.createStack(Items.SPLASH_POTION, ModPotions.ELECTRIFYING_POTION));
+                        entries.add(PotionContentsComponent.createStack(Items.LINGERING_POTION, ModPotions.ECHOLOCATION_POTION));
+                        entries.add(PotionContentsComponent.createStack(Items.LINGERING_POTION, ModPotions.ELECTRIFYING_POTION));
+
                         entries.add(ModBlocks.ANCIENT_CHEST_BLOCK);
                         entries.add(ModBlocks.CURSED_ANCIENT_CHEST_BLOCK);
                         entries.add(ModBlocks.LIMESTONE);
@@ -181,6 +192,10 @@ public class ModItemGroups {
                         entries.add(ModItems.MAGNET);
 
                         entries.add(ModItems.MUD_BLOSSOM_SEED);
+                        entries.add(ModBlocks.CLOVERS);
+                        entries.add(ModBlocks.CRIMSON_BLOOM);
+                        entries.add(ModBlocks.FIREWEED_BUSH);
+                        entries.add(ModBlocks.BLUE_SAGE);
 
                         entries.add(ModBlocks.BARNACLE_BLOCK);
                         entries.add(ModBlocks.CRACKED_GLASS_BLOCK);

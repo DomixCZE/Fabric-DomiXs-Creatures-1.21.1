@@ -214,6 +214,11 @@ public class ModEntities {
             EntityType.Builder.create(UnicornEntity::new, SpawnGroup.CREATURE)
                     .dimensions(1.4f, 1.6f).build());
 
+    public static final EntityType<CatfishEntity> CATFISH = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "catfish"),
+            EntityType.Builder.create(CatfishEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(1.0f, 0.5f).build());
+
 
 
 

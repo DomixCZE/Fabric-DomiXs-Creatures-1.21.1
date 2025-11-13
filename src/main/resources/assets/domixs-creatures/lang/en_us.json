@@ -41,6 +41,7 @@
   "entity.domixs-creatures.hyena": "Hyena",
   "entity.domixs-creatures.ancient_skeleton": "Ancient Skeleton",
   "entity.domixs-creatures.unicorn": "Unicorn",
+  "entity.domixs-creatures.catfish": "Catfish",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Fire Salamander Spawn Egg",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Spectral Bat Spawn Egg",
@@ -83,6 +84,7 @@
   "item.domixs-creatures.hyena_spawn_egg": "Hyena Spawn Egg",
   "item.domixs-creatures.ancient_skeleton_spawn_egg": "Ancient Skeleton Spawn Egg",
   "item.domixs-creatures.unicorn_spawn_egg": "Unicorn Spawn Egg",
+  "item.domixs-creatures.catfish_spawn_egg": "Catfish Spawn Egg",
 
   "item.domixs-creatures.fire_salamander_scales": "Fire Salamander Scales",
   "item.domixs-creatures.spectral_bat_wing": "Spectral Bat Wing",
@@ -244,6 +246,11 @@
   "block.domixs-creatures.block_of_jade": "Block of Jade",
   "block.domixs-creatures.deepslate_jade_ore": "Deepslate Jade Ore",
   "block.domixs-creatures.jade_ore": "Jade Ore",
+
+  "block.domixs-creatures.clovers": "Clover",
+  "block.domixs-creatures.fireweed_bush": "Fireweed Bush",
+  "block.domixs-creatures.crimson_bloom": "Crimson Bloom",
+  "block.domixs-creatures.blue_sage": "Blue Sage",
 
   "block.domixs-creatures.white_net_block": "White Net",
   "block.domixs-creatures.gray_net_block": "Gray Net",

@@ -82,6 +82,7 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.HYENA, HyenaEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ANCIENT_SKELETON, AncientSkeletonEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.UNICORN, UnicornEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.CATFISH, CatfishEntity.setAttributes());
 
 		FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
 

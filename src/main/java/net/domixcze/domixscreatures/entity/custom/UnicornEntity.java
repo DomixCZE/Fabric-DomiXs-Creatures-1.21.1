@@ -481,14 +481,19 @@ public class UnicornEntity extends AnimalEntity implements GeoEntity, Tameable, 
     }
 
     public static boolean canSpawn(EntityType<UnicornEntity> type, WorldAccess world, SpawnReason reason, BlockPos pos, Random random) {
-        if (world instanceof World w) {
-            if (w.isRaining() || w.isThundering()) return false;
-            if (w.getMoonPhase() != 0) return false;
-        }
+        if (!(world instanceof ServerWorldAccess serverAccess)) return false;
+        ServerWorld w = serverAccess.toServerWorld();
+
+        if (w.isDay()) return false;
+
+        if (w.getMoonPhase() != 0) return false;
+
+        if (w.isRaining() || w.isThundering()) return false;
+
+        if (random.nextFloat() >= 0.5f) return false; // 50% chance
 
         return true;
     }
-
 
     public static class RubHornOnLogGoal extends Goal {
         private final UnicornEntity unicorn;

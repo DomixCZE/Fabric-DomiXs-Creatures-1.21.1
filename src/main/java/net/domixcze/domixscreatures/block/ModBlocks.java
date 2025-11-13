@@ -6,6 +6,7 @@ import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -111,6 +112,19 @@ public class ModBlocks {
 
     public static final Block MUD_BLOSSOM = Registry.register(Registries.BLOCK, Identifier.of(DomiXsCreatures.MOD_ID, "mud_blossom"),
             new MudBlossomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+
+    public static final Block CLOVERS = registerBlock("clovers",
+            new FlowerbedBlock(AbstractBlock.Settings.create().nonOpaque().mapColor(MapColor.DARK_GREEN).noCollision().sounds(BlockSoundGroup.PINK_PETALS).pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block CRIMSON_BLOOM = registerBlock("crimson_bloom",
+            new FlowerBlock(StatusEffects.WEAKNESS, 9.0F, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision()
+                    .breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block FIREWEED_BUSH = registerBlock("fireweed_bush",
+            new FlowerBlock(StatusEffects.WEAKNESS, 9.0F, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision()
+                    .breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block BLUE_SAGE = registerBlock("blue_sage",
+            new FlowerBlock(StatusEffects.WEAKNESS, 9.0F, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision()
+                    .breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block MOLEHILL_BLOCK = registerBlock("molehill_block",
             new MolehillBlock(AbstractBlock.Settings.copy(Blocks.DIRT).nonOpaque()));

@@ -97,6 +97,8 @@ public class ModItems {
             new Item.Settings()));
     public static final Item UNICORN_SPAWN_EGG = registerItem("unicorn_spawn_egg", new SpawnEggItem(ModEntities.UNICORN, 0xe8f3f5, 0xce96e4,
             new Item.Settings()));
+    public static final Item CATFISH_SPAWN_EGG = registerItem("catfish_spawn_egg", new SpawnEggItem(ModEntities.CATFISH, 0x827537, 0x8a3b0e,
+            new Item.Settings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));

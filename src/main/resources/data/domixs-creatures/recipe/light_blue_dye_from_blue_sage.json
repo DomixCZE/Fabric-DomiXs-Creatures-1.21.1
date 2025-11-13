@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "domixs-creatures:blue_sage"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:light_blue_dye"
+  }
+}

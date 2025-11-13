@@ -6,18 +6,24 @@ import net.domixcze.domixscreatures.world.tree.custom.PalmFoliagePlacer;
 import net.domixcze.domixscreatures.world.tree.custom.PalmTrunkPlacer;
 import net.domixcze.domixscreatures.world.tree.custom.SpectralFoliagePlacer;
 import net.domixcze.domixscreatures.world.tree.custom.SpectralTrunkPlacer;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerbedBlock;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.state.property.Properties;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 import java.util.List;
 
@@ -28,6 +34,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> MAGNETITE_ORE_KEY = registerKey("magnetite_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> JADE_ORE_KEY = registerKey("jade_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> LIMESTONE_KEY = registerKey("limestone");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CLOVERS_KEY = registerKey("clovers");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         // Spectral tree
@@ -49,6 +56,73 @@ public class ModConfiguredFeatures {
                 new PalmFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
 
                 new TwoLayersFeatureSize(1, 0, 1)).dirtProvider(BlockStateProvider.of(Blocks.SAND)).build());
+
+        // Clovers
+        register(context, CLOVERS_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(
+                48,
+                6,
+                2,
+                PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(
+                                new WeightedBlockStateProvider(
+                                        DataPool.<BlockState>builder()
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.NORTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 4), 6)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.NORTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 3), 5)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.NORTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 2), 2)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.NORTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 1), 1)
+
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.EAST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 4), 6)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.EAST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 3), 5)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.EAST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 2), 2)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.EAST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 1), 1)
+
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.SOUTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 4), 6)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.SOUTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 3), 5)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.SOUTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 2), 2)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.SOUTH)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 1), 1)
+
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.WEST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 4), 6)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.WEST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 3), 5)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.WEST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 2), 2)
+                                                .add(ModBlocks.CLOVERS.getDefaultState()
+                                                        .with(FlowerbedBlock.FACING, Direction.WEST)
+                                                        .with(FlowerbedBlock.FLOWER_AMOUNT, 1), 1)
+                                                .build()
+                                )
+                        )
+                )
+        ));
 
         // Magnetite ore
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
