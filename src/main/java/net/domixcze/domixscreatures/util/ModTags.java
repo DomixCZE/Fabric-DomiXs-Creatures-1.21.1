@@ -15,6 +15,9 @@ public class ModTags {
         public static final TagKey<Block> CROCODILE_EGG_HATCHABLE =
                 createTag("crocodile_egg_hatchable");
 
+        public static final TagKey<Block> PENGUIN_EGG_HATCHABLE =
+                createTag("penguin_egg_hatchable");
+
         public static final TagKey<Block> WORM_SPAWNABLE_ON =
                 createTag("worm_spawnable_on");
 
@@ -27,8 +30,8 @@ public class ModTags {
         public static final TagKey<Block> SPECTRAL_TREE_CAN_GROW_ON =
                 createTag("spectral_tree_can_grow_on");
 
-        public static final TagKey<Block> NET_BLOCKS =
-                createTag("net_blocks.json");
+        public static final TagKey<Block> PENGUIN_CAN_SLIDE_ON =
+                createTag("penguin_can_slide_on");
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(DomiXsCreatures.MOD_ID, name));
@@ -94,6 +97,12 @@ public class ModTags {
         public static final TagKey<Item> HYENA_FOR_BREEDING =
                 createTag("hyena_for_breeding");
 
+        public static final TagKey<Item> RAT_FOR_BREEDING =
+                createTag("rat_for_breeding");
+
+        public static final TagKey<Item> PENGUIN_FOR_BREEDING =
+                createTag("penguin_for_breeding");
+
 
         public static final TagKey<Item> HERMIT_CRAB_TEMPT =
                 createTag("hermit_crab_tempt");
@@ -132,6 +141,12 @@ public class ModTags {
         public static final TagKey<Item> RACCOON_STEALS =
                 createTag("raccoon_steals");
 
+        public static final TagKey<Item> NET_BLOCKS =
+                createTag("net_blocks");
+
+        public static final TagKey<Item> TABLE_CLOTH_BLOCKS =
+                createTag("table_cloth_blocks");
+
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(DomiXsCreatures.MOD_ID, name));
         }
@@ -169,6 +184,7 @@ public class ModTags {
         public static final TagKey<Biome> CAPYBARA_SPAWNS_IN = createTag("capybara_spawns_in");
         public static final TagKey<Biome> RACCOON_SPAWNS_IN = createTag("raccoon_spawns_in");
         public static final TagKey<Biome> UNICORN_SPAWNS_IN = createTag("unicorn_spawns_in");
+        public static final TagKey<Biome> PENGUIN_SPAWNS_IN = createTag("penguin_spawns_in");
 
         public static final TagKey<Biome> WHALE_SPAWNS_IN = createTag("whale_spawns_in");
         public static final TagKey<Biome> GOLDFISH_SPAWNS_IN = createTag("goldfish_spawns_in");
@@ -181,6 +197,8 @@ public class ModTags {
         public static final TagKey<Biome> ARAPAIMA_SPAWNS_IN = createTag("arapaima_spawns_in");
         public static final TagKey<Biome> FRESHWATER_STINGRAY_SPAWNS_IN = createTag("freshwater_stingray_spawns_in");
         public static final TagKey<Biome> ANGLERFISH_SPAWNS_IN = createTag("anglerfish_spawns_in");
+        public static final TagKey<Biome> CATFISH_SPAWNS_IN = createTag("catfish_spawns_in");
+        public static final TagKey<Biome> CARP_SPAWNS_IN = createTag("carp_spawns_in");
 
 
         public static final TagKey<Biome> FISH_TRAP_LUSH_CAVE = createTag("fish_trap_lush_cave");
@@ -199,6 +217,9 @@ public class ModTags {
 
         public static final TagKey<EntityType<?>> DEER_FLEE_FROM =
                 createTag("deer_flee_from");
+
+        public static final TagKey<EntityType<?>> PENGUIN_FLEE_FROM =
+                createTag("penguin_flee_from");
 
         public static final TagKey<EntityType<?>> NOT_SCARY_FOR_FRESHWATER_STINGRAY =
                 createTag("not_scary_for_freshwater_stingray");

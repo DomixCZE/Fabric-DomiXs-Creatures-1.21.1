@@ -86,6 +86,11 @@ public class CheetahEntity extends AnimalEntity implements GeoEntity, Sleepy, Sn
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
+    }
+
+    @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(HAS_SNOW_LAYER, false);

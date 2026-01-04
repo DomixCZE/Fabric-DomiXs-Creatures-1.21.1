@@ -4,6 +4,7 @@ import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.FireSalamanderEntity;
 import net.domixcze.domixscreatures.entity.custom.MagmaBallEntity;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.Vec3d;
@@ -21,50 +22,50 @@ public class FireSalamanderMagmaBallAttackGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        if (!ModConfig.INSTANCE.enableFireSalamanderMagmaBallAttack) {
+        if (!salamander.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_FIRE_SALAMANDER_MAGMA_ATTACK)) {
             return false;
         }
 
         LivingEntity target = this.salamander.getTarget();
         return target != null
-                && !this.salamander.isObsidianVariant()
-                && this.salamander.squaredDistanceTo(target) <= ATTACK_RANGE * ATTACK_RANGE
-                && this.salamander.getMagmaBallCooldown() <= 0 && this.salamander.isOnGround();
+                && !salamander.isObsidianVariant()
+                && salamander.squaredDistanceTo(target) <= ATTACK_RANGE * ATTACK_RANGE
+                && salamander.getMagmaBallCooldown() <= 0 && salamander.isOnGround();
     }
 
     @Override
     public void start() {
-        this.salamander.setMagmaBallChargeTime(0);
-        this.salamander.getNavigation().stop();
-        this.salamander.setCharging(true);
+        salamander.setMagmaBallChargeTime(0);
+        salamander.getNavigation().stop();
+        salamander.setCharging(true);
     }
 
     @Override
     public boolean shouldContinue() {
-        LivingEntity target = this.salamander.getTarget();
-        return target != null && this.salamander.getMagmaBallChargeTime() < 25;
+        LivingEntity target = salamander.getTarget();
+        return target != null && salamander.getMagmaBallChargeTime() < 25;
     }
 
     @Override
     public void tick() {
-        LivingEntity target = this.salamander.getTarget();
+        LivingEntity target = salamander.getTarget();
         if (target != null) {
-            this.salamander.getLookControl().lookAt(target, 30.0F, 30.0F);
+            salamander.getLookControl().lookAt(target, 30.0F, 30.0F);
         }
 
-        int charge = this.salamander.getMagmaBallChargeTime();
-        this.salamander.setMagmaBallChargeTime(charge + 1);
+        int charge = salamander.getMagmaBallChargeTime();
+        salamander.setMagmaBallChargeTime(charge + 1);
 
         if (charge + 1 == 25) {
             spawnMagmaBall();
-            this.salamander.setMagmaBallCooldown(400);
+            salamander.setMagmaBallCooldown(400);
         }
     }
 
     @Override
     public void stop() {
-        this.salamander.setMagmaBallChargeTime(0);
-        this.salamander.setCharging(false);
+        salamander.setMagmaBallChargeTime(0);
+        salamander.setCharging(false);
     }
 
     private void spawnMagmaBall() {
@@ -80,6 +81,6 @@ public class FireSalamanderMagmaBallAttackGoal extends Goal {
         magmaBall.setYaw(salamander.getYaw());
 
         salamander.getWorld().spawnEntity(magmaBall);
-        this.salamander.setCharging(false);
+        salamander.setCharging(false);
     }
 }

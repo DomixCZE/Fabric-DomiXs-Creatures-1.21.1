@@ -225,7 +225,7 @@ public class MooseEntity extends AnimalEntity implements GeoEntity, SnowLayerabl
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        MooseEntity baby = (MooseEntity) ModEntities.MOOSE.create(world);
+        MooseEntity baby = ModEntities.MOOSE.create(world);
         if (baby != null) {
             MooseEntity parent1 = this;
             MooseEntity parent2 = (MooseEntity) entity;

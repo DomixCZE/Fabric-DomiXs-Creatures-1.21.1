@@ -87,6 +87,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(2, new RevengeGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, IllagerEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, VillagerEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, CrocodileEntity.class, true));
@@ -144,7 +145,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        HippoEntity baby = (HippoEntity) ModEntities.HIPPO.create(world);
+        HippoEntity baby = ModEntities.HIPPO.create(world);
         if (baby != null) {
             HippoEntity parent1 = this;
             HippoEntity parent2 = (HippoEntity) entity;

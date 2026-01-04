@@ -20,6 +20,9 @@ public class ModDataComponents {
     public static final ComponentType<BoundItemComponent> BOUND_ITEM =
             register("bound_item", builder -> builder.codec(BoundItemComponent.CODEC));
 
+    public static final ComponentType<FluteModeComponent> FLUTE_MODE =
+            register("flute_mode", builder -> builder.codec(FluteModeComponent.CODEC));
+
     public static final ComponentType<DeathWhistleComponent> DEATH_WHISTLE =
             register("death_whistle_sound", builder -> builder.codec(DeathWhistleComponent.CODEC));
 
@@ -46,6 +49,12 @@ public class ModDataComponents {
         public static final Codec<BoundItemComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 ItemStack.CODEC.fieldOf("stack").forGetter(BoundItemComponent::stack)
         ).apply(instance, BoundItemComponent::new));
+    }
+
+    public record FluteModeComponent(String mode) {
+        public static final Codec<FluteModeComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Codec.STRING.fieldOf("mode").forGetter(FluteModeComponent::mode)
+        ).apply(instance, FluteModeComponent::new));
     }
 
     public record DeathWhistleComponent(Identifier soundId, Identifier entityTypeId) {

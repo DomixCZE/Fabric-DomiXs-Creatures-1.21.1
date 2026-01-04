@@ -17,19 +17,22 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class ModBlocks {
     public static final Block CRACKED_GLASS_BLOCK = registerBlock("cracked_glass_block",
-            new CrackedGlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS).sounds(BlockSoundGroup.GLASS)));
+            new CrackedGlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS).sounds(BlockSoundGroup.GLASS).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block BARNACLE_BLOCK = registerBlock("barnacle_block",
-            new BarnacleBlock(AbstractBlock.Settings.create().strength(1.0f).requiresTool().sounds(BlockSoundGroup.POINTED_DRIPSTONE)));
+            new BarnacleBlock(AbstractBlock.Settings.create().strength(1.0f).requiresTool().sounds(BlockSoundGroup.POINTED_DRIPSTONE).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block CROCODILE_EGG = registerBlock("crocodile_egg",
-            new CrocodileEggBlock(AbstractBlock.Settings.create().strength(0.5F).ticksRandomly().sounds(BlockSoundGroup.POINTED_DRIPSTONE)));
+            new CrocodileEggBlock(AbstractBlock.Settings.create().strength(0.5F).ticksRandomly().sounds(BlockSoundGroup.POINTED_DRIPSTONE).pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block PENGUIN_EGG = registerBlock("penguin_egg",
+            new PenguinEggBlock(AbstractBlock.Settings.create().strength(0.5F).ticksRandomly().sounds(BlockSoundGroup.POINTED_DRIPSTONE).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block PILE_OF_STICKS_BLOCK = registerBlock("pile_of_sticks_block",
             new PileOfSticksBlock(AbstractBlock.Settings.create().mapColor(MapColor.SPRUCE_BROWN).sounds(BlockSoundGroup.ROOTS).nonOpaque()));
 
     public static final Block SAWDUST_BLOCK = registerBlock("sawdust_block",
-            new SawdustBlock(AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).sounds(BlockSoundGroup.SAND).strength(0.1f).nonOpaque()));
+            new SawdustBlock(AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).sounds(BlockSoundGroup.SAND).strength(0.1f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block PEARL_BLOCK = registerBlock("pearl_block",
             new Block(AbstractBlock.Settings.create().strength(1.5f).requiresTool().mapColor(MapColor.PINK).sounds(BlockSoundGroup.STONE)));
@@ -116,6 +119,9 @@ public class ModBlocks {
     public static final Block CLOVERS = registerBlock("clovers",
             new FlowerbedBlock(AbstractBlock.Settings.create().nonOpaque().mapColor(MapColor.DARK_GREEN).noCollision().sounds(BlockSoundGroup.PINK_PETALS).pistonBehavior(PistonBehavior.DESTROY)));
 
+    public static final Block MISTLETOE = registerBlock("mistletoe",
+            new MistletoeBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES).pistonBehavior(PistonBehavior.DESTROY)));
+
     public static final Block CRIMSON_BLOOM = registerBlock("crimson_bloom",
             new FlowerBlock(StatusEffects.WEAKNESS, 9.0F, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision()
                     .breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
@@ -130,7 +136,10 @@ public class ModBlocks {
             new MolehillBlock(AbstractBlock.Settings.copy(Blocks.DIRT).nonOpaque()));
 
     public static final Block COCONUT_BLOCK = registerBlock("coconut_block",
-            new CoconutBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
+            new CoconutBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque().sounds(BlockSoundGroup.WOOD).pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block CHEESE_WHEEL = registerBlock("cheese_wheel",
+            new CheeseWheelBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY).mapColor(MapColor.YELLOW)));
 
     public static final Block MAGNETITE_ORE = registerBlock("magnetite_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(0, 2),
@@ -188,7 +197,7 @@ public class ModBlocks {
             new WallBlock(AbstractBlock.Settings.create().strength(1.5F, 6.0F).requiresTool().mapColor(MapColor.PALE_YELLOW).sounds(BlockSoundGroup.STONE)));
 
     public static final Block PUSHABLE_STATUE_BLOCK = registerBlock("pushable_statue_block",
-            new PushableStatueBlock(AbstractBlock.Settings.create().strength(2.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+            new PushableStatueBlock(AbstractBlock.Settings.create().strength(2.0f).requiresTool().sounds(BlockSoundGroup.STONE).pistonBehavior(PistonBehavior.BLOCK)));
     public static final Block ACTIVATOR_TRACK_BLOCK = registerBlock("activator_track_block",
             new ActivatorTrackBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block TRACK_BLOCK = registerBlock("track_block",

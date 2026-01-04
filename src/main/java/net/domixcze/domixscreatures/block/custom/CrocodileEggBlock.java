@@ -21,7 +21,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -30,12 +29,11 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class CrocodileEggBlock extends Block {
-    public static final IntProperty HATCH;
+    public static final IntProperty HATCH = Properties.HATCH;
     public static final IntProperty EGGS = IntProperty.of("eggs", 1, 3);
     private static final VoxelShape ONE_EGG_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 12.0, 5.0, 12.0);
     private static final VoxelShape TWO_EGG_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 6.0, 15.0);
@@ -48,15 +46,11 @@ public class CrocodileEggBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(EGGS)) {
-            case 1:
-            default:
-                return ONE_EGG_SHAPE;
-            case 2:
-                return TWO_EGG_SHAPE;
-            case 3:
-                return THREE_EGG_SHAPE;
-        }
+        return switch (state.get(EGGS)) {
+            default -> ONE_EGG_SHAPE;
+            case 2 -> TWO_EGG_SHAPE;
+            case 3 -> THREE_EGG_SHAPE;
+        };
     }
 
     @Override
@@ -180,16 +174,8 @@ public class CrocodileEggBlock extends Block {
         builder.add(HATCH, EGGS);
     }
 
-    static {
-        HATCH = Properties.HATCH;
-    }
-
     public static boolean isHatchableBelow(BlockView world, BlockPos pos) {
-        return isHatchable(world, pos.down());
-    }
-
-    public static boolean isHatchable(BlockView world, BlockPos pos) {
-        return world.getBlockState(pos).isIn(ModTags.Blocks.CROCODILE_EGG_HATCHABLE);
+        return world.getBlockState(pos.down()).isIn(ModTags.Blocks.CROCODILE_EGG_HATCHABLE);
     }
 
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {

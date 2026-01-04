@@ -24,6 +24,7 @@ public class TigerMeleeAttackGoal extends ModMeleeAttackGoal<TigerEntity> {
         LivingEntity target = this.tiger.getTarget();
         if (target instanceof TameableEntity tameableTarget) {
             if (tameableTarget.getOwnerUuid() != null && this.tiger.getOwnerUuid() != null && tameableTarget.getOwnerUuid().equals(this.tiger.getOwnerUuid())) {
+                this.tiger.setTarget(null);
                 return false;
             }
         }

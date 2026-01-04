@@ -11,6 +11,9 @@ public class ModSounds {
 
     public static final SoundEvent CONCH_SHELL_USE = registerSoundEvent("conch_shell_use");
 
+    public static final SoundEvent COMMAND_FLUTE_SIT = registerSoundEvent("command_flute_sit");
+    public static final SoundEvent COMMAND_FLUTE_FOLLOW = registerSoundEvent("command_flute_follow");
+
     public static final SoundEvent COPPER_TRUMPET_1 = registerSoundEvent("copper_trumpet_1");
     public static final SoundEvent COPPER_TRUMPET_2 = registerSoundEvent("copper_trumpet_2");
     public static final SoundEvent COPPER_TRUMPET_EXPOSED_1 = registerSoundEvent("copper_trumpet_exposed_1");
@@ -55,6 +58,14 @@ public class ModSounds {
 
     public static final SoundEvent MOOSE_HURT = registerSoundEvent("moose_hurt");
     public static final SoundEvent MOOSE_DEATH = registerSoundEvent("moose_death");
+
+    public static final SoundEvent RAT_AMBIENT = registerSoundEvent("rat_ambient");
+    public static final SoundEvent RAT_HURT = registerSoundEvent("rat_hurt");
+    public static final SoundEvent RAT_DEATH = registerSoundEvent("rat_death");
+
+    public static final SoundEvent PENGUIN_AMBIENT = registerSoundEvent("penguin_ambient");
+    public static final SoundEvent PENGUIN_HURT = registerSoundEvent("penguin_hurt");
+    public static final SoundEvent PENGUIN_NOOT_NOOT = registerSoundEvent("penguin_noot_noot");
 
     public static final SoundEvent COCONUT_LAND = registerSoundEvent("coconut_land");
 

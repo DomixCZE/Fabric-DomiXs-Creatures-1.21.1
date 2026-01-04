@@ -219,6 +219,22 @@ public class ModEntities {
             EntityType.Builder.create(CatfishEntity::new, SpawnGroup.CREATURE)
                     .dimensions(1.0f, 0.5f).build());
 
+    public static final EntityType<RatEntity> RAT = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "rat"),
+            EntityType.Builder.create(RatEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.5f, 0.3f).build());
+
+    public static final EntityType<PenguinEntity> PENGUIN= Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "penguin"),
+            EntityType.Builder.create(PenguinEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.5f, 1.0f).build());
+
+    public static final EntityType<CarpEntity> CARP = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "carp"),
+            EntityType.Builder.create(CarpEntity::new, SpawnGroup.WATER_CREATURE)
+                    .dimensions(0.5f, 0.4f).build());
+
+
 
 
 

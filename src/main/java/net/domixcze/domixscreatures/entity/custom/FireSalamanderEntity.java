@@ -6,6 +6,7 @@ import net.domixcze.domixscreatures.entity.ai.FireSalamanderMagmaBallAttackGoal;
 import net.domixcze.domixscreatures.entity.ai.FireSalamanderMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.ai.goal.*;
@@ -154,15 +155,15 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
         return this.getVariant() == FireSalamanderVariants.OBSIDIAN;
     }
 
+    @Override
     public boolean isSitting() {
         return this.dataTracker.get(SITTING);
     }
 
-    public void setSit(PlayerEntity player, boolean sitting) {
-        if (player == getOwner()) {
-            this.dataTracker.set(SITTING, sitting);
-            super.setSitting(sitting);
-        }
+    @Override
+    public void setSitting(boolean sitting) {
+        super.setSitting(sitting);
+        this.dataTracker.set(SITTING, sitting);
     }
 
     public int getMagmaBallCooldown() {
@@ -300,7 +301,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
             this.setVariant(FireSalamanderVariants.OBSIDIAN);
         }
 
-        if (ModConfig.INSTANCE.enableFireSalamanderSmelting && !this.smeltingItem.isEmpty()) {
+        if (this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_FIRE_SALAMANDER_SMELTING) && !this.smeltingItem.isEmpty()) {
             if (this.smeltingTimer > 0) {
                 this.smeltingTimer--;
             } else {
@@ -334,7 +335,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
 
         if (isTamed() && !this.getWorld().isClient()) {
             if (itemStack.getItem() == Items.BLAZE_ROD && hand == Hand.MAIN_HAND) {
-                setSit(player, !isSitting());
+                this.setSitting(!this.isSitting());
 
                 Text entityName = this.getDisplayName();
                 Text action = Text.translatable(isSitting()
@@ -350,7 +351,7 @@ public class FireSalamanderEntity extends TameableEntity implements GeoEntity {
                 return ActionResult.PASS;
             }
 
-            if (ModConfig.INSTANCE.enableFireSalamanderSmelting && canSmelt(itemStack) && smeltingItem.isEmpty()) {
+            if (this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_FIRE_SALAMANDER_SMELTING) && canSmelt(itemStack) && smeltingItem.isEmpty()) {
                 startSmelting(itemStack);
                 if (!player.getAbilities().creativeMode) {
                     itemStack.decrement(1);

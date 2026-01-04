@@ -20,6 +20,19 @@
     ]
   },
 
+  "command_flute_sit": {
+    "subtitle": "sounds.domixs-creatures.command_flute_sit",
+    "sounds": [
+      "domixs-creatures:command_flute_sit"
+    ]
+  },
+  "command_flute_follow": {
+    "subtitle": "sounds.domixs-creatures.command_flute_follow",
+    "sounds": [
+      "domixs-creatures:command_flute_follow"
+    ]
+  },
+
   "copper_trumpet_1": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
@@ -137,6 +150,47 @@
     "subtitle": "sounds.domixs-creatures.capybara_hurt",
     "sounds": [
       "domixs-creatures:capybara_hurt"
+    ]
+  },
+
+  "rat_ambient": {
+    "subtitle": "sounds.domixs-creatures.rat_ambient",
+    "sounds": [
+      "domixs-creatures:rat_ambient_1",
+      "domixs-creatures:rat_ambient_2",
+      "domixs-creatures:rat_ambient_3",
+      "domixs-creatures:rat_ambient_4"
+    ]
+  },
+  "rat_hurt": {
+    "subtitle": "sounds.domixs-creatures.rat_hurt",
+    "sounds": [
+      "domixs-creatures:rat_hurt"
+    ]
+  },
+  "rat_death": {
+    "subtitle": "sounds.domixs-creatures.rat_death",
+    "sounds": [
+      "domixs-creatures:rat_death"
+    ]
+  },
+
+  "penguin_ambient": {
+    "subtitle": "sounds.domixs-creatures.penguin_ambient",
+    "sounds": [
+      "domixs-creatures:penguin_ambient"
+    ]
+  },
+  "penguin_hurt": {
+    "subtitle": "sounds.domixs-creatures.penguin_hurt",
+    "sounds": [
+      "domixs-creatures:penguin_hurt"
+    ]
+  },
+  "penguin_noot_noot": {
+    "subtitle": "sounds.domixs-creatures.penguin_noot_noot",
+    "sounds": [
+      "domixs-creatures:penguin_noot_noot"
     ]
   },
 

@@ -43,7 +43,7 @@ public class DeathWhistleItem extends Item {
                 SoundEvent sound = Registries.SOUND_EVENT.get(soundId);
 
                 if (sound != null) {
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    world.playSoundFromEntity(player, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
 
                 @SuppressWarnings("unchecked")

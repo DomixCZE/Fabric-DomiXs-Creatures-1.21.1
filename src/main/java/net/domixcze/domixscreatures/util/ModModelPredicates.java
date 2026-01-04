@@ -26,6 +26,10 @@ public class ModModelPredicates {
                         && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
         );
 
+        ModelPredicateProviderRegistry.register(ModItems.COMMAND_FLUTE, Identifier.of("playing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
 
         ModelPredicateProviderRegistry.register(ModItems.COPPER_TRUMPET, Identifier.of("playing"),
                 (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null

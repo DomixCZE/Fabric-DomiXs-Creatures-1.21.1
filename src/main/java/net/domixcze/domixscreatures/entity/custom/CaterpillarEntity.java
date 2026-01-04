@@ -4,6 +4,7 @@ import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.caterpillar.CaterpillarVariants;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -72,12 +73,12 @@ public class CaterpillarEntity extends AnimalEntity implements GeoEntity {
 
         if (!this.isCocoon()) {
             preCocoonTimer++;
-            if (preCocoonTimer >= 12000 && !this.getWorld().isClient && ModConfig.INSTANCE.enableCaterpillarTransformation) {
+            if (preCocoonTimer >= 12000 && !this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_CATERPILLAR_TRANSFORMATION)) {
                 this.startCocooning();
             }
         } else {
             cocoonTicks++;
-            if (cocoonTicks >= 6000 && !this.getWorld().isClient && ModConfig.INSTANCE.enableCaterpillarTransformation) {
+            if (cocoonTicks >= 6000 && !this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_CATERPILLAR_TRANSFORMATION)) {
                 this.transformIntoButterfly();
             }
         }

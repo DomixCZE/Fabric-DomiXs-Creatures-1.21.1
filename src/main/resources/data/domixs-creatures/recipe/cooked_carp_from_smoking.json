@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 90,
+  "experience": 0.25,
+  "ingredient": {
+    "item": "domixs-creatures:raw_carp"
+  },
+  "result": {
+    "id": "domixs-creatures:cooked_carp"
+  }
+}

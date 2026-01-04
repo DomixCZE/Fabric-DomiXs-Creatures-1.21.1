@@ -8,6 +8,7 @@ import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.block.entity.BarrelBlockEntity;
@@ -90,7 +91,7 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
-        this.goalSelector.add(2, new FleeEntityGoal<>(this, WolfEntity.class, 10.0f,1.0,1.0));
+        this.goalSelector.add(2, new FleeEntityGoal<>(this, WolfEntity.class, 10.0f,1.0,1.2));
         this.goalSelector.add(2, new StealFoodGoal(this, 8));
         this.goalSelector.add(3, new WashFoodGoal(this, 8));
         this.goalSelector.add(3, new BabyFollowParentGoal(this, 1.25));
@@ -217,10 +218,12 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
 
     public void setSleeping(boolean sleeping) {
         this.dataTracker.set(SLEEPING, sleeping);
+
         if (sleeping) {
             this.getNavigation().stop();
-            if (this.getOwner() instanceof PlayerEntity player && !this.isSitting()) {
-                this.setSit(player, true);
+
+            if (this.getOwner() instanceof PlayerEntity && !this.isSitting()) {
+                this.setSitting(true);
             }
         }
     }
@@ -310,40 +313,39 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
         }
     }
 
+    @Override
     public boolean isSitting() {
         return this.dataTracker.get(SITTING);
     }
 
-    public void setSit(PlayerEntity player, boolean sitting) {
-        if (player == getOwner()) {
-            this.dataTracker.set(SITTING, sitting);
-            super.setSitting(sitting);
-        }
+    @Override
+    public void setSitting(boolean sitting) {
+        super.setSitting(sitting);
+        this.dataTracker.set(SITTING, sitting);
     }
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (isTamed() && !this.getWorld().isClient()) {
-            if (isTamed() && hand == Hand.MAIN_HAND && itemStack.isEmpty()) {
-                setSit(player, !isSitting());
+        if (!this.getWorld().isClient() && hand == Hand.MAIN_HAND && this.isTamed() && this.isOwner(player) && !this.isBreedingItem(itemStack)) {
+            this.setSitting(!this.isSitting());
 
-                Text entityName = this.getDisplayName();
-                Text action = Text.translatable(isSitting()
-                        ? "message.domixs-creatures.action.sitting"
-                        : "message.domixs-creatures.action.following");
+            Text entityName = this.getDisplayName();
+            Text action = Text.translatable(this.isSitting()
+                    ? "message.domixs-creatures.action.sitting"
+                    : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " ")
-                        .append(action)
-                        .append(".")
-                        .styled(style -> style.withColor(Formatting.GREEN));
-                player.sendMessage(message, true);
+            Text message = Text.literal(entityName.getString() + " ")
+                    .append(action)
+                    .append(".")
+                    .styled(style -> style.withColor(Formatting.GREEN));
 
-                return ActionResult.PASS;
-            }
+            player.sendMessage(message, true);
+
+            return ActionResult.SUCCESS;
         }
 
-        if (!ModConfig.INSTANCE.enableRaccoonStealing && !this.isTamed() && itemStack.isOf(ModItems.MARSHMALLOW)) {
+        if (!this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_RACCOON_STEALING) && !this.isTamed() && itemStack.isOf(ModItems.MARSHMALLOW)) {
             if (!player.getWorld().isClient) {
                 itemStack.decrement(1);
                 this.marshmallowsEaten++;
@@ -483,7 +485,7 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
 
         @Override
         public boolean canStart() {
-            if (!ModConfig.INSTANCE.enableRaccoonStealing) {
+            if (!raccoon.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_RACCOON_STEALING)) {
                 return false;
             }
 

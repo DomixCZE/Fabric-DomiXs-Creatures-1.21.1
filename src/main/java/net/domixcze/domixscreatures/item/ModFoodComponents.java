@@ -45,4 +45,13 @@ public class ModFoodComponents {
 
     public static final FoodComponent COOKED_EEL_MEAT = new FoodComponent.Builder().nutrition(4).saturationModifier(0.80f)
             .build();
+
+    public static final FoodComponent CARP = new FoodComponent.Builder().nutrition(3).saturationModifier(0.30f)
+            .build();
+
+    public static final FoodComponent COOKED_CARP = new FoodComponent.Builder().nutrition(6).saturationModifier(0.60f)
+            .build();
+
+    public static final FoodComponent CHEESE_PIECE = new FoodComponent.Builder().nutrition(3).saturationModifier(0.60f)
+            .build();
 }

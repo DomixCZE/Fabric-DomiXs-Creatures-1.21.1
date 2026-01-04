@@ -156,6 +156,11 @@ public class BisonEntity extends AnimalEntity implements GeoEntity, EatsGrass, S
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
+    }
+
+    @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
 

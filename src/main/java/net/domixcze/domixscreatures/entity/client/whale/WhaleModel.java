@@ -29,7 +29,7 @@ public class WhaleModel extends GeoModel<WhaleEntity> {
     public void setCustomAnimations(WhaleEntity entity, long instanceId, AnimationState<WhaleEntity> animationState) {
         super.setCustomAnimations(entity, instanceId, animationState);
 
-        GeoBone bone = (GeoBone) this.getAnimationProcessor().getBone("whale");
+        GeoBone bone = this.getAnimationProcessor().getBone("whale");
 
         if (bone != null) {
             if (entity.isBeached()) {

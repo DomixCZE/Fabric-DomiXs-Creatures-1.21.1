@@ -1,6 +1,5 @@
 package net.domixcze.domixscreatures.world.gen;
 
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.*;
 import net.domixcze.domixscreatures.util.ModTags;
@@ -130,6 +129,11 @@ public class ModEntityGeneration {
         SpawnRestriction.register(ModEntities.UNICORN, SpawnLocationTypes.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, UnicornEntity::canSpawn);
 
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.PENGUIN_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.PENGUIN, 10, 5, 12);
+        SpawnRestriction.register(ModEntities.PENGUIN, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
 
 
 
@@ -181,6 +185,16 @@ public class ModEntityGeneration {
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.FRESHWATER_STINGRAY_SPAWNS_IN), SpawnGroup.WATER_CREATURE,
                 ModEntities.FRESHWATER_STINGRAY, 5, 0, 1);
         SpawnRestriction.register(ModEntities.FRESHWATER_STINGRAY, SpawnLocationTypes.IN_WATER,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WaterCreatureEntity::canSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.CATFISH_SPAWNS_IN), SpawnGroup.WATER_CREATURE,
+                ModEntities.CATFISH, 5, 0, 1);
+        SpawnRestriction.register(ModEntities.CATFISH, SpawnLocationTypes.IN_WATER,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WaterCreatureEntity::canSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.CARP_SPAWNS_IN), SpawnGroup.WATER_CREATURE,
+                ModEntities.CARP, 10, 1, 3);
+        SpawnRestriction.register(ModEntities.CARP, SpawnLocationTypes.IN_WATER,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WaterCreatureEntity::canSpawn);
     }
 }

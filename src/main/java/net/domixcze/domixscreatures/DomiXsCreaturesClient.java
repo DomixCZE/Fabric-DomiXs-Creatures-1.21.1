@@ -4,6 +4,7 @@ import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.block.client.AncientChestBlockRenderer;
 import net.domixcze.domixscreatures.block.client.CursedAncientChestBlockRenderer;
 import net.domixcze.domixscreatures.block.entity.ModBlockEntities;
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.config.ModConfigScreen;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.ancient_skeleton.AncientSkeletonRenderer;
@@ -15,6 +16,7 @@ import net.domixcze.domixscreatures.entity.client.bison.BisonRenderer;
 import net.domixcze.domixscreatures.entity.client.boar.BoarRenderer;
 import net.domixcze.domixscreatures.entity.client.butterfly.ButterflyRenderer;
 import net.domixcze.domixscreatures.entity.client.capybara.CapybaraRenderer;
+import net.domixcze.domixscreatures.entity.client.carp.CarpRenderer;
 import net.domixcze.domixscreatures.entity.client.caterpillar.CaterpillarRenderer;
 import net.domixcze.domixscreatures.entity.client.catfish.CatfishRenderer;
 import net.domixcze.domixscreatures.entity.client.cheetah.CheetahRenderer;
@@ -35,10 +37,12 @@ import net.domixcze.domixscreatures.entity.client.moose.MooseRenderer;
 import net.domixcze.domixscreatures.entity.client.mud_golem.MudGolemRenderer;
 import net.domixcze.domixscreatures.entity.client.neon_tetra.NeonTetraRenderer;
 import net.domixcze.domixscreatures.entity.client.peacock_bass.PeacockBassRenderer;
+import net.domixcze.domixscreatures.entity.client.penguin.PenguinRenderer;
 import net.domixcze.domixscreatures.entity.client.piranha.PiranhaRenderer;
 import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineRenderer;
 import net.domixcze.domixscreatures.entity.client.quill_projectile.QuillProjectileRenderer;
 import net.domixcze.domixscreatures.entity.client.raccoon.RaccoonRenderer;
+import net.domixcze.domixscreatures.entity.client.rat.RatRenderer;
 import net.domixcze.domixscreatures.entity.client.shaman.ShamanRenderer;
 import net.domixcze.domixscreatures.entity.client.shark.SharkRenderer;
 import net.domixcze.domixscreatures.entity.client.spectral_bat.SpectralBatRenderer;
@@ -54,11 +58,14 @@ import net.domixcze.domixscreatures.entity.client.worm.WormRenderer;
 import net.domixcze.domixscreatures.particle.*;
 import net.domixcze.domixscreatures.screen.ModScreenHandlers;
 import net.domixcze.domixscreatures.screen.custom.FishTrapScreen;
+import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.CoconutLandedPayload;
 import net.domixcze.domixscreatures.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -70,6 +77,9 @@ import net.minecraft.client.particle.SonicBoomParticle;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.GrassColors;
 import org.lwjgl.glfw.GLFW;
 
@@ -122,6 +132,9 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ANCIENT_SKELETON, AncientSkeletonRenderer::new);
         EntityRendererRegistry.register(ModEntities.UNICORN, UnicornRenderer::new);
         EntityRendererRegistry.register(ModEntities.CATFISH, CatfishRenderer::new);
+        EntityRendererRegistry.register(ModEntities.RAT, RatRenderer::new);
+        EntityRendererRegistry.register(ModEntities.PENGUIN, PenguinRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CARP, CarpRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.MAGMA_BALL, MagmaBallRenderer::new);
         EntityRendererRegistry.register(ModEntities.QUILL_PROJECTILE, QuillProjectileRenderer::new);
@@ -193,6 +206,7 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MUD_BLOSSOM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CLOVERS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MISTLETOE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CRIMSON_BLOOM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_SAGE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FIREWEED_BUSH, RenderLayer.getCutout());
@@ -221,5 +235,28 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
             }
             return GrassColors.getDefaultColor();
         }, ModBlocks.CLOVERS);
+
+        ClientPlayNetworking.registerGlobalReceiver(
+                CoconutLandedPayload.ID,
+                (payload, context) -> {
+                    BlockPos pos = payload.pos();
+
+                    context.client().execute(() -> {
+                        var mc = context.client();
+                        if (mc.world == null || mc.player == null) return;
+
+                        boolean bonk = ModConfig.INSTANCE.enableCoconutBonkSound;
+
+                        mc.world.playSound(
+                                mc.player,
+                                pos,
+                                bonk ? ModSounds.COCONUT_LAND : SoundEvents.BLOCK_WOOD_PLACE,
+                                SoundCategory.BLOCKS,
+                                1.0f,
+                                1.0f
+                        );
+                    });
+                }
+        );
     }
 }

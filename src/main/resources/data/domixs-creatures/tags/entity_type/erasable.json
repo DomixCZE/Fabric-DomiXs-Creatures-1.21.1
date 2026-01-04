@@ -43,6 +43,9 @@
     "domixs-creatures:hyena",
     "domixs-creatures:ancient_skeleton",
     "domixs-creatures:unicorn",
+    "domixs-creatures:catfish",
+    "domixs-creatures:rat",
+    "domixs-creatures:penguin",
     "domixs-creatures:test"
   ]
 }

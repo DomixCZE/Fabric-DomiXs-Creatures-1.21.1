@@ -16,11 +16,14 @@ import net.domixcze.domixscreatures.screen.ModScreenHandlers;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.structures.ModStructures;
 import net.domixcze.domixscreatures.util.*;
+import net.domixcze.domixscreatures.world.RatSpawner;
 import net.domixcze.domixscreatures.world.gen.ModEntityGeneration;
 import net.domixcze.domixscreatures.world.gen.ModWorldGeneration;
 import net.domixcze.domixscreatures.world.tree.ModFoliagePlacerTypes;
 import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -30,6 +33,7 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.potion.Potions;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.world.Difficulty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,6 +44,7 @@ public class DomiXsCreatures implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModConfig.loadConfig();
+		ModGameRules.register();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.FIRE_SALAMANDER, FireSalamanderEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.SPECTRAL_BAT, SpectralBatEntity.setAttributes());
@@ -83,6 +88,9 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.ANCIENT_SKELETON, AncientSkeletonEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.UNICORN, UnicornEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.CATFISH, CatfishEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.RAT, RatEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.PENGUIN, PenguinEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.CARP, CarpEntity.setAttributes());
 
 		FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
 
@@ -197,6 +205,11 @@ public class DomiXsCreatures implements ModInitializer {
 
 		ModStructures.registerStructureFeatures();
 
+		RatSpawner ratSpawner = new RatSpawner();
+		ServerTickEvents.END_WORLD_TICK.register(world -> {
+			ratSpawner.spawn(world, world.getDifficulty() != Difficulty.PEACEFUL, world.getServer().shouldSpawnAnimals());
+		});
+
 		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
 			builder.registerPotionRecipe(Potions.AWKWARD, ModItems.SPECTRAL_BAT_EAR, ModPotions.ECHOLOCATION_POTION);
 		});
@@ -204,5 +217,10 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
 			builder.registerPotionRecipe(Potions.AWKWARD, ModItems.RAW_EEL_MEAT, ModPotions.ELECTRIFYING_POTION);
 		});
+
+		PayloadTypeRegistry.playS2C().register(
+				CoconutLandedPayload.ID,
+				CoconutLandedPayload.CODEC
+		);
 	}
 }

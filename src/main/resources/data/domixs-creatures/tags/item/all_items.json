@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "domixs-creatures:fire_salamander_scales",
     "domixs-creatures:spectral_bat_wing",
@@ -81,6 +80,7 @@
     "domixs-creatures:peacock_bass_bucket",
     "domixs-creatures:betta_fish_bucket",
     "domixs-creatures:anglerfish_bucket",
+    "domixs-creatures:carp_bucket",
     "domixs-creatures:conch_shell",
     "domixs-creatures:pearl_block",
     "domixs-creatures:pearl",
@@ -127,6 +127,14 @@
     "domixs-creatures:pushable_statue_block",
     "domixs-creatures:raw_eel_meat",
     "domixs-creatures:cooked_eel_meat",
-    "domixs-creatures:jade_crown"
+    "domixs-creatures:jade_crown",
+    "domixs-creatures:command_flute",
+    "domixs-creatures:cheese_wheel",
+    "domixs-creatures:cheese_piece",
+    "domixs-creatures:salt",
+    "domixs-creatures:penguin_egg",
+    "domixs-creatures:mistletoe",
+    "domixs-creatures:raw_carp",
+    "domixs-creatures:cooked_carp"
   ]
 }

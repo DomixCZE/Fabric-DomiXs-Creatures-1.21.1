@@ -1,10 +1,11 @@
 package net.domixcze.domixscreatures.block.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.item.ModItems;
-import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.CoconutLandedPayload;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.*;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
@@ -14,9 +15,9 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -64,7 +65,7 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
         FluidState fluidState = world.getFluidState(pos);
         boolean waterlogged = fluidState.getFluid() == Fluids.WATER;
 
-        if (side == Direction.UP && world.getBlockState(pos.down()).isSolidBlock(world, pos.down())) {
+        if (side == Direction.UP && world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP)) {
             // On top of solid block
             return this.getDefaultState()
                     .with(FACING, Direction.UP)
@@ -111,7 +112,7 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
                 world.scheduleBlockTick(pos, this, 1);
             }
         } else if (!attached && direction == Direction.DOWN) {
-            if (!neighborState.isSolidBlock(world, neighborPos)) {
+            if (!neighborState.isSideSolidFullSquare(world, neighborPos, Direction.UP)) {
                 world.scheduleBlockTick(pos, this, 1);
             }
         }
@@ -123,16 +124,19 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.isClient) return;
 
-        boolean shouldFall = false;
         boolean attached = state.get(ATTACHED);
         Direction facing = state.get(FACING);
+        boolean shouldFall = false;
 
         if (attached) {
             if (!world.getBlockState(pos.offset(facing)).isOf(ModBlocks.PALM_LOG)) {
                 shouldFall = true;
             }
         } else {
-            if (!world.getBlockState(pos.down()).isSolidBlock(world, pos.down())) {
+            BlockPos belowPos = pos.down();
+            BlockState belowState = world.getBlockState(belowPos);
+
+            if (!belowState.isSideSolidFullSquare(world, belowPos, Direction.UP)) {
                 shouldFall = true;
             }
         }
@@ -177,8 +181,11 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
 
     @Override
     public void onLanding(World world, BlockPos pos, BlockState fallingState, BlockState currentStateInWorld, FallingBlockEntity entity) {
-        SoundEvent landSound = ModConfig.INSTANCE.enableCoconutBonkSound ? ModSounds.COCONUT_LAND : SoundEvents.BLOCK_WOOD_PLACE;
-        world.playSound(null, pos, landSound, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        if (!world.isClient) {
+            for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, pos)) {
+                ServerPlayNetworking.send(player, new CoconutLandedPayload(pos));
+            }
+        }
     }
 
     @Override

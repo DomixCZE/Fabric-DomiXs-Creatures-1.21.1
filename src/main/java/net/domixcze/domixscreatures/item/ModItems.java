@@ -99,6 +99,12 @@ public class ModItems {
             new Item.Settings()));
     public static final Item CATFISH_SPAWN_EGG = registerItem("catfish_spawn_egg", new SpawnEggItem(ModEntities.CATFISH, 0x827537, 0x8a3b0e,
             new Item.Settings()));
+    public static final Item RAT_SPAWN_EGG = registerItem("rat_spawn_egg", new SpawnEggItem(ModEntities.RAT, 0x5d6c82, 0x808fa4,
+            new Item.Settings()));
+    public static final Item PENGUIN_SPAWN_EGG = registerItem("penguin_spawn_egg", new SpawnEggItem(ModEntities.PENGUIN, 0x2b3037, 0xf2a531,
+            new Item.Settings()));
+    public static final Item CARP_SPAWN_EGG = registerItem("carp_spawn_egg", new SpawnEggItem(ModEntities.CARP, 0x717c41, 0xa9a95c,
+            new Item.Settings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));
@@ -114,6 +120,8 @@ public class ModItems {
             new Item.Settings().maxCount(1)));
     public static final Item FRESHWATER_STINGRAY_BUCKET = registerItem("freshwater_stingray_bucket", new EntityBucketItem(ModEntities.FRESHWATER_STINGRAY, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));
+    public static final Item CARP_BUCKET = registerItem("carp_bucket", new EntityBucketItem(ModEntities.CARP, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
+            new Item.Settings().maxCount(1)));
 
     public static final Item GOLDFISH = registerItem("goldfish", new Item(new Item.Settings().food(ModFoodComponents.GOLDFISH)));
     public static final Item WORM = registerItem("worm", new Item(new Item.Settings().food(ModFoodComponents.WORM)));
@@ -126,6 +134,10 @@ public class ModItems {
     public static final Item COOKED_DEER_VENISON = registerItem("cooked_deer_venison", new Item(new Item.Settings().food(ModFoodComponents.COOKED_DEER_VENISON)));
     public static final Item RAW_EEL_MEAT = registerItem("raw_eel_meat", new Item(new Item.Settings().food(ModFoodComponents.EEL_MEAT)));
     public static final Item COOKED_EEL_MEAT = registerItem("cooked_eel_meat", new Item(new Item.Settings().food(ModFoodComponents.COOKED_EEL_MEAT)));
+    public static final Item RAW_CARP = registerItem("raw_carp", new Item(new Item.Settings().food(ModFoodComponents.CARP)));
+    public static final Item COOKED_CARP = registerItem("cooked_carp", new Item(new Item.Settings().food(ModFoodComponents.COOKED_CARP)));
+    public static final Item CHEESE_PIECE = registerItem("cheese_piece", new Item(new Item.Settings().food(ModFoodComponents.CHEESE_PIECE)));
+    public static final Item SALT = registerItem("salt", new Item(new Item.Settings()));
 
     public static final Item COCONUT_SLICE = registerItem("coconut_slice", new CoconutSliceItem(new Item.Settings().food(ModFoodComponents.COCONUT_SLICE)));
     public static final Item MARSHMALLOW = registerItem("marshmallow", new Item(new Item.Settings().maxCount(16)));
@@ -195,6 +207,7 @@ public class ModItems {
     public static final Item SALAMANDER_UPGRADE_SMITHING_TEMPLATE = registerItem("salamander_upgrade_smithing_template",
             new SalamanderUpgradeSmithingTemplateItem(new Item.Settings()));
 
+    public static final Item COMMAND_FLUTE = registerItem("command_flute", new CommandFluteItem(new Item.Settings().maxCount(1)));
     public static final Item BUG_NET = registerItem("bug_net", new BugNetItem(new Item.Settings().maxCount(1).maxDamage(3)));
     public static final Item SKULL_WAND = registerItem("skull_wand", new Item(new Item.Settings().maxCount(1)));
     public static final Item NIGHTMARE_AMULET = registerItem("nightmare_amulet", new NightmareAmuletItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));

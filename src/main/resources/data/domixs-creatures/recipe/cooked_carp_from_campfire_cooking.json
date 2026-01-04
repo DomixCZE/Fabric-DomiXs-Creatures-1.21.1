@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "cookingtime": 360,
+  "experience": 0.20,
+  "ingredient": {
+    "item": "domixs-creatures:raw_carp"
+  },
+  "result": {
+    "id": "domixs-creatures:cooked_carp"
+  }
+}

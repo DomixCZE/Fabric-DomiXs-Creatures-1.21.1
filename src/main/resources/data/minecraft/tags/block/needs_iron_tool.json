@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "domixs-creatures:barnacle_block",
     "domixs-creatures:magnetite_ore",
     "domixs-creatures:deepslate_magnetite_ore",
     "domixs-creatures:negative_magnet_block",

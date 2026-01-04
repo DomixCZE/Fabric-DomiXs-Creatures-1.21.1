@@ -42,6 +42,9 @@
   "entity.domixs-creatures.ancient_skeleton": "Starověký Kostlivec",
   "entity.domixs-creatures.unicorn": "Jednorožec",
   "entity.domixs-creatures.catfish": "Sumec",
+  "entity.domixs-creatures.rat": "Krysa",
+  "entity.domixs-creatures.penguin": "Tučňák",
+  "entity.domixs-creatures.carp": "Kapr",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -85,6 +88,9 @@
   "item.domixs-creatures.ancient_skeleton_spawn_egg": "Vajíčko se Starověkým Kostlivcem",
   "item.domixs-creatures.unicorn_spawn_egg": "Vajíčko s Jednorožcem",
   "item.domixs-creatures.catfish_spawn_egg": "Vajíčko se Sumcem",
+  "item.domixs-creatures.rat_spawn_egg": "Vajíčko s Krysou",
+  "item.domixs-creatures.penguin_spawn_egg": "Vajíčko s Tučňákem",
+  "item.domixs-creatures.carp_spawn_egg": "Vajíčko s Kaprem",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -100,6 +106,7 @@
   "item.domixs-creatures.anglerfish_bucket": "Kbelík s Ďasem",
   "item.domixs-creatures.freshwater_stingray_bucket": "Kbelík se Sladkovodním Rejnokem",
   "item.domixs-creatures.goldfish_bucket": "Kbelík se Zlatou Rybkou",
+  "item.domixs-creatures.carp_bucket": "Kbelík s Kaprem",
   "item.domixs-creatures.goldfish": "Zlatá Rybka",
   "item.domixs-creatures.skull": "Lebka",
   "item.domixs-creatures.skull_wand": "Lebková Hůlka",
@@ -118,6 +125,8 @@
   "item.domixs-creatures.cooked_bison_meat": "Pečené Bizoní Maso",
   "item.domixs-creatures.raw_eel_meat": "Syrové Úhoří Maso",
   "item.domixs-creatures.cooked_eel_meat": "Pečené Úhoří Maso",
+  "item.domixs-creatures.raw_carp": "Syrový Kapr",
+  "item.domixs-creatures.cooked_carp": "Pečený Kapr",
   "item.domixs-creatures.banana": "Banán",
   "item.domixs-creatures.arapaima_scale_black": "Černá Šupina Arapaimy",
   "item.domixs-creatures.arapaima_scale_green": "Zelená Šupina Arapaimy",
@@ -128,6 +137,8 @@
   "item.domixs-creatures.silk": "Hedvábí",
   "item.domixs-creatures.net": "Síť",
   "item.domixs-creatures.unicorn_dust": "Jednorožčí Prach",
+  "item.domixs-creatures.cheese_piece": "Kus Sýra",
+  "item.domixs-creatures.salt": "Sůl",
 
   "item.domixs-creatures.marshmallow": "Marshmallow",
   "item.domixs-creatures.marshmallow_stick": "Marshmallow na Klacku",
@@ -146,6 +157,7 @@
 
   "item.domixs-creatures.nightmare_amulet": "Amulet Nočních Můr",
   "item.domixs-creatures.conch_shell": "Lastura",
+  "item.domixs-creatures.command_flute": "Příkazová Flétna",
   "item.domixs-creatures.copper_trumpet": "Měďená Trumpeta",
   "item.domixs-creatures.copper_trumpet_exposed": "Měďená Trumpeta s Lehkou Měďenkou",
   "item.domixs-creatures.copper_trumpet_weathered": "Měďená Trumpeta se Střední Měďenkou",
@@ -195,6 +207,12 @@
   "domixs-creatures.tooltip.small_antler": "Velikost: Malé",
   "domixs-creatures.tooltip.medium_antler": "Velikost: Střední",
   "domixs-creatures.tooltip.large_antler": "Velikost: Velké",
+  "domixs-creatures.tooltip.command_flute.toggle_mode": "Shift + Pravé Tlačítko pro změnu režimu",
+  "domixs-creatures.tooltip.command_flute.command": "Pravé Tlačítko pro ovládání ochočených krys",
+  "domixs-creatures.tooltip.command_flute.mode.sit": "Režim: SEDNOUT",
+  "domixs-creatures.tooltip.command_flute.mode.follow": "Režim: NÁSLEDOVAT",
+
+  "domixs-creatures.tooltip.hold_shift": "Podrž §eSHIFT§r pro info",
 
   "effect.domixs-creatures.deafen": "Hluchý",
   "effect.domixs-creatures.echolocation": "Echolokace",
@@ -213,6 +231,7 @@
   "block.domixs-creatures.cracked_glass_block": "Blok Prasklého Skla",
   "block.domixs-creatures.barnacle_block": "Vilejš",
   "block.domixs-creatures.crocodile_egg": "Vajíčko Krokodýla",
+  "block.domixs-creatures.penguin_egg": "Vajíčko Tučňáka",
   "block.domixs-creatures.pile_of_sticks_block": "Hromádka Klacíků",
   "block.domixs-creatures.sawdust_block": "Hromádka Pilin",
   "block.domixs-creatures.molehill_block": "Krtina",
@@ -244,8 +263,10 @@
   "block.domixs-creatures.block_of_jade": "Blok Nefritu",
   "block.domixs-creatures.deepslate_jade_ore": "Hlubinná Nefritová Ruda",
   "block.domixs-creatures.jade_ore": "Nefritová Ruda",
+  "block.domixs-creatures.cheese_wheel": "Kolo Sýra",
 
   "block.domixs-creatures.clovers": "Jetel",
+  "block.domixs-creatures.mistletoe": "Jmelí",
   "block.domixs-creatures.fireweed_bush": "Ohňovka Křovitá",
   "block.domixs-creatures.crimson_bloom": "Karmínový Květ",
   "block.domixs-creatures.blue_sage": "Modrá Šalvěj",
@@ -348,6 +369,10 @@
   "sounds.domixs-creatures.raccoon_hurt": "Mýval byl zraněn",
   "sounds.domixs-creatures.raccoon_death": "Mýval zemřel",
 
+  "sounds.domixs-creatures.rat_ambient": "Krysa píská",
+  "sounds.domixs-creatures.rat_hurt": "Krysa byla zraněna",
+  "sounds.domixs-creatures.rat_death": "Krysa zemřela",
+
   "sounds.domixs-creatures.capybara_hurt": "Kapybara zraněna",
 
   "sounds.domixs-creatures.bison_ambient": "Bizon funí",
@@ -357,8 +382,15 @@
   "sounds.domixs-creatures.moose_hurt": "Los zraněn",
   "sounds.domixs-creatures.moose_death": "Los zemřel",
 
+  "sounds.domixs-creatures.penguin_ambient": "Tučňák kejhá",
+  "sounds.domixs-creatures.penguin_hurt": "Tučňák zraněn",
+  "sounds.domixs-creatures.penguin_noot_noot": "Tučňák noot noot",
+
   "sounds.domixs-creatures.conch_shell_use": "Lastura hraje",
   "sounds.domixs-creatures.copper_trumpet_plays": "Trumpeta hraje",
+  "sounds.domixs-creatures.command_flute_sit": "Flétna příkaz sednout",
+  "sounds.domixs-creatures.command_flute_follow": "Flétna příkaz následovat",
+
   "sounds.domixs-creatures.coconut_land": "Kokos Dopad",
 
   "sounds.domixs-creatures.guide_book_entry": "Příručka Záznam",
@@ -416,6 +448,9 @@
 
   "message.domixs-creatures.action.sitting": "Sedí",
   "message.domixs-creatures.action.following": "Následuje",
+  "message.domixs-creatures.command_flute.mode_switch": "Režim Flétny: ",
+  "message.domixs-creatures.command_flute.mode.sit": "Sednout",
+  "message.domixs-creatures.command_flute.mode.follow": "Následovat",
 
   "guide.title.domixs-creatures.arapaima": "§lArapaima",
   "guide.title.domixs-creatures.beaver": "§lBobr",
@@ -427,6 +462,8 @@
   "guide.title.domixs-creatures.raccoon": "§lMýval",
   "guide.title.domixs-creatures.unicorn": "§lJednorožec",
   "guide.title.domixs-creatures.hermit_crab": "§lKrab Poustevník",
+  "guide.title.domixs-creatures.rat": "§lKrysa",
+  "guide.title.domixs-creatures.penguin": "§lTučňák",
 
   "guide.title.domixs-creatures.coconut": "§lKokos",
   "guide.title.domixs-creatures.conch_shell": "§lLastura",
@@ -489,6 +526,12 @@
   "guide.entry.domixs-creatures.hermit_crab_page2": "Krabi poustevníci se snadno vyplaší pokud běháte poblíž, a schovají se do ulity.",
   "guide.entry.domixs-creatures.hermit_crab_page3_line1": "Lze s nimi obchodovat 20krát denně pomocí zlatých nugetů.",
   "guide.entry.domixs-creatures.hermit_crab_page3_line2": "Následující předměty lze získat obchodováním:",
+  "guide.entry.domixs-creatures.rat_page1": "Krysy se vyskytují okolo vesnic. Divoké krysy občas ničí vyroslé plodiny.",
+  "guide.entry.domixs-creatures.rat_page2": "Mohou být rozmnoženy mrkvý, ochočeny sýrem, a budou útočit s majitelem.",
+  "guide.entry.domixs-creatures.rat_page3": "Příkazová Flétna lze použít k přikázání všem krysám v okolí, aby si sedly/následovaly svého majitele.",
+  "guide.entry.domixs-creatures.penguin_page1": "Tučňáci se vyskytují v Zasněžených Pláních/Plážích, Ledových Hrotech, a Zamrzlých Oceánech.",
+  "guide.entry.domixs-creatures.penguin_page2_line1": "Může být rozmnožen syrovou treskou.",
+  "guide.entry.domixs-creatures.penguin_page2_line2": "Po rozmnožení jeden z Tučňáků umístí vejce na jeden z následujících bloků:",
 
   "guide.entry.domixs-creatures.coconut_page1_line1": "Kokosy lze nalézt na palmách v plážových biomech. Dají se schodit pomocí projektilu",
   "guide.entry.domixs-creatures.coconut_page1_line2": "Chcete-li kokos rozdělat, klikněte na něj §6§lpravým§r §6§ltlačítkem§r sekerou. Získáte 2 kokosové plátky.",
@@ -529,43 +572,25 @@
   "domixs-creatures.config.title": "Domixovi Tvorové Nastavení",
   "domixs-creatures.config.category.general": "Domixovi Tvorové",
 
-  "domixs-creatures.config.option.enableWaterStriderRiding": "Jízda na Vodoměrce",
-  "domixs-creatures.config.option.enableWaterStriderRiding.tooltip": "Pokud vypnuto není možné jezdit/osedlat vodoměrku",
-  "domixs-creatures.message.riding_disabled": "Ježdění Vypnuto",
-
-  "domixs-creatures.config.option.hermitCrabDailyTradeLimit": "Denní limit obchodování pro kraba poustevníka",
-  "domixs-creatures.config.option.hermitCrabDailyTradeLimit.tooltip": "Kolikrát za den může krab poustevník obchodovat",
-
   "domixs-creatures.config.option.enableSleepParticles": "Effect spaní",
   "domixs-creatures.config.option.enableSleepParticles.tooltip": "Pokud vypnuto ZZZ efekt se nebude objevovat nad spícími stvořeními",
-
-  "domixs-creatures.config.option.enableFireSalamanderSmelting": "Vypalování ohnivého mloka",
-  "domixs-creatures.config.option.enableFireSalamanderSmelting.tooltip": "Pokud vypnuto ohnivý mlok nebude moci vypalovat předměty",
-
-  "domixs-creatures.config.option.enableFireSalamanderMagmaBallAttack": "Útok ohnivého mloka",
-  "domixs-creatures.config.option.enableFireSalamanderMagmaBallAttack.tooltip": "Pokud vypnuto ohnivý mlok nebude moci vytvořit magmatickou kouli pro svůj útok",
-
-  "domixs-creatures.config.option.enableSpectralBatScreechAttack": "Pištění spektrálního netopýra",
-  "domixs-creatures.config.option.enableSpectralBatScreechAttack.tooltip": "Pokud vypnuto spektrální netopýr nebude moci použít svůj pištící útok",
-
-  "domixs-creatures.config.option.enableRaccoonStealing": "Mývalí krádež",
-  "domixs-creatures.config.option.enableRaccoonStealing.tooltip": "Pokud vypnuto mýval nebude moci krást jídlo z truhel",
-
-  "domixs-creatures.config.option.enableCaterpillarTransformation": "Proměna Housenky",
-  "domixs-creatures.config.option.enableCaterpillarTransformation.tooltip": "Pokud vypnuto housenka se nebude moci proměnít na motýla",
-
-  "domixs-creatures.config.option.enablePorcupineQuillAttack": "Bodlinový útok Ježury",
-  "domixs-creatures.config.option.enablePorcupineQuillAttack.tooltip": "Pokud vypnuto ježura nebude střílet bodliny když je zraněna",
 
   "domixs-creatures.config.option.enableCoconutBonkSound": "'Bonk' Zvukový Efekt Pro Kokosi",
   "domixs-creatures.config.option.enableCoconutBonkSound.tooltip": "Pokud zapnuto kokosi přehrají 'bonk' zvukový efekt když dopadnou na zem",
 
-  "domixs-creatures.config.option.enableCoconutPositiveEffectRemoval": "Kokos Odstraňování Pozitivních Efektů",
-  "domixs-creatures.config.option.enableCoconutPositiveEffectRemoval.tooltip": "Pokud vypnuto snězení kokosu neodstraní žádné pozitivní efekty",
+  "domixs-creatures.message.riding_disabled": "Ježdění Vypnuto",
 
-  "domixs-creatures.config.option.enableCoconutNegativeEffectRemoval": "Kokos Odstraňování Negativních Efektů",
-  "domixs-creatures.config.option.enableCoconutNegativeEffectRemoval.tooltip": "Pokud vypnuto snězení kokosu neodstraní žádné negativní efekty",
-
-  "domixs-creatures.config.option.enableBeaverLogStripping": "Bobří Loupání Kmenů",
-  "domixs-creatures.config.option.enableBeaverLogStripping.tooltip": "Pokud vypnuto bobři nebudou moci oloupat kmeny"
+  "gamerule.enableWaterStriderRiding": "Povolit Ježdění Na Vodoměrce",
+  "gamerule.enableFireSalamanderSmelting": "Povolit Vypékání Ohnivého Mloka",
+  "gamerule.enableFireSalamanderMagmaAttack": "Povolit Magma Útok Ohnivého Mloka",
+  "gamerule.enableSpectralBatScreech": "Povolit Pištění Spektrálního Netopýra",
+  "gamerule.enableCaterpillarTransformation": "Povolit Transformaci Housenky",
+  "gamerule.enablePorcupineQuillAttack": "Povolit Bodlinový Útok Dikobraza",
+  "gamerule.enableBeaverLogStripping": "Povolit Bobří Loupání Klád",
+  "gamerule.enableRaccoonStealing": "Povolit Mývalí Kradež",
+  "gamerule.enableRatCropBreaking": "Povolit Krysí Níčení Úrody",
+  "gamerule.hermitCrabDailyTradeLimit": "Denní Limit Obchodů Kraba Poustevníka",
+  "gamerule.enableCoconutPositiveEffectRemoval": "Povolit Odstranění Pozitivních Efektů Kokosem",
+  "gamerule.enableCoconutNegativeEffectRemoval": "Povolit Odstranění Negativních Efektů Kokosem",
+  "gamerule.fluteAffectsAllTamed": "Příkazová Flétna Ovlivňuje Všechny Ochočené Tvory"
 }

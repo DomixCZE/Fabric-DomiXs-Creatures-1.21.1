@@ -1,0 +1,43 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made by DomixCZE",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "domixs-creatures:block/cheese_wheel_3",
+		"particle": "domixs-creatures:block/cheese_wheel_3"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 2],
+			"to": [14, 5, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 2]},
+			"faces": {
+				"north": {"uv": [0, 8.5, 3, 11], "texture": "#0"},
+				"east": {"uv": [0, 6, 6, 8.5], "texture": "#0"},
+				"south": {"uv": [3, 8.5, 6, 11], "texture": "#0"},
+				"west": {"uv": [6, 0, 12, 2.5], "texture": "#0"},
+				"up": {"uv": [3, 6, 0, 0], "texture": "#0"},
+				"down": {"uv": [6, 0, 3, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [2, 0, 8],
+			"to": [8, 5, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 2]},
+			"faces": {
+				"north": {"uv": [6, 8.5, 9, 11], "texture": "#0"},
+				"east": {"uv": [9, 2.5, 12, 5], "texture": "#0"},
+				"south": {"uv": [9, 5, 12, 7.5], "texture": "#0"},
+				"west": {"uv": [9, 7.5, 12, 10], "texture": "#0"},
+				"up": {"uv": [9, 5.5, 6, 2.5], "texture": "#0"},
+				"down": {"uv": [9, 5.5, 6, 8.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"gui": {
+			"rotation": [30, 15, 0],
+			"translation": [0, 4.5, 1.5]
+		}
+	}
+}

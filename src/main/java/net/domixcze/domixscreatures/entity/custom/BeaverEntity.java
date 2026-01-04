@@ -9,6 +9,7 @@ import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -141,7 +142,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        BeaverEntity baby = (BeaverEntity) ModEntities.BEAVER.create(world);
+        BeaverEntity baby = ModEntities.BEAVER.create(world);
         if (baby != null) {
             BeaverEntity parent1 = this;
             BeaverEntity parent2 = (BeaverEntity) entity;
@@ -395,7 +396,7 @@ public class BeaverEntity extends AnimalEntity implements GeoEntity, Sleepy, Sno
 
         @Override
         public boolean canStart() {
-            if (!this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) || !ModConfig.INSTANCE.enableBeaverLogStripping) {
+            if (!this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) || !this.world.getGameRules().getBoolean(ModGameRules.ENABLE_BEAVER_LOG_STRIPPING)) {
                 return false;
             }
 

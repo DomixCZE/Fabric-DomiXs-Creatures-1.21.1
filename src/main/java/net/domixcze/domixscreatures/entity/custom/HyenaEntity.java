@@ -124,6 +124,11 @@ public class HyenaEntity extends AnimalEntity implements GeoEntity, Sleepy, Snow
     }
 
     @Override
+    public boolean canBeLeashed() {
+        return !this.isSleeping();
+    }
+
+    @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putBoolean("HasSnowLayer", this.hasSnowLayer());

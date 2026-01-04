@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -30,6 +30,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
@@ -71,6 +72,14 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
         builder.add(SADDLED, false);
     }
 
+    private boolean isMovingHorizontallyClientSide(WaterStriderEntity entity) { // this is needed for animations to work for all clients on a server
+        double dx = entity.getX() - entity.prevX;
+        double dz = entity.getZ() - entity.prevZ;
+        double horizontalMovementSquared = dx * dx + dz * dz;
+
+        return horizontalMovementSquared > 1.0E-9;
+    }
+
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "land_controller", 2, this::landPredicate));
@@ -78,10 +87,13 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
     }
 
     private <P extends GeoAnimatable> PlayState landPredicate(AnimationState<P> state) {
+        WaterStriderEntity entity = (WaterStriderEntity) state.getAnimatable();
+
         if (this.isTouchingWater()) {
             return PlayState.STOP;
         }
-        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+
+        if (isMovingHorizontallyClientSide(entity)) {
             state.getController().setAnimation(RawAnimation.begin().then("animation.water_strider.walk", Animation.LoopType.LOOP));
         } else {
             state.getController().setAnimation(RawAnimation.begin().then("animation.water_strider.idle", Animation.LoopType.LOOP));
@@ -90,10 +102,13 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
     }
 
     private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> state) {
+        WaterStriderEntity entity = (WaterStriderEntity) state.getAnimatable();
+
         if (!this.isTouchingWater()) {
             return PlayState.STOP;
         }
-        if (this.getVelocity().horizontalLengthSquared() > 1.0E-9) {
+
+        if (isMovingHorizontallyClientSide(entity)) {
             state.getController().setAnimation(RawAnimation.begin().then("animation.water_strider.walk_water", Animation.LoopType.LOOP));
         } else {
             state.getController().setAnimation(RawAnimation.begin().then("animation.water_strider.idle_water", Animation.LoopType.LOOP));
@@ -104,6 +119,14 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
     @Override
     public int getLimitPerChunk() {
         return 1;
+    }
+
+    public boolean isPushable() {
+        return !this.hasPassengers();
+    }
+
+    public boolean isClimbing() {
+        return false;
     }
 
     @Override
@@ -125,8 +148,8 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
 
     @Override
     public boolean canBeSaddled() {
-        //Check the config setting first. If riding is disabled, saddling is also disabled.
-        if (!ModConfig.INSTANCE.enableWaterStriderRiding) {
+        //Check the gamerule first. If riding is disabled, saddling is also disabled.
+        if (!this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_WATER_STRIDER_RIDING)) {
             return false;
         }
         return this.isAlive() && !this.isBaby() && this.isTamed();
@@ -176,10 +199,26 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
     @Nullable
     @Override
     public LivingEntity getControllingPassenger() {
-        if (!ModConfig.INSTANCE.enableWaterStriderRiding) {
+        if (!this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_WATER_STRIDER_RIDING)) {
             return null; // No one can control it if riding is disabled.
         }
         return this.isSaddled() ? (LivingEntity) this.getFirstPassenger() : null;
+    }
+
+    @Override
+    protected void tickControlled(PlayerEntity controllingPlayer, Vec3d movementInput) {
+        Vec2f controlledRotation = this.getControlledRotation(controllingPlayer);
+        this.setRotation(controlledRotation.y, controlledRotation.x);
+        this.prevYaw = this.bodyYaw = this.headYaw = this.getYaw();
+
+        Vec3d controlledMovement = this.getControlledMovementInput(controllingPlayer, movementInput);
+        this.setMovementSpeed(this.getSaddledSpeed(controllingPlayer));
+
+        travel(controlledMovement);
+    }
+
+    protected Vec2f getControlledRotation(LivingEntity controllingPassenger) {
+        return new Vec2f(controllingPassenger.getPitch() * 0.5F, controllingPassenger.getYaw());
     }
 
     @Override
@@ -198,9 +237,9 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
             float speedMultiplier;
 
             if (this.isTouchingWater()) {
-                speedMultiplier = 1.3F; // water speed
+                speedMultiplier = 0.7F; // water speed
             } else {
-                speedMultiplier = 0.6F; // land speed
+                speedMultiplier = 0.4F; // land speed
             }
 
             this.setMovementSpeed((float) this.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED) * speedMultiplier);
@@ -233,33 +272,42 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
             }
         }
 
-        if (!ModConfig.INSTANCE.enableWaterStriderRiding) {
+        if (!this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_WATER_STRIDER_RIDING)) {
             if (!this.getWorld().isClient()) {
                 player.sendMessage(Text.translatable("domixs-creatures.message.riding_disabled"), true);
             }
             return ActionResult.FAIL;
         }
 
-        boolean isSaddle = itemStack.isOf(Items.SADDLE);
-
         if (!this.isAlive()) {
             return ActionResult.PASS;
         }
 
+        boolean isSaddle = itemStack.isOf(Items.SADDLE);
+
         if (isSaddle && this.canBeSaddled() && !this.isSaddled() && this.isTamed()) {
-            this.saddle(itemStack, SoundCategory.NEUTRAL);
-            this.setPersistent();
-            if (!player.getAbilities().creativeMode) {
-                itemStack.decrement(1);
+            if (!this.getWorld().isClient()) {
+                this.saddle(itemStack, SoundCategory.NEUTRAL);
+                this.setPersistent();
+                if (!player.getAbilities().creativeMode) {
+                    itemStack.decrement(1);
+                }
             }
-            return ActionResult.SUCCESS;
-        } else if (this.isSaddled() && itemStack.isEmpty() && player.isSneaking()) {
-            this.dropItem(Items.SADDLE);
-            this.unsaddle();
-            return ActionResult.SUCCESS;
-        } else if (this.isSaddled() && !player.hasVehicle()) {
-            player.startRiding(this);
             return ActionResult.success(this.getWorld().isClient);
+
+        } else if (this.isSaddled() && !this.hasPassengers() && itemStack.isEmpty() && player.isSneaking()) {
+            if (!this.getWorld().isClient()) {
+                this.dropItem(Items.SADDLE);
+                this.unsaddle();
+            }
+            return ActionResult.success(this.getWorld().isClient);
+
+        } else if (this.isSaddled() && !player.hasVehicle()) {
+            if (!this.getWorld().isClient()) {
+                player.startRiding(this);
+            }
+            return ActionResult.success(this.getWorld().isClient);
+
         } else if (!this.isSaddled() && !player.hasVehicle() && itemStack.isEmpty()) {
             return ActionResult.PASS;
         }
@@ -273,6 +321,20 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
         double zOffset = 0.0; // forward
         Vec3d offsetVector = (new Vec3d(xOffset, yOffset, zOffset)).rotateY(-this.bodyYaw * 0.017453292F);
         positionUpdater.accept(passenger, this.getX() + offsetVector.x, this.getY() + offsetVector.y, this.getZ() + offsetVector.z);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.getWorld().isClient()
+                && this.hasPassengers()
+                && !this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_WATER_STRIDER_RIDING)) {
+
+            Entity passenger = this.getFirstPassenger();
+            if (passenger != null) {
+                passenger.stopRiding();
+            }
+        }
     }
 
     @Override

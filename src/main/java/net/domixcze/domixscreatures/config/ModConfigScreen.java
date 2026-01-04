@@ -30,7 +30,7 @@ public class ModConfigScreen {
                 .build());
 
         // water strider riding
-        general.addEntry(entryBuilder.startBooleanToggle(
+        /*general.addEntry(entryBuilder.startBooleanToggle(
                         Text.translatable("domixs-creatures.config.option.enableWaterStriderRiding"),
                         ModConfig.INSTANCE.enableWaterStriderRiding
                 )
@@ -109,7 +109,7 @@ public class ModConfigScreen {
                 .setMax(60)
                 .setTooltip(Text.translatable("domixs-creatures.config.option.hermitCrabDailyTradeLimit.tooltip"))
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.hermitCrabDailyTradeLimit = newValue)
-                .build());
+                .build());*/
 
         // coconut "bonk" sound effect
         general.addEntry(entryBuilder.startBooleanToggle(
@@ -122,14 +122,16 @@ public class ModConfigScreen {
                 .build());
 
         // Coconut Positive Effect Removal
-        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enableCoconutPositiveEffectRemoval"), ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval)
+        /*general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enableCoconutPositiveEffectRemoval"),
+                        ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval)
                 .setDefaultValue(true)
                 .setTooltip(Text.translatable("domixs-creatures.config.option.enableCoconutPositiveEffectRemoval.tooltip"))
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval = newValue)
                 .build());
 
         // Coconut Negative Effect Removal
-        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enableCoconutNegativeEffectRemoval"), ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval)
+        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("domixs-creatures.config.option.enableCoconutNegativeEffectRemoval"),
+                        ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval)
                 .setDefaultValue(true)
                 .setTooltip(Text.translatable("domixs-creatures.config.option.enableCoconutNegativeEffectRemoval.tooltip"))
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval = newValue)
@@ -144,6 +146,26 @@ public class ModConfigScreen {
                 .setTooltip(Text.translatable("domixs-creatures.config.option.enableBeaverLogStripping.tooltip"))
                 .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableBeaverLogStripping = newValue)
                 .build());
+
+        // Rat Crop Breaking
+        general.addEntry(entryBuilder.startBooleanToggle(
+                        Text.translatable("domixs-creatures.config.option.enableRatCropBreaking"),
+                        ModConfig.INSTANCE.enableRatCropBreaking
+                )
+                .setDefaultValue(true)
+                .setTooltip(Text.translatable("domixs-creatures.config.option.enableRatCropBreaking.tooltip"))
+                .setSaveConsumer(newValue -> ModConfig.INSTANCE.enableRatCropBreaking = newValue)
+                .build());
+
+        // Flute Affect All Tamed
+        general.addEntry(entryBuilder.startBooleanToggle(
+                        Text.translatable("domixs-creatures.config.option.fluteAffectsAllTamed"),
+                        ModConfig.INSTANCE.fluteAffectsAllTamed
+                )
+                .setDefaultValue(false)
+                .setTooltip(Text.translatable("domixs-creatures.config.option.fluteAffectsAllTamed.tooltip"))
+                .setSaveConsumer(newValue -> ModConfig.INSTANCE.fluteAffectsAllTamed = newValue)
+                .build());*/
 
         return builder.build();
     }

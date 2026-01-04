@@ -5,6 +5,7 @@ import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.client.hermit_crab.HermitCrabShapes;
 import net.domixcze.domixscreatures.entity.client.hermit_crab.HermitCrabVariants;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -290,7 +291,9 @@ public class HermitCrabEntity extends AnimalEntity implements GeoEntity {
                     return ActionResult.SUCCESS;
                 }
 
-                if (this.tradeCount < ModConfig.INSTANCE.hermitCrabDailyTradeLimit + boostAmount) {
+                int maxTrades = this.getWorld().getGameRules().getInt(ModGameRules.HERMIT_CRAB_DAILY_TRADE_LIMIT) + boostAmount;
+
+                if (this.tradeCount < maxTrades) {
                     itemStack.decrement(1);
                     this.dropBarterLoot(player);
                     this.tradeCount++;
@@ -301,7 +304,7 @@ public class HermitCrabEntity extends AnimalEntity implements GeoEntity {
                             0.2D, 0.1D, 0.2D,
                             0.1D);
 
-                    if (this.tradeCount >= ModConfig.INSTANCE.hermitCrabDailyTradeLimit + boostAmount) {
+                    if (this.tradeCount >= maxTrades) {
                         this.tradeCooldown = TRADE_COOLDOWN;
                     }
                 } else {

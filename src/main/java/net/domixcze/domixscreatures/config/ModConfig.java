@@ -14,8 +14,10 @@ public class ModConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = Paths.get("config", "domixs-creatures.json");
 
-    public boolean enableWaterStriderRiding = true;
     public boolean enableSleepParticles = true;
+    public boolean enableCoconutBonkSound = false;
+
+    /*public boolean enableWaterStriderRiding = true;
     public boolean enableFireSalamanderSmelting = true;
     public boolean enableFireSalamanderMagmaBallAttack = true;
     public boolean enableSpectralBatScreechAttack = true;
@@ -25,11 +27,12 @@ public class ModConfig {
 
     public boolean enableBeaverLogStripping = true;
     public boolean enableRaccoonStealing = true;
+    public boolean enableRatCropBreaking = true;
     public boolean enableCoconutNegativeEffectRemoval = true;
 
-    public boolean enableCoconutBonkSound = false;
+    public boolean fluteAffectsAllTamed = false;
 
-    public int hermitCrabDailyTradeLimit = 20;
+    public int hermitCrabDailyTradeLimit = 20;*/
 
     public static ModConfig INSTANCE = new ModConfig();
 

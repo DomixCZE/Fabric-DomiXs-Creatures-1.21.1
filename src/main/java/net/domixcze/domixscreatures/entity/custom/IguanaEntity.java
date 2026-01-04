@@ -102,10 +102,12 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
 
     public void setSleeping(boolean sleeping) {
         this.dataTracker.set(SLEEPING, sleeping);
+
         if (sleeping) {
             this.getNavigation().stop();
-            if (this.getOwner() instanceof PlayerEntity player && !this.isSitting()) {
-                this.setSit(player, true);
+
+            if (this.getOwner() instanceof PlayerEntity && !this.isSitting()) {
+                this.setSitting(true);
             }
         }
     }
@@ -118,15 +120,15 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         this.dataTracker.set(VARIANT, variant.getId());
     }
 
+    @Override
     public boolean isSitting() {
         return this.dataTracker.get(SITTING);
     }
 
-    public void setSit(PlayerEntity player, boolean sitting) {
-        if (player == getOwner()) {
-            this.dataTracker.set(SITTING, sitting);
-            super.setSitting(sitting);
-        }
+    @Override
+    public void setSitting(boolean sitting) {
+        super.setSitting(sitting);
+        this.dataTracker.set(SITTING, sitting);
     }
 
     @Override
@@ -216,23 +218,22 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
             }
         }
 
-        if (isTamed() && !this.getWorld().isClient()) {
-            if (itemStack.getItem() == Items.STICK && hand == Hand.MAIN_HAND) {
-                setSit(player, !isSitting());
+        if (!this.getWorld().isClient() && hand == Hand.MAIN_HAND && this.isTamed() && this.isOwner(player) && !this.isBreedingItem(itemStack)) {
+            this.setSitting(!this.isSitting());
 
-                Text entityName = this.getDisplayName();
-                Text action = Text.translatable(isSitting()
-                        ? "message.domixs-creatures.action.sitting"
-                        : "message.domixs-creatures.action.following");
+            Text entityName = this.getDisplayName();
+            Text action = Text.translatable(this.isSitting()
+                    ? "message.domixs-creatures.action.sitting"
+                    : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " ")
-                        .append(action)
-                        .append(".")
-                        .styled(style -> style.withColor(Formatting.GREEN));
-                player.sendMessage(message, true);
+            Text message = Text.literal(entityName.getString() + " ")
+                    .append(action)
+                    .append(".")
+                    .styled(style -> style.withColor(Formatting.GREEN));
 
-                return ActionResult.PASS;
-            }
+            player.sendMessage(message, true);
+
+            return ActionResult.SUCCESS;
         }
 
         if (isTamed() && !this.isBaby() && hand == Hand.MAIN_HAND && itemStack.isEmpty()) {
@@ -447,7 +448,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        IguanaEntity baby = (IguanaEntity) ModEntities.IGUANA.create(world);
+        IguanaEntity baby = ModEntities.IGUANA.create(world);
         if (baby != null) {
             IguanaEntity parent1 = this;
             IguanaEntity parent2 = (IguanaEntity) entity;

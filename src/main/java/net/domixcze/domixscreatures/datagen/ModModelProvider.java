@@ -104,6 +104,12 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.CATFISH_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.RAT_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PENGUIN_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.CARP_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
@@ -112,6 +118,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.PIRANHA_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.NEON_TETRA_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.PEACOCK_BASS_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CARP_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.BETTA_FISH_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.ANGLERFISH_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.FRESHWATER_STINGRAY_BUCKET, Models.GENERATED);
@@ -145,7 +152,11 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_DEER_VENISON, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_EEL_MEAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.COOKED_EEL_MEAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_CARP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COOKED_CARP, Models.GENERATED);
         itemModelGenerator.register(ModItems.COCONUT_SLICE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHEESE_PIECE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SALT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.MARSHMALLOW, Models.GENERATED);
 

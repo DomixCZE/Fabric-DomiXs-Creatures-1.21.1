@@ -142,7 +142,7 @@ public class SleepGoal extends Goal {
             this.entity.getNavigation().stop();
             this.entity.getLookControl().tick();
 
-            if (ModConfig.INSTANCE.enableSleepParticles && this.particleInterval > 0) {
+            if (this.particleInterval > 0) {
                 particleTimer++;
                 if (particleTimer >= particleInterval) {
                     particleTimer = 0;

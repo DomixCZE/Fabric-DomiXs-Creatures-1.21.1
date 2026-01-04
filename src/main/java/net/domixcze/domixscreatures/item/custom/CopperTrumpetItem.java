@@ -11,6 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -77,6 +78,8 @@ public class CopperTrumpetItem extends Item {
         }
 
         player.getItemCooldownManager().set(this, 40);
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
+
         return TypedActionResult.consume(stack);
     }
 

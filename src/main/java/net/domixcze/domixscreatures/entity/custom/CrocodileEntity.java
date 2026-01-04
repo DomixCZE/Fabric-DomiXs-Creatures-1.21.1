@@ -408,21 +408,21 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
         @Override
         public boolean canStart() {
-            return this.crocodile.hasEgg() && super.canStart();
+            return crocodile.hasEgg() && super.canStart();
         }
 
         @Override
         public boolean shouldContinue() {
-            return super.shouldContinue() && this.crocodile.hasEgg();
+            return super.shouldContinue() && crocodile.hasEgg();
         }
 
         @Override
         public void tick() {
             super.tick();
-            BlockPos blockPos = this.crocodile.getBlockPos();
+            BlockPos blockPos = crocodile.getBlockPos();
 
             if (this.hasReached()) {
-                World world = this.crocodile.getWorld();
+                World world = crocodile.getWorld();
                 world.playSound(null, blockPos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
 
                 int eggCount = world.random.nextInt(3) + 1;
@@ -432,8 +432,8 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
                 world.setBlockState(eggPos, eggState, 3);
 
 
-                this.crocodile.setHasEgg(false);
-                this.crocodile.setLoveTicks(600);
+                crocodile.setHasEgg(false);
+                crocodile.setLoveTicks(600);
             }
         }
 
@@ -453,36 +453,48 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
         @Override
         public boolean canStart() {
-            return super.canStart() && !this.crocodile.hasEgg();
+            return super.canStart() && !crocodile.hasEgg();
         }
 
         @Override
         protected void breed() {
-            ServerPlayerEntity serverPlayerEntity = this.animal.getLovingPlayer();
-            if (serverPlayerEntity == null && this.mate.getLovingPlayer() != null) {
-                serverPlayerEntity = this.mate.getLovingPlayer();
+            if (mate == null) {
+                return;
+            }
+
+            ServerPlayerEntity serverPlayerEntity = animal.getLovingPlayer();
+            if (serverPlayerEntity == null) {
+                serverPlayerEntity = mate.getLovingPlayer();
             }
 
             if (serverPlayerEntity != null) {
                 serverPlayerEntity.incrementStat(Stats.ANIMALS_BRED);
-                Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, this.animal, this.mate, (PassiveEntity)null);
+                Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, animal, mate, null);
             }
 
-            // Assign the egg to one random crocodile
-            if (this.animal.getRandom().nextBoolean()) {
-                this.crocodile.setHasEgg(true);
+            // Assign the egg to one random penguin
+            if (animal.getRandom().nextBoolean()) {
+                crocodile.setHasEgg(true);
             } else {
-                ((CrocodileEntity) this.mate).setHasEgg(true);
+                ((PenguinEntity) mate).setHasEgg(true);
             }
 
-            this.animal.setBreedingAge(6000);
-            this.mate.setBreedingAge(6000);
-            this.animal.resetLoveTicks();
-            this.mate.resetLoveTicks();
+            animal.setBreedingAge(6000);
+            mate.setBreedingAge(6000);
+            animal.resetLoveTicks();
+            mate.resetLoveTicks();
 
-            Random random = this.animal.getRandom();
-            if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-                this.world.spawnEntity(new ExperienceOrbEntity(this.world, this.animal.getX(), this.animal.getY(), this.animal.getZ(), random.nextInt(7) + 1));
+            if (world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                var random = animal.getRandom();
+                world.spawnEntity(
+                        new ExperienceOrbEntity(
+                                world,
+                                animal.getX(),
+                                animal.getY(),
+                                animal.getZ(),
+                                random.nextInt(7) + 1
+                        )
+                );
             }
         }
     }

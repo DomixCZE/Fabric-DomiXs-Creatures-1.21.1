@@ -2,6 +2,7 @@ package net.domixcze.domixscreatures.item.custom;
 
 import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,9 +40,9 @@ public class CoconutSliceItem extends Item {
             for (StatusEffectInstance effect : user.getStatusEffects()) {
                 boolean isBeneficial = effect.getEffectType().value().isBeneficial();
 
-                if (isBeneficial && ModConfig.INSTANCE.enableCoconutPositiveEffectRemoval) {
+                if (isBeneficial && user.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_COCONUT_POSITIVE_EFFECT_REMOVAL)) {
                     candidateEffects.add(effect);
-                } else if (!isBeneficial && ModConfig.INSTANCE.enableCoconutNegativeEffectRemoval) {
+                } else if (!isBeneficial && user.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_COCONUT_NEGATIVE_EFFECT_REMOVAL)) {
                     candidateEffects.add(effect);
                 }
             }

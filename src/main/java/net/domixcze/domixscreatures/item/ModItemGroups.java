@@ -29,6 +29,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BOAR_SPAWN_EGG);
                         entries.add(ModItems.BUTTERFLY_SPAWN_EGG);
                         entries.add(ModItems.CAPYBARA_SPAWN_EGG);
+                        entries.add(ModItems.CARP_SPAWN_EGG);
                         entries.add(ModItems.CATERPILLAR_SPAWN_EGG);
                         entries.add(ModItems.CATFISH_SPAWN_EGG);
                         entries.add(ModItems.CHEETAH_SPAWN_EGG);
@@ -48,9 +49,11 @@ public class ModItemGroups {
                         entries.add(ModItems.MUD_GOLEM_SPAWN_EGG);
                         entries.add(ModItems.NEON_TETRA_SPAWN_EGG);
                         entries.add(ModItems.PEACOCK_BASS_SPAWN_EGG);
+                        entries.add(ModItems.PENGUIN_SPAWN_EGG);
                         entries.add(ModItems.PIRANHA_SPAWN_EGG);
                         entries.add(ModItems.PORCUPINE_SPAWN_EGG);
                         entries.add(ModItems.RACCOON_SPAWN_EGG);
+                        entries.add(ModItems.RAT_SPAWN_EGG);
                         entries.add(ModItems.SHAMAN_SPAWN_EGG);
                         entries.add(ModItems.SHARK_SPAWN_EGG);
                         entries.add(ModItems.SPECTRAL_BAT_SPAWN_EGG);
@@ -64,9 +67,11 @@ public class ModItemGroups {
                         entries.add(ModItems.WORM_SPAWN_EGG);
 
                         entries.add(ModBlocks.CROCODILE_EGG);
+                        entries.add(ModBlocks.PENGUIN_EGG);
                         entries.add(ModItems.PIRANHA_BUCKET);
                         entries.add(ModItems.NEON_TETRA_BUCKET);
                         entries.add(ModItems.PEACOCK_BASS_BUCKET);
+                        entries.add(ModItems.CARP_BUCKET);
                         entries.add(ModItems.BETTA_FISH_BUCKET);
                         entries.add(ModItems.ANGLERFISH_BUCKET);
                         entries.add(ModItems.FRESHWATER_STINGRAY_BUCKET);
@@ -79,6 +84,11 @@ public class ModItemGroups {
                         entries.add(ModItems.COOKED_BISON_MEAT);
                         entries.add(ModItems.RAW_EEL_MEAT);
                         entries.add(ModItems.COOKED_EEL_MEAT);
+                        entries.add(ModItems.RAW_CARP);
+                        entries.add(ModItems.COOKED_CARP);
+                        entries.add(ModItems.SALT);
+                        entries.add(ModItems.CHEESE_PIECE);
+                        entries.add(ModBlocks.CHEESE_WHEEL);
                         entries.add(ModItems.MARSHMALLOW);
                         entries.add(ModItems.MARSHMALLOW_STICK);
                         entries.add(ModItems.COOKED_MARSHMALLOW_STICK);
@@ -109,6 +119,7 @@ public class ModItemGroups {
                         entries.add(ModItems.UNICORN_DUST);
                         entries.add(ModItems.SKULL);
                         entries.add(ModItems.SKULL_WAND);
+                        entries.add(ModItems.COMMAND_FLUTE);
                         entries.add(ModItems.BUG_NET);
                         entries.add(ModItems.NIGHTMARE_AMULET);
                         entries.add(ModItems.CONCH_SHELL);
@@ -193,6 +204,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.MUD_BLOSSOM_SEED);
                         entries.add(ModBlocks.CLOVERS);
+                        entries.add(ModBlocks.MISTLETOE);
                         entries.add(ModBlocks.CRIMSON_BLOOM);
                         entries.add(ModBlocks.FIREWEED_BUSH);
                         entries.add(ModBlocks.BLUE_SAGE);

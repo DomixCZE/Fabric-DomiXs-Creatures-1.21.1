@@ -7,6 +7,7 @@ import net.domixcze.domixscreatures.entity.custom.SpectralBatEntity;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -41,31 +42,31 @@ public class ScreechAttackGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        if (!ModConfig.INSTANCE.enableSpectralBatScreechAttack) {
+        if (!bat.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_SPECTRAL_BAT_SCREECH)) {
             return false;
         }
 
-        if (this.bat.isHanging()) {
+        if (bat.isHanging()) {
             return false;
         }
-        if (this.bat.isBaby()) {
+        if (bat.isBaby()) {
             return false;
         }
 
-        LivingEntity target = this.bat.getTarget();
-        return target != null && this.bat.getScreechCooldown() == 0 && this.bat.squaredDistanceTo(target) <= ATTACK_RANGE * ATTACK_RANGE;
+        LivingEntity target = bat.getTarget();
+        return target != null && bat.getScreechCooldown() == 0 && bat.squaredDistanceTo(target) <= ATTACK_RANGE * ATTACK_RANGE;
     }
 
     @Override
     public void start() {
-        this.bat.setScreeching(true);
-        this.bat.resetScreechCooldown();
-        this.bat.resetScreechDuration();
+        bat.setScreeching(true);
+        bat.resetScreechCooldown();
+        bat.resetScreechDuration();
 
-        List<PlayerEntity> players = this.bat.getWorld().getEntitiesByClass(PlayerEntity.class, this.bat.getBoundingBox().expand(ATTACK_RANGE), player -> true);
+        List<PlayerEntity> players = bat.getWorld().getEntitiesByClass(PlayerEntity.class, bat.getBoundingBox().expand(ATTACK_RANGE), player -> true);
         for (PlayerEntity player : players) {
             float volume = isProtectedFromScreech(player) ? 0.05f : 1f; // Lower volume for protected players
-            this.bat.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.SPECTRAL_BAT_SCREECH, SoundCategory.HOSTILE, volume, 1f);
+            bat.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.SPECTRAL_BAT_SCREECH, SoundCategory.HOSTILE, volume, 1f);
         }
 
         this.spawnScreech();
@@ -75,16 +76,16 @@ public class ScreechAttackGoal extends Goal {
 
     @Override
     public void stop() {
-        this.bat.setScreeching(false);
+        bat.setScreeching(false);
     }
 
     @Override
     public boolean shouldContinue() {
-        return this.bat.getScreechDuration() > 0;
+        return bat.getScreechDuration() > 0;
     }
 
     private void applyEffect() {
-        List<PlayerEntity> players = this.bat.getWorld().getEntitiesByClass(PlayerEntity.class, this.bat.getBoundingBox().expand(ATTACK_RANGE), player -> true);
+        List<PlayerEntity> players = bat.getWorld().getEntitiesByClass(PlayerEntity.class, bat.getBoundingBox().expand(ATTACK_RANGE), player -> true);
         for (PlayerEntity player : players) {
             if (isProtectedFromScreech(player)) {
                 continue; // Skip protected players
@@ -100,15 +101,15 @@ public class ScreechAttackGoal extends Goal {
 
 
     private void crackGlass() {
-        World world = this.bat.getWorld();
-        BlockPos origin = new BlockPos((int) this.bat.getX(), (int) this.bat.getY(), (int) this.bat.getZ());
+        World world = bat.getWorld();
+        BlockPos origin = new BlockPos((int) bat.getX(), (int) bat.getY(), (int) bat.getZ());
         int radius = (int) GLASS_CRACK_RADIUS;
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
                     BlockPos pos = origin.add(x, y, z);
                     if (world.getBlockState(pos).isOf(Blocks.GLASS)) {
-                        if (this.bat.getRandom().nextDouble() < GLASS_CRACK_CHANCE) {
+                        if (bat.getRandom().nextDouble() < GLASS_CRACK_CHANCE) {
                             world.setBlockState(pos, ModBlocks.CRACKED_GLASS_BLOCK.getDefaultState());
                             world.playSound(null, pos, SoundEvents.BLOCK_GLASS_BREAK,
                                     SoundCategory.BLOCKS,

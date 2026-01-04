@@ -242,7 +242,7 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        DeerEntity baby = (DeerEntity) ModEntities.DEER.create(world);
+        DeerEntity baby = ModEntities.DEER.create(world);
         if (baby != null) {
             DeerEntity parent1 = this;
             DeerEntity parent2 = (DeerEntity) entity;

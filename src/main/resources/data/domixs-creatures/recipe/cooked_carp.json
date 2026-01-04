@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 180,
+  "experience": 0.20,
+  "ingredient": {
+    "item": "domixs-creatures:raw_carp"
+  },
+  "result": {
+    "id": "domixs-creatures:cooked_carp"
+  }
+}

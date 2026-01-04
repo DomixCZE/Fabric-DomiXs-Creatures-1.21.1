@@ -1,0 +1,64 @@
+{
+  "entry_id": "domixs-creatures:penguin_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.penguin",
+  "button_text": "guide.title.domixs-creatures.penguin",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.penguin_page1"
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/penguin_icon.png",
+          "x": 50,
+          "y": 100,
+          "width": 40,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.penguin_page2_line1",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.penguin_page2_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:cod",
+          "x": 60,
+          "y": 55,
+          "width": 27,
+          "height": 27
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:penguin_egg",
+          "x": 10,
+          "y": 135,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "type": "cycling_item",
+          "ids": [
+            "minecraft:grass_block",
+            "minecraft:snow_block",
+            "minecraft:stone",
+            "minecraft:sand"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 60,
+          "y": 135,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

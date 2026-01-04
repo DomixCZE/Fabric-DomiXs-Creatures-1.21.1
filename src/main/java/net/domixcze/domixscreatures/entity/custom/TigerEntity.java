@@ -27,8 +27,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -38,11 +36,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -89,11 +85,11 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
         this.goalSelector.add(5, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new AttackWithOwnerGoal(this));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, IllagerEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, VillagerEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, SunBearEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, DeerEntity.class, true));
+        this.targetSelector.add(2, new UntamedActiveTargetGoal<>(this, PlayerEntity.class, true, null));
+        this.targetSelector.add(3, new UntamedActiveTargetGoal<>(this, IllagerEntity.class, true, null));
+        this.targetSelector.add(3, new UntamedActiveTargetGoal<>(this, VillagerEntity.class, true, null));
+        this.targetSelector.add(3, new UntamedActiveTargetGoal<>(this, SunBearEntity.class, true, null));
+        this.targetSelector.add(3, new UntamedActiveTargetGoal<>(this, DeerEntity.class, true, null));
     }
 
     @Override
@@ -150,7 +146,7 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        TigerEntity baby = (TigerEntity) ModEntities.TIGER.create(world);
+        TigerEntity baby = ModEntities.TIGER.create(world);
         if (baby != null) {
             TigerEntity parent1 = this;
             TigerEntity parent2 = (TigerEntity) entity;
@@ -184,23 +180,25 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
 
     public void setSleeping(boolean sleeping) {
         this.dataTracker.set(SLEEPING, sleeping);
+
         if (sleeping) {
             this.getNavigation().stop();
-            if (this.getOwner() instanceof PlayerEntity player && !this.isSitting()) {
-                this.setSit(player, true);
+
+            if (this.getOwner() instanceof PlayerEntity && !this.isSitting()) {
+                this.setSitting(true);
             }
         }
     }
 
+    @Override
     public boolean isSitting() {
         return this.dataTracker.get(SITTING);
     }
 
-    public void setSit(PlayerEntity player, boolean sitting) {
-        if (player == getOwner()) {
-            this.dataTracker.set(SITTING, sitting);
-            super.setSitting(sitting);
-        }
+    @Override
+    public void setSitting(boolean sitting) {
+        super.setSitting(sitting);
+        this.dataTracker.set(SITTING, sitting);
     }
 
     public TigerVariants getVariant() {
@@ -500,23 +498,22 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
             return ActionResult.SUCCESS;
         }
 
-        if (isTamed() && !this.getWorld().isClient()) {
-            if (isTamed() && hand == Hand.MAIN_HAND && itemStack.isEmpty()) {
-                setSit(player, !isSitting());
+        if (!this.getWorld().isClient() && hand == Hand.MAIN_HAND && this.isTamed() && this.isOwner(player) && !this.isBreedingItem(itemStack)) {
+            this.setSitting(!this.isSitting());
 
-                Text entityName = this.getDisplayName();
-                Text action = Text.translatable(isSitting()
-                        ? "message.domixs-creatures.action.sitting"
-                        : "message.domixs-creatures.action.following");
+            Text entityName = this.getDisplayName();
+            Text action = Text.translatable(this.isSitting()
+                    ? "message.domixs-creatures.action.sitting"
+                    : "message.domixs-creatures.action.following");
 
-                Text message = Text.literal(entityName.getString() + " ")
-                        .append(action)
-                        .append(".")
-                        .styled(style -> style.withColor(Formatting.GREEN));
-                player.sendMessage(message, true);
+            Text message = Text.literal(entityName.getString() + " ")
+                    .append(action)
+                    .append(".")
+                    .styled(style -> style.withColor(Formatting.GREEN));
 
-                return ActionResult.PASS;
-            }
+            player.sendMessage(message, true);
+
+            return ActionResult.SUCCESS;
         }
 
         if (itemStack.isOf(Items.BRUSH) && this.hasSnowLayer()) {

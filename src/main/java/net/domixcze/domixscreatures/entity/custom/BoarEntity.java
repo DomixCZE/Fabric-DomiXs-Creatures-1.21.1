@@ -51,7 +51,7 @@ import java.util.Optional;
 
 public class BoarEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowLayerable {
 
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
     public static final TrackedData<Boolean> HAS_SNOW_LAYER = DataTracker.registerData(BoarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> IS_DIGGING = DataTracker.registerData(BoarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -259,7 +259,7 @@ public class BoarEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
+        return this.geocache;
     }
 
     @Nullable

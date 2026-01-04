@@ -1,5 +1,6 @@
 package net.domixcze.domixscreatures.particle;
 
+import net.domixcze.domixscreatures.config.ModConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
@@ -58,6 +59,9 @@ public class SleepParticle extends SpriteBillboardParticle {
         @Override
         public Particle createParticle(SimpleParticleType particleType, ClientWorld level, double x, double y, double z,
                                        double dx, double dy, double dz) {
+            if (!ModConfig.INSTANCE.enableSleepParticles) {
+                return null;
+            }
             return new SleepParticle(level, x, y, z, this.sprites);
         }
     }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:milk_bucket"
+    },
+    "S": {
+      "item": "domixs-creatures:salt"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:cheese_wheel"
+  }
+}

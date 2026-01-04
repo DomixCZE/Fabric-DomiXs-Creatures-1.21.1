@@ -1,12 +1,12 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineVariants;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.entity.*;
@@ -22,20 +22,15 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -117,7 +112,7 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if (ModConfig.INSTANCE.enablePorcupineQuillAttack && !this.getWorld().isClient() && !this.isDead() && !this.isBaby() && getQuillsAvailable() > 0) {
+        if (this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_PORCUPINE_QUILL_ATTACK) && !this.getWorld().isClient() && !this.isDead() && !this.isBaby() && getQuillsAvailable() > 0) {
             boolean wasHurt = super.damage(source, amount);
             LivingEntity attacker = source.getAttacker() instanceof LivingEntity ? (LivingEntity) source.getAttacker() : null;
             if (wasHurt && attacker != null) {
