@@ -21,6 +21,8 @@ public class ModItemGroups {
                         entries.add(ModItems.ERASER);
                         entries.add(ModItems.GUIDE_BOOK);
                         entries.add(ModItems.ANGLERFISH_SPAWN_EGG);
+                        entries.add(ModItems.ANTEATER_SPAWN_EGG);
+                        entries.add(ModItems.ANT_SPAWN_EGG);
                         entries.add(ModItems.ARAPAIMA_SPAWN_EGG);
                         entries.add(ModItems.ANCIENT_SKELETON_SPAWN_EGG);
                         entries.add(ModItems.BEAVER_SPAWN_EGG);
@@ -32,6 +34,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CARP_SPAWN_EGG);
                         entries.add(ModItems.CATERPILLAR_SPAWN_EGG);
                         entries.add(ModItems.CATFISH_SPAWN_EGG);
+                        entries.add(ModItems.CAVE_WYVERN_SPAWN_EGG);
                         entries.add(ModItems.CHEETAH_SPAWN_EGG);
                         entries.add(ModItems.CROCODILE_SPAWN_EGG);
                         entries.add(ModItems.DEER_SPAWN_EGG);
@@ -58,6 +61,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SHARK_SPAWN_EGG);
                         entries.add(ModItems.SPECTRAL_BAT_SPAWN_EGG);
                         entries.add(ModItems.SUN_BEAR_SPAWN_EGG);
+                        entries.add(ModItems.TERMITE_SPAWN_EGG);
                         entries.add(ModItems.TIGER_SPAWN_EGG);
                         entries.add(ModItems.UNICORN_SPAWN_EGG);
                         entries.add(ModItems.VINE_SPAWN_EGG);
@@ -109,6 +113,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CROCODILE_SCALE_ALBINO);
                         entries.add(ModItems.ARAPAIMA_SCALE_BLACK);
                         entries.add(ModItems.ARAPAIMA_SCALE_GREEN);
+                        entries.add(ModItems.CAVE_WYVERN_SCALE);
                         entries.add(ModItems.CROCODILE_TOOTH);
                         entries.add(ModItems.SHARK_TOOTH);
                         entries.add(ModItems.SMALL_ANTLER);
@@ -121,6 +126,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SKULL_WAND);
                         entries.add(ModItems.COMMAND_FLUTE);
                         entries.add(ModItems.BUG_NET);
+                        entries.add(ModItems.IRON_SHACKLE);
                         entries.add(ModItems.NIGHTMARE_AMULET);
                         entries.add(ModItems.CONCH_SHELL);
                         entries.add(ModItems.COPPER_TRUMPET);
@@ -135,12 +141,16 @@ public class ModItemGroups {
                         entries.add(ModItems.BARK);
                         entries.add(ModItems.SAWDUST);
                         entries.add(ModItems.PEARL);
+                        entries.add(ModItems.GOLD_COIN);
+                        entries.add(ModBlocks.COIN_PILE_BLOCK);
+                        entries.add(ModBlocks.GOLD_PILE_BLOCK);
 
                         entries.add(ModItems.WARDEN_TENDRIL);
                         entries.add(ModItems.SONIC_BLOCKERS);
                         entries.add(ModItems.ADVENTURER_HAT);
                         entries.add(ModItems.RACCOON_HAT);
                         entries.add(ModItems.SHAMAN_MASK);
+                        entries.add(ModItems.JADE_CROWN);
                         entries.add(ModItems.CROCODILE_CHESTPLATE);
                         entries.add(ModItems.CROCODILE_CHESTPLATE_ALBINO);
                         entries.add(ModItems.ARAPAIMA_HELMET_BLACK);
@@ -151,7 +161,10 @@ public class ModItemGroups {
                         entries.add(ModItems.ARAPAIMA_CHESTPLATE_GREEN);
                         entries.add(ModItems.ARAPAIMA_LEGGINGS_GREEN);
                         entries.add(ModItems.ARAPAIMA_BOOTS_GREEN);
-                        entries.add(ModItems.JADE_CROWN);
+                        entries.add(ModItems.WYVERN_SCALE_HELMET);
+                        entries.add(ModItems.WYVERN_SCALE_CHESTPLATE);
+                        entries.add(ModItems.WYVERN_SCALE_LEGGINGS);
+                        entries.add(ModItems.WYVERN_SCALE_BOOTS);
                         entries.add(ModItems.SALAMANDER_HELMET);
                         entries.add(ModItems.SALAMANDER_CHESTPLATE);
                         entries.add(ModItems.SALAMANDER_LEGGINGS);
@@ -159,6 +172,8 @@ public class ModItemGroups {
                         entries.add(ModItems.SALAMANDER_UPGRADE_SMITHING_TEMPLATE);
 
                         entries.add(ModItems.MACUAHUITL);
+
+                        entries.add(ModItems.GLASS_JAR);
 
                         entries.add(PotionContentsComponent.createStack(Items.POTION, ModPotions.ECHOLOCATION_POTION));
                         entries.add(PotionContentsComponent.createStack(Items.POTION, ModPotions.ELECTRIFYING_POTION));
@@ -195,8 +210,8 @@ public class ModItemGroups {
                         entries.add(ModItems.RAW_MAGNETITE);
                         entries.add(ModItems.RAW_JADE);
                         entries.add(ModItems.MAGNETITE_INGOT);
-                        entries.add(ModItems.JADE);
                         entries.add(ModBlocks.BLOCK_OF_MAGNETITE);
+                        entries.add(ModItems.JADE);
                         entries.add(ModBlocks.BLOCK_OF_JADE);
                         entries.add(ModBlocks.NEGATIVE_MAGNET_BLOCK);
                         entries.add(ModBlocks.POSITIVE_MAGNET_BLOCK);
@@ -209,11 +224,18 @@ public class ModItemGroups {
                         entries.add(ModBlocks.FIREWEED_BUSH);
                         entries.add(ModBlocks.BLUE_SAGE);
 
+                        entries.add(ModBlocks.RICH_DIRT);
+                        entries.add(ModBlocks.RICH_FARMLAND);
+
                         entries.add(ModBlocks.BARNACLE_BLOCK);
                         entries.add(ModBlocks.CRACKED_GLASS_BLOCK);
                         entries.add(ModBlocks.PILE_OF_STICKS_BLOCK);
                         entries.add(ModBlocks.SAWDUST_BLOCK);
                         entries.add(ModBlocks.MOLEHILL_BLOCK);
+                        entries.add(ModBlocks.TERMITE_MOUND);
+                        entries.add(ModBlocks.TERMITE_NEST_BLOCK);
+                        entries.add(ModBlocks.ANT_MOUND);
+                        entries.add(ModBlocks.ANT_NEST_BLOCK);
                         entries.add(ModBlocks.PEARL_BLOCK);
                         entries.add(ModBlocks.SPIKE_TRAP_BLOCK);
 
@@ -282,6 +304,27 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PALM_TRAPDOOR);
                         entries.add(ModBlocks.PALM_LEAVES);
                         entries.add(ModBlocks.PALM_SAPLING);
+
+                        entries.add(ModBlocks.HOLLOW_ACACIA_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_ACACIA_LOG);
+                        entries.add(ModBlocks.HOLLOW_OAK_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_OAK_LOG);
+                        entries.add(ModBlocks.HOLLOW_BIRCH_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_BIRCH_LOG);
+                        entries.add(ModBlocks.HOLLOW_SPRUCE_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_SPRUCE_LOG);
+                        entries.add(ModBlocks.HOLLOW_DARK_OAK_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_DARK_OAK_LOG);
+                        entries.add(ModBlocks.HOLLOW_JUNGLE_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_JUNGLE_LOG);
+                        entries.add(ModBlocks.HOLLOW_MANGROVE_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_MANGROVE_LOG);
+                        entries.add(ModBlocks.HOLLOW_CHERRY_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_CHERRY_LOG);
+                        entries.add(ModBlocks.HOLLOW_PALM_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_PALM_LOG);
+                        entries.add(ModBlocks.HOLLOW_SPECTRAL_LOG);
+                        entries.add(ModBlocks.STRIPPED_HOLLOW_SPECTRAL_LOG);
 
                     }).build());
 

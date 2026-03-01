@@ -3,6 +3,7 @@ package net.domixcze.domixscreatures.sound;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -67,6 +68,11 @@ public class ModSounds {
     public static final SoundEvent PENGUIN_HURT = registerSoundEvent("penguin_hurt");
     public static final SoundEvent PENGUIN_NOOT_NOOT = registerSoundEvent("penguin_noot_noot");
 
+    public static final SoundEvent CAVE_WYVERN_BREATH = registerSoundEvent("cave_wyvern_breath");
+    public static final SoundEvent CAVE_WYVERN_CONVERT = registerSoundEvent("cave_wyvern_convert");
+
+    public static final SoundEvent TERMITE_EAT = registerSoundEvent("termite_eat");
+
     public static final SoundEvent COCONUT_LAND = registerSoundEvent("coconut_land");
 
     public static final SoundEvent GUIDE_BOOK_ENTRY = registerSoundEvent("guide_book_entry");
@@ -84,6 +90,15 @@ public class ModSounds {
 
     public static final SoundEvent ANCIENT_CHEST_OPEN = registerSoundEvent("ancient_chest_open");
     public static final SoundEvent ANCIENT_CHEST_CLOSE = registerSoundEvent("ancient_chest_close");
+
+    public static final SoundEvent GOLD_PILE_BREAK = registerSoundEvent("gold_pile_break");
+    public static final SoundEvent GOLD_PILE_PLACE = registerSoundEvent("gold_pile_place");
+    public static final SoundEvent GOLD_PILE_STEP = registerSoundEvent("gold_pile_step");
+    public static final SoundEvent GOLD_PILE_HIT = registerSoundEvent("gold_pile_hit");
+    public static final SoundEvent GOLD_PILE_FALL = registerSoundEvent("gold_pile_fall");
+
+    public static final BlockSoundGroup GOLD_PILE_SOUNDS = new BlockSoundGroup(1f, 1f,
+            ModSounds.GOLD_PILE_BREAK, ModSounds.GOLD_PILE_STEP, ModSounds.GOLD_PILE_PLACE, ModSounds.GOLD_PILE_HIT, ModSounds.GOLD_PILE_FALL);
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(DomiXsCreatures.MOD_ID, name);

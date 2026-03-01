@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "domixs-creatures:item/glass_jar_empty"
+  },
+  "overrides": [
+    { "predicate": { "fill_level": 0.01, "is_termite": 0.0, "is_ant": 0.0 }, "model": "domixs-creatures:item/glass_jar_worm_half" },
+    { "predicate": { "fill_level": 0.56, "is_termite": 0.0, "is_ant": 0.0 }, "model": "domixs-creatures:item/glass_jar_worm_full" },
+    { "predicate": { "fill_level": 0.01, "is_termite": 1.0 }, "model": "domixs-creatures:item/glass_jar_termite_half" },
+    { "predicate": { "fill_level": 0.56, "is_termite": 1.0 }, "model": "domixs-creatures:item/glass_jar_termite_full" },
+    { "predicate": { "fill_level": 0.01, "is_ant": 1.0 }, "model": "domixs-creatures:item/glass_jar_ant_half" },
+    { "predicate": { "fill_level": 0.56, "is_ant": 1.0 }, "model": "domixs-creatures:item/glass_jar_ant_full" }
+  ]
+}

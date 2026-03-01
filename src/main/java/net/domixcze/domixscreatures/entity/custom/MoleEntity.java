@@ -6,12 +6,13 @@ import net.domixcze.domixscreatures.block.entity.MolehillBlockEntity;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
 import net.domixcze.domixscreatures.entity.ai.MoleMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.MoveToBlockGoal;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.mole.MoleVariants;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -21,10 +22,13 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
@@ -33,11 +37,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -61,6 +64,7 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
     private boolean insideHill = false;
     private BlockPos currentHillPos;
     private int cooldown = 0;
+    private int digWormCooldown = 0;
 
     public MoleEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -78,6 +82,7 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(1, new MoleMeleeAttackGoal(this, 1.0, true));
+        this.goalSelector.add(1, new DigWormGoal(this));
         this.goalSelector.add(2, new MoleEntityAvoidanceGoal(this));
         this.goalSelector.add(3, new BabyFollowParentGoal(this, 1.0));
         this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.75f, 1));
@@ -120,6 +125,7 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
             nbt.putLong("CurrentHillPos", this.currentHillPos.asLong());
         }
         nbt.putInt("Cooldown", this.cooldown);
+        nbt.putInt("DigWormCooldown", this.digWormCooldown);
     }
 
     @Override
@@ -136,6 +142,7 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
         if (nbt.contains("Cooldown")) {
             this.cooldown = nbt.getInt("Cooldown");
         }
+        this.digWormCooldown = nbt.getInt("DigWormCooldown");
     }
 
     @Override
@@ -166,6 +173,14 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
     @Override
     public void setSnowMeltTimer(int timer) {
         this.snowMeltTimer = timer;
+    }
+
+    public int getDigWormCooldown() {
+        return digWormCooldown;
+    }
+
+    public void setDigWormCooldown(int ticks) {
+        this.digWormCooldown = ticks;
     }
 
     @Override
@@ -271,9 +286,8 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
     @Override
     public void tick() {
         super.tick();
-        if (cooldown > 0) {
-            cooldown--;
-        }
+        if (cooldown > 0) cooldown--;
+        if (digWormCooldown > 0) digWormCooldown--;
 
         SnowLayerUtil.handleSnowLayerTick(this, this);
     }
@@ -311,6 +325,59 @@ public class MoleEntity extends AnimalEntity implements GeoEntity, SnowLayerable
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return geocache;
+    }
+
+    public static class DigWormGoal extends MoveToBlockGoal {
+        private final MoleEntity mole;
+
+        private static final int COOLDOWN = 600;
+
+        public DigWormGoal(MoleEntity mole) {
+            super(mole, ModTags.Blocks.HAS_WORMS, 8, 1);
+            this.mole = mole;
+        }
+
+        @Override
+        public boolean canStart() {
+            if (mole.getDigWormCooldown() > 0
+                    || !this.mole.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)
+                    || !this.mole.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_MOLE_WORM_DIGGING)) {
+                return false;
+            }
+
+            return super.canStart();
+        }
+
+        @Override
+        protected void onReachedTarget(BlockPos pos) {
+            BlockState state = world.getBlockState(pos);
+
+            if (state.isOf(ModBlocks.RICH_DIRT)) {
+                world.setBlockState(pos, Blocks.DIRT.getDefaultState(), Block.NOTIFY_ALL);
+            } else if (state.isOf(ModBlocks.RICH_FARMLAND)) {
+                int moisture = state.contains(FarmlandBlock.MOISTURE)
+                        ? state.get(FarmlandBlock.MOISTURE)
+                        : FarmlandBlock.MAX_MOISTURE;
+
+                world.setBlockState(pos, Blocks.FARMLAND.getDefaultState().with(FarmlandBlock.MOISTURE, moisture), Block.NOTIFY_ALL);
+            }
+
+            world.playSound(null, pos, SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1f, 0.5f);
+
+            if (world instanceof ServerWorld serverWorld) {
+                serverWorld.spawnParticles(
+                        new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.DIRT.getDefaultState()),
+                        pos.getX() + 0.5,
+                        pos.getY() + 1.0,
+                        pos.getZ() + 0.5,
+                        15,
+                        0.2, 0.2, 0.2,
+                        0.1
+                );
+            }
+
+            mole.setDigWormCooldown(COOLDOWN);
+        }
     }
 
     public static class MoleEntityAvoidanceGoal extends Goal {

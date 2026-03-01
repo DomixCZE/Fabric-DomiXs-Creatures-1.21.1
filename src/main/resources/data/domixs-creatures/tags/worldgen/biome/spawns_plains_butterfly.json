@@ -66,6 +66,24 @@
     {
       "id": "natures_spirit:carnation_fields",
       "required": false
+    },
+
+
+    {
+      "id": "terralith:steppe",
+      "required": false
+    },
+    {
+      "id": "terralith:arid_highlands",
+      "required": false
+    },
+    {
+      "id": "terralith:blooming_plateau",
+      "required": false
+    },
+    {
+      "id": "terralith:brushland",
+      "required": false
     }
   ]
 }

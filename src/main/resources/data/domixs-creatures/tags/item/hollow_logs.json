@@ -1,0 +1,27 @@
+{
+  "values": [
+    "domixs-creatures:hollow_acacia_log",
+    "domixs-creatures:hollow_oak_log",
+    "domixs-creatures:hollow_birch_log",
+    "domixs-creatures:hollow_spruce_log",
+    "domixs-creatures:hollow_dark_oak_log",
+    "domixs-creatures:hollow_jungle_log",
+    "domixs-creatures:hollow_mangrove_log",
+    "domixs-creatures:hollow_cherry_log",
+
+    "domixs-creatures:hollow_palm_log",
+    "domixs-creatures:hollow_spectral_log",
+
+    "domixs-creatures:stripped_hollow_acacia_log",
+    "domixs-creatures:stripped_hollow_oak_log",
+    "domixs-creatures:stripped_hollow_birch_log",
+    "domixs-creatures:stripped_hollow_spruce_log",
+    "domixs-creatures:stripped_hollow_dark_oak_log",
+    "domixs-creatures:stripped_hollow_jungle_log",
+    "domixs-creatures:stripped_hollow_mangrove_log",
+    "domixs-creatures:stripped_hollow_cherry_log",
+
+    "domixs-creatures:stripped_hollow_palm_log",
+    "domixs-creatures:stripped_hollow_spectral_log"
+  ]
+}

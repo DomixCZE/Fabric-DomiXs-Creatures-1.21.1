@@ -1,10 +1,12 @@
 package net.domixcze.domixscreatures.entity.custom;
 
+import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.ai.ScreechAttackGoal;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -24,7 +26,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -76,6 +81,17 @@ public class SpectralBatEntity extends AnimalEntity implements GeoEntity {
         super.initDataTracker(builder);
         builder.add(BAT_FLAGS, (byte)0);
         builder.add(SCREECHING, false);
+    }
+
+    public static boolean canSpawn(EntityType<? extends AnimalEntity> type, WorldAccess worldAccess, SpawnReason spawnReason, BlockPos pos, Random random) {
+        if (worldAccess instanceof World world) {
+            return world.getBlockState(pos.down()).isOf(ModBlocks.SPECTRAL_LEAVES);
+        }
+        return false;
+    }
+
+    public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
+        return true;
     }
 
     @Override

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:worm",
+    "domixs-creatures:termite",
+    "domixs-creatures:ant"
+  ]
+}

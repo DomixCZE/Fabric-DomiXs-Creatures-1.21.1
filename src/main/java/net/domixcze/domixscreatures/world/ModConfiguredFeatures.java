@@ -2,6 +2,7 @@ package net.domixcze.domixscreatures.world;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
+import net.domixcze.domixscreatures.world.gen.ModFeatures;
 import net.domixcze.domixscreatures.world.tree.custom.PalmFoliagePlacer;
 import net.domixcze.domixscreatures.world.tree.custom.PalmTrunkPlacer;
 import net.domixcze.domixscreatures.world.tree.custom.SpectralFoliagePlacer;
@@ -13,7 +14,6 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.state.property.Properties;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
@@ -35,8 +35,19 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> JADE_ORE_KEY = registerKey("jade_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> LIMESTONE_KEY = registerKey("limestone");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CLOVERS_KEY = registerKey("clovers");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TERMITE_HILL_KEY = registerKey("termite_hill");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ANT_HILL_KEY = registerKey("ant_hill");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> HIPPO_MUD_BATH_KEY = registerKey("hippo_mud_bath");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
+        // Hippo mud bath
+        register(context, HIPPO_MUD_BATH_KEY, ModFeatures.HIPPO_MUD_BATH, FeatureConfig.DEFAULT);
+        // Ant hill
+        register(context, ANT_HILL_KEY, ModFeatures.ANT_HILL, FeatureConfig.DEFAULT);
+
+        // Termite hill
+        register(context, TERMITE_HILL_KEY, ModFeatures.TERMITE_HILL, FeatureConfig.DEFAULT);
+
         // Spectral tree
         register(context, SPECTRAL_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.SPECTRAL_LOG),

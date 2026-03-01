@@ -5,10 +5,10 @@
       "id": "domixs-creatures:goldfish"
     },
     "title": {
-      "translate": "advancements.domixs_creatures.fin-tastic_fortune.title"
+      "translate": "advancement.domixs-creatures.fin-tastic_fortune.title"
     },
     "description": {
-      "translate": "advancements.domixs_creatures.fin-tastic_fortune.description"
+      "translate": "advancement.domixs-creatures.fin-tastic_fortune.description"
     },
     "frame": "challenge",
     "show_toast": true,

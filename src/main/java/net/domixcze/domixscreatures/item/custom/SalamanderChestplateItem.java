@@ -13,7 +13,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -22,6 +25,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -117,5 +121,15 @@ public class SalamanderChestplateItem extends ArmorItem implements GeoItem {
                 breastplate.getMaterial().value() == material &&
                 leggings.getMaterial().value() == material &&
                 boots.getMaterial().value() == material;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        tooltip.add(Text.translatable("domixs-creatures.tooltip.armor_set_bonus")
+                .formatted(Formatting.GOLD)
+                .append(Text.translatable("domixs-creatures.tooltip.salamander_set_bonus_desc")
+                        .formatted(Formatting.YELLOW)));
+
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

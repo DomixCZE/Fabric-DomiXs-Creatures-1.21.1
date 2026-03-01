@@ -1,0 +1,50 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:savanna",
+    "minecraft:jungle",
+    "minecraft:sparse_jungle",
+    {
+      "id": "biomesoplenty:tropics",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:rainforest",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:baobab_savanna",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ironwood_gour",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:tropical_rainforest",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:xeric_plains",
+      "required": false
+    },
+
+
+    {
+      "id": "terralith:hot_shrubland",
+      "required": false
+    },
+    {
+      "id": "terralith:savanna_badlands",
+      "required": false
+    },
+    {
+      "id": "terralith:tropical_jungle",
+      "required": false
+    }
+  ]
+}

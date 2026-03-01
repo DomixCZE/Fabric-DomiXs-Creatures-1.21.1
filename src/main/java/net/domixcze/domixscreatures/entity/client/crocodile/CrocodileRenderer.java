@@ -9,7 +9,7 @@ public class CrocodileRenderer extends GeoEntityRenderer<CrocodileEntity> {
     public CrocodileRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new CrocodileModel());
         this.addRenderLayer(new AutoGlowingGeoLayer<>(this));
-        this.addRenderLayer(new CrocodileMossLayer(this));
+        this.addRenderLayer(new CrocodileOvergrownLayer(this));
     }
 
     @Override

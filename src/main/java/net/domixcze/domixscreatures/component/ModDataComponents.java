@@ -10,6 +10,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 import java.util.function.UnaryOperator;
 
 public class ModDataComponents {
@@ -22,6 +23,9 @@ public class ModDataComponents {
 
     public static final ComponentType<FluteModeComponent> FLUTE_MODE =
             register("flute_mode", builder -> builder.codec(FluteModeComponent.CODEC));
+
+    public static final ComponentType<JarContentsComponent> JAR_CONTENTS =
+            register("jar_contents", builder -> builder.codec(JarContentsComponent.CODEC));
 
     public static final ComponentType<DeathWhistleComponent> DEATH_WHISTLE =
             register("death_whistle_sound", builder -> builder.codec(DeathWhistleComponent.CODEC));
@@ -36,6 +40,13 @@ public class ModDataComponents {
 
     public static void registerDataComponents() {
         DomiXsCreatures.LOGGER.info("Registering data components for " + DomiXsCreatures.MOD_ID);
+    }
+
+    public record JarContentsComponent(Identifier type, List<NbtCompound> entities) {
+        public static final Codec<JarContentsComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Identifier.CODEC.fieldOf("type").forGetter(JarContentsComponent::type),
+                NbtCompound.CODEC.listOf().fieldOf("entities").forGetter(JarContentsComponent::entities)
+        ).apply(instance, JarContentsComponent::new));
     }
 
     public record CapturedEntityComponent(Identifier type, NbtCompound nbt) {

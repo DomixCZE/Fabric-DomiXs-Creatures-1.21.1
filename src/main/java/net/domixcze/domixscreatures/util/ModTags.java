@@ -33,6 +33,9 @@ public class ModTags {
         public static final TagKey<Block> PENGUIN_CAN_SLIDE_ON =
                 createTag("penguin_can_slide_on");
 
+        public static final TagKey<Block> HAS_WORMS =
+                createTag("has_worms");
+
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(DomiXsCreatures.MOD_ID, name));
         }
@@ -185,6 +188,7 @@ public class ModTags {
         public static final TagKey<Biome> RACCOON_SPAWNS_IN = createTag("raccoon_spawns_in");
         public static final TagKey<Biome> UNICORN_SPAWNS_IN = createTag("unicorn_spawns_in");
         public static final TagKey<Biome> PENGUIN_SPAWNS_IN = createTag("penguin_spawns_in");
+        public static final TagKey<Biome> ANTEATER_SPAWNS_IN = createTag("anteater_spawns_in");
 
         public static final TagKey<Biome> WHALE_SPAWNS_IN = createTag("whale_spawns_in");
         public static final TagKey<Biome> GOLDFISH_SPAWNS_IN = createTag("goldfish_spawns_in");
@@ -200,11 +204,14 @@ public class ModTags {
         public static final TagKey<Biome> CATFISH_SPAWNS_IN = createTag("catfish_spawns_in");
         public static final TagKey<Biome> CARP_SPAWNS_IN = createTag("carp_spawns_in");
 
-
         public static final TagKey<Biome> FISH_TRAP_LUSH_CAVE = createTag("fish_trap_lush_cave");
         public static final TagKey<Biome> FISH_TRAP_SWAMP = createTag("fish_trap_swamp");
         public static final TagKey<Biome> FISH_TRAP_JUNGLE = createTag("fish_trap_jungle");
         public static final TagKey<Biome> FISH_TRAP_OCEAN = createTag("fish_trap_ocean");
+
+        public static final TagKey<Biome> HAS_TERMITE_HILL = createTag("has_termite_hill");
+        public static final TagKey<Biome> HAS_ANT_HILL = createTag("has_ant_hill");
+        public static final TagKey<Biome> HAS_HIPPO_MUD_BATH = createTag("has_hippo_mud_bath");
 
         private static TagKey<Biome> createTag(String name) {
             return TagKey.of(RegistryKeys.BIOME, Identifier.of(DomiXsCreatures.MOD_ID, name));
@@ -230,8 +237,17 @@ public class ModTags {
         public static final TagKey<EntityType<?>> CAPTURABLE =
                 createTag("capturable");
 
+        public static final TagKey<EntityType<?>> CAPTURABLE_IN_JAR =
+                createTag("capturable_in_jar");
+
         public static final TagKey<EntityType<?>> IMMUNE_TO_BLEEDING =
                 createTag("immune_to_bleeding");
+
+        public static final TagKey<EntityType<?>> ANTEATER_PREY =
+                createTag("anteater_prey");
+
+        public static final TagKey<EntityType<?>> ANTEATER_FOR_BREEDING =
+                createTag("anteater_for_breeding");
 
         private static TagKey<EntityType<?>> createTag(String name) {
             return TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, name));

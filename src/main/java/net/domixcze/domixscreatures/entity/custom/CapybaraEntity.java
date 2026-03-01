@@ -184,12 +184,15 @@ public class CapybaraEntity extends AnimalEntity implements GeoEntity, Sleepy, S
         if (!this.getWorld().isClient()) {
             if (this.isTouchingWater()) {
                 Box searchBox = this.getBoundingBox().expand(10.0D, 10.0D, 10.0D);
-
                 List<LivingEntity> nearbyEntities = this.getWorld().getEntitiesByClass(LivingEntity.class, searchBox, (entity) -> entity != this);
 
                 for (LivingEntity entity : nearbyEntities) {
                     if (entity instanceof TameableEntity tameableEntity && tameableEntity.isTamed()) {
-                        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40, 0, false, true));
+                        StatusEffectInstance currentEffect = entity.getStatusEffect(StatusEffects.REGENERATION);
+
+                        if (currentEffect == null || currentEffect.getDuration() < 20) {
+                            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0, false, true));
+                        }
                     }
                 }
             }

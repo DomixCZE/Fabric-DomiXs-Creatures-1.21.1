@@ -148,7 +148,6 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
 
     @Override
     public boolean canBeSaddled() {
-        //Check the gamerule first. If riding is disabled, saddling is also disabled.
         if (!this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_WATER_STRIDER_RIDING)) {
             return false;
         }
@@ -253,7 +252,7 @@ public class WaterStriderEntity extends TameableEntity implements GeoEntity, Sad
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemStack.getItem() == ModItems.WORM && !isTamed()) {
+        if (itemStack.getItem() == Items.FERMENTED_SPIDER_EYE && !isTamed()) {
             if (this.getWorld().isClient()) {
                 return ActionResult.CONSUME;
             } else {

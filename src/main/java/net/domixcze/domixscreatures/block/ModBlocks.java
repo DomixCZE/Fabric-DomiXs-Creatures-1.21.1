@@ -2,10 +2,14 @@ package net.domixcze.domixscreatures.block;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.block.custom.*;
+import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -13,11 +17,12 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class ModBlocks {
     public static final Block CRACKED_GLASS_BLOCK = registerBlock("cracked_glass_block",
-            new CrackedGlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS).sounds(BlockSoundGroup.GLASS).pistonBehavior(PistonBehavior.DESTROY)));
+            new CrackedGlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS).sounds(BlockSoundGroup.GLASS).ticksRandomly().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block BARNACLE_BLOCK = registerBlock("barnacle_block",
             new BarnacleBlock(AbstractBlock.Settings.create().strength(1.0f).requiresTool().sounds(BlockSoundGroup.POINTED_DRIPSTONE).pistonBehavior(PistonBehavior.DESTROY)));
@@ -33,9 +38,86 @@ public class ModBlocks {
 
     public static final Block SAWDUST_BLOCK = registerBlock("sawdust_block",
             new SawdustBlock(AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).sounds(BlockSoundGroup.SAND).strength(0.1f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block GOLD_PILE_BLOCK = registerBlock("gold_pile_block",
+            new GoldPileBlock(AbstractBlock.Settings.create().mapColor(MapColor.GOLD).sounds(ModSounds.GOLD_PILE_SOUNDS).strength(0.1f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block PEARL_BLOCK = registerBlock("pearl_block",
             new Block(AbstractBlock.Settings.create().strength(1.5f).requiresTool().mapColor(MapColor.PINK).sounds(BlockSoundGroup.STONE)));
+
+    public static final Block COIN_PILE_BLOCK = registerBlock("coin_pile_block",
+            new CoinPileBlock(AbstractBlock.Settings.create().strength(0.2F).pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block ANT_NEST_BLOCK = registerBlock("ant_nest_block",
+            new AntNestBlock(AbstractBlock.Settings.copy(Blocks.DIRT)));
+    public static final Block ANT_MOUND = registerBlock("ant_mound",
+            new Block(AbstractBlock.Settings.copy(Blocks.DIRT)));
+
+    public static final Block TERMITE_NEST_BLOCK = registerBlock("termite_nest_block",
+            new TermiteNestBlock(AbstractBlock.Settings.copy(Blocks.DIRT)));
+    public static final Block TERMITE_MOUND = registerBlock("termite_mound",
+            new Block(AbstractBlock.Settings.copy(Blocks.DIRT)));
+
+    public static final Block HOLLOW_ACACIA_LOG = registerBlock("hollow_acacia_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.ORANGE : MapColor.STONE_GRAY)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_OAK_LOG = registerBlock("hollow_oak_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.OAK_TAN : MapColor.SPRUCE_BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_BIRCH_LOG = registerBlock("hollow_birch_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.PALE_YELLOW : MapColor.OFF_WHITE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_SPRUCE_LOG = registerBlock("hollow_spruce_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.SPRUCE_BROWN : MapColor.BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_DARK_OAK_LOG = registerBlock("hollow_dark_oak_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> MapColor.BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_JUNGLE_LOG = registerBlock("hollow_jungle_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.DIRT_BROWN : MapColor.SPRUCE_BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_MANGROVE_LOG = registerBlock("hollow_mangrove_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.RED : MapColor.SPRUCE_BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_CHERRY_LOG = registerBlock("hollow_cherry_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? MapColor.TERRACOTTA_WHITE : MapColor.TERRACOTTA_GRAY)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_PALM_LOG = registerBlock("hollow_palm_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> MapColor.TERRACOTTA_ORANGE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block HOLLOW_SPECTRAL_LOG = registerBlock("hollow_spectral_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor((state) -> MapColor.LIGHT_BLUE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+
+    public static final Block STRIPPED_HOLLOW_ACACIA_LOG = registerBlock("stripped_hollow_acacia_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.ORANGE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_OAK_LOG = registerBlock("stripped_hollow_oak_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_BIRCH_LOG = registerBlock("stripped_hollow_birch_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_SPRUCE_LOG = registerBlock("stripped_hollow_spruce_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.SPRUCE_BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_DARK_OAK_LOG = registerBlock("stripped_hollow_dark_oak_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_JUNGLE_LOG = registerBlock("stripped_hollow_jungle_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_MANGROVE_LOG = registerBlock("stripped_hollow_mangrove_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.RED)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_CHERRY_LOG = registerBlock("stripped_hollow_cherry_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.TERRACOTTA_WHITE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_PALM_LOG = registerBlock("stripped_hollow_palm_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.TERRACOTTA_ORANGE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
+    public static final Block STRIPPED_HOLLOW_SPECTRAL_LOG = registerBlock("stripped_hollow_spectral_log",
+            new HollowLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.5F).sounds(BlockSoundGroup.WOOD).burnable()));
 
     public static final Block SPECTRAL_LOG = registerBlock("spectral_log",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG).mapColor(MapColor.LIGHT_BLUE)));
@@ -49,7 +131,7 @@ public class ModBlocks {
             new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).mapColor(MapColor.LIGHT_BLUE)));
     public static final Block SPECTRAL_LEAVES = registerBlock("spectral_leaves",
             new SpectralLeavesBlock(AbstractBlock.Settings.create().strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque()
-                    .allowsSpawning(Blocks::canSpawnOnLeaves).suffocates(Blocks::never).blockVision(Blocks::never).burnable()
+                    .allowsSpawning((state, world, pos, type) -> type == ModEntities.SPECTRAL_BAT || type == EntityType.OCELOT || type == EntityType.PARROT).suffocates(Blocks::never).blockVision(Blocks::never).burnable()
                     .pistonBehavior(PistonBehavior.DESTROY).solidBlock(Blocks::never).mapColor(MapColor.LIGHT_BLUE)));
 
     public static final Block SPECTRAL_STAIRS = registerBlock("spectral_stairs",
@@ -121,6 +203,11 @@ public class ModBlocks {
 
     public static final Block MISTLETOE = registerBlock("mistletoe",
             new MistletoeBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES).pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block RICH_FARMLAND = registerBlock("rich_farmland",
+            new RichFarmlandBlock(AbstractBlock.Settings.copy(Blocks.FARMLAND)));
+    public static final Block RICH_DIRT = registerBlock("rich_dirt",
+            new Block(AbstractBlock.Settings.copy(Blocks.DIRT)));
 
     public static final Block CRIMSON_BLOOM = registerBlock("crimson_bloom",
             new FlowerBlock(StatusEffects.WEAKNESS, 9.0F, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision()

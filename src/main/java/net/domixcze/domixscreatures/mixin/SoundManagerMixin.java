@@ -20,7 +20,7 @@ public class SoundManagerMixin {
     private SoundSystem soundSystem;
 
     @Inject(method = "play(Lnet/minecraft/client/sound/SoundInstance;)V", at = @At("HEAD"), cancellable = true)
-    private void onPlay(CallbackInfo ci) {
+    private void domixscreatures$onPlay(CallbackInfo ci) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         if (player != null && player.hasStatusEffect(ModEffects.DEAFEN)) {
             ci.cancel();

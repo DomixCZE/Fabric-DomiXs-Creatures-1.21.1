@@ -1,0 +1,81 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "domixs-creatures:coin_pile_block",
+          "properties": { "level": "1" }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:gold_coin",
+          "functions": [
+            { "function": "minecraft:set_count", "count": 9 }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "domixs-creatures:coin_pile_block",
+          "properties": { "level": "2" }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:gold_coin",
+          "functions": [
+            { "function": "minecraft:set_count", "count": 10 }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "domixs-creatures:coin_pile_block",
+          "properties": { "level": "3" }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:gold_coin",
+          "functions": [
+            { "function": "minecraft:set_count", "count": 11 }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "domixs-creatures:coin_pile_block",
+          "properties": { "level": "4" }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "domixs-creatures:gold_coin",
+          "functions": [
+            { "function": "minecraft:set_count", "count": 12 }
+          ]
+        }
+      ]
+    }
+  ]
+}

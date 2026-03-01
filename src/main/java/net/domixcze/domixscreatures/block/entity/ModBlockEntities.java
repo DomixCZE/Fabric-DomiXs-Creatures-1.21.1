@@ -13,6 +13,16 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.create(MolehillBlockEntity::new,
                             ModBlocks.MOLEHILL_BLOCK).build());
 
+    public static final BlockEntityType<TermiteNestBlockEntity> TERMITE_NEST_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "termite_nest_block_entity"),
+                    BlockEntityType.Builder.create(TermiteNestBlockEntity::new,
+                            ModBlocks.TERMITE_NEST_BLOCK).build());
+
+    public static final BlockEntityType<AntNestBlockEntity> ANT_NEST_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "ant_nest_block_entity"),
+                    BlockEntityType.Builder.create(AntNestBlockEntity::new,
+                            ModBlocks.ANT_NEST_BLOCK).build());
+
     public static final BlockEntityType<PositiveMagnetBlockEntity> POSITIVE_MAGNET_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "positive_magnet_block_entity"),
                     BlockEntityType.Builder.create(PositiveMagnetBlockEntity::new,

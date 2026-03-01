@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SHS",
+    "S S"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:leather_helmet"
+    },
+    "S": {
+      "item": "domixs-creatures:cave_wyvern_scale"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:wyvern_scale_helmet"
+  }
+}

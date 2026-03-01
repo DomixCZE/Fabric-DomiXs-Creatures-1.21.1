@@ -90,7 +90,7 @@ public class ArapaimaEntity extends FishEntity implements GeoEntity {
                     this.getWorld().playSound(
                             null,
                             this.getBlockPos(),
-                            SoundEvents.ITEM_SHIELD_BLOCK,
+                            SoundEvents.ENTITY_ARROW_HIT,
                             SoundCategory.HOSTILE,
                             1.0F,
                             1.0F + (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.2F

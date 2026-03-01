@@ -19,8 +19,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -29,7 +27,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -38,6 +35,7 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.EnumSet;
 import java.util.UUID;
 
 public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, SnowLayerable {
@@ -45,11 +43,13 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
 
     private int snowTicks = 0;
     private int snowMeltTimer = 0;
+    private int baskingCooldown = 0;
 
     public static final TrackedData<Boolean> HAS_SNOW_LAYER = DataTracker.registerData(IguanaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(IguanaEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> SITTING = DataTracker.registerData(IguanaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final TrackedData<Boolean> SLEEPING = DataTracker.registerData(IguanaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static final TrackedData<Boolean> IS_BASKING = DataTracker.registerData(IguanaEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public IguanaEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -67,6 +67,8 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         this.goalSelector.add(0, new SleepGoal(this, this, 100,false, true, true, false, 3.0, 500, 700, true, false, true, true,1));
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new IguanaBaskGoal(this));
+        this.goalSelector.add(1, new IguanaMoveToSunGoal(this));
         this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.25));
@@ -86,6 +88,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         builder.add(VARIANT, IguanaVariants.GREEN.getId());
         builder.add(SITTING, false);
         builder.add(SLEEPING, false);
+        builder.add(IS_BASKING, false);
     }
 
     @Override
@@ -161,6 +164,27 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         this.snowMeltTimer = timer;
     }
 
+    public boolean isBasking() {
+        return this.dataTracker.get(IS_BASKING);
+    }
+
+    public void setBasking(boolean basking) {
+        this.dataTracker.set(IS_BASKING, basking);
+    }
+
+    public int getBaskingCooldown() {
+        return baskingCooldown;
+    }
+
+    public void setBaskingCooldown(int ticks) {
+        this.baskingCooldown = ticks;
+    }
+
+    public boolean isNotBaskingTime() {
+        long time = this.getWorld().getTimeOfDay() % 24000;
+        return time < 5000 || time > 7000 || !this.getWorld().isDay() || this.getWorld().isRaining();
+    }
+
     @Override
     public boolean damage(DamageSource source, float amount) {
         if (source == this.getDamageSources().inWall() && this.hasVehicle()) {
@@ -218,7 +242,7 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
             }
         }
 
-        if (!this.getWorld().isClient() && hand == Hand.MAIN_HAND && this.isTamed() && this.isOwner(player) && !this.isBreedingItem(itemStack)) {
+        if (!this.getWorld().isClient() && hand == Hand.MAIN_HAND && this.isTamed() && this.isOwner(player) && !this.isBreedingItem(itemStack) && itemStack.isOf(Items.STICK)) {
             this.setSitting(!this.isSitting());
 
             Text entityName = this.getDisplayName();
@@ -285,6 +309,10 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
     public void tick() {
         super.tick();
         SnowLayerUtil.handleSnowLayerTick(this, this);
+
+        if (this.baskingCooldown > 0) {
+            this.baskingCooldown--;
+        }
     }
 
     @Override
@@ -349,6 +377,8 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         if (this.getOwner() != null) {
             nbt.putUuid("Owner", this.getOwnerUuid());
         }
+        nbt.putBoolean("IsBasking", this.isBasking());
+        nbt.putInt("BaskingCooldown", this.baskingCooldown);
     }
 
     @Override
@@ -364,6 +394,8 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
         if (ownerUUID != null) {
             this.setOwnerUuid(ownerUUID);
         }
+        this.setBasking(nbt.getBoolean("IsBasking"));
+        this.baskingCooldown = nbt.getInt("BaskingCooldown");
     }
 
     @Override
@@ -391,6 +423,12 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
                 state.getController().setAnimation(RawAnimation.begin().then("animation.baby_iguana.sit", Animation.LoopType.LOOP));
             } else {
                 state.getController().setAnimation(RawAnimation.begin().then("animation.iguana.sit", Animation.LoopType.LOOP));
+            }
+        } else if (this.isBasking()) {
+            if (this.isBaby()) {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.baby_iguana.bask", Animation.LoopType.LOOP));
+            } else {
+                state.getController().setAnimation(RawAnimation.begin().then("animation.iguana.bask", Animation.LoopType.LOOP));
             }
         } else {
             if (this.isBaby()) {
@@ -472,7 +510,68 @@ public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, 
                     baby.setVariant(IguanaVariants.GREEN);
                 }
             }
+            if (this.isTamed()) {
+                baby.setOwnerUuid(this.getOwnerUuid());
+                baby.setTamed(true, true);
+            }
         }
         return baby;
+    }
+
+    public static class IguanaMoveToSunGoal extends MoveToBlockGoal {
+        private final IguanaEntity iguana;
+
+        public IguanaMoveToSunGoal(IguanaEntity iguana) {
+            super(iguana, (state, pos) ->
+                            state.isSideSolidFullSquare(iguana.getWorld(), pos, net.minecraft.util.math.Direction.UP) &&
+                                    iguana.getWorld().getLightLevel(net.minecraft.world.LightType.SKY, pos.up()) >= 15,
+                    8, 2);
+            this.iguana = iguana;
+        }
+
+        @Override
+        public boolean canStart() {
+            if (this.iguana.isSleeping() || this.iguana.isSitting() || this.iguana.isBasking()) return false;
+            if (this.iguana.getBaskingCooldown() > 0 || this.iguana.isNotBaskingTime()) return false;
+            return super.canStart();
+        }
+
+        @Override
+        protected void onReachedTarget(BlockPos pos) {
+            this.iguana.setBasking(true);
+            this.iguana.getNavigation().stop();
+        }
+    }
+
+    public static class IguanaBaskGoal extends Goal {
+        private final IguanaEntity iguana;
+
+        public IguanaBaskGoal(IguanaEntity iguana) {
+            this.iguana = iguana;
+            this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
+        }
+
+        @Override
+        public boolean canStart() {
+            return this.iguana.isBasking();
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            boolean hasSun = this.iguana.getWorld().getLightLevel(LightType.SKY, this.iguana.getBlockPos().up()) >= 15;
+            return hasSun && !this.iguana.isNotBaskingTime() && !this.iguana.isTouchingWater() && !this.iguana.hasVehicle() && !this.iguana.isSleeping() && this.iguana.isBasking();
+        }
+
+        @Override
+        public void tick() {
+            this.iguana.getNavigation().stop();
+            this.iguana.getLookControl().tick();
+        }
+
+        @Override
+        public void stop() {
+            this.iguana.setBasking(false);
+            this.iguana.setBaskingCooldown(2400);
+        }
     }
 }

@@ -170,6 +170,10 @@ public class TigerEntity  extends TameableEntity implements GeoEntity, Sleepy, S
                     baby.setVariant(TigerVariants.NORMAL);
                 }
             }
+            if (this.isTamed()) {
+                baby.setOwnerUuid(this.getOwnerUuid());
+                baby.setTamed(true, true);
+            }
         }
         return baby;
     }

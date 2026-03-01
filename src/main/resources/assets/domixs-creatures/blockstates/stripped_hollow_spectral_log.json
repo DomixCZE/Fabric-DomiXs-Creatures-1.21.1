@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "domixs-creatures:block/stripped_hollow_spectral_log"
+    },
+    "axis=z": {
+      "model": "domixs-creatures:block/stripped_hollow_spectral_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "domixs-creatures:block/stripped_hollow_spectral_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -46,6 +46,10 @@
     "domixs-creatures:catfish",
     "domixs-creatures:rat",
     "domixs-creatures:penguin",
-    "domixs-creatures:test"
+    "domixs-creatures:carp",
+    "domixs-creatures:cave_wyvern",
+    "domixs-creatures:termite",
+    "domixs-creatures:ant",
+    "domixs-creatures:anteater"
   ]
 }

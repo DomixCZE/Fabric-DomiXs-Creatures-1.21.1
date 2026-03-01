@@ -382,7 +382,14 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return ModEntities.RACCOON.create(world);
+        RaccoonEntity baby = ModEntities.RACCOON.create(world);
+        if (baby != null) {
+            if (this.isTamed()) {
+                baby.setOwnerUuid(this.getOwnerUuid());
+                baby.setTamed(true, true);
+            }
+        }
+        return baby;
     }
 
     @Override

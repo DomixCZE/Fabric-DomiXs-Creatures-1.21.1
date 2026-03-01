@@ -30,6 +30,12 @@
     {
       "id": "natures_spirit:bamboo_wetlands",
       "required": false
+    },
+
+
+    {
+      "id": "terralith:orchid_swamp",
+      "required": false
     }
   ]
 }

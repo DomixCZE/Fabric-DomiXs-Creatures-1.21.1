@@ -5,10 +5,10 @@
       "id": "minecraft:saddle"
     },
     "title": {
-      "translate": "advancements.domixs_creatures.strider_rider.title"
+      "translate": "advancement.domixs-creatures.strider_rider.title"
     },
     "description": {
-      "translate": "advancements.domixs_creatures.strider_rider.description"
+      "translate": "advancement.domixs-creatures.strider_rider.description"
     },
     "frame": "task",
     "show_toast": true,

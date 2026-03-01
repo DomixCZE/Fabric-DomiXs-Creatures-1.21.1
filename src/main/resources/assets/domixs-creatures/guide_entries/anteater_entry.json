@@ -1,0 +1,28 @@
+{
+  "entry_id": "domixs-creatures:anteater_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.anteater",
+  "button_text": "guide.title.domixs-creatures.anteater",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.anteater_page1"
+      ],
+      "images": [
+        {
+          "type": "texture",
+          "id": "domixs-creatures:textures/gui/anteater_icon.png",
+          "x": 10,
+          "y": 80,
+          "width": 96,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.anteater_page2"
+      ]
+    }
+  ]
+}

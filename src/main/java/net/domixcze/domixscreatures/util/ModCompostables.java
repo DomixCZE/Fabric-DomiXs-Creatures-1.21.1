@@ -25,7 +25,8 @@ public class ModCompostables {
                 Map.entry("coconut_block", 0.5F),
                 Map.entry("truffle", 0.5F),
                 Map.entry("honeyed_apple", 0.65F),
-                Map.entry("mud_blossom_seed", 1.0F)
+                Map.entry("mud_blossom_seed", 1.0F),
+                Map.entry("worm", 0.5F)
         );
 
         for (Map.Entry<String, Float> entry : compostables.entrySet()) {

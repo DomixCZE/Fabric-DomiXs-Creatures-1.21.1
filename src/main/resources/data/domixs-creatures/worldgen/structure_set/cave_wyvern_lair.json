@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "domixs-creatures:cave_wyvern_lair",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1572722579,
+    "spacing": 15,
+    "separation": 3
+  }
+}

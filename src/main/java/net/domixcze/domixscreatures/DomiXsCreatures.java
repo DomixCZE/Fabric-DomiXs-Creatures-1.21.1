@@ -18,6 +18,7 @@ import net.domixcze.domixscreatures.structures.ModStructures;
 import net.domixcze.domixscreatures.util.*;
 import net.domixcze.domixscreatures.world.RatSpawner;
 import net.domixcze.domixscreatures.world.gen.ModEntityGeneration;
+import net.domixcze.domixscreatures.world.gen.ModFeatures;
 import net.domixcze.domixscreatures.world.gen.ModWorldGeneration;
 import net.domixcze.domixscreatures.world.tree.ModFoliagePlacerTypes;
 import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
@@ -36,6 +37,8 @@ import net.minecraft.resource.ResourceType;
 import net.minecraft.world.Difficulty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static net.domixcze.domixscreatures.entity.custom.TermiteEntity.HOLLOW_LOGS;
 
 public class DomiXsCreatures implements ModInitializer {
 	public static final String MOD_ID = "domixs-creatures";
@@ -91,8 +94,10 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.RAT, RatEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.PENGUIN, PenguinEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.CARP, CarpEntity.setAttributes());
-
-		FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.CAVE_WYVERN, CaveWyvernEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.TERMITE, TermiteEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.ANT, AntEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.ANTEATER, AnteaterEntity.setAttributes());
 
 		ModScreenHandlers.registerScreenHandlers();
 		ModEvents.registerModEvents();
@@ -129,6 +134,18 @@ public class DomiXsCreatures implements ModInitializer {
 		StrippableBlockRegistry.register(ModBlocks.PALM_LOG, ModBlocks.STRIPPED_PALM_LOG);
 		StrippableBlockRegistry.register(ModBlocks.PALM_WOOD, ModBlocks.STRIPPED_PALM_WOOD);
 
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_ACACIA_LOG, ModBlocks.STRIPPED_HOLLOW_ACACIA_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_OAK_LOG, ModBlocks.STRIPPED_HOLLOW_OAK_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_BIRCH_LOG, ModBlocks.STRIPPED_HOLLOW_BIRCH_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_SPRUCE_LOG, ModBlocks.STRIPPED_HOLLOW_SPRUCE_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_DARK_OAK_LOG, ModBlocks.STRIPPED_HOLLOW_DARK_OAK_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_JUNGLE_LOG, ModBlocks.STRIPPED_HOLLOW_JUNGLE_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_MANGROVE_LOG, ModBlocks.STRIPPED_HOLLOW_MANGROVE_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_CHERRY_LOG, ModBlocks.STRIPPED_HOLLOW_CHERRY_LOG);
+
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_PALM_LOG, ModBlocks.STRIPPED_HOLLOW_PALM_LOG);
+		StrippableBlockRegistry.register(ModBlocks.HOLLOW_SPECTRAL_LOG, ModBlocks.STRIPPED_HOLLOW_SPECTRAL_LOG);
+
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.SPECTRAL_LOG, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.SPECTRAL_WOOD, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_SPECTRAL_LOG, 5, 5);
@@ -150,6 +167,10 @@ public class DomiXsCreatures implements ModInitializer {
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PALM_FENCE_GATE, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PALM_SLAB, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.PALM_STAIRS, 5, 20);
+
+		HOLLOW_LOGS.values().forEach(block ->
+				FlammableBlockRegistry.getDefaultInstance().add(block, 5, 10)
+		);
 
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.WHITE_NET_BLOCK, 40, 60);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.LIGHT_GRAY_NET_BLOCK, 40, 60);
@@ -202,6 +223,8 @@ public class DomiXsCreatures implements ModInitializer {
 
 		ModTrunkPlacerTypes.register();
 		ModFoliagePlacerTypes.register();
+
+		ModFeatures.registerFeatures();
 
 		ModStructures.registerStructureFeatures();
 

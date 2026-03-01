@@ -24,6 +24,16 @@
     {
       "id": "natures_spirit:cedar_thicket",
       "required": false
+    },
+
+
+    {
+      "id": "terralith:hot_shrubland",
+      "required": false
+    },
+    {
+      "id": "terralith:savanna_badlands",
+      "required": false
     }
   ]
 }

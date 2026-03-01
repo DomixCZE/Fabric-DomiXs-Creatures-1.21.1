@@ -70,6 +70,8 @@
     },
     {
       "text_content": [
+        "",
+        "",
         "guide.entry.domixs-creatures.butterfly_page4"
       ],
       "images": [
@@ -77,10 +79,22 @@
           "type": "item",
           "id": "domixs-creatures:silk",
           "x": 20,
-          "y": 75,
+          "y": 100,
           "width": 32,
           "height": 32
         }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page5_line1",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page5_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page6"
       ]
     }
   ]

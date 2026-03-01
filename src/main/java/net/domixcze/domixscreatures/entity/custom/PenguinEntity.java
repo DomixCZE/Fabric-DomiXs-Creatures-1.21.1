@@ -542,7 +542,7 @@ public class PenguinEntity extends AnimalEntity implements GeoEntity, Sleepy {
             }
 
             World world = penguin.getWorld();
-            BlockPos eggPos = this.targetPos.up(); // up(1)
+            BlockPos eggPos = this.targetPos.up();
 
             if (!world.getBlockState(eggPos).isAir()) {
                 return;

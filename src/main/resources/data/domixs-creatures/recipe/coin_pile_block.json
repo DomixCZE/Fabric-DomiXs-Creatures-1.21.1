@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "domixs-creatures:gold_coin"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:coin_pile_block"
+  }
+}

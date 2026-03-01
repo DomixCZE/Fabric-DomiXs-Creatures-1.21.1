@@ -1,0 +1,36 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/a_bears_necessity",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:iron_shackle"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.chained_together.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.chained_together.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chain_wyvern": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "item": {
+          "items": ["domixs-creatures:iron_shackle"]
+        },
+        "entity": {
+          "type": "domixs-creatures:cave_wyvern"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "chain_wyvern"
+    ]
+  ]
+}

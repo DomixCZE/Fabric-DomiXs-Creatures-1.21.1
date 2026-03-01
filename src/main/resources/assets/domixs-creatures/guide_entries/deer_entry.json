@@ -22,8 +22,24 @@
     {
       "text_content": [
         "guide.entry.domixs-creatures.deer_page2_line1",
-        "",
         "guide.entry.domixs-creatures.deer_page2_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:small_antler",
+          "x": 30,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.deer_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.deer_page3_line2"
       ],
       "images": [
         {
@@ -38,7 +54,7 @@
     },
     {
       "text_content": [
-        "guide.entry.domixs-creatures.deer_page3"
+        "guide.entry.domixs-creatures.deer_page4"
       ],
       "images": [
         {
@@ -77,13 +93,13 @@
     },
     {
       "text_content": [
-        "guide.entry.domixs-creatures.deer_page4_line1",
+        "guide.entry.domixs-creatures.deer_page5_line1",
         "",
         "",
         "",
         "",
         "",
-        "guide.entry.domixs-creatures.deer_page4_line2"
+        "guide.entry.domixs-creatures.deer_page5_line2"
       ],
       "images": [
         {

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_scale": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:cave_wyvern_scale"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:wyvern_scale_armor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_scale",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:wyvern_scale_helmet",
+      "domixs-creatures:wyvern_scale_chestplate",
+      "domixs-creatures:wyvern_scale_leggings",
+      "domixs-creatures:wyvern_scale_boots"
+    ]
+  },
+  "sends_telemetry_event": false
+}

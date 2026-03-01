@@ -1,0 +1,57 @@
+{
+  "entry_id": "domixs-creatures:iguana_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.iguana",
+  "button_text": "guide.title.domixs-creatures.iguana",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.iguana_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_texture",
+          "ids": [
+            "domixs-creatures:textures/gui/iguana_icon_1.png",
+            "domixs-creatures:textures/gui/iguana_icon_2.png",
+            "domixs-creatures:textures/gui/iguana_icon_3.png",
+            "domixs-creatures:textures/gui/iguana_icon_2.png"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 10,
+          "y": 80,
+          "width": 72,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.iguana_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.iguana_page2_line2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "minecraft:jungle_leaves",
+            "minecraft:apple"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 30,
+          "y": 120,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.iguana_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.iguana_page3_line2"
+      ]
+    }
+  ]
+}

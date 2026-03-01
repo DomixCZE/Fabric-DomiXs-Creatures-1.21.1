@@ -46,6 +46,16 @@ public class ModArmorMaterials {
             }), 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, () -> Ingredient.ofItems(ModItems.FIRE_SALAMANDER_SCALES),
                     List.of(), 3.0f, 0.2f));
 
+    public static final RegistryEntry<ArmorMaterial> WYVERN_SCALE = registerArmorMaterial("wyvern_scale",
+            () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 3);
+                map.put(ArmorItem.Type.LEGGINGS, 5);
+                map.put(ArmorItem.Type.CHESTPLATE, 7);
+                map.put(ArmorItem.Type.HELMET, 3);
+                map.put(ArmorItem.Type.BODY, 9);
+            }), 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, () -> Ingredient.ofItems(ModItems.CAVE_WYVERN_SCALE),
+                    List.of(), 3.0f, 0.2f));
+
     public static final RegistryEntry<ArmorMaterial> CROCODILE = registerArmorMaterial("crocodile",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                 map.put(ArmorItem.Type.BOOTS, 2);

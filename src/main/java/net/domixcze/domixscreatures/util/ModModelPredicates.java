@@ -1,6 +1,8 @@
 package net.domixcze.domixscreatures.util;
 
+import net.domixcze.domixscreatures.component.ModDataComponents;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.item.custom.GlassJarItem;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.util.Identifier;
 
@@ -16,6 +18,26 @@ public class ModModelPredicates {
                         && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
         );
 
+        ModelPredicateProviderRegistry.register(ModItems.GLASS_JAR, Identifier.of("fill_level"),
+                (stack, world, entity, seed) -> {
+                    ModDataComponents.JarContentsComponent contents = stack.get(ModDataComponents.JAR_CONTENTS);
+                    if (contents == null || contents.entities().isEmpty()) return 0f;
+                    return (float) contents.entities().size() / GlassJarItem.MAX_CAPACITY;
+                });
+
+        ModelPredicateProviderRegistry.register(ModItems.GLASS_JAR, Identifier.of("is_termite"),
+                (stack, world, entity, seed) -> {
+                    ModDataComponents.JarContentsComponent contents = stack.get(ModDataComponents.JAR_CONTENTS);
+                    if (contents == null) return 0f;
+                    return contents.type().getPath().contains("termite") ? 1.0f : 0.0f;
+                });
+
+        ModelPredicateProviderRegistry.register(ModItems.GLASS_JAR, Identifier.of("is_ant"),
+                (stack, world, entity, seed) -> {
+                    ModDataComponents.JarContentsComponent contents = stack.get(ModDataComponents.JAR_CONTENTS);
+                    if (contents == null) return 0f;
+                    return contents.type().getPath().contains("ant") ? 1.0f : 0.0f;
+                });
 
         ModelPredicateProviderRegistry.register(ModItems.MARSHMALLOW_STICK, Identifier.of("cooking"),
                 (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null

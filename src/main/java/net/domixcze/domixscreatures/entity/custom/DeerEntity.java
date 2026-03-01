@@ -7,6 +7,8 @@ import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.deer.DeerAntlerSize;
 import net.domixcze.domixscreatures.entity.client.deer.DeerVariants;
+import net.domixcze.domixscreatures.item.ModItems;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.block.BlockState;
@@ -20,6 +22,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -51,12 +54,14 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
 
     private int snowTicks = 0;
     private int snowMeltTimer = 0;
+    private int antlerShedTimer = 120000;
 
     public static final TrackedData<Boolean> HAS_SNOW_LAYER = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> ANTLER_SIZE = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static final TrackedData<Boolean> SLEEPING = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> IS_RUNNING = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static final TrackedData<Boolean> ANTLERS_SHED = DataTracker.registerData(DeerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.fixed(0.6F, 1.2F);
     private static final EntityDimensions ADULT_DIMENSIONS = EntityDimensions.fixed(0.8F, 1.5F);
@@ -94,6 +99,7 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         builder.add(ANTLER_SIZE, DeerAntlerSize.NONE.ordinal());
         builder.add(SLEEPING, false);
         builder.add(IS_RUNNING, false);
+        builder.add(ANTLERS_SHED, false);
     }
 
     @Override
@@ -136,6 +142,15 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         this.dataTracker.set(ANTLER_SIZE, size.ordinal());
     }
 
+    private void resetAntlerTimer() {
+        if (this.isBaby() || this.getAntlerSize() == DeerAntlerSize.NONE) {
+            this.antlerShedTimer = 0;
+        } else {
+            int base = this.dataTracker.get(ANTLERS_SHED) ? 72000 : 120000; // 3 days if shed, 5 if not
+            this.antlerShedTimer = base + this.random.nextBetween(-12000, 12000);
+        }
+    }
+
     @Override
     public void tick() {
         super.tick();
@@ -144,10 +159,37 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
 
         if (!this.getWorld().isClient()) {
             boolean currentlyMovingFast = this.getVelocity().horizontalLengthSquared() > MOB_RUNNING_VELOCITY_THRESHOLD;
-
             if (this.isRunning() != currentlyMovingFast) {
                 this.setRunning(currentlyMovingFast);
             }
+
+            if (this.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_DEER_ANTLER_SHEDDING) && antlerShedTimer > 0) {
+                antlerShedTimer--;
+
+                if (antlerShedTimer <= 0) {
+                    if (!this.dataTracker.get(ANTLERS_SHED)) {
+                        this.dropAntlerItems();
+                        this.dataTracker.set(ANTLERS_SHED, true);
+                    } else {
+                        this.dataTracker.set(ANTLERS_SHED, false);
+                    }
+                    resetAntlerTimer();
+                }
+            }
+        }
+    }
+
+    private void dropAntlerItems() {
+        Item itemsToDrop = switch (this.getAntlerSize()) {
+            case SMALL -> ModItems.SMALL_ANTLER;
+            case MEDIUM -> ModItems.MEDIUM_ANTLER;
+            case LARGE -> ModItems.LARGE_ANTLER;
+            default -> null;
+        };
+
+        if (itemsToDrop != null) {
+            this.dropStack(new ItemStack(itemsToDrop, 2));
+            //this.playSound(SoundEvents.BLOCK_WOOD_BREAK, 1.0f, 0.8f);
         }
     }
 
@@ -155,25 +197,29 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
-        if (world.getRandom().nextDouble() < 0.05) {
-            this.setVariant(DeerVariants.ALBINO);
-        } else {
-            this.setVariant(DeerVariants.BROWN);
-        }
+        this.setVariant(world.getRandom().nextDouble() < 0.05 ? DeerVariants.ALBINO : DeerVariants.BROWN);
 
         if (!this.isBaby()) {
-            if (world.getRandom().nextFloat() < 0.2f) {
-                this.setAntlerSize(DeerAntlerSize.SMALL);
-            } else if (world.getRandom().nextFloat() < 0.1f) {
-                this.setAntlerSize(DeerAntlerSize.MEDIUM);
-            } else if (world.getRandom().nextFloat() < 0.05f) {
-                this.setAntlerSize(DeerAntlerSize.LARGE);
-            } else {
-                this.setAntlerSize(DeerAntlerSize.NONE);
-            }
+            Random random = world.getRandom();
+            if (random.nextFloat() < 0.2f) this.setAntlerSize(DeerAntlerSize.SMALL);
+            else if (random.nextFloat() < 0.1f) this.setAntlerSize(DeerAntlerSize.MEDIUM);
+            else if (random.nextFloat() < 0.05f) this.setAntlerSize(DeerAntlerSize.LARGE);
+            else this.setAntlerSize(DeerAntlerSize.NONE);
+        } else {
+            this.setAntlerSize(DeerAntlerSize.NONE);
         }
 
+        resetAntlerTimer();
         return entityData;
+    }
+
+    @Override
+    public void setBaby(boolean baby) {
+        super.setBaby(baby);
+        if (baby) {
+            this.setAntlerSize(DeerAntlerSize.NONE);
+            this.antlerShedTimer = 0;
+        }
     }
 
     @Override
@@ -223,19 +269,13 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     @Override
     protected void onGrowUp() {
         super.onGrowUp();
-
         if (!this.getWorld().isClient()) {
-            Random random = this.random;
+            if (random.nextFloat() < 0.2f) this.setAntlerSize(DeerAntlerSize.SMALL);
+            else if (random.nextFloat() < 0.1f) this.setAntlerSize(DeerAntlerSize.MEDIUM);
+            else if (random.nextFloat() < 0.05f) this.setAntlerSize(DeerAntlerSize.LARGE);
+            else this.setAntlerSize(DeerAntlerSize.NONE);
 
-            if (random.nextFloat() < 0.2f) {
-                this.setAntlerSize(DeerAntlerSize.SMALL); //20%
-            } else if (random.nextFloat() < 0.1f) {
-                this.setAntlerSize(DeerAntlerSize.MEDIUM); //10%
-            } else if (random.nextFloat() < 0.05f) {
-                this.setAntlerSize(DeerAntlerSize.LARGE); //5%
-            } else {
-                this.setAntlerSize(DeerAntlerSize.NONE); //65%
-            }
+            resetAntlerTimer();
         }
     }
 
@@ -278,10 +318,9 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
     public boolean canBreedWith(AnimalEntity other) {
         if (other == this) {
             return false;
-        } else if (!(other instanceof DeerEntity)) {
+        } else if (!(other instanceof DeerEntity otherDeer)) {
             return false;
         } else {
-            DeerEntity otherDeer = (DeerEntity) other;
             boolean thisHasAntlers = this.getAntlerSize() != DeerAntlerSize.NONE;
             boolean otherHasAntlers = otherDeer.getAntlerSize() != DeerAntlerSize.NONE;
 
@@ -299,6 +338,8 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         nbt.putInt("Variant", this.getVariant().ordinal());
         nbt.putInt("AntlerSize", this.getAntlerSize().ordinal());
         nbt.putBoolean("IsRunning", this.isRunning());
+        nbt.putInt("AntlerShedTimer", this.antlerShedTimer);
+        nbt.putBoolean("AntlersShed", this.dataTracker.get(ANTLERS_SHED));
     }
 
     @Override
@@ -311,6 +352,10 @@ public class DeerEntity extends AnimalEntity implements GeoEntity, Sleepy, SnowL
         this.setVariant(DeerVariants.values()[nbt.getInt("Variant")]);
         this.setAntlerSize(DeerAntlerSize.values()[nbt.getInt("AntlerSize")]);
         this.setRunning(nbt.getBoolean("IsRunning"));
+        if (nbt.contains("AntlerShedTimer")) {
+            this.antlerShedTimer = nbt.getInt("AntlerShedTimer");
+        }
+        this.dataTracker.set(ANTLERS_SHED, nbt.getBoolean("AntlersShed"));
     }
 
     @Override

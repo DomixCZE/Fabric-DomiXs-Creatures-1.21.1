@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_scales": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "domixs-creatures:arapaima_scale_black"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "domixs-creatures:arapaima_armor_black"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_scales",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "domixs-creatures:arapaima_helmet_black",
+      "domixs-creatures:arapaima_chestplate_black",
+      "domixs-creatures:arapaima_leggings_black",
+      "domixs-creatures:arapaima_boots_black"
+    ]
+  },
+  "sends_telemetry_event": false
+}

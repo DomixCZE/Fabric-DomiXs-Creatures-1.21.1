@@ -15,6 +15,15 @@ public class ModGameRules {
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_BEAVER_LOG_STRIPPING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_RACCOON_STEALING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_RAT_CROP_BREAKING;
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_MOLE_WORM_DIGGING;
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_HIPPO_BOAT_ATTACKING;
+
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_DEER_ANTLER_SHEDDING;
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_TERMITE_LOG_HOLLOWING;
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_ANT_LEAF_COLLECTING;
+
+    //BLOCKS
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_RAIN_BREAKING_CRACKED_GLASS;
 
     //ITEMS
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_COCONUT_POSITIVE_EFFECT_REMOVAL;
@@ -80,6 +89,36 @@ public class ModGameRules {
                 GameRuleFactory.createBooleanRule(true)
         );
 
+        ENABLE_MOLE_WORM_DIGGING = GameRuleRegistry.register(
+                "enableMoleWormDigging",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
+        ENABLE_HIPPO_BOAT_ATTACKING = GameRuleRegistry.register(
+                "enableHippoBoatAttacking",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
+        ENABLE_DEER_ANTLER_SHEDDING = GameRuleRegistry.register(
+                "enableDeerAntlerShedding",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
+        ENABLE_TERMITE_LOG_HOLLOWING = GameRuleRegistry.register(
+                "enableTermiteLogHollowing",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
+        ENABLE_ANT_LEAF_COLLECTING = GameRuleRegistry.register(
+                "enableAntLeafCollecting",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
         HERMIT_CRAB_DAILY_TRADE_LIMIT = GameRuleRegistry.register(
                 "hermitCrabDailyTradeLimit",
                 GameRules.Category.MOBS,
@@ -87,6 +126,12 @@ public class ModGameRules {
         );
 
         //MISC
+        ENABLE_RAIN_BREAKING_CRACKED_GLASS = GameRuleRegistry.register(
+                "enableRainBreakingCrackedGlass",
+                GameRules.Category.MISC,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
         ENABLE_COCONUT_POSITIVE_EFFECT_REMOVAL = GameRuleRegistry.register(
                 "enableCoconutPositiveEffectRemoval",
                 GameRules.Category.MISC,

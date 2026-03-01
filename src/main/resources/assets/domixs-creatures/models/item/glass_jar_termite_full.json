@@ -1,0 +1,6 @@
+{
+  "parent": "domixs-creatures:item/glass_jar",
+  "textures": {
+    "layer0": "domixs-creatures:item/glass_jar_termite_full"
+  }
+}

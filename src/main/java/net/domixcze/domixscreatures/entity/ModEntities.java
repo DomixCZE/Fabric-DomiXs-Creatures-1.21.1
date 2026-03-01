@@ -42,7 +42,7 @@ public class ModEntities {
     public static final EntityType<BeaverEntity> BEAVER = Registry.register(
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "beaver"),
             EntityType.Builder.create(BeaverEntity::new, SpawnGroup.CREATURE)
-                    .dimensions(0.5f, 0.4f).eyeHeight(0.25F).build());
+                    .dimensions(0.6f, 0.4f).eyeHeight(0.25F).build());
 
     public static final EntityType<IguanaEntity> IGUANA = Registry.register(
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "iguana"),
@@ -101,7 +101,7 @@ public class ModEntities {
 
     public static final EntityType<WormEntity> WORM = Registry.register(
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "worm"),
-            EntityType.Builder.create(WormEntity::new, SpawnGroup.CREATURE)
+            EntityType.Builder.create(WormEntity::new, SpawnGroup.AMBIENT)
                     .dimensions(0.2f, 0.2f).build());
 
     public static final EntityType<PorcupineEntity> PORCUPINE = Registry.register(
@@ -234,9 +234,34 @@ public class ModEntities {
             EntityType.Builder.create(CarpEntity::new, SpawnGroup.WATER_CREATURE)
                     .dimensions(0.5f, 0.4f).build());
 
+    public static final EntityType<CaveWyvernEntity> CAVE_WYVERN = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "cave_wyvern"),
+            EntityType.Builder.create(CaveWyvernEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(2.0f, 2.0f).build());
+
+    public static final EntityType<TermiteEntity> TERMITE = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "termite"),
+            EntityType.Builder.create(TermiteEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.4f, 0.3f).build());
+
+    public static final EntityType<AntEntity> ANT = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "ant"),
+            EntityType.Builder.create(AntEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.4f, 0.3f).build());
+
+    public static final EntityType<AnteaterEntity> ANTEATER = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "anteater"),
+            EntityType.Builder.create(AnteaterEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.8f, 0.8f).build());
 
 
 
+
+
+    public static final EntityType<ChainAnchorEntity> CHAIN_ANCHOR = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "chain_anchor"),
+            EntityType.Builder.<ChainAnchorEntity>create(ChainAnchorEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.625f, 0.25f).build());
 
     public static final EntityType<MagmaBallEntity> MAGMA_BALL = Registry.register(
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "magma_ball"),
@@ -247,12 +272,6 @@ public class ModEntities {
             Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "quill_projectile"),
             EntityType.Builder.<QuillProjectileEntity>create(QuillProjectileEntity::new, SpawnGroup.MISC)
                     .dimensions(0.25f, 0.25f).build());
-
-
-    public static final EntityType<TestEntity> TEST = Registry.register(
-            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "test"),
-            EntityType.Builder.create(TestEntity::new, SpawnGroup.CREATURE)
-                    .dimensions(1.2f, 1.3f).build());
 
     public static void registerModEntities() {
         DomiXsCreatures.LOGGER.info("Registering Entities for " + DomiXsCreatures.MOD_ID);

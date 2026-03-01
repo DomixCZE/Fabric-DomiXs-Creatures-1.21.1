@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:ant",
+    "domixs-creatures:termite",
+    "minecraft:silverfish"
+  ]
+}

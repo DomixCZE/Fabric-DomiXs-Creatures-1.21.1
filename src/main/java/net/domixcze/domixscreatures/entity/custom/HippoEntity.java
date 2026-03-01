@@ -7,6 +7,7 @@ import net.domixcze.domixscreatures.entity.ai.SleepGoal;
 import net.domixcze.domixscreatures.entity.ai.Sleepy;
 import net.domixcze.domixscreatures.entity.client.hippo.HippoVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,11 +26,11 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.BlockStateParticleEffect;
@@ -38,6 +39,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -50,6 +52,7 @@ import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
+import java.util.List;
 
 public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
@@ -59,6 +62,11 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     public static final TrackedData<Boolean> IS_MUDDY = DataTracker.registerData(HippoEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final TrackedData<Boolean> IS_MUD_DRY = DataTracker.registerData(HippoEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(HippoEntity.class, TrackedDataHandlerRegistry.INTEGER);
+
+    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.fixed(1.3F, 1.2F);
+    private static final EntityDimensions ADULT_DIMENSIONS = EntityDimensions.fixed(1.8F, 1.6F);
+    private static final EntityDimensions SLEEPING_BABY_DIMENSIONS = EntityDimensions.fixed(1.3F, 1.0F);
+    private static final EntityDimensions SLEEPING_ADULT_DIMENSIONS = EntityDimensions.fixed(1.8F, 1.4F);
 
     private int mudDryingTimer = 0;
     private int mudCooldown = 0;
@@ -82,6 +90,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
         this.goalSelector.add(1, new HippoMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(1, new RollInMudGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
+        this.goalSelector.add(2, new HippoAttackBoatGoal(this, 1.0));
         this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.0));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(3, new LookAroundGoal(this));
@@ -135,11 +144,22 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     }
 
     @Override
-    protected EntityDimensions getBaseDimensions(EntityPose pose) {
-        if (this.isBaby()) {
-            return EntityDimensions.fixed(1.7F, 1.5F);
+    public void onTrackedDataSet(TrackedData<?> data) {
+        if (SLEEPING.equals(data)) {
+            this.calculateDimensions();
         }
-        return this.getType().getDimensions();
+        super.onTrackedDataSet(data);
+    }
+
+    public EntityDimensions getBaseDimensions(EntityPose pose) {
+        return this.getCustomDimensions(pose);
+    }
+
+    private EntityDimensions getCustomDimensions(EntityPose pose) {
+        if (this.isSleeping()) {
+            return this.isBaby() ? SLEEPING_BABY_DIMENSIONS : SLEEPING_ADULT_DIMENSIONS;
+        }
+        return this.isBaby() ? BABY_DIMENSIONS : ADULT_DIMENSIONS;
     }
 
     @Nullable
@@ -396,6 +416,107 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return ModSounds.HIPPO_HURT;
+    }
+
+    public static class HippoAttackBoatGoal extends Goal {
+        private final HippoEntity hippo;
+        private final double speed;
+
+        private BoatEntity boatTarget;
+        private int attackTick;
+        private boolean attacking;
+
+        public HippoAttackBoatGoal(HippoEntity hippo, double speed) {
+            this.hippo = hippo;
+            this.speed = speed;
+            this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
+        }
+
+        @Override
+        public boolean canStart() {
+            if (hippo.isBaby() || hippo.isSleeping()) return false;
+
+            if (!hippo.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) return false;
+            if (!hippo.getWorld().getGameRules().getBoolean(ModGameRules.ENABLE_HIPPO_BOAT_ATTACKING)) return false;
+
+            List<BoatEntity> boats = hippo.getWorld().getEntitiesByClass(
+                    BoatEntity.class,
+                    hippo.getBoundingBox().expand(8.0, 4.0, 8.0),
+                    boat -> !boat.isRemoved() && boat.isTouchingWater()
+            );
+
+            if (boats.isEmpty()) return false;
+
+            boatTarget = boats.getFirst();
+            return true;
+        }
+
+        @Override
+        public void start() {
+            attackTick = 0;
+            attacking = false;
+            hippo.getNavigation().startMovingTo(boatTarget, speed);
+        }
+
+        @Override
+        public void stop() {
+            boatTarget = null;
+            attacking = false;
+            hippo.getNavigation().stop();
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            return boatTarget != null
+                    && !boatTarget.isRemoved()
+                    && hippo.squaredDistanceTo(boatTarget) < 100;
+        }
+
+        @Override
+        public void tick() {
+            if (boatTarget == null) return;
+
+            hippo.getLookControl().lookAt(boatTarget, 30.0F, 30.0F);
+
+            double distSq = hippo.squaredDistanceTo(boatTarget);
+
+            if (!attacking) {
+                hippo.getNavigation().startMovingTo(boatTarget, speed);
+
+                if (distSq <= 4.0) {
+                    startAttack();
+                }
+            } else {
+                attackTick++;
+                handleAttackTick();
+            }
+        }
+
+        private void startAttack() {
+            attacking = true;
+            attackTick = 0;
+
+            hippo.getNavigation().stop();
+
+            if (!hippo.isTouchingWater() && !hippo.isSubmergedInWater()) {
+                hippo.triggerAnim("land_controller", "attack");
+            }
+        }
+
+        private void handleAttackTick() {
+            if (attackTick == 7) {
+                if (!hippo.getWorld().isClient && boatTarget != null && !boatTarget.isRemoved()) {
+                    boatTarget.damage(
+                            hippo.getWorld().getDamageSources().mobAttack(hippo),
+                            8.0F
+                    );
+                }
+            }
+
+            if (attackTick > 20) {
+                attacking = false;
+            }
+        }
     }
 
     public static class RollInMudGoal extends Goal {

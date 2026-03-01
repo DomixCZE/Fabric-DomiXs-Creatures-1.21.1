@@ -17,13 +17,54 @@ import java.util.List;
 
 public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PALM_PLACED_KEY = registerKey("palm_placed");
+    public static final RegistryKey<PlacedFeature> SPECTRAL_PLACED_KEY = registerKey("spectral_placed");
     public static final RegistryKey<PlacedFeature> MAGNETITE_ORE_KEY = registerKey("magnetite_ore_placed");
     public static final RegistryKey<PlacedFeature> JADE_ORE_KEY = registerKey("jade_ore_placed");
     public static final RegistryKey<PlacedFeature> LIMESTONE_PLACED_KEY = registerKey("limestone_placed");
     public static final RegistryKey<PlacedFeature> CLOVERS_PLACED_KEY = registerKey("clovers_placed");
+    public static final RegistryKey<PlacedFeature> TERMITE_HILL_PLACED_KEY = registerKey("termite_hill_placed");
+    public static final RegistryKey<PlacedFeature> ANT_HILL_PLACED_KEY = registerKey("ant_hill_placed");
+    public static final RegistryKey<PlacedFeature> HIPPO_MUD_BATH_PLACED_KEY = registerKey("hippo_mud_bath_placed");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+
+        register(context, HIPPO_MUD_BATH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.HIPPO_MUD_BATH_KEY),
+                List.of(
+                        RarityFilterPlacementModifier.of(64),
+                        SquarePlacementModifier.of(),
+                        PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                        BiomePlacementModifier.of()
+                )
+        );
+
+        register(context, ANT_HILL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ANT_HILL_KEY),
+                List.of(
+                        RarityFilterPlacementModifier.of(32),
+                        SquarePlacementModifier.of(),
+                        PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                        BiomePlacementModifier.of()
+                )
+        );
+
+        register(context, TERMITE_HILL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TERMITE_HILL_KEY),
+                List.of(
+                        RarityFilterPlacementModifier.of(32),
+                        SquarePlacementModifier.of(),
+                        PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                        BiomePlacementModifier.of()
+                )
+        );
+
+        register(context, SPECTRAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SPECTRAL_KEY),
+                List.of(
+                        RarityFilterPlacementModifier.of(32),
+                        SquarePlacementModifier.of(),
+                        PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
+                        BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(ModBlocks.SPECTRAL_SAPLING.getDefaultState(), BlockPos.ORIGIN)),
+                        BiomePlacementModifier.of()
+                )
+        );
 
         register(context, PALM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PALM_KEY),
                 List.of(

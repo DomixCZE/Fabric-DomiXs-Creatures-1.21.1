@@ -4,6 +4,16 @@
     "minecraft:snowy_plains",
     "minecraft:snowy_beach",
     "minecraft:frozen_ocean",
-    "minecraft:ice_spikes"
+    "minecraft:ice_spikes",
+
+
+    {
+      "id": "terralith:snowy_badlands",
+      "required": false
+    },
+    {
+      "id": "terralith:gravel_desert",
+      "required": false
+    }
   ]
 }

@@ -1,0 +1,85 @@
+{
+  "entry_id": "domixs-creatures:ant_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.ant",
+  "button_text": "guide.title.domixs-creatures.ant",
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_texture",
+          "ids": [
+            "domixs-creatures:textures/gui/ant_icon_1.png",
+            "domixs-creatures:textures/gui/ant_icon_2.png",
+            "domixs-creatures:textures/gui/ant_icon_3.png"
+          ],
+          "frame_duration_ticks": 40,
+          "x": 30,
+          "y": 100,
+          "width": 48,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.ant_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:ant_nest_block",
+          "x": 30,
+          "y": 110,
+          "width": 48,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page4_line1",
+        "",
+        "guide.entry.domixs-creatures.ant_page4_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page5"
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.ant_page6"
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.ant_page7"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:glass_jar",
+          "x": 30,
+          "y": 90,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

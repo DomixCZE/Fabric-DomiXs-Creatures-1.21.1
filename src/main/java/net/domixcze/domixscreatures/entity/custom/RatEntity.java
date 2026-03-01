@@ -424,6 +424,10 @@ public class RatEntity extends TameableEntity implements GeoEntity, Sleepy, Snow
                 result = world.getRandom().nextBoolean() ? v1 : v2;
             }
         }
+        if (this.isTamed()) {
+            baby.setOwnerUuid(this.getOwnerUuid());
+            baby.setTamed(true, true);
+        }
 
         baby.setVariant(result);
         return baby;

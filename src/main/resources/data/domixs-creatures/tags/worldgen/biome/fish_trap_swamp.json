@@ -1,6 +1,33 @@
 {
   "values": [
     "minecraft:mangrove_swamp",
-    "minecraft:swamp"
+    "minecraft:swamp",
+
+    {
+      "id": "biomesoplenty:bayou",
+      "required": false
+    },
+
+
+    {
+      "id": "biomeswevegone:cypress_wetlands",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:bayou",
+      "required": false
+    },
+
+
+    {
+      "id": "natures_spirit:marsh",
+      "required": false
+    },
+
+
+    {
+      "id": "terralith:orchid_swamp",
+      "required": false
+    }
   ]
 }

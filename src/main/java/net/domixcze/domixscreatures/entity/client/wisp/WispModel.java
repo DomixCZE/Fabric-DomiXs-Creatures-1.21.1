@@ -13,9 +13,7 @@ public class WispModel extends GeoModel<WispEntity> {
 
     @Override
     public Identifier getTextureResource(WispEntity animatable) {
-        return animatable.isWearingSkull()
-                ? Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/wisp.png")
-                : Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/wisp_without_skull.png");
+        return Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/wisp.png");
     }
 
     @Override

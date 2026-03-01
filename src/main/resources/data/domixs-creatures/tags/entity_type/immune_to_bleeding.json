@@ -17,6 +17,9 @@
     "domixs-creatures:butterfly",
     "domixs-creatures:mud_golem",
     "domixs-creatures:vine",
-    "domixs-creatures:ancient_skeleton"
+    "domixs-creatures:ancient_skeleton",
+    "domixs-creatures:cave_wyvern",
+    "domixs-creatures:termite",
+    "domixs-creatures:ant"
   ]
 }

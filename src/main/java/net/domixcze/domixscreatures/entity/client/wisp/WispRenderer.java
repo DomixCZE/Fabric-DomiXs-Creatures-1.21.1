@@ -9,6 +9,7 @@ public class WispRenderer extends GeoEntityRenderer<WispEntity> {
     public WispRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new WispModel());
         addRenderLayer(new AutoGlowingGeoLayer<>(this));
+        this.addRenderLayer(new WispSkullLayer(this));
         this.shadowRadius = 0.2F;
     }
 }

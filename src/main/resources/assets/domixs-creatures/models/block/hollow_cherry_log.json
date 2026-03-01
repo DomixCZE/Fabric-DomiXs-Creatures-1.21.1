@@ -1,0 +1,8 @@
+{
+  "parent": "domixs-creatures:block/hollow_log_template",
+  "textures": {
+    "end": "minecraft:block/cherry_log_top",
+    "side": "minecraft:block/cherry_log",
+    "inside": "minecraft:block/stripped_cherry_log"
+  }
+}

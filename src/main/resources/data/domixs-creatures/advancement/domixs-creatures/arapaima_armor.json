@@ -5,10 +5,10 @@
       "id": "domixs-creatures:arapaima_chestplate_black"
     },
     "title": {
-      "translate": "advancements.domixs_creatures.arapaima_armor.title"
+      "translate": "advancement.domixs-creatures.arapaima_armor.title"
     },
     "description": {
-      "translate": "advancements.domixs_creatures.arapaima_armor.description"
+      "translate": "advancement.domixs-creatures.arapaima_armor.description"
     },
     "frame": "challenge",
     "show_toast": true,

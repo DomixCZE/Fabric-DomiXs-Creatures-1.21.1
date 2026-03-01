@@ -8,5 +8,6 @@ public class ButterflyRenderer extends GeoEntityRenderer<ButterflyEntity> {
     public ButterflyRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new ButterflyModel());
         this.addRenderLayer(new ButterflyWingLayer(this));
+        this.addRenderLayer(new ButterflyPollenLayer(this));
     }
 }

@@ -110,6 +110,14 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.CARP_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.CAVE_WYVERN_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.TERMITE_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.ANT_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.ANTEATER_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
@@ -140,6 +148,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SILK, Models.GENERATED);
         itemModelGenerator.register(ModItems.NET, Models.GENERATED);
         itemModelGenerator.register(ModItems.UNICORN_DUST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CAVE_WYVERN_SCALE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.GOLDFISH, Models.GENERATED);
         itemModelGenerator.register(ModItems.WORM, Models.GENERATED);
@@ -187,6 +196,11 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ARAPAIMA_LEGGINGS_BLACK, Models.GENERATED);
         itemModelGenerator.register(ModItems.ARAPAIMA_BOOTS_BLACK, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.WYVERN_SCALE_HELMET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WYVERN_SCALE_CHESTPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WYVERN_SCALE_LEGGINGS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WYVERN_SCALE_BOOTS, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.JADE_CROWN, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.SALAMANDER_HELMET, Models.GENERATED);
@@ -200,6 +214,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ERASER, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.NIGHTMARE_AMULET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLD_COIN, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.IRON_SHACKLE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.RAW_MAGNETITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.MAGNETITE_INGOT, Models.GENERATED);

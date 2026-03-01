@@ -1,6 +1,5 @@
 package net.domixcze.domixscreatures.item.custom;
 
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.util.ModGameRules;
 import net.minecraft.entity.LivingEntity;

@@ -21,6 +21,15 @@
     {
       "id": "natures_spirit:tropical_woods",
       "required": false
+    },
+
+    {
+      "id": "terralith:tropical_jungle",
+      "required": false
+    },
+    {
+      "id": "terralith:jungle_mountains",
+      "required": false
     }
   ]
 }

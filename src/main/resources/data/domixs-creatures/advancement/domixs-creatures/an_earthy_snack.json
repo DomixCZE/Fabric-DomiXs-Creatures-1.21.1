@@ -5,10 +5,10 @@
       "id": "domixs-creatures:worm"
     },
     "title": {
-      "translate": "advancements.domixs_creatures.an_earthy_snack.title"
+      "translate": "advancement.domixs-creatures.an_earthy_snack.title"
     },
     "description": {
-      "translate": "advancements.domixs_creatures.an_earthy_snack.description"
+      "translate": "advancement.domixs-creatures.an_earthy_snack.description"
     },
     "frame": "challenge",
     "show_toast": true,

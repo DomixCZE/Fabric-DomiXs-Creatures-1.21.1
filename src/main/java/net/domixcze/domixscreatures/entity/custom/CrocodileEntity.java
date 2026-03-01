@@ -419,27 +419,30 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
         @Override
         public void tick() {
             super.tick();
-            BlockPos blockPos = crocodile.getBlockPos();
-
             if (this.hasReached()) {
                 World world = crocodile.getWorld();
-                world.playSound(null, blockPos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
+                BlockPos eggPos = this.targetPos.up();
 
-                int eggCount = world.random.nextInt(3) + 1;
+                if (world.getBlockState(eggPos).isReplaceable()) {
+                    world.playSound(null, eggPos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
 
-                BlockPos eggPos = this.targetPos.up(1);
-                BlockState eggState = ModBlocks.CROCODILE_EGG.getDefaultState().with(CrocodileEggBlock.EGGS, eggCount);
-                world.setBlockState(eggPos, eggState, 3);
+                    int eggCount = world.random.nextInt(3) + 1;
+                    BlockState eggState = ModBlocks.CROCODILE_EGG.getDefaultState().with(CrocodileEggBlock.EGGS, eggCount);
 
+                    world.setBlockState(eggPos, eggState, 3);
 
-                crocodile.setHasEgg(false);
-                crocodile.setLoveTicks(600);
+                    crocodile.setHasEgg(false);
+                    crocodile.setLoveTicks(600);
+                } else {
+                    this.stop();
+                }
             }
         }
 
         @Override
         protected boolean isTargetPos(WorldView world, BlockPos pos) {
-            return world.getBlockState(pos).isIn(ModTags.Blocks.CROCODILE_EGG_HATCHABLE);
+            return world.getBlockState(pos).isIn(ModTags.Blocks.CROCODILE_EGG_HATCHABLE)
+                    && world.getBlockState(pos.up()).isReplaceable();
         }
     }
 
@@ -472,11 +475,11 @@ public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
                 Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, animal, mate, null);
             }
 
-            // Assign the egg to one random penguin
+            // Assign the egg to one random crocodile
             if (animal.getRandom().nextBoolean()) {
                 crocodile.setHasEgg(true);
             } else {
-                ((PenguinEntity) mate).setHasEgg(true);
+                ((CrocodileEntity) mate).setHasEgg(true);
             }
 
             animal.setBreedingAge(6000);

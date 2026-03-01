@@ -3,7 +3,9 @@
 	"package": "net.domixcze.domixscreatures.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"LivingEntityMixin"
+		"LivingEntityMixin",
+		"UniversalPlantingMixin",
+		"CropBlockMixin"
 	],
 	"client": [
 		"SoundManagerMixin"

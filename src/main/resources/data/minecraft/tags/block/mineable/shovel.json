@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:rich_farmland",
+    "domixs-creatures:rich_dirt",
+    "domixs-creatures:termite_mound",
+    "domixs-creatures:termite_nest_block",
+    "domixs-creatures:ant_mound",
+    "domixs-creatures:ant_nest_block"
+  ]
+}

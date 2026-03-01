@@ -1,0 +1,39 @@
+{
+  "parent": "domixs-creatures:domixs-creatures/salamander_armor",
+  "display": {
+    "icon": {
+      "id": "domixs-creatures:wyvern_scale_chestplate"
+    },
+    "title": {
+      "translate": "advancement.domixs-creatures.wyvern_scale_armor.title"
+    },
+    "description": {
+      "translate": "advancement.domixs-creatures.wyvern_scale_armor.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "wyvern_scale_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["domixs-creatures:wyvern_scale_helmet"] },
+          { "items": ["domixs-creatures:wyvern_scale_chestplate"] },
+          { "items": ["domixs-creatures:wyvern_scale_leggings"] },
+          { "items": ["domixs-creatures:wyvern_scale_boots"] }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wyvern_scale_armor"
+    ]
+  ],
+  "rewards": {
+    "experience": 120
+  }
+}

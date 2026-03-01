@@ -11,6 +11,7 @@ import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.WaterCreatureEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.BiomeKeys;
 
 public class ModEntityGeneration {
     public static void addSpawns() {
@@ -59,8 +60,8 @@ public class ModEntityGeneration {
         SpawnRestriction.register(ModEntities.MOLE, SpawnLocationTypes.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
 
-        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.WORM_SPAWNS_IN), SpawnGroup.CREATURE,
-                ModEntities.WORM, 20, 1, 3);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.WORM_SPAWNS_IN), SpawnGroup.AMBIENT,
+                ModEntities.WORM, 15, 1, 2);
         SpawnRestriction.register(ModEntities.WORM, SpawnLocationTypes.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WormEntity::canSpawn);
 
@@ -133,6 +134,16 @@ public class ModEntityGeneration {
                 ModEntities.PENGUIN, 10, 5, 12);
         SpawnRestriction.register(ModEntities.PENGUIN, SpawnLocationTypes.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.ANTEATER_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.ANTEATER, 10, 1, 2);
+        SpawnRestriction.register(ModEntities.ANTEATER, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.END_MIDLANDS), SpawnGroup.MONSTER,
+                ModEntities.SPECTRAL_BAT, 30, 1, 3);
+        SpawnRestriction.register(ModEntities.SPECTRAL_BAT, SpawnLocationTypes.UNRESTRICTED,
+                Heightmap.Type.MOTION_BLOCKING, SpectralBatEntity::canSpawn);
 
 
 

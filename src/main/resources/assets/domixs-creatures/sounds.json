@@ -13,6 +13,26 @@
     ]
   },
 
+  "cave_wyvern_breath": {
+    "subtitle": "sounds.domixs-creatures.cave_wyvern_breath",
+    "sounds": [
+      "domixs-creatures:cave_wyvern_breath"
+    ]
+  },
+  "cave_wyvern_convert": {
+    "subtitle": "sounds.domixs-creatures.cave_wyvern_convert",
+    "sounds": [
+      "domixs-creatures:cave_wyvern_convert"
+    ]
+  },
+
+  "termite_eat": {
+    "subtitle": "sounds.domixs-creatures.termite_eat",
+    "sounds": [
+      "domixs-creatures:termite_eat"
+    ]
+  },
+
   "conch_shell_use": {
     "subtitle": "sounds.domixs-creatures.conch_shell_use",
     "sounds": [
@@ -79,6 +99,47 @@
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
       "domixs-creatures:copper_trumpet8"
+    ]
+  },
+
+  "gold_pile_break": {
+    "subtitle": "sounds.domixs-creatures.gold_pile_break",
+    "sounds": [
+      "domixs-creatures:gold_pile_1",
+      "domixs-creatures:gold_pile_2",
+      "domixs-creatures:gold_pile_3"
+    ]
+  },
+  "gold_pile_place": {
+    "subtitle": "sounds.domixs-creatures.gold_pile_place",
+    "sounds": [
+      "domixs-creatures:gold_pile_1",
+      "domixs-creatures:gold_pile_2",
+      "domixs-creatures:gold_pile_3"
+    ]
+  },
+  "gold_pile_step": {
+    "subtitle": "sounds.domixs-creatures.gold_pile_step",
+    "sounds": [
+      "domixs-creatures:gold_pile_1",
+      "domixs-creatures:gold_pile_2",
+      "domixs-creatures:gold_pile_3"
+    ]
+  },
+  "gold_pile_hit": {
+    "subtitle": "sounds.domixs-creatures.gold_pile_hit",
+    "sounds": [
+      "domixs-creatures:gold_pile_1",
+      "domixs-creatures:gold_pile_2",
+      "domixs-creatures:gold_pile_3"
+    ]
+  },
+  "gold_pile_fall": {
+    "subtitle": "sounds.domixs-creatures.gold_pile_fall",
+    "sounds": [
+      "domixs-creatures:gold_pile_1",
+      "domixs-creatures:gold_pile_2",
+      "domixs-creatures:gold_pile_3"
     ]
   },
 

@@ -7,6 +7,10 @@
     "domixs-creatures:arapaima_helmet_green",
     "domixs-creatures:arapaima_chestplate_green",
     "domixs-creatures:arapaima_leggings_green",
-    "domixs-creatures:arapaima_boots_green"
+    "domixs-creatures:arapaima_boots_green",
+    "domixs-creatures:wyvern_scale_helmet",
+    "domixs-creatures:wyvern_scale_chestplate",
+    "domixs-creatures:wyvern_scale_leggings",
+    "domixs-creatures:wyvern_scale_boots"
   ]
 }

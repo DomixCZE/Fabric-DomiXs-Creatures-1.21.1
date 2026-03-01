@@ -20,13 +20,17 @@ public class DeerAntlerLayer extends GeoRenderLayer<DeerEntity> {
     @Override
     public void render(MatrixStack poseStack, DeerEntity animatable, BakedGeoModel bakedModel, RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         if (!animatable.isBaby() && animatable.getAntlerSize() != DeerAntlerSize.NONE) {
-            String antlerTexture = null;
+            String antlerTexture;
 
-            switch (animatable.getAntlerSize()) {
-                case SMALL -> antlerTexture = "deer_antlers_small.png";
-                case MEDIUM -> antlerTexture = "deer_antlers_medium.png";
-                case LARGE -> antlerTexture = "deer_antlers_large.png";
-                default -> {}
+            if (animatable.getDataTracker().get(DeerEntity.ANTLERS_SHED)) {
+                antlerTexture = "deer_antlers_shed.png";
+            } else {
+                antlerTexture = switch (animatable.getAntlerSize()) {
+                    case SMALL -> "deer_antlers_small.png";
+                    case MEDIUM -> "deer_antlers_medium.png";
+                    case LARGE -> "deer_antlers_large.png";
+                    default -> null;
+                };
             }
 
             if (antlerTexture != null) {

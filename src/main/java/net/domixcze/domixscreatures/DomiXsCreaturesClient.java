@@ -7,8 +7,11 @@ import net.domixcze.domixscreatures.block.entity.ModBlockEntities;
 import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.config.ModConfigScreen;
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.client.ModModelLayers;
 import net.domixcze.domixscreatures.entity.client.ancient_skeleton.AncientSkeletonRenderer;
 import net.domixcze.domixscreatures.entity.client.anglerfish.AnglerfishRenderer;
+import net.domixcze.domixscreatures.entity.client.ant.AntRenderer;
+import net.domixcze.domixscreatures.entity.client.anteater.AnteaterRenderer;
 import net.domixcze.domixscreatures.entity.client.arapaima.ArapaimaRenderer;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverRenderer;
 import net.domixcze.domixscreatures.entity.client.betta_fish.BettaFishRenderer;
@@ -19,6 +22,9 @@ import net.domixcze.domixscreatures.entity.client.capybara.CapybaraRenderer;
 import net.domixcze.domixscreatures.entity.client.carp.CarpRenderer;
 import net.domixcze.domixscreatures.entity.client.caterpillar.CaterpillarRenderer;
 import net.domixcze.domixscreatures.entity.client.catfish.CatfishRenderer;
+import net.domixcze.domixscreatures.entity.client.cave_wyvern.CaveWyvernRenderer;
+import net.domixcze.domixscreatures.entity.client.chain.ChainAnchorModel;
+import net.domixcze.domixscreatures.entity.client.chain.ChainAnchorRenderer;
 import net.domixcze.domixscreatures.entity.client.cheetah.CheetahRenderer;
 import net.domixcze.domixscreatures.entity.client.crocodile.CrocodileRenderer;
 import net.domixcze.domixscreatures.entity.client.deer.DeerRenderer;
@@ -47,7 +53,7 @@ import net.domixcze.domixscreatures.entity.client.shaman.ShamanRenderer;
 import net.domixcze.domixscreatures.entity.client.shark.SharkRenderer;
 import net.domixcze.domixscreatures.entity.client.spectral_bat.SpectralBatRenderer;
 import net.domixcze.domixscreatures.entity.client.sun_bear.SunBearRenderer;
-import net.domixcze.domixscreatures.entity.client.test.TestRenderer;
+import net.domixcze.domixscreatures.entity.client.termite.TermiteRenderer;
 import net.domixcze.domixscreatures.entity.client.tiger.TigerRenderer;
 import net.domixcze.domixscreatures.entity.client.unicorn.UnicornRenderer;
 import net.domixcze.domixscreatures.entity.client.vine.VineRenderer;
@@ -60,6 +66,7 @@ import net.domixcze.domixscreatures.screen.ModScreenHandlers;
 import net.domixcze.domixscreatures.screen.custom.FishTrapScreen;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.CoconutLandedPayload;
+import net.domixcze.domixscreatures.util.ModClientEvents;
 import net.domixcze.domixscreatures.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -68,6 +75,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -89,6 +97,11 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModModelPredicates.registerModPredicates();
+
+        ModClientEvents.register();
+
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CHAIN_ANCHOR, ChainAnchorModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.CHAIN_ANCHOR, ChainAnchorRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.FIRE_SALAMANDER, FireSalamanderRenderer::new);
         EntityRendererRegistry.register(ModEntities.SPECTRAL_BAT, SpectralBatRenderer::new);
@@ -135,11 +148,13 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.RAT, RatRenderer::new);
         EntityRendererRegistry.register(ModEntities.PENGUIN, PenguinRenderer::new);
         EntityRendererRegistry.register(ModEntities.CARP, CarpRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CAVE_WYVERN, CaveWyvernRenderer::new);
+        EntityRendererRegistry.register(ModEntities.TERMITE, TermiteRenderer::new);
+        EntityRendererRegistry.register(ModEntities.ANT, AntRenderer::new);
+        EntityRendererRegistry.register(ModEntities.ANTEATER, AnteaterRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.MAGMA_BALL, MagmaBallRenderer::new);
         EntityRendererRegistry.register(ModEntities.QUILL_PROJECTILE, QuillProjectileRenderer::new);
-
-        EntityRendererRegistry.register(ModEntities.TEST, TestRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.SCREECH, SonicBoomParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.INK, InkParticle.Factory::new);
@@ -151,6 +166,7 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.NEGATIVE_MAGNET, GlowParticle.ElectricSparkFactory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.POSITIVE_MAGNET, GlowParticle.ElectricSparkFactory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.UNICORN_DUST, UnicornDustParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.POISON_BREATH, PoisonBreathParticle.Factory::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CRACKED_GLASS_BLOCK, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PILE_OF_STICKS_BLOCK, RenderLayer.getCutout());

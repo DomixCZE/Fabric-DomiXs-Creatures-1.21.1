@@ -16,6 +16,16 @@
     {
       "id": "natures_spirit:xeric_plains",
       "required": false
+    },
+
+
+    {
+      "id": "terralith:hot_shrubland",
+      "required": false
+    },
+    {
+      "id": "terralith:savanna_badlands",
+      "required": false
     }
   ]
 }

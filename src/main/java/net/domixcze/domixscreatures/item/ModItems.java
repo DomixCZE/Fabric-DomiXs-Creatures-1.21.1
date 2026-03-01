@@ -3,16 +3,21 @@ package net.domixcze.domixscreatures.item;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
+import net.domixcze.domixscreatures.entity.client.termite.TermiteVariants;
 import net.domixcze.domixscreatures.item.custom.*;
 import net.domixcze.domixscreatures.item.guide.GuideBookItem;
 import net.domixcze.domixscreatures.sound.ModSounds;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.Util;
 
 public class ModItems {
     public static final Item FIRE_SALAMANDER_SPAWN_EGG = registerItem("fire_salamander_spawn_egg", new SpawnEggItem(ModEntities.FIRE_SALAMANDER, 0x3c3947, 0xe66410,
@@ -105,6 +110,14 @@ public class ModItems {
             new Item.Settings()));
     public static final Item CARP_SPAWN_EGG = registerItem("carp_spawn_egg", new SpawnEggItem(ModEntities.CARP, 0x717c41, 0xa9a95c,
             new Item.Settings()));
+    public static final Item CAVE_WYVERN_SPAWN_EGG = registerItem("cave_wyvern_spawn_egg", new SpawnEggItem(ModEntities.CAVE_WYVERN, 0x46436b, 0x806784,
+            new Item.Settings()));
+    public static final Item TERMITE_SPAWN_EGG = registerItem("termite_spawn_egg", new SpawnEggItem(ModEntities.TERMITE, 0xefd3c5, 0xca7958,
+            new Item.Settings()));
+    public static final Item ANT_SPAWN_EGG = registerItem("ant_spawn_egg", new SpawnEggItem(ModEntities.ANT, 0x272a33, 0x323541,
+            new Item.Settings()));
+    public static final Item ANTEATER_SPAWN_EGG = registerItem("anteater_spawn_egg", new SpawnEggItem(ModEntities.ANTEATER, 0x4a3e2f, 0x1d1d1d,
+            new Item.Settings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));
@@ -167,6 +180,7 @@ public class ModItems {
     public static final Item SILK = registerItem("silk", new Item(new Item.Settings()));
     public static final Item NET = registerItem("net", new Item(new Item.Settings()));
     public static final Item UNICORN_DUST = registerItem("unicorn_dust", new UnicornDustItem(new Item.Settings()));
+    public static final Item CAVE_WYVERN_SCALE = registerItem("cave_wyvern_scale", new Item(new Item.Settings()));
 
     public static final Item GUIDE_BOOK = registerItem("guide_book", new GuideBookItem(new Item.Settings().maxCount(1)));
 
@@ -202,12 +216,18 @@ public class ModItems {
     public static final Item ARAPAIMA_LEGGINGS_GREEN = registerItem("arapaima_leggings_green", new ArapaimaLeggingsGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(15))));
     public static final Item ARAPAIMA_BOOTS_GREEN = registerItem("arapaima_boots_green", new ArapaimaBootsGreenItem(ModArmorMaterials.ARAPAIMA_GREEN, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(15))));
 
+    public static final Item WYVERN_SCALE_HELMET = registerItem("wyvern_scale_helmet", new WyvernScaleHelmetItem(ModArmorMaterials.WYVERN_SCALE, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(20))));
+    public static final Item WYVERN_SCALE_CHESTPLATE = registerItem("wyvern_scale_chestplate", new WyvernScaleChestplateItem(ModArmorMaterials.WYVERN_SCALE, ArmorItem.Type.CHESTPLATE, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(30))));
+    public static final Item WYVERN_SCALE_LEGGINGS = registerItem("wyvern_scale_leggings", new WyvernScaleLeggingsItem(ModArmorMaterials.WYVERN_SCALE, ArmorItem.Type.LEGGINGS, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(30))));
+    public static final Item WYVERN_SCALE_BOOTS = registerItem("wyvern_scale_boots", new WyvernScaleBootsItem(ModArmorMaterials.WYVERN_SCALE, ArmorItem.Type.BOOTS, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(30))));
+
     public static final Item JADE_CROWN = registerItem("jade_crown", new JadeCrownItem(ModArmorMaterials.JADE, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(25)).rarity(Rarity.UNCOMMON)));
 
     public static final Item SALAMANDER_UPGRADE_SMITHING_TEMPLATE = registerItem("salamander_upgrade_smithing_template",
             new SalamanderUpgradeSmithingTemplateItem(new Item.Settings()));
 
     public static final Item COMMAND_FLUTE = registerItem("command_flute", new CommandFluteItem(new Item.Settings().maxCount(1)));
+    public static final Item GLASS_JAR = registerItem("glass_jar", new GlassJarItem(new Item.Settings().maxCount(1)));
     public static final Item BUG_NET = registerItem("bug_net", new BugNetItem(new Item.Settings().maxCount(1).maxDamage(3)));
     public static final Item SKULL_WAND = registerItem("skull_wand", new Item(new Item.Settings().maxCount(1)));
     public static final Item NIGHTMARE_AMULET = registerItem("nightmare_amulet", new NightmareAmuletItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
@@ -223,6 +243,10 @@ public class ModItems {
     public static final Item DEAFEN_ICON = registerItem("deafen_icon", new Item(new Item.Settings()));
     public static final Item TAB_ICON = registerItem("tab_icon", new Item(new Item.Settings()));
     public static final Item ERASER = registerItem("eraser", new EraserItem(new Item.Settings().maxCount(1)));
+
+    public static final Item GOLD_COIN = registerItem("gold_coin", new Item(new Item.Settings()));
+
+    public static final Item IRON_SHACKLE = registerItem("iron_shackle", new IronShackleItem(new Item.Settings().maxCount(16)));
 
     public static final Item MAGNET = registerItem("magnet", new MagnetItem(new Item.Settings().maxCount(1)));
     public static final Item RAW_MAGNETITE = registerItem("raw_magnetite", new Item(new Item.Settings()));

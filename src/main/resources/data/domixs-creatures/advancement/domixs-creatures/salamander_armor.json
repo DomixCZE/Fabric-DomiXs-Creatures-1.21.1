@@ -5,10 +5,10 @@
       "id": "domixs-creatures:salamander_chestplate"
     },
     "title": {
-      "translate": "advancements.domixs_creatures.salamander_armor.title"
+      "translate": "advancement.domixs-creatures.salamander_armor.title"
     },
     "description": {
-      "translate": "advancements.domixs_creatures.salamander_armor.description"
+      "translate": "advancement.domixs-creatures.salamander_armor.description"
     },
     "frame": "challenge",
     "show_toast": true,

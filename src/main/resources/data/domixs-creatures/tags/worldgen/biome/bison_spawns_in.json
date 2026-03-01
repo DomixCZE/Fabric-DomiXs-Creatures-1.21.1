@@ -46,6 +46,28 @@
     {
       "id": "natures_spirit:blooming_highlands",
       "required": false
+    },
+
+
+    {
+      "id": "terralith:steppe",
+      "required": false
+    },
+    {
+      "id": "terralith:arid_highlands",
+      "required": false
+    },
+    {
+      "id": "terralith:blooming_plateau",
+      "required": false
+    },
+    {
+      "id": "terralith:brushland",
+      "required": false
+    },
+    {
+      "id": "terralith:highlands",
+      "required": false
     }
   ]
 }
