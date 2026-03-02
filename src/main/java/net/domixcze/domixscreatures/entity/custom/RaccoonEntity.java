@@ -240,7 +240,7 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
         this.dataTracker.set(HELD_FOOD, stack);
     }
 
-    public boolean isFood(ItemStack stack) {
+    public boolean isStealableFood(ItemStack stack) {
         return stack.isIn(ModTags.Items.RACCOON_STEALS);
     }
 
@@ -518,7 +518,7 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
                 if (be instanceof ChestBlockEntity || be instanceof BarrelBlockEntity) {
                     Inventory inv = (Inventory) be;
                     for (int i = 0; i < inv.size(); i++) {
-                        if (raccoon.isFood(inv.getStack(i))) {
+                        if (raccoon.isStealableFood(inv.getStack(i))) {
                             targetChestPos = pos;
                             return true;
                         }
@@ -534,7 +534,7 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
                 BlockEntity be = raccoon.getWorld().getBlockEntity(targetChestPos);
                 if (be instanceof Inventory inv) {
                     for (int i = 0; i < inv.size(); i++) {
-                        if (raccoon.isFood(inv.getStack(i))) {
+                        if (raccoon.isStealableFood(inv.getStack(i))) {
                             return true;
                         }
                     }
@@ -550,7 +550,7 @@ public class RaccoonEntity extends TameableEntity implements GeoEntity, Sleepy, 
                 if (be instanceof Inventory inv) {
                     for (int i = 0; i < inv.size(); i++) {
                         ItemStack stack = inv.getStack(i);
-                        if (!stack.isEmpty() && raccoon.isFood(stack)) {
+                        if (!stack.isEmpty() && raccoon.isStealableFood(stack)) {
                             ItemStack stolen = stack.split(1);
                             raccoon.setHeldFood(stolen);
                             raccoon.getNavigation().stop();

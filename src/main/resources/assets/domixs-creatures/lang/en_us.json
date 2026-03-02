@@ -1,5 +1,6 @@
 {
   "itemgroup.mod_group": "DomiX's Creatures",
+
   "entity.domixs-creatures.fire_salamander": "Fire Salamander",
   "entity.domixs-creatures.spectral_bat": "Spectral Bat",
   "entity.domixs-creatures.goldfish": "Goldfish",
@@ -48,7 +49,6 @@
   "entity.domixs-creatures.termite": "Termite",
   "entity.domixs-creatures.ant": "Ant",
   "entity.domixs-creatures.anteater": "Anteater",
-
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Fire Salamander Spawn Egg",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Spectral Bat Spawn Egg",

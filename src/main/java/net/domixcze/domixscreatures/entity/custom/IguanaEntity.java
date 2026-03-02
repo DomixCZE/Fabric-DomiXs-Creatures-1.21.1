@@ -38,7 +38,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.EnumSet;
 import java.util.UUID;
 
-public class IguanaEntity  extends TameableEntity implements GeoEntity, Sleepy, SnowLayerable {
+public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, SnowLayerable {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
     private int snowTicks = 0;

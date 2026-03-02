@@ -70,6 +70,7 @@ public class CaveWyvernEntity extends AnimalEntity implements GeoEntity, Sleepy,
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SleepGoal(this, this, 100,true, true, true, true, 5.0, 1200, 1500, false, false, false, true, 2));
+        this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new WyvernAvoidSunlightGoal(this));
         this.goalSelector.add(2, new WyvernEscapeSunlightGoal(this, 1.4));
         this.goalSelector.add(2, new CaveWyvernPoisonBreathGoal(this));
@@ -318,6 +319,7 @@ public class CaveWyvernEntity extends AnimalEntity implements GeoEntity, Sleepy,
         AnimationController<CaveWyvernEntity> landController = new AnimationController<>(this, "land_controller", 3, this::landPredicate);
         landController.triggerableAnim("attack", RawAnimation.begin().then("animation.cave_wyvern.attack", Animation.LoopType.PLAY_ONCE));
         controllers.add(landController);
+        controllers.add(new AnimationController<>(this, "water_controller", 3, this::waterPredicate));
         controllers.add(new AnimationController<>(this, "sleep_controller", 3, this::sleepPredicate));
     }
 
@@ -331,6 +333,18 @@ public class CaveWyvernEntity extends AnimalEntity implements GeoEntity, Sleepy,
             state.getController().setAnimation(RawAnimation.begin().then("animation.cave_wyvern.breath_attack", Animation.LoopType.LOOP));
         } else {
             state.getController().setAnimation(RawAnimation.begin().then("animation.cave_wyvern.idle", Animation.LoopType.LOOP));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    private <T extends GeoAnimatable> PlayState waterPredicate(AnimationState<T> state) {
+        if (!this.isTouchingWater()) {
+            return PlayState.STOP;
+        }
+        if (this.isBreathingPoison()) {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.cave_wyvern.breath_attack_swim", Animation.LoopType.LOOP));
+        } else {
+            state.getController().setAnimation(RawAnimation.begin().then("animation.cave_wyvern.swim", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }
