@@ -1,6 +1,10 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.*;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.CaveWyvernMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.CaveWyvernPoisonBreathGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Chainable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.CaveWyvernSoundHelper;

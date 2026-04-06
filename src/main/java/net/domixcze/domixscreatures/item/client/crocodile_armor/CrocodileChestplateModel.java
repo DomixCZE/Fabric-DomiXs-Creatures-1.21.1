@@ -1,0 +1,24 @@
+package net.domixcze.domixscreatures.item.client.crocodile_armor;
+
+import net.domixcze.domixscreatures.DomiXsCreatures;
+import net.domixcze.domixscreatures.item.custom.armor.CrocodileChestplateItem;
+import net.minecraft.util.Identifier;
+import software.bernie.geckolib.model.GeoModel;
+
+public class CrocodileChestplateModel extends GeoModel<CrocodileChestplateItem> {
+
+    @Override
+    public Identifier getModelResource(CrocodileChestplateItem animatable) {
+        return Identifier.of(DomiXsCreatures.MOD_ID,"geo/crocodile_chestplate.geo.json");
+    }
+
+    @Override
+    public Identifier getTextureResource(CrocodileChestplateItem animatable) {
+        return Identifier.of(DomiXsCreatures.MOD_ID,"textures/armor/crocodile_chestplate.png");
+    }
+
+    @Override
+    public Identifier getAnimationResource(CrocodileChestplateItem animatable) {
+        return null;
+    }
+}

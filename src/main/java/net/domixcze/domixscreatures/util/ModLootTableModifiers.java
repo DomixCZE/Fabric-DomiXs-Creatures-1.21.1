@@ -1,13 +1,19 @@
 package net.domixcze.domixscreatures.util;
 
+import net.domixcze.domixscreatures.enchantment.ModEnchantments;
 import net.domixcze.domixscreatures.item.ModItems;
 import net. fabricmc. fabric. api. loot. v3.LootTableEvents;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.function.SetEnchantmentsLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 public class ModLootTableModifiers {
@@ -15,6 +21,8 @@ public class ModLootTableModifiers {
             Identifier.of("minecraft", "entities/warden");
     public static final Identifier BASTION_ID =
             Identifier.of("minecraft", "chests/bastion_treasure");
+    public static final Identifier JUNGLE_TEMPLE_ID =
+            Identifier.of("minecraft", "chests/jungle_temple");
     private static final Identifier JUNGLE_LEAVES_ID
             = Identifier.of("minecraft", "blocks/jungle_leaves");
 
@@ -48,7 +56,24 @@ public class ModLootTableModifiers {
 
                 tableBuilder.pool(poolBuilder.build());
             }
+            if (JUNGLE_TEMPLE_ID.equals(key.getValue())) {
+                RegistryEntry<Enchantment> recovery = registries
+                        .getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
+                        .getOrThrow(ModEnchantments.RECOVERY);
+
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.2f)) // 20% chance
+                        .with(
+                                ItemEntry.builder(Items.ENCHANTED_BOOK)
+                                        .apply(
+                                                new SetEnchantmentsLootFunction.Builder()
+                                                        .enchantment(recovery, UniformLootNumberProvider.create(1.0f, 2.0f))
+                                        )
+                        );
+
+                tableBuilder.pool(poolBuilder.build());
+            }
         });
     }
-
 }

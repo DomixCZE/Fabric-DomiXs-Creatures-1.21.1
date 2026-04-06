@@ -21,8 +21,13 @@
 					"pivot": [0, 13, 2.5]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "bone",
+					"pivot": [0, 13.5, -8]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 13.5, -11]
 				},
 				{

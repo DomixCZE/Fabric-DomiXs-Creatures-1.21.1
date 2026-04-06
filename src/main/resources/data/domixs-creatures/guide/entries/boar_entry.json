@@ -1,0 +1,59 @@
+{
+  "entry_id": "domixs-creatures:boar_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.boar",
+  "button_text": "guide.title.domixs-creatures.boar",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:boar"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.boar_page1_line1",
+        "guide.entry.domixs-creatures.boar_page1_line2"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/boar_icon.png",
+          "x": 50,
+          "y": 120,
+          "width": 290,
+          "height": 244,
+          "scale": 0.25
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.boar_page2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.boar_page3_line1",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.boar_page3_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:truffle",
+          "x": 30,
+          "y": 70,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "minecraft:porkchop",
+          "x": 70,
+          "y": 70,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

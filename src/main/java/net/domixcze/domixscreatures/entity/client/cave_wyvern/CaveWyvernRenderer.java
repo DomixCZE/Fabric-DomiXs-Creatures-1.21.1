@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.entity.client.cave_wyvern;
 
 import net.domixcze.domixscreatures.entity.custom.CaveWyvernEntity;
-import net.domixcze.domixscreatures.item.client.IronChainRenderer;
+import net.domixcze.domixscreatures.item.client.chain.IronChainRenderer;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;

@@ -1,9 +1,16 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.*;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.BaskGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.MoveToSunGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Baskable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaVariants;
 import net.domixcze.domixscreatures.util.ModTags;
+import net.domixcze.domixscreatures.util.ShoulderPetHelper;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -25,7 +32,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -35,10 +41,9 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.EnumSet;
 import java.util.UUID;
 
-public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, SnowLayerable {
+public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, SnowLayerable, Baskable {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);
 
     private int snowTicks = 0;
@@ -67,8 +72,8 @@ public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, S
         this.goalSelector.add(0, new SleepGoal(this, this, 100,false, true, true, false, 3.0, 500, 700, true, false, true, true,1));
         this.goalSelector.add(0, new SitGoal(this));
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new IguanaBaskGoal(this));
-        this.goalSelector.add(1, new IguanaMoveToSunGoal(this));
+        this.goalSelector.add(1, new BaskGoal<>(this, 5000, 7000, 2400));
+        this.goalSelector.add(1, new MoveToSunGoal<>(this, 8, 2, 5000, 7000));
         this.goalSelector.add(1, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.25));
@@ -164,25 +169,24 @@ public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, S
         this.snowMeltTimer = timer;
     }
 
+    @Override
     public boolean isBasking() {
         return this.dataTracker.get(IS_BASKING);
     }
 
+    @Override
     public void setBasking(boolean basking) {
         this.dataTracker.set(IS_BASKING, basking);
     }
 
+    @Override
     public int getBaskingCooldown() {
         return baskingCooldown;
     }
 
+    @Override
     public void setBaskingCooldown(int ticks) {
         this.baskingCooldown = ticks;
-    }
-
-    public boolean isNotBaskingTime() {
-        long time = this.getWorld().getTimeOfDay() % 24000;
-        return time < 5000 || time > 7000 || !this.getWorld().isDay() || this.getWorld().isRaining();
     }
 
     @Override
@@ -190,6 +194,11 @@ public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, S
         if (source == this.getDamageSources().inWall() && this.hasVehicle()) {
             return false;
         }
+
+        if (ShoulderPetHelper.shouldIgnoreMountedOwnerDamage(this, source)) {
+            return false;
+        }
+
         return super.damage(source, amount);
     }
 
@@ -262,13 +271,9 @@ public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, S
 
         if (isTamed() && !this.isBaby() && hand == Hand.MAIN_HAND && itemStack.isEmpty()) {
             if (!this.hasVehicle()) {
-                if (player.getShoulderEntityLeft().isEmpty()) {
-                    if (!isPlayerBeingRiddenByIguana(player)) {
-                        this.startRiding(player, true);
-                        return ActionResult.SUCCESS;
-                    } else {
-                        return ActionResult.PASS;
-                    }
+                if (ShoulderPetHelper.canAddCustomShoulderPet(player)) {
+                    this.startRiding(player, true);
+                    return ActionResult.SUCCESS;
                 } else {
                     return ActionResult.PASS;
                 }
@@ -294,15 +299,6 @@ public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, S
             return ActionResult.SUCCESS;
         }
         return super.interactMob(player, hand);
-    }
-
-    private boolean isPlayerBeingRiddenByIguana(PlayerEntity player) {
-        for (Entity passenger : player.getPassengerList()) {
-            if (passenger instanceof IguanaEntity) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
@@ -516,62 +512,5 @@ public class IguanaEntity extends TameableEntity implements GeoEntity, Sleepy, S
             }
         }
         return baby;
-    }
-
-    public static class IguanaMoveToSunGoal extends MoveToBlockGoal {
-        private final IguanaEntity iguana;
-
-        public IguanaMoveToSunGoal(IguanaEntity iguana) {
-            super(iguana, (state, pos) ->
-                            state.isSideSolidFullSquare(iguana.getWorld(), pos, net.minecraft.util.math.Direction.UP) &&
-                                    iguana.getWorld().getLightLevel(net.minecraft.world.LightType.SKY, pos.up()) >= 15,
-                    8, 2);
-            this.iguana = iguana;
-        }
-
-        @Override
-        public boolean canStart() {
-            if (this.iguana.isSleeping() || this.iguana.isSitting() || this.iguana.isBasking()) return false;
-            if (this.iguana.getBaskingCooldown() > 0 || this.iguana.isNotBaskingTime()) return false;
-            return super.canStart();
-        }
-
-        @Override
-        protected void onReachedTarget(BlockPos pos) {
-            this.iguana.setBasking(true);
-            this.iguana.getNavigation().stop();
-        }
-    }
-
-    public static class IguanaBaskGoal extends Goal {
-        private final IguanaEntity iguana;
-
-        public IguanaBaskGoal(IguanaEntity iguana) {
-            this.iguana = iguana;
-            this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
-        }
-
-        @Override
-        public boolean canStart() {
-            return this.iguana.isBasking();
-        }
-
-        @Override
-        public boolean shouldContinue() {
-            boolean hasSun = this.iguana.getWorld().getLightLevel(LightType.SKY, this.iguana.getBlockPos().up()) >= 15;
-            return hasSun && !this.iguana.isNotBaskingTime() && !this.iguana.isTouchingWater() && !this.iguana.hasVehicle() && !this.iguana.isSleeping() && this.iguana.isBasking();
-        }
-
-        @Override
-        public void tick() {
-            this.iguana.getNavigation().stop();
-            this.iguana.getLookControl().tick();
-        }
-
-        @Override
-        public void stop() {
-            this.iguana.setBasking(false);
-            this.iguana.setBaskingCooldown(2400);
-        }
     }
 }

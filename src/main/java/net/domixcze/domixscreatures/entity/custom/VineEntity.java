@@ -14,6 +14,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -44,7 +45,6 @@ public class VineEntity extends HostileEntity implements GeoEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new GrabEntitiesGoal(this));
-        this.goalSelector.add(1, new LookAroundGoal(this));
     }
 
     @Override
@@ -140,10 +140,10 @@ public class VineEntity extends HostileEntity implements GeoEntity {
         return ModSounds.VINE_HURT;
     }
 
-    /*@Override
+    @Override
     protected SoundEvent getDeathSound() {
         return ModSounds.VINE_DEATH;
-    }*/
+    }
 
     static class GrabEntitiesGoal extends Goal {
         private final VineEntity vine;
@@ -175,11 +175,20 @@ public class VineEntity extends HostileEntity implements GeoEntity {
         public void start() {
             List<LivingEntity> nearbyPlayers = this.vine.getWorld().getEntitiesByClass(LivingEntity.class, this.vine.getBoundingBox().expand(2.0), e -> e instanceof PlayerEntity);
             if (!nearbyPlayers.isEmpty()) {
-                LivingEntity player = nearbyPlayers.get(0);
+                LivingEntity player = nearbyPlayers.getFirst();
                 player.startRiding(this.vine, true);
                 this.vine.setHoldingEntity(true);
                 grabTime = 0;
                 player.damage(this.vine.getDamageSources().mobAttack(this.vine), DAMAGE_ON_GRAB);
+
+                this.vine.getWorld().playSound(
+                        null,
+                        this.vine.getBlockPos(),
+                        ModSounds.VINE_GRAB,
+                        SoundCategory.HOSTILE,
+                        1.0f,
+                        1.0f
+                );
             }
         }
 

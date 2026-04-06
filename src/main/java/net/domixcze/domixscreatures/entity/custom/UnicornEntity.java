@@ -1,6 +1,10 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.*;
+import net.domixcze.domixscreatures.entity.ai.goal.MobEatGrassGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.EatsGrass;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.unicorn.UnicornVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.particle.ModParticles;

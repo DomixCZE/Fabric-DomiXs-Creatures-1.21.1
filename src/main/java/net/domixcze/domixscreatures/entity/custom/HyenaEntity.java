@@ -1,10 +1,11 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.HyenaMeleeAttackGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
-import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.HyenaMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
 import net.minecraft.entity.EntityType;
@@ -64,6 +65,7 @@ public class HyenaEntity extends AnimalEntity implements GeoEntity, Sleepy, Snow
         this.goalSelector.add(0, new SleepGoal(this, this, 120, false, true, true, false, 5.0, 600, 800, true, false, true, true, 1));
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
+        this.goalSelector.add(2, new BabyFollowParentGoal(this, 1.0));
         this.goalSelector.add(2, new HyenaMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(4, new LookAroundGoal(this));

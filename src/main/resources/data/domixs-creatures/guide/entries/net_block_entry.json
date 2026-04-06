@@ -1,0 +1,77 @@
+{
+  "entry_id": "domixs-creatures:net_block_entry",
+  "category": "blocks",
+  "title": "guide.title.domixs-creatures.net_block",
+  "button_text": "guide.title.domixs-creatures.net_block",
+  "discoverable": true,
+  "unlock_ids": [
+    "domixs-creatures:white_net_block",
+    "domixs-creatures:light_gray_net_block",
+    "domixs-creatures:gray_net_block",
+    "domixs-creatures:black_net_block",
+    "domixs-creatures:brown_net_block",
+    "domixs-creatures:red_net_block",
+    "domixs-creatures:orange_net_block",
+    "domixs-creatures:yellow_net_block",
+    "domixs-creatures:purple_net_block",
+    "domixs-creatures:magenta_net_block",
+    "domixs-creatures:pink_net_block",
+    "domixs-creatures:blue_net_block",
+    "domixs-creatures:cyan_net_block",
+    "domixs-creatures:light_blue_net_block",
+    "domixs-creatures:green_net_block",
+    "domixs-creatures:lime_net_block"
+  ],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.net_block_page1_line1",
+        "guide.entry.domixs-creatures.net_block_page1_line2"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:net_block",
+          "grid_size": "2x2",
+          "x": 50,
+          "y": 120,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.net_block_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_crafting_recipe",
+          "recipes": [
+            "domixs-creatures:white_net_block",
+            "domixs-creatures:light_gray_net_block",
+            "domixs-creatures:gray_net_block",
+            "domixs-creatures:black_net_block",
+            "domixs-creatures:brown_net_block",
+            "domixs-creatures:red_net_block",
+            "domixs-creatures:orange_net_block",
+            "domixs-creatures:yellow_net_block",
+            "domixs-creatures:purple_net_block",
+            "domixs-creatures:magenta_net_block",
+            "domixs-creatures:pink_net_block",
+            "domixs-creatures:blue_net_block",
+            "domixs-creatures:cyan_net_block",
+            "domixs-creatures:light_blue_net_block",
+            "domixs-creatures:green_net_block",
+            "domixs-creatures:lime_net_block"
+          ],
+          "grid_size": "2x2",
+          "x": 50,
+          "y": 90,
+          "scale": 1.0
+        }
+      ]
+    }
+  ]
+}

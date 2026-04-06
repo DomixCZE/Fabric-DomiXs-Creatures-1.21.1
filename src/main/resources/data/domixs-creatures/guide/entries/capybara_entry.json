@@ -1,0 +1,34 @@
+{
+  "entry_id": "domixs-creatures:capybara_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.capybara",
+  "button_text": "guide.title.domixs-creatures.capybara",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:capybara"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.capybara_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/capybara_icon.png",
+          "x": 50,
+          "y": 110,
+          "width": 604,
+          "height": 450,
+          "scale": 0.15
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.capybara_page2"
+      ]
+    }
+  ]
+}

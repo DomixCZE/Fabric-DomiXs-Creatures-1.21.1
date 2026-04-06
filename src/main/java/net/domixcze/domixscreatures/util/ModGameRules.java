@@ -6,6 +6,7 @@ import net.minecraft.world.GameRules;
 
 public class ModGameRules {
     //MOB BEHAVIOR
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_KOMODO_DRAGON_RIDING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_WATER_STRIDER_RIDING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_FIRE_SALAMANDER_SMELTING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_FIRE_SALAMANDER_MAGMA_ATTACK;
@@ -21,6 +22,7 @@ public class ModGameRules {
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_DEER_ANTLER_SHEDDING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_TERMITE_LOG_HOLLOWING;
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_ANT_LEAF_COLLECTING;
+    public static GameRules.Key<GameRules.BooleanRule> ENABLE_OWL_TREASURE_ENCHANTING;
 
     //BLOCKS
     public static GameRules.Key<GameRules.BooleanRule> ENABLE_RAIN_BREAKING_CRACKED_GLASS;
@@ -37,6 +39,12 @@ public class ModGameRules {
         //MOBS
         ENABLE_WATER_STRIDER_RIDING = GameRuleRegistry.register(
                 "enableWaterStriderRiding",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
+        ENABLE_KOMODO_DRAGON_RIDING = GameRuleRegistry.register(
+                "enableKomodoDragonRiding",
                 GameRules.Category.MOBS,
                 GameRuleFactory.createBooleanRule(true)
         );
@@ -115,6 +123,12 @@ public class ModGameRules {
 
         ENABLE_ANT_LEAF_COLLECTING = GameRuleRegistry.register(
                 "enableAntLeafCollecting",
+                GameRules.Category.MOBS,
+                GameRuleFactory.createBooleanRule(true)
+        );
+
+        ENABLE_OWL_TREASURE_ENCHANTING = GameRuleRegistry.register(
+                "enableOwlTreasureEnchanting",
                 GameRules.Category.MOBS,
                 GameRuleFactory.createBooleanRule(true)
         );

@@ -145,6 +145,26 @@ public class ModEntityGeneration {
         SpawnRestriction.register(ModEntities.SPECTRAL_BAT, SpawnLocationTypes.UNRESTRICTED,
                 Heightmap.Type.MOTION_BLOCKING, SpectralBatEntity::canSpawn);
 
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.KOMODO_DRAGON_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.KOMODO_DRAGON, 10, 1, 2);
+        SpawnRestriction.register(ModEntities.KOMODO_DRAGON, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.CROW_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.CROW, 10, 1, 3);
+        SpawnRestriction.register(ModEntities.CROW, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.OWL_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.OWL, 10, 0, 1);
+        SpawnRestriction.register(ModEntities.OWL, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.PIGEON_SPAWNS_IN), SpawnGroup.CREATURE,
+                ModEntities.PIGEON, 5, 2, 3);
+        SpawnRestriction.register(ModEntities.PIGEON, SpawnLocationTypes.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
+
 
 
 

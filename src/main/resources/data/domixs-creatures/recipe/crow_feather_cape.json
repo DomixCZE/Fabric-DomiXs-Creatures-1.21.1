@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SFS",
+    "FLF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "domixs-creatures:crow_feather"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "domixs-creatures:crow_feather_cape"
+  }
+}

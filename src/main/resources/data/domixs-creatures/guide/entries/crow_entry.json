@@ -1,0 +1,96 @@
+{
+  "entry_id": "domixs-creatures:crow_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.crow",
+  "button_text": "guide.title.domixs-creatures.crow",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:crow"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.crow_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/crow_icon.png",
+          "x": 50,
+          "y": 100,
+          "width": 234,
+          "height": 239,
+          "scale": 0.3
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.crow_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:wheat_seeds",
+          "x": 30,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        },
+        {
+          "type": "cycling_item",
+          "ids": [
+            "minecraft:sweet_berries",
+            "minecraft:glow_berries"
+          ],
+          "x": 80,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.crow_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.crow_page3_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.crow_page4_line1",
+        "",
+        "guide.entry.domixs-creatures.crow_page4_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.crow_page5"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:crow_feather",
+          "x": 60,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.crow_page6"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:crow_feather_cape",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 100,
+          "scale": 1.0
+        }
+      ]
+    }
+  ]
+}

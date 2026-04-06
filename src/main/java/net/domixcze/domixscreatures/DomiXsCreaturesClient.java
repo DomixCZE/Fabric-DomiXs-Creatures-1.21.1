@@ -4,8 +4,6 @@ import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.block.client.AncientChestBlockRenderer;
 import net.domixcze.domixscreatures.block.client.CursedAncientChestBlockRenderer;
 import net.domixcze.domixscreatures.block.entity.ModBlockEntities;
-import net.domixcze.domixscreatures.config.ModConfig;
-import net.domixcze.domixscreatures.config.ModConfigScreen;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.ModModelLayers;
 import net.domixcze.domixscreatures.entity.client.ancient_skeleton.AncientSkeletonRenderer;
@@ -37,13 +35,17 @@ import net.domixcze.domixscreatures.entity.client.hermit_crab.HermitCrabRenderer
 import net.domixcze.domixscreatures.entity.client.hippo.HippoRenderer;
 import net.domixcze.domixscreatures.entity.client.hyena.HyenaRenderer;
 import net.domixcze.domixscreatures.entity.client.iguana.IguanaRenderer;
+import net.domixcze.domixscreatures.entity.client.crow.CrowRenderer;
+import net.domixcze.domixscreatures.entity.client.komodo_dragon.KomodoDragonRenderer;
 import net.domixcze.domixscreatures.entity.client.magma_ball.MagmaBallRenderer;
 import net.domixcze.domixscreatures.entity.client.mole.MoleRenderer;
 import net.domixcze.domixscreatures.entity.client.moose.MooseRenderer;
 import net.domixcze.domixscreatures.entity.client.mud_golem.MudGolemRenderer;
 import net.domixcze.domixscreatures.entity.client.neon_tetra.NeonTetraRenderer;
+import net.domixcze.domixscreatures.entity.client.owl.OwlRenderer;
 import net.domixcze.domixscreatures.entity.client.peacock_bass.PeacockBassRenderer;
 import net.domixcze.domixscreatures.entity.client.penguin.PenguinRenderer;
+import net.domixcze.domixscreatures.entity.client.pigeon.PigeonRenderer;
 import net.domixcze.domixscreatures.entity.client.piranha.PiranhaRenderer;
 import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineRenderer;
 import net.domixcze.domixscreatures.entity.client.quill_projectile.QuillProjectileRenderer;
@@ -64,35 +66,23 @@ import net.domixcze.domixscreatures.entity.client.worm.WormRenderer;
 import net.domixcze.domixscreatures.particle.*;
 import net.domixcze.domixscreatures.screen.ModScreenHandlers;
 import net.domixcze.domixscreatures.screen.custom.FishTrapScreen;
-import net.domixcze.domixscreatures.sound.ModSounds;
-import net.domixcze.domixscreatures.util.CoconutLandedPayload;
 import net.domixcze.domixscreatures.util.ModClientEvents;
 import net.domixcze.domixscreatures.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.particle.GlowParticle;
 import net.minecraft.client.particle.SonicBoomParticle;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.GrassColors;
-import org.lwjgl.glfw.GLFW;
 
 public class DomiXsCreaturesClient implements ClientModInitializer {
-    public static KeyBinding OPEN_CONFIG_KEY;
 
     @Override
     public void onInitializeClient() {
@@ -152,6 +142,11 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TERMITE, TermiteRenderer::new);
         EntityRendererRegistry.register(ModEntities.ANT, AntRenderer::new);
         EntityRendererRegistry.register(ModEntities.ANTEATER, AnteaterRenderer::new);
+        EntityRendererRegistry.register(ModEntities.KOMODO_DRAGON, KomodoDragonRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.CROW, CrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.PIGEON, PigeonRenderer::new);
+        EntityRendererRegistry.register(ModEntities.OWL, OwlRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.MAGMA_BALL, MagmaBallRenderer::new);
         EntityRendererRegistry.register(ModEntities.QUILL_PROJECTILE, QuillProjectileRenderer::new);
@@ -232,47 +227,11 @@ public class DomiXsCreaturesClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.ANCIENT_CHEST_BLOCK_ENTITY, ctx -> new AncientChestBlockRenderer());
         BlockEntityRendererFactories.register(ModBlockEntities.CURSED_ANCIENT_CHEST_BLOCK_ENTITY, ctx -> new CursedAncientChestBlockRenderer());
 
-        OPEN_CONFIG_KEY = new KeyBinding(
-                "key.domixs-creatures.open_config",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_O, // default keybind O
-                "category.domixs-creatures.general"
-        );
-        KeyBindingHelper.registerKeyBinding(OPEN_CONFIG_KEY);
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (OPEN_CONFIG_KEY.wasPressed()) {
-                client.setScreen(ModConfigScreen.getScreen(null));
-            }
-        });
-
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
             if (world != null && pos != null) {
                 return BiomeColors.getGrassColor(world, pos);
             }
             return GrassColors.getDefaultColor();
         }, ModBlocks.CLOVERS);
-
-        ClientPlayNetworking.registerGlobalReceiver(
-                CoconutLandedPayload.ID,
-                (payload, context) -> {
-                    BlockPos pos = payload.pos();
-
-                    context.client().execute(() -> {
-                        var mc = context.client();
-                        if (mc.world == null || mc.player == null) return;
-
-                        boolean bonk = ModConfig.INSTANCE.enableCoconutBonkSound;
-
-                        mc.world.playSound(
-                                mc.player,
-                                pos,
-                                bonk ? ModSounds.COCONUT_LAND : SoundEvents.BLOCK_WOOD_PLACE,
-                                SoundCategory.BLOCKS,
-                                1.0f,
-                                1.0f
-                        );
-                    });
-                }
-        );
     }
 }

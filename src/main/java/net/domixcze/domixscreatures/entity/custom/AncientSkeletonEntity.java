@@ -1,8 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.AncientSkeletonMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.AncientSkeletonMeleeAttackGoal;
 import net.domixcze.domixscreatures.item.ModItems;
-import net.domixcze.domixscreatures.sound.ModSounds;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;

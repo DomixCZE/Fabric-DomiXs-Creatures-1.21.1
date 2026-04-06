@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.minecraft.component.ComponentType;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
@@ -30,6 +31,9 @@ public class ModDataComponents {
     public static final ComponentType<DeathWhistleComponent> DEATH_WHISTLE =
             register("death_whistle_sound", builder -> builder.codec(DeathWhistleComponent.CODEC));
 
+    public static final ComponentType<CoatedQuillComponent> COATED_QUILL =
+            register("quill_effect", builder -> builder.codec(CoatedQuillComponent.CODEC));
+
     private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(
                 Registries.DATA_COMPONENT_TYPE,
@@ -39,7 +43,7 @@ public class ModDataComponents {
     }
 
     public static void registerDataComponents() {
-        DomiXsCreatures.LOGGER.info("Registering data components for " + DomiXsCreatures.MOD_ID);
+        DomiXsCreatures.LOGGER.info("Registering Data Components for " + DomiXsCreatures.MOD_ID);
     }
 
     public record JarContentsComponent(Identifier type, List<NbtCompound> entities) {
@@ -66,6 +70,21 @@ public class ModDataComponents {
         public static final Codec<FluteModeComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.STRING.fieldOf("mode").forGetter(FluteModeComponent::mode)
         ).apply(instance, FluteModeComponent::new));
+    }
+
+    public record CoatedQuillComponent(Identifier effectId, int duration, int amplifier) {
+
+        public static final Codec<CoatedQuillComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Identifier.CODEC.fieldOf("effect").forGetter(CoatedQuillComponent::effectId),
+                Codec.INT.fieldOf("duration").forGetter(CoatedQuillComponent::duration),
+                Codec.INT.fieldOf("amplifier").forGetter(CoatedQuillComponent::amplifier)
+        ).apply(instance, CoatedQuillComponent::new));
+
+        public StatusEffectInstance toInstance() {
+            return Registries.STATUS_EFFECT.getEntry(effectId)
+                    .map(entry -> new StatusEffectInstance(entry, duration, amplifier))
+                    .orElse(null);
+        }
     }
 
     public record DeathWhistleComponent(Identifier soundId, Identifier entityTypeId) {

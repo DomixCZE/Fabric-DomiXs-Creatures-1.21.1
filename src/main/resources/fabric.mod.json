@@ -29,14 +29,11 @@
 		"domixs-creatures.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.14",
+		"fabricloader": ">=0.18.4",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"geckolib": ">=4.7.5.1",
-		"cloth-config": ">=15.0.140",
+		"domixs-guidebook": ">=1.0.0-beta.5",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }

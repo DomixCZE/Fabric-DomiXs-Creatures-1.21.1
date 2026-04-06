@@ -1,10 +1,9 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.effect.ModEffects;
-import net.domixcze.domixscreatures.entity.ai.PiranhaMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.PiranhaMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.piranha.PiranhaVariants;
 import net.domixcze.domixscreatures.item.ModItems;
-import net.domixcze.domixscreatures.util.BleedingUtil;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
@@ -24,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Box;
@@ -158,16 +156,9 @@ public class PiranhaEntity extends SchoolingFishEntity implements GeoEntity {
         boolean success = super.tryAttack(target);
 
         if (success && target instanceof LivingEntity livingTarget) {
-            int protectionCount = BleedingUtil.getBleedingProtectionCount(livingTarget);
-
-            if (protectionCount == 0) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 250, 0));
-            } else if (protectionCount <= 2) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 150, 0));
-            } else if (protectionCount == 3) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 80, 0));
-            }
+            livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 250, 0), this);
         }
+
         return success;
     }
 

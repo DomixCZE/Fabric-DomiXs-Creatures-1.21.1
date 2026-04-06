@@ -1,0 +1,53 @@
+{
+  "entry_id": "domixs-creatures:copper_trumpet_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.copper_trumpet",
+  "button_text": "guide.title.domixs-creatures.copper_trumpet",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:copper_trumpet"],
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.copper_trumpet_page1"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:copper_trumpet",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 110,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.copper_trumpet_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_crafting_recipe",
+          "recipes": [
+            "domixs-creatures:waxed_copper_trumpet",
+            "domixs-creatures:waxed_copper_trumpet_exposed",
+            "domixs-creatures:waxed_copper_trumpet_weathered",
+            "domixs-creatures:waxed_copper_trumpet_oxidized"
+          ],
+          "grid_size": "2x2",
+          "x": 50,
+          "y": 120,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.copper_trumpet_page3"
+      ]
+    }
+  ]
+}

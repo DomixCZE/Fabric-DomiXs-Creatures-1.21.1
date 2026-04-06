@@ -1,0 +1,42 @@
+{
+  "entry_id": "domixs-creatures:silk_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.silk",
+  "button_text": "guide.title.domixs-creatures.silk",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:silk"],
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.silk_page1"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 70,
+          "y": 110,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.silk_page2"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:table_cloth_block",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 70,
+          "scale": 1.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "entry_id": "domixs-creatures:unicorn_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.unicorn",
+  "button_text": "guide.title.domixs-creatures.unicorn",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:unicorn"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/unicorn_icon_1.png",
+              "width": 428,
+              "height": 545
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/unicorn_icon_2.png",
+              "width": 428,
+              "height": 545
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/unicorn_icon_3.png",
+              "width": 428,
+              "height": 545
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/unicorn_icon_4.png",
+              "width": 428,
+              "height": 545
+            }
+          ],
+          "x": 50,
+          "y": 110,
+          "scale": 0.15
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.unicorn_page2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.unicorn_page3_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page4"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:unicorn_dust",
+          "x": 50,
+          "y": 110,
+          "width": 16,
+          "height": 16,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.unicorn_page5_line1",
+        "",
+        "guide.entry.domixs-creatures.unicorn_page5_line2"
+      ]
+    }
+  ]
+}

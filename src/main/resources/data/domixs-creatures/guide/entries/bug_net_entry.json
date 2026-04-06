@@ -1,0 +1,33 @@
+{
+  "entry_id": "domixs-creatures:bug_net_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.bug_net",
+  "button_text": "guide.title.domixs-creatures.bug_net",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:bug_net"],
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.bug_net_page1"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:bug_net",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 110,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.bug_net_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.bug_net_page2_line2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "entry_id": "domixs-creatures:rat_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.rat",
+  "button_text": "guide.title.domixs-creatures.rat",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:rat"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.rat_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_1.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_2.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_3.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_4.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_5.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_6.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_7.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_8.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_9.png",
+              "width": 349,
+              "height": 232
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/rat_icon_10.png",
+              "width": 349,
+              "height": 232
+            }
+          ],
+          "x": 50,
+          "y": 120,
+          "scale": 0.2
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.rat_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:cheese_piece",
+          "x": 70,
+          "y": 120,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "minecraft:carrot",
+          "x": 30,
+          "y": 120,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.rat_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:command_flute",
+          "x": 50,
+          "y": 110,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,11 @@ package net.domixcze.domixscreatures.entity.client.sun_bear;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.entity.custom.SunBearEntity;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
 
 import java.text.Normalizer;
 import java.util.HashSet;
@@ -44,5 +48,18 @@ public class SunBearModel extends GeoModel<SunBearEntity> {
         return animatable.isBaby()
                 ? Identifier.of(DomiXsCreatures.MOD_ID, "animations/baby_sun_bear.animation.json")
                 : Identifier.of(DomiXsCreatures.MOD_ID, "animations/sun_bear.animation.json");
+    }
+
+    @Override
+    public void setCustomAnimations(SunBearEntity animatable, long instanceId, AnimationState<SunBearEntity> animationState) {
+        super.setCustomAnimations(animatable, instanceId, animationState);
+
+        GeoBone head = this.getAnimationProcessor().getBone("head_rot");
+        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+
+        if (head != null && entityData != null) {
+            head.setRotX(entityData.headPitch() * 0.017453292F);
+            head.setRotY(entityData.netHeadYaw() * 0.017453292F);
+        }
     }
 }

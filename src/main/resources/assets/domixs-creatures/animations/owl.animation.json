@@ -1,0 +1,354 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.owl.idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"head": {
+					"rotation": {
+						"vector": [-10, 0, 0]
+					},
+					"position": {
+						"vector": [0, -0.25, 0]
+					}
+				},
+				"right_ear": {
+					"rotation": {
+						"vector": [0, 10, 0]
+					}
+				},
+				"left_ear": {
+					"rotation": {
+						"vector": [0, -10, 0]
+					}
+				},
+				"right_wing": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					}
+				},
+				"left_wing": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					}
+				},
+				"body": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [45, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.owl.walk": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"head": {
+					"rotation": {
+						"vector": [-10, 0, 0]
+					},
+					"position": {
+						"vector": [0, -0.25, 0]
+					}
+				},
+				"right_ear": {
+					"rotation": {
+						"vector": [0, 10, 0]
+					}
+				},
+				"left_ear": {
+					"rotation": {
+						"vector": [0, -10, 0]
+					}
+				},
+				"right_wing": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					}
+				},
+				"left_wing": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"0.0": {
+							"vector": [-25, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [20, 0, 0]
+						},
+						"0.75": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [-25, 0, 0]
+						}
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"0.0": {
+							"vector": [20, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [-25, 0, 0]
+						},
+						"0.75": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [20, 0, 0]
+						}
+					}
+				},
+				"left_foot": {
+					"rotation": {
+						"0.0": {
+							"vector": [10, 0, 0]
+						},
+						"0.5": {
+							"vector": [-17.5, 0, 0]
+						},
+						"1.0": {
+							"vector": [10, 0, 0]
+						}
+					}
+				},
+				"right_foot": {
+					"rotation": {
+						"0.0": {
+							"vector": [-17.5, 0, 0]
+						},
+						"0.5": {
+							"vector": [10, 0, 0]
+						},
+						"1.0": {
+							"vector": [-17.5, 0, 0]
+						}
+					}
+				},
+				"body": {
+					"rotation": {
+						"0.0": {
+							"vector": [9.9996, 0.0868, -0.4924]
+						},
+						"0.5": {
+							"vector": [9.9996, -0.0868, 0.4924]
+						},
+						"1.0": {
+							"vector": [9.9996, 0.0868, -0.4924]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, -0.03, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [45, 0, 0]
+						},
+						"0.5": {
+							"vector": [44, 0, 0]
+						},
+						"1.0": {
+							"vector": [45, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"animation.owl.fly": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"head": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					},
+					"position": {
+						"vector": [0, -0.5, -0.5]
+					}
+				},
+				"right_ear": {
+					"rotation": {
+						"vector": [0, 10, 0]
+					}
+				},
+				"left_ear": {
+					"rotation": {
+						"vector": [0, -10, 0]
+					}
+				},
+				"right_wing": {
+					"rotation": {
+						"0.0": {
+							"vector": [45.3141, 54.5126, 134.6832]
+						},
+						"0.25": {
+							"vector": [-68.3627, 50.9634, 9.6588]
+						},
+						"0.5": {
+							"vector": [45.3141, 54.5126, 134.6832]
+						},
+						"0.75": {
+							"vector": [-68.3627, 50.9634, 9.6588]
+						},
+						"1.0": {
+							"vector": [45.3141, 54.5126, 134.6832]
+						}
+					},
+					"position": {
+						"vector": [0, -2, 0]
+					}
+				},
+				"left_wing": {
+					"rotation": {
+						"0.0": {
+							"vector": [45.3142, -54.5125, -134.6834]
+						},
+						"0.25": {
+							"vector": [-68.3625, -50.9636, -9.6586]
+						},
+						"0.5": {
+							"vector": [45.3142, -54.5125, -134.6834]
+						},
+						"0.75": {
+							"vector": [-68.3625, -50.9636, -9.6586]
+						},
+						"1.0": {
+							"vector": [45.3142, -54.5125, -134.6834]
+						}
+					},
+					"position": {
+						"vector": [0, -2, 0]
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"vector": [-15, 0, 0]
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"vector": [-15, 0, 0]
+					}
+				},
+				"left_foot": {
+					"rotation": {
+						"vector": [35, 0, 0]
+					}
+				},
+				"right_foot": {
+					"rotation": {
+						"vector": [35, 0, 0]
+					}
+				},
+				"owl": {
+					"rotation": {
+						"vector": [75, 0, 0]
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, -0.5, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, -0.5, 0]
+						},
+						"0.75": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, -0.5, 0]
+						}
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [-30, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.owl.sit": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"right_ear": {
+					"rotation": {
+						"vector": [0, 10, 0]
+					}
+				},
+				"left_ear": {
+					"rotation": {
+						"vector": [0, -10, 0]
+					}
+				},
+				"right_wing": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0.25, 0]
+					}
+				},
+				"left_wing": {
+					"rotation": {
+						"vector": [10, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0.25, 0]
+					}
+				},
+				"left_leg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"right_leg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"owl": {
+					"position": {
+						"vector": [0, -1, 0]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [60, 0, 0]
+					},
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				}
+			}
+		}
+	}
+}

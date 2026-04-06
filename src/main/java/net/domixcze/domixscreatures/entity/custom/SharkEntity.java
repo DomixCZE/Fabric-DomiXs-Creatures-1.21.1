@@ -1,10 +1,9 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.effect.ModEffects;
-import net.domixcze.domixscreatures.entity.ai.Beachable;
-import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
-import net.domixcze.domixscreatures.entity.ai.SharkMeleeAttackGoal;
-import net.domixcze.domixscreatures.util.BleedingUtil;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Beachable;
+import net.domixcze.domixscreatures.entity.ai.goal.BeachedGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.SharkMeleeAttackGoal;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;
@@ -81,16 +80,9 @@ public class SharkEntity extends WaterCreatureEntity implements GeoEntity, Beach
         boolean success = super.tryAttack(target);
 
         if (success && target instanceof LivingEntity livingTarget) {
-            int protectionCount = BleedingUtil.getBleedingProtectionCount(livingTarget);
-
-            if (protectionCount == 0) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 350, 0));
-            } else if (protectionCount <= 2) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 250, 0));
-            } else if (protectionCount == 3) {
-                livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 150, 0));
-            }
+            livingTarget.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 350, 0), this);
         }
+
         return success;
     }
 

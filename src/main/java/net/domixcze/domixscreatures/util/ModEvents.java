@@ -2,7 +2,7 @@ package net.domixcze.domixscreatures.util;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.effect.ModEffects;
-import net.domixcze.domixscreatures.entity.ai.Chainable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Chainable;
 import net.domixcze.domixscreatures.entity.custom.ChainAnchorEntity;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.item.custom.IronShackleItem;

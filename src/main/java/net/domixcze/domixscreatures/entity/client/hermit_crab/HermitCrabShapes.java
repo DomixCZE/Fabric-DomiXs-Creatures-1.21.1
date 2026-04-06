@@ -2,7 +2,8 @@ package net.domixcze.domixscreatures.entity.client.hermit_crab;
 
 public enum HermitCrabShapes {
     ROUND(0, "round"),
-    POINTY(1, "pointy");
+    POINTY(1, "pointy"),
+    FLAT(2, "flat");
 
     private static final HermitCrabShapes[] BY_ID = values();
     private final int id;

@@ -1,6 +1,6 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.Chainable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Chainable;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

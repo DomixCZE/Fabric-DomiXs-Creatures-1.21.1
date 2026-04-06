@@ -20,7 +20,14 @@
     "minecraft:chainmail_chestplate",
     "minecraft:chainmail_leggings",
     "minecraft:chainmail_boots",
-
+    "domixs-creatures:wyvern_scale_helmet",
+    "domixs-creatures:wyvern_scale_chestplate",
+    "domixs-creatures:wyvern_scale_leggings",
+    "domixs-creatures:wyvern_scale_boots",
+    "domixs-creatures:salamander_helmet",
+    "domixs-creatures:salamander_chestplate",
+    "domixs-creatures:salamander_leggings",
+    "domixs-creatures:salamander_boots",
     "domixs-creatures:jade_crown"
   ]
 }

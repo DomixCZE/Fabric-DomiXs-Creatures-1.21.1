@@ -1,0 +1,98 @@
+{
+  "entry_id": "domixs-creatures:deer_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.deer",
+  "button_text": "guide.title.domixs-creatures.deer",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:deer"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.deer_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/deer_icon.png",
+          "x": 50,
+          "y": 100,
+          "width": 323,
+          "height": 480,
+          "scale": 0.2
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.deer_page2_line1",
+        "guide.entry.domixs-creatures.deer_page2_line2",
+        "",
+        "guide.entry.domixs-creatures.deer_page2_line3"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "tag": "#domixs-creatures:antlers",
+          "x": 30,
+          "y": 140,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.deer_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:raw_deer_venison",
+          "x": 80,
+          "y": 100,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.deer_page4"
+      ],
+      "images": [
+        {
+          "type": "cycling_crafting_recipe",
+          "recipes": [
+            "domixs-creatures:small_antler_hat",
+            "domixs-creatures:medium_antler_hat",
+            "domixs-creatures:large_antler_hat"
+          ],
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 100,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.deer_page5_line1",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.deer_page5_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:wheat",
+          "x": 30,
+          "y": 60,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

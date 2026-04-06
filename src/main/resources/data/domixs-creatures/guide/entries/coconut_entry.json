@@ -1,0 +1,55 @@
+{
+  "entry_id": "domixs-creatures:coconut_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.coconut",
+  "button_text": "guide.title.domixs-creatures.coconut",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:coconut_block"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.coconut_page1_line1",
+        "",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.coconut_page1_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:coconut_block",
+          "x": 80,
+          "y": 85,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.coconut_page2_line1",
+        "",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.coconut_page2_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:coconut_slice",
+          "x": 80,
+          "y": 70,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:coconut_shell",
+          "x": 90,
+          "y": 140,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

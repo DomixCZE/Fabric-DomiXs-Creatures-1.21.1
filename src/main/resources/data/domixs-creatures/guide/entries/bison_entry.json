@@ -1,0 +1,66 @@
+{
+  "entry_id": "domixs-creatures:bison_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.bison",
+  "button_text": "guide.title.domixs-creatures.bison",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:bison"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.bison_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/bison_icon.png",
+          "x": 50,
+          "y": 100,
+          "width": 579,
+          "height": 502,
+          "scale": 0.15
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.bison_page2_line1",
+        "guide.entry.domixs-creatures.bison_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.bison_page3_line1",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.bison_page3_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:wheat",
+          "x": 30,
+          "y": 60,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:raw_bison_meat",
+          "x": 90,
+          "y": 135,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "minecraft:leather",
+          "x": 50,
+          "y": 135,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

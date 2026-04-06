@@ -21,8 +21,13 @@
 					"pivot": [0, 2, 2]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "body",
+					"pivot": [0, 1.5, -2]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 1.5, -2],
 					"cubes": [
 						{

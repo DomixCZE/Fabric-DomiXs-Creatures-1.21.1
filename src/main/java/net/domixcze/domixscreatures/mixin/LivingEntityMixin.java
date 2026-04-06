@@ -4,6 +4,7 @@ import net.domixcze.domixscreatures.component.ModDataComponents;
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.item.custom.DeathWhistleItem;
+import net.domixcze.domixscreatures.util.BleedingUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -37,14 +38,24 @@ public abstract class LivingEntityMixin {
     @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
             at = @At("HEAD"),
             cancellable = true)
-    private void domixscreatures$cancelPoisonWithMask(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+    private void domixscreatures$onAddStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        // Cancel Poison if wearing Shaman Mask
         if (effect.getEffectType().equals(StatusEffects.POISON)) {
             ItemStack mask = this.getEquippedStack(EquipmentSlot.HEAD);
             if (mask.isOf(ModItems.SHAMAN_MASK)) {
-                LivingEntity entity = (LivingEntity) (Object) this;
                 if (!entity.getWorld().isClient) {
                     mask.damage(1, entity, EquipmentSlot.HEAD);
                 }
+                cir.setReturnValue(false);
+                return;
+            }
+        }
+
+        // Cancel Bleeding if immune or full armor
+        if (effect.getEffectType().equals(ModEffects.BLEEDING)) {
+            if (BleedingUtil.getReducedDuration(entity, effect.getDuration()) <= 0) {
                 cir.setReturnValue(false);
             }
         }
@@ -53,7 +64,10 @@ public abstract class LivingEntityMixin {
     @ModifyVariable(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
             at = @At("HEAD"),
             argsOnly = true)
-    private StatusEffectInstance domixscreatures$reducePoisonDuration(StatusEffectInstance effect) {
+    private StatusEffectInstance domixscreatures$reduceEffectDuration(StatusEffectInstance effect) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        // Poison duration reduction
         if (effect.getEffectType().equals(StatusEffects.POISON) && this.hasFullWyvernSet()) {
             return new StatusEffectInstance(
                     effect.getEffectType(),
@@ -64,6 +78,23 @@ public abstract class LivingEntityMixin {
                     effect.shouldShowIcon()
             );
         }
+
+        // Bleeding duration reduction
+        if (effect.getEffectType().equals(ModEffects.BLEEDING)) {
+            if (effect.isInfinite()) return effect;
+
+            int reducedDuration = BleedingUtil.getReducedDuration(entity, effect.getDuration());
+
+            return new StatusEffectInstance(
+                    effect.getEffectType(),
+                    reducedDuration,
+                    effect.getAmplifier(),
+                    effect.isAmbient(),
+                    effect.shouldShowParticles(),
+                    effect.shouldShowIcon()
+            );
+        }
+
         return effect;
     }
 

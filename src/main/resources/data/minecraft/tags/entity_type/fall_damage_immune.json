@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:crow",
+    "domixs-creatures:owl",
+    "domixs-creatures:pigeon",
+    "domixs-creatures:butterfly",
+    "domixs-creatures:spectral_bat",
+    "domixs-creatures:wisp"
+  ]
+}

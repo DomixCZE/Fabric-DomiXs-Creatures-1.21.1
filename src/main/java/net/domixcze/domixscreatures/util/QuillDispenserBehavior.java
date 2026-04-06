@@ -2,6 +2,7 @@ package net.domixcze.domixscreatures.util;
 
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,12 @@ public class QuillDispenserBehavior extends ProjectileDispenserBehavior {
         Item dispensedItem = stack.getItem();
         if (dispensedItem instanceof ProjectileItem projectileItem) {
             ProjectileEntity projectileEntity = projectileItem.createEntity(world, position, stack, direction);
-            projectileEntity.setVelocity((double)direction.getOffsetX(), (double)((float)direction.getOffsetY() + 0.1F), (double)direction.getOffsetZ(), 0.75F, 6.0F); // Use your original force and variation
+
+            if (projectileEntity instanceof PersistentProjectileEntity projectile) {
+                projectile.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
+            }
+
+            projectileEntity.setVelocity(direction.getOffsetX(), (float)direction.getOffsetY() + 0.1F, direction.getOffsetZ(), 0.75F, 6.0F);
             world.spawnEntity(projectileEntity);
             stack.decrement(1);
             return stack;

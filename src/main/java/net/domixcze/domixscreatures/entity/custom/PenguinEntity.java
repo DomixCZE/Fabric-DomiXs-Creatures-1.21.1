@@ -2,7 +2,10 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.*;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.PenguinMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.advancement.criterion.Criteria;

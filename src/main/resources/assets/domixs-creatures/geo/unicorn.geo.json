@@ -21,25 +21,13 @@
 					"pivot": [0, 16, 0]
 				},
 				{
-					"name": "tail",
+					"name": "head_rot",
 					"parent": "body",
-					"pivot": [0, 21, 11],
-					"cubes": [
-						{"origin": [-1.5, 7, 11], "size": [3, 14, 4], "uv": [54, 48]},
-						{"origin": [0, 5, 11], "size": [0, 16, 5], "uv": [16, 60]}
-					]
-				},
-				{
-					"name": "body_main",
-					"parent": "body",
-					"pivot": [0, 16, 0],
-					"cubes": [
-						{"origin": [-5, 11, -11], "size": [10, 10, 22], "inflate": 0.05, "uv": [0, 0]}
-					]
+					"pivot": [0, 16, -10]
 				},
 				{
 					"name": "neck",
-					"parent": "body",
+					"parent": "head_rot",
 					"pivot": [0, 16, -10],
 					"cubes": [
 						{"origin": [-2.05, 16, -11], "size": [4, 12, 7], "uv": [0, 32]}
@@ -161,6 +149,23 @@
 								"down": {"uv": [48, 63], "uv_size": [2, -3]}
 							}
 						}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "body",
+					"pivot": [0, 21, 11],
+					"cubes": [
+						{"origin": [-1.5, 7, 11], "size": [3, 14, 4], "uv": [54, 48]},
+						{"origin": [0, 5, 11], "size": [0, 16, 5], "uv": [16, 60]}
+					]
+				},
+				{
+					"name": "body_main",
+					"parent": "body",
+					"pivot": [0, 16, 0],
+					"cubes": [
+						{"origin": [-5, 11, -11], "size": [10, 10, 22], "inflate": 0.05, "uv": [0, 0]}
 					]
 				},
 				{

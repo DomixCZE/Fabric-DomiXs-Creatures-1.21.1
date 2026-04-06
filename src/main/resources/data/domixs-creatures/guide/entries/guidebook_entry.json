@@ -1,0 +1,33 @@
+{
+  "entry_id": "domixs-creatures:guidebook_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.guidebook",
+  "button_text": "guide.title.domixs-creatures.guidebook",
+  "discoverable": false,
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.guidebook_page1_line1",
+        "",
+        "guide.entry.domixs-creatures.guidebook_page1_line2",
+        "",
+        "guide.entry.domixs-creatures.guidebook_page1_line3"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.guidebook_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:guide_book",
+          "x": 60,
+          "y": 90,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    }
+  ]
+}

@@ -81,6 +81,11 @@ public class ButterflyEntity extends AnimalEntity implements GeoEntity {
     }
 
     @Override
+    public boolean isBaby() {
+        return false; // butterfly should not be a baby
+    }
+
+    @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(VARIANT, ButterflyVariants.YELLOW.getId());

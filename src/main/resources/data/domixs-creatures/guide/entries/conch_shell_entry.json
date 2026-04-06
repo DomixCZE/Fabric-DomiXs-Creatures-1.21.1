@@ -1,0 +1,33 @@
+{
+  "entry_id": "domixs-creatures:conch_shell_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.conch_shell",
+  "button_text": "guide.title.domixs-creatures.conch_shell",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:conch_shell"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.conch_shell_page1_line1",
+        "",
+        "guide.entry.domixs-creatures.conch_shell_page1_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.conch_shell_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:conch_shell",
+          "x": 30,
+          "y": 95,
+          "width": 16,
+          "height": 16,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

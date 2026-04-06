@@ -1,10 +1,10 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
-import net.domixcze.domixscreatures.entity.ai.HippoMeleeAttackGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.HippoMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
 import net.domixcze.domixscreatures.entity.client.hippo.HippoVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModGameRules;
@@ -235,7 +235,6 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
             this.getNavigation().stop();
         }
     }
-
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -536,15 +535,14 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
                 return false;
             }
 
-            BlockPos blockPos = this.hippo.getBlockPos().down();
-            BlockState blockState = this.hippo.getWorld().getBlockState(blockPos);
-            return blockState.isOf(Blocks.MUD) && !this.hippo.isMuddy();
+            return isOnMud() && !this.hippo.isMuddy();
         }
 
         @Override
         public void start() {
-            rollingTime = 400; // 20 seconds
+            rollingTime = 400;
             fullyRolled = false;
+            soundCooldown = 10;
             this.hippo.setRollingInMud(true);
             this.hippo.getNavigation().stop();
         }
@@ -561,10 +559,7 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
 
         @Override
         public boolean shouldContinue() {
-            BlockPos blockPos = this.hippo.getBlockPos().down();
-            BlockState blockState = this.hippo.getWorld().getBlockState(blockPos);
-
-            if (!blockState.isOf(Blocks.MUD)) {
+            if (!isOnMud()) {
                 rollingTime = 0;
                 return false;
             }
@@ -605,6 +600,16 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
             }
         }
 
+        private boolean isOnMud() {
+            BlockPos currentPos = this.hippo.getBlockPos();
+            BlockPos belowPos = currentPos.down();
+
+            BlockState currentState = this.hippo.getWorld().getBlockState(currentPos);
+            BlockState belowState = this.hippo.getWorld().getBlockState(belowPos);
+
+            return currentState.isOf(Blocks.MUD) || belowState.isOf(Blocks.MUD);
+        }
+
         private void spawnMudParticles() {
             if (this.hippo.getWorld() instanceof ServerWorld serverWorld) {
                 double centerX = this.hippo.getX();
@@ -618,11 +623,17 @@ public class HippoEntity extends AnimalEntity implements GeoEntity, Sleepy {
                     double offsetY = this.hippo.getRandom().nextDouble() * 0.5;
                     double offsetZ = (this.hippo.getRandom().nextDouble() - 0.5) * 1.5;
 
-                    serverWorld.spawnParticles(mudParticleEffect,
+                    serverWorld.spawnParticles(
+                            mudParticleEffect,
                             centerX + offsetX,
                             centerY + offsetY,
                             centerZ + offsetZ,
-                            1, 0, 0, 0, 0.1);
+                            1,
+                            0,
+                            0,
+                            0,
+                            0.1
+                    );
                 }
             }
         }

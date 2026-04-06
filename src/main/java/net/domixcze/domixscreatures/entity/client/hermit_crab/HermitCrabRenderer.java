@@ -7,7 +7,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class HermitCrabRenderer extends GeoEntityRenderer<HermitCrabEntity> {
     public HermitCrabRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new HermitCrabModel());
-        this.addRenderLayer(new HermitCrabBodyLayer(this));
+        this.addRenderLayer(new HermitCrabShellLayer(this));
         this.shadowRadius = 0.3F;
     }
 }

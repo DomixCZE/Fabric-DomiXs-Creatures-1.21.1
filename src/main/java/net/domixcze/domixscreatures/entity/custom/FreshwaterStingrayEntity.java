@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.Beachable;
-import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Beachable;
+import net.domixcze.domixscreatures.entity.ai.goal.BeachedGoal;
 import net.domixcze.domixscreatures.entity.client.freshwater_stingray.FreshwaterStingrayVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.util.ModTags;

@@ -1,6 +1,6 @@
 package net.domixcze.domixscreatures.util;
 
-import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -11,7 +11,9 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-public class SnowLayerUtil {
+public final class SnowLayerUtil {
+    private SnowLayerUtil() {
+    }
 
     public static boolean isBeingSnowedOn(LivingEntity entity) {
         BlockPos pos = entity.getBlockPos();

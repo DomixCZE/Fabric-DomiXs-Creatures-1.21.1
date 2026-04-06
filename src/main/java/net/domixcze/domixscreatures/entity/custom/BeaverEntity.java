@@ -1,19 +1,16 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
-import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.beaver.BeaverVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.domixcze.domixscreatures.util.SnowLayerUtil;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.fabricmc.fabric.mixin.content.registry.AxeItemAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

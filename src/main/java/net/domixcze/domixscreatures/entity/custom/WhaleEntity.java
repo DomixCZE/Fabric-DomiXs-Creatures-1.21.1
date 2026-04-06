@@ -1,8 +1,8 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
-import net.domixcze.domixscreatures.entity.ai.Beachable;
-import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Beachable;
+import net.domixcze.domixscreatures.entity.ai.goal.BeachedGoal;
 import net.domixcze.domixscreatures.entity.client.whale.WhaleVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.minecraft.entity.*;

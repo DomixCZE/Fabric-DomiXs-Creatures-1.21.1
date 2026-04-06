@@ -1,0 +1,100 @@
+{
+  "entry_id": "domixs-creatures:termite_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.termite",
+  "button_text": "guide.title.domixs-creatures.termite",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:termite"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.termite_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/termite_icon_1.png",
+              "width": 292,
+              "height": 186
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/termite_icon_2.png",
+              "width": 249,
+              "height": 153
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/termite_icon_3.png",
+              "width": 253,
+              "height": 160
+            }
+          ],
+          "x": 50,
+          "y": 100,
+          "scale": 0.25
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.termite_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.termite_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.termite_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:termite_nest_block",
+          "x": 50,
+          "y": 110,
+          "scale": 3.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.termite_page4_line1",
+        "",
+        "guide.entry.domixs-creatures.termite_page4_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.termite_page5"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.termite_page6"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.termite_page7"
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.termite_page8"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:glass_jar",
+          "x": 30,
+          "y": 70,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

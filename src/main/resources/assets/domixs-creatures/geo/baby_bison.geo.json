@@ -16,8 +16,13 @@
 					"pivot": [-2.5, 0, 0]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "baby_bison",
+					"pivot": [0, 10, -8]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 10, -8],
 					"cubes": [
 						{

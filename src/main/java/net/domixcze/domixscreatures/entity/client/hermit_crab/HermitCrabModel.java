@@ -3,15 +3,15 @@ package net.domixcze.domixscreatures.entity.client.hermit_crab;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.entity.custom.HermitCrabEntity;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
 
 public class HermitCrabModel extends GeoModel<HermitCrabEntity> {
+
     @Override
     public Identifier getModelResource(HermitCrabEntity animatable) {
-        return switch (animatable.getShape()) {
-            case ROUND -> Identifier.of(DomiXsCreatures.MOD_ID, "geo/hermit_crab_round_shell.geo.json");
-            case POINTY -> Identifier.of(DomiXsCreatures.MOD_ID, "geo/hermit_crab_pointy_shell.geo.json");
-        };
+        return Identifier.of(DomiXsCreatures.MOD_ID, "geo/hermit_crab.geo.json");
     }
 
     @Override
@@ -21,9 +21,22 @@ public class HermitCrabModel extends GeoModel<HermitCrabEntity> {
 
     @Override
     public Identifier getAnimationResource(HermitCrabEntity animatable) {
-        return switch (animatable.getShape()) {
-            case ROUND -> Identifier.of(DomiXsCreatures.MOD_ID, "animations/hermit_crab_round_shell.animation.json");
-            case POINTY -> Identifier.of(DomiXsCreatures.MOD_ID, "animations/hermit_crab_pointy_shell.animation.json");
-        };
+        return Identifier.of(DomiXsCreatures.MOD_ID, "animations/hermit_crab.animation.json");
+    }
+
+    @Override
+    public void setCustomAnimations(HermitCrabEntity animatable, long instanceId, AnimationState<HermitCrabEntity> animationState) {
+        super.setCustomAnimations(animatable, instanceId, animationState);
+
+        GeoBone body = getAnimationProcessor().getBone("main");
+        GeoBone shell = getAnimationProcessor().getBone("shell");
+
+        if (body != null) {
+            body.setHidden(body.getScaleX() <= 0.45f);
+        }
+
+        if (shell != null) {
+            shell.setHidden(true);
+        }
     }
 }

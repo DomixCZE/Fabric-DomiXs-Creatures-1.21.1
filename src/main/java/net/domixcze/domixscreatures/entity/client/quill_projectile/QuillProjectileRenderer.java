@@ -7,8 +7,8 @@ import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.util.Identifier;
 
 public class QuillProjectileRenderer extends ProjectileEntityRenderer<QuillProjectileEntity> {
-
-    public static final Identifier TEXTURE = Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/quill.png");
+    public static final Identifier NORMAL_TEXTURE = Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/quill.png");
+    public static final Identifier COATED_TEXTURE = Identifier.of(DomiXsCreatures.MOD_ID, "textures/entity/quill_coated.png");
 
     public QuillProjectileRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -16,6 +16,6 @@ public class QuillProjectileRenderer extends ProjectileEntityRenderer<QuillProje
 
     @Override
     public Identifier getTexture(QuillProjectileEntity entity) {
-        return TEXTURE;
+        return entity.isCoated() ? COATED_TEXTURE : NORMAL_TEXTURE;
     }
 }

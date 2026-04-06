@@ -40,6 +40,17 @@
     ]
   },
 
+  "blowgun_use": {
+    "subtitle": "sounds.domixs-creatures.blowgun_use",
+    "sounds": [
+      "domixs-creatures:blowgun_use_1",
+      "domixs-creatures:blowgun_use_2",
+      "domixs-creatures:blowgun_use_3",
+      "domixs-creatures:blowgun_use_4",
+      "domixs-creatures:blowgun_use_5"
+    ]
+  },
+
   "command_flute_sit": {
     "subtitle": "sounds.domixs-creatures.command_flute_sit",
     "sounds": [
@@ -56,49 +67,49 @@
   "copper_trumpet_1": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet1"
+      "domixs-creatures:copper_trumpet_1"
     ]
   },
   "copper_trumpet_2": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet2"
+      "domixs-creatures:copper_trumpet_2"
     ]
   },
   "copper_trumpet_exposed_1": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet3"
+      "domixs-creatures:copper_trumpet_3"
     ]
   },
   "copper_trumpet_exposed_2": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet4"
+      "domixs-creatures:copper_trumpet_4"
     ]
   },
   "copper_trumpet_weathered_1": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet5"
+      "domixs-creatures:copper_trumpet_5"
     ]
   },
   "copper_trumpet_weathered_2": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet6"
+      "domixs-creatures:copper_trumpet_6"
     ]
   },
   "copper_trumpet_oxidized_1": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet7"
+      "domixs-creatures:copper_trumpet_7"
     ]
   },
   "copper_trumpet_oxidized_2": {
     "subtitle": "sounds.domixs-creatures.copper_trumpet_plays",
     "sounds": [
-      "domixs-creatures:copper_trumpet8"
+      "domixs-creatures:copper_trumpet_8"
     ]
   },
 
@@ -203,7 +214,73 @@
   "vine_hurt": {
     "subtitle": "sounds.domixs-creatures.vine_hurt",
     "sounds": [
-      "domixs-creatures:vine_hurt"
+      "domixs-creatures:vine_hurt_1",
+      "domixs-creatures:vine_hurt_2",
+      "domixs-creatures:vine_hurt_3"
+    ]
+  },
+  "vine_death": {
+    "subtitle": "sounds.domixs-creatures.vine_death",
+    "sounds": [
+      "domixs-creatures:vine_death_1",
+      "domixs-creatures:vine_death_2",
+      "domixs-creatures:vine_death_3",
+      "domixs-creatures:vine_death_4"
+    ]
+  },
+  "vine_grab": {
+    "subtitle": "sounds.domixs-creatures.vine_grab",
+    "sounds": [
+      "domixs-creatures:vine_grab"
+    ]
+  },
+
+  "shaman_ambient": {
+    "subtitle": "sounds.domixs-creatures.shaman_ambient",
+    "sounds": [
+      "domixs-creatures:shaman_ambient_1",
+      "domixs-creatures:shaman_ambient_2",
+      "domixs-creatures:shaman_ambient_3",
+      "domixs-creatures:shaman_ambient_4"
+    ]
+  },
+  "shaman_hurt": {
+    "subtitle": "sounds.domixs-creatures.shaman_hurt",
+    "sounds": [
+      "domixs-creatures:shaman_hurt_1",
+      "domixs-creatures:shaman_hurt_2",
+      "domixs-creatures:shaman_hurt_3"
+    ]
+  },
+  "shaman_death": {
+    "subtitle": "sounds.domixs-creatures.shaman_death",
+    "sounds": [
+      "domixs-creatures:shaman_death_1",
+      "domixs-creatures:shaman_death_2",
+      "domixs-creatures:shaman_death_3"
+    ]
+  },
+
+  "crow_hurt": {
+    "subtitle": "sounds.domixs-creatures.crow_hurt",
+    "sounds": [
+      "domixs-creatures:crow_hurt"
+    ]
+  },
+  "crow_ambient": {
+    "subtitle": "sounds.domixs-creatures.crow_ambient",
+    "sounds": [
+      "domixs-creatures:crow_ambient_1",
+      "domixs-creatures:crow_ambient_2",
+      "domixs-creatures:crow_ambient_3",
+      "domixs-creatures:crow_ambient_4",
+      "domixs-creatures:crow_ambient_5"
+    ]
+  },
+  "crow_alert": {
+    "subtitle": "sounds.domixs-creatures.crow_alert",
+    "sounds": [
+      "domixs-creatures:crow_alert_1"
     ]
   },
 
@@ -211,6 +288,36 @@
     "subtitle": "sounds.domixs-creatures.capybara_hurt",
     "sounds": [
       "domixs-creatures:capybara_hurt"
+    ]
+  },
+
+  "owl_ambient": {
+    "subtitle": "sounds.domixs-creatures.owl_ambient",
+    "sounds": [
+      "domixs-creatures:owl_ambient_1",
+      "domixs-creatures:owl_ambient_2",
+      "domixs-creatures:owl_ambient_3"
+    ]
+  },
+  "owl_hurt": {
+    "subtitle": "sounds.domixs-creatures.owl_hurt",
+    "sounds": [
+      "domixs-creatures:owl_hurt"
+    ]
+  },
+  "owl_death": {
+    "subtitle": "sounds.domixs-creatures.owl_death",
+    "sounds": [
+      "domixs-creatures:owl_death"
+    ]
+  },
+
+  "pigeon_ambient": {
+    "subtitle": "sounds.domixs-creatures.pigeon_ambient",
+    "sounds": [
+      "domixs-creatures:pigeon_ambient_1",
+      "domixs-creatures:pigeon_ambient_2",
+      "domixs-creatures:pigeon_ambient_3"
     ]
   },
 
@@ -388,19 +495,6 @@
     "subtitle": "sounds.domixs-creatures.tiger_hurt",
     "sounds": [
       "domixs-creatures:tiger_hurt"
-    ]
-  },
-
-  "guide_book_entry": {
-    "subtitle": "sounds.domixs-creatures.guide_book_entry",
-    "sounds": [
-      "domixs-creatures:guide_book_entry"
-    ]
-  },
-  "guide_book_bookmark": {
-    "subtitle": "sounds.domixs-creatures.guide_book_bookmark",
-    "sounds": [
-      "domixs-creatures:guide_book_bookmark"
     ]
   },
 

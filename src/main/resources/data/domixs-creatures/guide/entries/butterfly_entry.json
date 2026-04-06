@@ -1,0 +1,146 @@
+{
+  "entry_id": "domixs-creatures:butterfly_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.butterfly",
+  "button_text": "guide.title.domixs-creatures.butterfly",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:butterfly"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_1.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_2.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_3.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_4.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_5.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_6.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_7.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_8.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_9.png",
+              "width": 400,
+              "height": 300
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/butterfly_icon_10.png",
+              "width": 400,
+              "height": 300
+            }
+          ],
+          "x":50,
+          "y": 100,
+          "scale": 0.25
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page3_line2"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/caterpillar_icon_1.png",
+              "width": 184,
+              "height": 138
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/caterpillar_icon_2.png",
+              "width": 184,
+              "height": 138
+            }
+          ],
+          "x": 80,
+          "y": 130,
+          "scale": 0.2
+        },
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/caterpillar_cocoon_icon.png",
+          "x": 20,
+          "y": 130,
+          "width": 184,
+          "height": 138,
+          "scale": 0.2
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page4"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:silk",
+          "x": 20,
+          "y": 100,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page5_line1",
+        "",
+        "guide.entry.domixs-creatures.butterfly_page5_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.butterfly_page6"
+      ]
+    }
+  ]
+}

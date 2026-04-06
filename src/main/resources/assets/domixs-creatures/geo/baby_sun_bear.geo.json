@@ -16,8 +16,13 @@
 					"pivot": [0, 7, 2]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "baby_sun_bear",
+					"pivot": [0, 7, -5]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 7, -5]
 				},
 				{

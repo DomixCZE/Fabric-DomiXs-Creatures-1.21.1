@@ -1,7 +1,11 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.*;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.RatMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.rat.RatVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.sound.ModSounds;
@@ -19,13 +23,14 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.WaterCreatureEntity;
-import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -76,6 +81,7 @@ public class RatEntity extends TameableEntity implements GeoEntity, Sleepy, Snow
         this.goalSelector.add(1, new RatMeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
         this.goalSelector.add(1, new BabyFollowParentGoal(this, 1.25));
+        this.goalSelector.add(1, new FleeGoal<>(this, LivingEntity.class, ModTags.EntityTypes.RAT_FLEE_FROM, 10.0f,1.0,1.2));
         this.goalSelector.add(2, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
         this.goalSelector.add(2, new DestroyCropGoal(this, 1.0D));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
@@ -498,4 +504,28 @@ public class RatEntity extends TameableEntity implements GeoEntity, Sleepy, Snow
     }
 
     //And Rats Make Me Crazy
+
+    static class FleeGoal<T extends LivingEntity> extends FleeEntityGoal<T> {
+        private final RatEntity rat;
+
+        public FleeGoal(RatEntity rat, Class<T> fleeFromType, TagKey<EntityType<?>> fleeFromTag, float distance, double slowSpeed, double fastSpeed) {
+            super(rat, fleeFromType, distance, slowSpeed, fastSpeed,
+                    (targetEntity) -> {
+                        boolean isInTag = targetEntity != null && targetEntity.getType().isIn(fleeFromTag);
+                        boolean passesDefaultChecks = EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(targetEntity);
+                        return isInTag && passesDefaultChecks;
+                    });
+            this.rat = rat;
+        }
+
+        @Override
+        public boolean canStart() {
+            return !this.rat.isSleeping() && super.canStart();
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            return !this.rat.isSleeping() && super.shouldContinue();
+        }
+    }
 }

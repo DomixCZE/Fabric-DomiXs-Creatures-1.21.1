@@ -49,6 +49,10 @@
   "entity.domixs-creatures.termite": "Termit",
   "entity.domixs-creatures.ant": "Mravenec",
   "entity.domixs-creatures.anteater": "Mravenečník",
+  "entity.domixs-creatures.komodo_dragon": "Varan Komodský",
+  "entity.domixs-creatures.crow": "Vrána",
+  "entity.domixs-creatures.pigeon": "Holub",
+  "entity.domixs-creatures.owl": "Sova",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Vajíčko s Ohnivým Mlokem",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Vajíčko se Spektrálním Netopýrem",
@@ -99,6 +103,10 @@
   "item.domixs-creatures.termite_spawn_egg": "Vajíčko s Termitem",
   "item.domixs-creatures.ant_spawn_egg": "Vajíčko s Mravencem",
   "item.domixs-creatures.anteater_spawn_egg": "Vajíčko s Mravenčníkem",
+  "item.domixs-creatures.komodo_dragon_spawn_egg": "Vajíčko s Varanem Komodským",
+  "item.domixs-creatures.crow_spawn_egg": "Vajíčko s Vránou",
+  "item.domixs-creatures.pigeon_spawn_egg": "Vajíčko s Holubem",
+  "item.domixs-creatures.owl_spawn_egg": "Vajíčko se Sovou",
 
   "item.domixs-creatures.fire_salamander_scales": "Šupiny Ohnivého Mloka",
   "item.domixs-creatures.spectral_bat_wing": "Křídlo Spektrálního Netopýra",
@@ -150,7 +158,10 @@
   "item.domixs-creatures.iron_shackle": "Železný Okov",
   "item.domixs-creatures.cave_wyvern_scale": "Šupina Jeskynní Wyverny",
   "item.domixs-creatures.glass_jar": "Sklenice",
-
+  "item.domixs-creatures.komodo_dragon_venom_bottle": "Lahvička Jedu Varana Komodského",
+  "item.domixs-creatures.blowgun": "Foukačka",
+  "item.domixs-creatures.crow_feather": "Vraní Peří",
+  "item.domixs-creatures.crow_feather_cape": "Kápě z Vraního Peří",
 
   "item.domixs-creatures.marshmallow": "Marshmallow",
   "item.domixs-creatures.marshmallow_stick": "Marshmallow na Klacku",
@@ -235,6 +246,8 @@
   "domixs-creatures.tooltip.command_flute.mode.sit": "Režim: SEDNOUT",
   "domixs-creatures.tooltip.command_flute.mode.follow": "Režim: NÁSLEDOVAT",
 
+  "domixs-creatures.tooltip.quill.effect": "Efekt: ",
+  "domixs-creatures.tooltip.quill.duration": "Trvání: ",
   "domixs-creatures.tooltip.passive_ability": "Pasivní schopnost: ",
   "domixs-creatures.tooltip.armor_set_bonus": "Set Bonus: ",
   "domixs-creatures.tooltip.macahuitl_ability_desc": "15% šance na krvácení",
@@ -265,6 +278,7 @@
   "block.domixs-creatures.barnacle_block": "Vilejš",
   "block.domixs-creatures.crocodile_egg": "Vajíčko Krokodýla",
   "block.domixs-creatures.penguin_egg": "Vajíčko Tučňáka",
+  "block.domixs-creatures.komodo_dragon_egg": "Vajíčko Vrana Komodského",
   "block.domixs-creatures.pile_of_sticks_block": "Hromádka Klacíků",
   "block.domixs-creatures.sawdust_block": "Hromádka Pilin",
   "block.domixs-creatures.molehill_block": "Krtina",
@@ -403,6 +417,8 @@
 
   "block_entity.domixs_creatures.fish_trap": "Past na Ryby",
 
+  "enchantment.domixs-creatures.recovery": "Obnova",
+
   "sounds.domixs-creatures.zap": "Elektřina",
 
   "sounds.domixs-creatures.eel_attack": "Úhoř útočí",
@@ -424,7 +440,13 @@
   "sounds.domixs-creatures.fire_salamander_hurt": "Ohnivý mlok byl zraněn",
   "sounds.domixs-creatures.fire_salamander_death": "Ohnivý mlok zemřel",
 
+  "sounds.domixs-creatures.vine_grab": "Lijána uchopila",
   "sounds.domixs-creatures.vine_hurt": "Lijána byla zraněna",
+  "sounds.domixs-creatures.vine_death": "Lijána zemřela",
+
+  "sounds.domixs-creatures.shaman_hurt": "Šaman byl zraněn",
+  "sounds.domixs-creatures.shaman_death": "Šaman zemřel",
+  "sounds.domixs-creatures.shaman_ambient": "Šaman mumlá",
 
   "sounds.domixs-creatures.tiger_hurt": "Tigr byl zraněn",
 
@@ -454,10 +476,22 @@
 
   "sounds.domixs-creatures.termite_eat": "Termit jí",
 
+  "sounds.domixs-creatures.crow_ambient": "Vrána kráká",
+  "sounds.domixs-creatures.crow_hurt": "Vrána zraněna",
+  "sounds.domixs-creatures.crow_alert": "Vrána varovné krákání",
+
+  "sounds.domixs-creatures.owl_ambient": "Sova houká",
+  "sounds.domixs-creatures.owl_hurt": "Sova zraněna",
+  "sounds.domixs-creatures.owl_death": "Sova zemřela",
+
+  "sounds.domixs-creatures.pigeon_ambient": "Holub vrká",
+
   "sounds.domixs-creatures.conch_shell_use": "Lastura hraje",
   "sounds.domixs-creatures.copper_trumpet_plays": "Trumpeta hraje",
   "sounds.domixs-creatures.command_flute_sit": "Flétna příkaz sednout",
   "sounds.domixs-creatures.command_flute_follow": "Flétna příkaz následovat",
+
+  "sounds.domixs-creatures.blowgun_use": "Výstřel z foukačky",
 
   "sounds.domixs-creatures.coconut_land": "Kokos Dopad",
 
@@ -526,9 +560,15 @@
 
   "message.domixs-creatures.action.sitting": "Sedí",
   "message.domixs-creatures.action.following": "Následuje",
+  "message.domixs-creatures.action.guarding": "Hlídá",
+  "message.domixs-creatures.action.not_guarding": "Nehlídá",
   "message.domixs-creatures.command_flute.mode_switch": "Režim Flétny: ",
   "message.domixs-creatures.command_flute.mode.sit": "Sednout",
   "message.domixs-creatures.command_flute.mode.follow": "Následovat",
+
+  "guide.category.domixs-creatures.guide_book.entities": "§lStvoření",
+  "guide.category.domixs-creatures.guide_book.items": "§lPředměty",
+  "guide.category.domixs-creatures.guide_book.blocks": "§lBloky",
 
   "guide.title.domixs-creatures.arapaima": "§lArapaima",
   "guide.title.domixs-creatures.beaver": "§lBobr",
@@ -548,7 +588,11 @@
   "guide.title.domixs-creatures.termite": "§lTermit",
   "guide.title.domixs-creatures.ant": "§lMravenec",
   "guide.title.domixs-creatures.anteater": "§lMravenečník",
+  "guide.title.domixs-creatures.crow": "§lVrána",
+  "guide.title.domixs-creatures.owl": "§lSova",
+  "guide.title.domixs-creatures.komodo_dragon": "§lVaran Komodský",
 
+  "guide.title.domixs-creatures.guidebook": "§lPříručka",
   "guide.title.domixs-creatures.coconut": "§lKokos",
   "guide.title.domixs-creatures.conch_shell": "§lLastura",
   "guide.title.domixs-creatures.magnet": "§lMagnet",
@@ -560,6 +604,7 @@
   "guide.title.domixs-creatures.bug_net": "§lSíťka",
   "guide.title.domixs-creatures.marshmallow": "§lMarshmallow",
   "guide.title.domixs-creatures.cheese": "§lSýr",
+  "guide.title.domixs-creatures.blowgun": "§lFoukačka",
 
   "guide.title.domixs-creatures.magnet_blocks": "§lMagnetové Bloky",
   "guide.title.domixs-creatures.net_block": "§lSíťový Blok",
@@ -585,8 +630,8 @@
   "guide.entry.domixs-creatures.deer_page1": "Jelen se vyskytuje v biomech tajgy.",
   "guide.entry.domixs-creatures.deer_page2_line1": "Jeleni časem shodí své parohy, které lze následně posbírat.",
   "guide.entry.domixs-creatures.deer_page2_line2": "Po nějaké době jim parohy znovu dorostou do původní velikosti.",
-  "guide.entry.domixs-creatures.deer_page3_line1": "Existují tři velikosti paroží: Malé, Střední, Velké.",
-  "guide.entry.domixs-creatures.deer_page3_line2": "Pokud jelena zabijete, vypadnou z něj 2 parohy příslušné velikosti a syrové jelení maso.",
+  "guide.entry.domixs-creatures.deer_page2_line3": "Existují tři velikosti paroží: Malé, Střední, Velké.",
+  "guide.entry.domixs-creatures.deer_page3": "Pokud jelena zabijete, vypadnou z něj 2 parohy příslušné velikosti a syrové jelení maso.",
   "guide.entry.domixs-creatures.deer_page4": "2 parohy stejné velikosti lze zkombinovat s 1 kůží a vyrobit si nositelné parohy.",
   "guide.entry.domixs-creatures.deer_page5_line1": "Jeleny lze rozmnožovat pšenicí.",
   "guide.entry.domixs-creatures.deer_page5_line2": "Mohou se rozmnožovat pouze tehdy, když jeden z nich má parohy a druhý ne.",
@@ -628,7 +673,7 @@
   "guide.entry.domixs-creatures.cave_wyvern_page3": "Wyverna má silné jedovaté kousnutí a na své cíle dokáže dýchat jedovatý plyn.",
   "guide.entry.domixs-creatures.cave_wyvern_page4": "Pokud je wyverna zabita, vypadnou z ní šupiny, které lze použít k výrobě brnění z wyverních šupin.",
   "guide.entry.domixs-creatures.iguana_page1": "Leguána lze najít v džungli.",
-  "guide.entry.domixs-creatures.iguana_page2_line1": "Během poledne lze leguány spatřit, jak se vyhřívají na slunci.",
+  "guide.entry.domixs-creatures.iguana_page2_line1": "Během poledne lze leguány vidět, jak se vyhřívají na slunci.",
   "guide.entry.domixs-creatures.iguana_page2_line2": "Mohou být rozmnoženi jablky a ochočeni pomocí listů z džungle.",
   "guide.entry.domixs-creatures.iguana_page3_line1": "Jakmile je leguán ochočen, lze mu pomocí klacku přikázat, aby si sedl nebo vás následoval.",
   "guide.entry.domixs-creatures.iguana_page3_line2": "Může být také posazen na rameno pomocí §6§lpravého tlačítka§r prázdnou rukou (1 na každé rameno).",
@@ -648,15 +693,35 @@
   "guide.entry.domixs-creatures.ant_page3": "Pokud je hnízdo královny rozbito, bude se pomalu pohybovat a snažit se najít nové prázdné hnízdo.",
   "guide.entry.domixs-creatures.ant_page4_line1": "Dělníci hledají blízké listy.",
   "guide.entry.domixs-creatures.ant_page4_line2": "Jakmile dělník najde listy, rozbije je a odnese zpět do hnízda.",
-  "guide.entry.domixs-creatures.ant_page5": "Vojáci se potulují kolem mraveniště a útočí na termity v blízkosti nebo na kohokoli, kdo je napadne.",
-  "guide.entry.domixs-creatures.ant_page6": "Pokud zdraví vojáka klesne pod polovinu, stáhne se do hnízda, aby se zregeneroval.",
-  "guide.entry.domixs-creatures.ant_page7": "Mravence lze sbírat pomocí sklenice.",
+  "guide.entry.domixs-creatures.ant_page5_line1": "Vojáci se potulují kolem mraveniště a útočí na termity v blízkosti nebo na kohokoli, kdo je napadne.",
+  "guide.entry.domixs-creatures.ant_page5_line2": "Pokud zdraví vojáka klesne pod polovinu, stáhne se do hnízda, aby se zregeneroval.",
+  "guide.entry.domixs-creatures.ant_page6": "Mravence lze sbírat pomocí sklenice.",
   "guide.entry.domixs-creatures.worm_page1": "Žížalu lze najít ve většině mírných biomů.",
   "guide.entry.domixs-creatures.worm_page2": "Během deště se objevuje na následujících blocích:",
   "guide.entry.domixs-creatures.worm_page3": "Žížaly lze sbírat pomocí sklenice, kterou lze následně použít na bloky hlíny a ornici k jejich přeměně na úrodnou variantu.",
   "guide.entry.domixs-creatures.worm_page4": "Pokud je zabita, vypadne z ní žížala, která lze sníst, ale existuje šance na získání efektu hladu.",
   "guide.entry.domixs-creatures.anteater_page1": "Mravenečníka lze nalézt v biomech džungle.",
   "guide.entry.domixs-creatures.anteater_page2": "Útočí na všechny termity nebo mravence v okolí, ale přestane útočit, pokud jeho zdraví klesne pod polovinu.",
+  "guide.entry.domixs-creatures.crow_page1": "Vránu lze nalézt v biomu temného dubového lesa.",
+  "guide.entry.domixs-creatures.crow_page2": "Vrány lze ochočit pšeničnými semínky a rozmnožovat pomocí sladkých bobulí či zářinek.",
+  "guide.entry.domixs-creatures.crow_page3_line1": "Ochočenou vránu lze nastavit na sezení nebo následování pomocí klacku. Lze ji také nastavit na hlídání pomocí §6§lshift§r + §6§lpravé§r §6§ltlačítko§r klackem.",
+  "guide.entry.domixs-creatures.crow_page3_line2": "Vrána může být posazena na rameno pomocí §6§lpravého tlačítka§r prázdnou rukou.",
+  "guide.entry.domixs-creatures.crow_page4_line1": "Při hlídání bude vrána hlasitě krákat, pokud se v jejím zorném poli v okruhu 10 bloků objeví nepřátelské stvoření.",
+  "guide.entry.domixs-creatures.crow_page4_line2": "Vrány útočí na žížaly v jejich blízkosti.",
+  "guide.entry.domixs-creatures.crow_page5": "Vrány si občas čistí peří. Při tom existuje 20% šance, že jedno z jejich pírek vypadne.",
+  "guide.entry.domixs-creatures.crow_page6": "Vraní pírka lze použít k výrobě ozdobného pláště z vraního peří.",
+  "guide.entry.domixs-creatures.owl_page1": "Sovu lze nalézt v biomech temného dubového lesa a tajgy.",
+  "guide.entry.domixs-creatures.owl_page2": "Lze je ochočit králičími tlapkami a rozmnožoit pomocí žížal.",
+  "guide.entry.domixs-creatures.owl_page3_line1": "Ochočené sovy lze nastavit na sezení nebo následování prázdnou rukou.",
+  "guide.entry.domixs-creatures.owl_page3_line2": "Sovy útočí na krysy a králíky v okolí.",
+  "guide.entry.domixs-creatures.owl_page4": "Ochočené sovy v blízkosti oltáře očarování dávají majiteli 8% šanci na vzácná očarování, která jsou v oltáři běžně nedostupná. I když je tato šance užitečná, zahrnuje také kletby.",
+  "guide.entry.domixs-creatures.komodo_dragon_page1": "Varana komodského lze nalézt v biomu řídké džungle.",
+  "guide.entry.domixs-creatures.komodo_dragon_page2": "Lze ho ochočit shnilým masem a rozmnožovat hovězím.",
+  "guide.entry.domixs-creatures.komodo_dragon_page3": "Po rozmnožení jeden z varanů položí 1-3 vejce na jeden z následujících bloků:",
+  "guide.entry.domixs-creatures.komodo_dragon_page4_line1": "Jakmile je varan ochočen, lze ho osedlat a jezdit na něm.",
+  "guide.entry.domixs-creatures.komodo_dragon_page4_line2": "Během poledne lze varany vidět, jak se vyhřívají na slunci.",
+  "guide.entry.domixs-creatures.komodo_dragon_page5": "Po chvíli se varanovi v tlamě vytvoří jed. Ten lze sebrat prázdnou skleněnou lahvičkou a použít k potření dikobrazích bodlin.",
+  "guide.entry.domixs-creatures.komodo_dragon_page6": "Varani loví prasata, ovce, divoká prasata a jeleny, přičemž při zásahu způsobují krvácení. Na hráče neútočí, pokud nejsou napadeni jako první.",
 
   "guide.entry.domixs-creatures.coconut_page1_line1": "Kokosy lze nalézt na palmách v plážových biomech. Dají se schodit pomocí projektilu",
   "guide.entry.domixs-creatures.coconut_page1_line2": "Chcete-li kokos rozdělat, klikněte na něj §6§lpravým§r §6§ltlačítkem§r sekerou. Získáte 2 kokosové plátky.",
@@ -686,6 +751,15 @@
   "guide.entry.domixs-creatures.marshmallow_page3": "Pokud ho budete držet na ohni příliš dlouho, spálí se.",
   "guide.entry.domixs-creatures.cheese_page1": "Kolo sýra lze vyrobit zkombinováním 3 kusů soli a 3 kbelíků mléka.",
   "guide.entry.domixs-creatures.cheese_page2": "Kolo sýra lze položit jako blok. Jednotlivé kousky sýra z něj můžete odebírat pomocí §6§lpravého§r §6§ltlačítka§r.",
+  "guide.entry.domixs-creatures.blowgun_page1": "Foukačku lze vyrobit pomocí bambusu a vlákna.",
+  "guide.entry.domixs-creatures.blowgun_page2": "Jako munici používá dikobrazí bodliny.",
+  "guide.entry.domixs-creatures.blowgun_page3": "Foukačka má speciální očarování §6§lobnova§r, které má 10% šanci na nespotřebování munice. Tato šance se na 2. úrovni zvyšuje o dalších 10%.",
+  "guide.entry.domixs-creatures.blowgun_page4": "Knihy s očarováním §6§lobnova§r lze nalézt v truhlách v džunglových a aztéckých chrámech, nebo očarováním foukačky u oltáře očarování.",
+
+  "guide.entry.domixs-creatures.guidebook_page1_line1": "Příručka obsahuje informace o tvorech, předmětech a blocích.",
+  "guide.entry.domixs-creatures.guidebook_page1_line2": "Drž příručku a dívej se na tvora, nebo ji drž s předmětem v druhé ruce.",
+  "guide.entry.domixs-creatures.guidebook_page1_line3": "Pokud se objeví ikona lupy, klikni §6§lpravým§r §6§ltlačítkem§r pro vytvoření záznamu.",
+  "guide.entry.domixs-creatures.guidebook_page2": "Záznamy najdeš v příslušných kategoriích v příručce.",
 
   "guide.entry.domixs-creatures.magnet_blocks_page1": "Existují dva druhy magnetických bloků: Negativní a Pozitivní.",
   "guide.entry.domixs-creatures.magnet_blocks_page2": "Když je Negativní magnet napájen redstonem, odtlačuje železné předměty a tvory se železným brněním, zatímco Pozitivní magnet je přitahuje.",
@@ -695,21 +769,10 @@
   "guide.entry.domixs-creatures.rich_dirt_page1": "Úrodnou hlínu lze vyrobit nasbíráním žížal do sklenice a jejich vypuštěním do obyčejné hlíny pomocí §6§lpravého tlačítka§r sklenicí se žížalami.",
   "guide.entry.domixs-creatures.rich_dirt_page2": "Lze ji obdělat motykou a vytvořit tak úrodnou ornici. Jakákoliv plodina zasazená na úrodné ornici poroste dvakrát rychleji.",
 
-  "category.domixs-creatures.general": "Domixovi Tvorové",
-  "key.domixs-creatures.open_config": "Nastavení",
-
-  "domixs-creatures.config.title": "Domixovi Tvorové Nastavení",
-  "domixs-creatures.config.category.general": "Domixovi Tvorové",
-
-  "domixs-creatures.config.option.enableSleepParticles": "Effect spaní",
-  "domixs-creatures.config.option.enableSleepParticles.tooltip": "Pokud vypnuto ZZZ efekt se nebude objevovat nad spícími stvořeními",
-
-  "domixs-creatures.config.option.enableCoconutBonkSound": "'Bonk' Zvukový Efekt Pro Kokosi",
-  "domixs-creatures.config.option.enableCoconutBonkSound.tooltip": "Pokud zapnuto kokosi přehrají 'bonk' zvukový efekt když dopadnou na zem",
-
   "domixs-creatures.message.riding_disabled": "Ježdění Vypnuto",
 
   "gamerule.enableWaterStriderRiding": "Povolit Ježdění Na Vodoměrce",
+  "gamerule.enableKomodoDragonRiding": "Povolit Ježdění Na Varanovi",
   "gamerule.enableFireSalamanderSmelting": "Povolit Vypékání Ohnivého Mloka",
   "gamerule.enableFireSalamanderMagmaAttack": "Povolit Magma Útok Ohnivého Mloka",
   "gamerule.enableSpectralBatScreech": "Povolit Pištění Spektrálního Netopýra",

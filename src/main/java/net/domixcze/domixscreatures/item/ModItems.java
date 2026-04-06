@@ -3,21 +3,19 @@ package net.domixcze.domixscreatures.item;
 import net.domixcze.domixscreatures.DomiXsCreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.client.termite.TermiteVariants;
 import net.domixcze.domixscreatures.item.custom.*;
-import net.domixcze.domixscreatures.item.guide.GuideBookItem;
+import net.domixcze.domixscreatures.item.custom.armor.*;
 import net.domixcze.domixscreatures.sound.ModSounds;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.NbtComponent;
+import net.domixcze.domixsguidebook.api.GuidebookAPI;
+import net.domixcze.domixsguidebook.api.GuidebookDefinition;
+import net.domixcze.domixsguidebook.item.guide.GuidebookItem;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.Util;
 
 public class ModItems {
     public static final Item FIRE_SALAMANDER_SPAWN_EGG = registerItem("fire_salamander_spawn_egg", new SpawnEggItem(ModEntities.FIRE_SALAMANDER, 0x3c3947, 0xe66410,
@@ -118,6 +116,14 @@ public class ModItems {
             new Item.Settings()));
     public static final Item ANTEATER_SPAWN_EGG = registerItem("anteater_spawn_egg", new SpawnEggItem(ModEntities.ANTEATER, 0x4a3e2f, 0x1d1d1d,
             new Item.Settings()));
+    public static final Item KOMODO_DRAGON_SPAWN_EGG = registerItem("komodo_dragon_spawn_egg", new SpawnEggItem(ModEntities.KOMODO_DRAGON, 0x5f5943, 0x6d664c,
+            new Item.Settings()));
+    public static final Item CROW_SPAWN_EGG = registerItem("crow_spawn_egg", new SpawnEggItem(ModEntities.CROW, 0x121522, 0x1a1f31,
+            new Item.Settings()));
+    public static final Item PIGEON_SPAWN_EGG = registerItem("pigeon_spawn_egg", new SpawnEggItem(ModEntities.PIGEON, 0x535565, 0x25563f,
+            new Item.Settings()));
+    public static final Item OWL_SPAWN_EGG = registerItem("owl_spawn_egg", new SpawnEggItem(ModEntities.OWL, 0x6e4b2f, 0xcda38d,
+            new Item.Settings()));
 
     public static final Item GOLDFISH_BUCKET = registerItem("goldfish_bucket", new EntityBucketItem(ModEntities.GOLDFISH, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH,
             new Item.Settings().maxCount(1)));
@@ -171,6 +177,7 @@ public class ModItems {
     public static final Item WARDEN_TENDRIL = registerItem("warden_tendril", new Item(new Item.Settings().rarity(Rarity.RARE)));
     public static final Item SHARK_TOOTH = registerItem("shark_tooth", new Item(new Item.Settings()));
     public static final Item QUILL = registerItem("quill", new QuillItem(new Item.Settings()));
+
     public static final Item TRUFFLE = registerItem("truffle", new Item(new Item.Settings()));
     public static final Item CONCH_SHELL = registerItem("conch_shell", new ConchShellItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
     public static final Item ARAPAIMA_SCALE_BLACK = registerItem("arapaima_scale_black", new Item(new Item.Settings()));
@@ -181,12 +188,13 @@ public class ModItems {
     public static final Item NET = registerItem("net", new Item(new Item.Settings()));
     public static final Item UNICORN_DUST = registerItem("unicorn_dust", new UnicornDustItem(new Item.Settings()));
     public static final Item CAVE_WYVERN_SCALE = registerItem("cave_wyvern_scale", new Item(new Item.Settings()));
-
-    public static final Item GUIDE_BOOK = registerItem("guide_book", new GuideBookItem(new Item.Settings().maxCount(1)));
+    public static final Item CROW_FEATHER = registerItem("crow_feather", new Item(new Item.Settings()));
 
     public static final Item SMALL_ANTLER = registerItem("small_antler", new SmallAntlerItem(new Item.Settings()));
     public static final Item MEDIUM_ANTLER = registerItem("medium_antler", new MediumAntlerItem(new Item.Settings()));
     public static final Item LARGE_ANTLER = registerItem("large_antler", new LargeAntlerItem(new Item.Settings()));
+
+    public static final Item CROW_FEATHER_CAPE = registerItem("crow_feather_cape", new CrowFeatherCapeItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxCount(1)));
 
     public static final Item RACCOON_TAIL = registerItem("raccoon_tail", new Item(new Item.Settings()));
     public static final Item RACCOON_HAT = registerItem("raccoon_hat", new RaccoonHatItem(ModArmorMaterials.COSMETIC, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1)));
@@ -248,6 +256,8 @@ public class ModItems {
 
     public static final Item IRON_SHACKLE = registerItem("iron_shackle", new IronShackleItem(new Item.Settings().maxCount(16)));
 
+    public static final Item KOMODO_DRAGON_VENOM_BOTTLE = registerItem("komodo_dragon_venom_bottle", new Item(new Item.Settings().maxCount(8)));
+
     public static final Item MAGNET = registerItem("magnet", new MagnetItem(new Item.Settings().maxCount(1)));
     public static final Item RAW_MAGNETITE = registerItem("raw_magnetite", new Item(new Item.Settings()));
     public static final Item MAGNETITE_INGOT = registerItem("magnetite_ingot", new Item(new Item.Settings()));
@@ -258,8 +268,20 @@ public class ModItems {
     public static final Item MUD_BLOSSOM_SEED = registerItem("mud_blossom_seed", new AliasedBlockItem(ModBlocks.MUD_BLOSSOM, new Item.Settings()));
 
     public static final Item MACUAHUITL = registerItem("macuahuitl", new MacuahuitlItem(ModToolMaterials.MACUAHUITL, new Item.Settings(), 3, -3.0F));
+    public static final Item BLOWGUN = registerItem("blowgun", new BlowgunItem(new Item.Settings().maxCount(1).maxDamage(300)));
 
     public static final Item DEATH_WHISTLE = registerItem("death_whistle", new DeathWhistleItem(new Item.Settings()));
+
+    public static final GuidebookDefinition CREATURES_GUIDEBOOK = new GuidebookDefinition(
+            Identifier.of(DomiXsCreatures.MOD_ID, "guide_book"),
+            "guide"
+    );
+
+    public static final Item GUIDE_BOOK = Registry.register(
+            Registries.ITEM,
+            CREATURES_GUIDEBOOK.bookId(),
+            new GuidebookItem(CREATURES_GUIDEBOOK.bookId(), new Item.Settings().maxCount(1))
+    );
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(DomiXsCreatures.MOD_ID, name), item);
@@ -267,5 +289,6 @@ public class ModItems {
 
     public static void registerModItems() {
         DomiXsCreatures.LOGGER.info("Registering Items for " + DomiXsCreatures.MOD_ID);
+        GuidebookAPI.registerBook(CREATURES_GUIDEBOOK);
     }
 }

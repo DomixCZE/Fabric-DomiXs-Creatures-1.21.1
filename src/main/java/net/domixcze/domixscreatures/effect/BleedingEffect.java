@@ -2,7 +2,6 @@ package net.domixcze.domixscreatures.effect;
 
 import net.domixcze.domixscreatures.damage.ModDamageTypes;
 import net.domixcze.domixscreatures.particle.ModParticles;
-import net.domixcze.domixscreatures.util.BleedingUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -24,14 +23,19 @@ public class BleedingEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (BleedingUtil.isImmuneToBleeding(entity)) {
-            return false;
-        }
-
         if (!entity.getWorld().isClient()) {
-            entity.damage(ModDamageTypes.of(entity.getWorld(), ModDamageTypes.BLEEDING), 1.0F);
+
+            float damage = 1.0F + amplifier;
+            // Cap at 8 damage (4 hearts)
+            damage = Math.min(damage, 8.0F);
+
+            entity.damage(
+                    ModDamageTypes.of(entity.getWorld(), ModDamageTypes.BLEEDING),
+                    damage
+            );
 
             ServerWorld world = (ServerWorld) entity.getWorld();
+
             for (int i = 0; i < 3; i++) {
                 double spawnX = entity.getX() + (world.random.nextDouble() - 0.5) * entity.getWidth() * 0.7;
                 double spawnY = entity.getY() + 0.1 + (world.random.nextDouble() * (entity.getHeight() * 0.7));
@@ -47,9 +51,8 @@ public class BleedingEffect extends StatusEffect {
             }
         }
 
-        return super.applyUpdateEffect(entity, amplifier);
+        return true;
     }
-
     @Override //disables the vanilla particles
     public ParticleEffect createParticle(StatusEffectInstance effect) {
         return EntityEffectParticleEffect.create(ParticleTypes.ENTITY_EFFECT, 0);

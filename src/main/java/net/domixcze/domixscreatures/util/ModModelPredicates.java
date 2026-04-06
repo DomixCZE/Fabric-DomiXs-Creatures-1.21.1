@@ -18,6 +18,15 @@ public class ModModelPredicates {
                         && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
         );
 
+        ModelPredicateProviderRegistry.register(ModItems.BLOWGUN, Identifier.of("blowing"),
+                (itemStack, clientWorld, livingEntity, seed) -> livingEntity != null
+                        && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F
+        );
+
+        ModelPredicateProviderRegistry.register(ModItems.QUILL, Identifier.of("coated"),
+                (stack, world, entity, seed) -> stack.contains(ModDataComponents.COATED_QUILL) ? 1.0F : 0.0F
+        );
+
         ModelPredicateProviderRegistry.register(ModItems.GLASS_JAR, Identifier.of("fill_level"),
                 (stack, world, entity, seed) -> {
                     ModDataComponents.JarContentsComponent contents = stack.get(ModDataComponents.JAR_CONTENTS);

@@ -16,8 +16,13 @@
 					"pivot": [3, 0, 0]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "tiger",
+					"pivot": [0, 12.5, -10]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 12.5, -12.5],
 					"cubes": [
 						{

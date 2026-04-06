@@ -24,8 +24,13 @@
 					]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "body",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 24, 0],
 					"cubes": [
 						{"origin": [-4, 24, -4], "size": [8, 8, 8], "uv": [0, 0]}

@@ -50,6 +50,10 @@
     "domixs-creatures:cave_wyvern",
     "domixs-creatures:termite",
     "domixs-creatures:ant",
-    "domixs-creatures:anteater"
+    "domixs-creatures:anteater",
+    "domixs-creatures:komodo_dragon",
+    "domixs-creatures:crow",
+    "domixs-creatures:pigeon",
+    "domixs-creatures:owl"
   ]
 }

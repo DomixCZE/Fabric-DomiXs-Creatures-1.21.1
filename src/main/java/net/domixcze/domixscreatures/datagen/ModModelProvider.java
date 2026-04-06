@@ -118,6 +118,14 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.ANTEATER_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.KOMODO_DRAGON_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.CROW_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PIGEON_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.OWL_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FIRE_SALAMANDER_SCALES, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPECTRAL_BAT_WING, Models.GENERATED);
@@ -139,7 +147,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SAWDUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.WARDEN_TENDRIL, Models.GENERATED);
         itemModelGenerator.register(ModItems.SHARK_TOOTH, Models.GENERATED);
-        itemModelGenerator.register(ModItems.QUILL, Models.GENERATED);
         itemModelGenerator.register(ModItems.TRUFFLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.ARAPAIMA_SCALE_BLACK, Models.GENERATED);
         itemModelGenerator.register(ModItems.ARAPAIMA_SCALE_GREEN, Models.GENERATED);
@@ -149,6 +156,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.NET, Models.GENERATED);
         itemModelGenerator.register(ModItems.UNICORN_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.CAVE_WYVERN_SCALE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.KOMODO_DRAGON_VENOM_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CROW_FEATHER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CROW_FEATHER_CAPE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.GOLDFISH, Models.GENERATED);
         itemModelGenerator.register(ModItems.WORM, Models.GENERATED);

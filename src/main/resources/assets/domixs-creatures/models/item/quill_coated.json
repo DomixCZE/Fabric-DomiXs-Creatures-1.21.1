@@ -1,0 +1,6 @@
+{
+  "parent": "domixs-creatures:item/quill",
+  "textures": {
+    "layer0": "domixs-creatures:item/quill_coated"
+  }
+}

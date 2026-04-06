@@ -1,8 +1,9 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.WispMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.WispMeleeAttackGoal;
 import net.domixcze.domixscreatures.item.ModItems;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.SpawnReason;
@@ -100,9 +101,7 @@ public class WispEntity extends TameableEntity implements GeoEntity {
         return 2;
     }
 
-    @Override
-    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        return false;
+    protected void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition) {
     }
 
     @Override

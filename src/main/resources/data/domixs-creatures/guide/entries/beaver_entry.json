@@ -1,0 +1,80 @@
+{
+  "entry_id": "domixs-creatures:beaver_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.beaver",
+  "button_text": "guide.title.domixs-creatures.beaver",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:beaver"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.beaver_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/beaver_icon.png",
+          "x": 50,
+          "y": 120,
+          "width": 278,
+          "height": 158,
+          "scale": 0.25
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.beaver_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:water_lily",
+          "x": 50,
+          "y": 130,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.beaver_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:pile_of_sticks_block",
+          "x": 50,
+          "y": 110,
+          "scale": 3.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.beaver_page4"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.beaver_page5"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:bark",
+          "x": 30,
+          "y": 120,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:sawdust",
+          "x": 70,
+          "y": 120,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

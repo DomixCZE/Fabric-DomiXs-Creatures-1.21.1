@@ -5,7 +5,8 @@
 	"mixins": [
 		"LivingEntityMixin",
 		"UniversalPlantingMixin",
-		"CropBlockMixin"
+		"CropBlockMixin",
+		"EnchantmentScreenHandlerMixin"
 	],
 	"client": [
 		"SoundManagerMixin"

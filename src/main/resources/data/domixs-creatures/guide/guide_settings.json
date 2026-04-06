@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": "entities",
+      "order": 0,
+      "bookmark": "domixs-guidebook:textures/gui/guide/bookmarks/bookmark_grayscale.png",
+      "bookmark_highlighted": "domixs-guidebook:textures/gui/guide/bookmarks/bookmark_highlighted_grayscale.png",
+      "toast": "domixs-guidebook:textures/gui/guide/toasts/toast_grayscale.png",
+      "tint": "#4CAF54"
+    },
+    {
+      "id": "items",
+      "order": 1,
+      "bookmark": "domixs-guidebook:textures/gui/guide/bookmarks/bookmark_grayscale.png",
+      "bookmark_highlighted": "domixs-guidebook:textures/gui/guide/bookmarks/bookmark_highlighted_grayscale.png",
+      "toast": "domixs-guidebook:textures/gui/guide/toasts/toast_grayscale.png",
+      "tint": "#3B82F6"
+    },
+    {
+      "id": "blocks",
+      "order": 2,
+      "bookmark": "domixs-guidebook:textures/gui/guide/bookmarks/bookmark_grayscale.png",
+      "bookmark_highlighted": "domixs-guidebook:textures/gui/guide/bookmarks/bookmark_highlighted_grayscale.png",
+      "toast": "domixs-guidebook:textures/gui/guide/toasts/toast_grayscale.png",
+      "tint": "#EF4444"
+    }
+  ]
+}

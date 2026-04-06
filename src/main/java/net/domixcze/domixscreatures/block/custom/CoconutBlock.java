@@ -2,10 +2,8 @@ package net.domixcze.domixscreatures.block.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.item.ModItems;
-import net.domixcze.domixscreatures.util.CoconutLandedPayload;
+import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModTags;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.*;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +13,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -35,6 +32,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
+
+import java.time.LocalDate;
 
 public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
     public static final DirectionProperty FACING = Properties.FACING;
@@ -182,9 +181,18 @@ public class CoconutBlock extends Block implements LandingBlock, Waterloggable {
     @Override
     public void onLanding(World world, BlockPos pos, BlockState fallingState, BlockState currentStateInWorld, FallingBlockEntity entity) {
         if (!world.isClient) {
-            for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, pos)) {
-                ServerPlayNetworking.send(player, new CoconutLandedPayload(pos));
-            }
+            LocalDate today = LocalDate.now();
+
+            boolean aprilFools = today.getMonthValue() == 4 && today.getDayOfMonth() == 1;
+
+            world.playSound(
+                    null,
+                    pos,
+                    aprilFools ? ModSounds.COCONUT_LAND : SoundEvents.BLOCK_WOOD_PLACE,
+                    SoundCategory.BLOCKS,
+                    1.0f,
+                    1.0f
+            );
         }
     }
 

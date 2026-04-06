@@ -1,0 +1,73 @@
+{
+  "entry_id": "domixs-creatures:worm_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.worm",
+  "button_text": "guide.title.domixs-creatures.worm",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:worm"],
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.worm_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/worm_icon_1.png",
+          "x": 50,
+          "y": 120,
+          "width": 182,
+          "height": 106,
+          "scale": 0.25
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.worm_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "tag": "#domixs-creatures:worm_spawnable_on",
+          "x": 60,
+          "y": 110,
+          "scale": 3.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.worm_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:glass_jar",
+          "x": 30,
+          "y": 110,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.worm_page4"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:worm",
+          "x": 30,
+          "y": 100,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

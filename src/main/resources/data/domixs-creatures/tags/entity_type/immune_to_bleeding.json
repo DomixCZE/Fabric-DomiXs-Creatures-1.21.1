@@ -13,6 +13,7 @@
     "minecraft:breeze",
     "minecraft:slime",
     "minecraft:snow_golem",
+    "domixs-creatures:magma_ball",
     "domixs-creatures:caterpillar",
     "domixs-creatures:butterfly",
     "domixs-creatures:mud_golem",
@@ -20,6 +21,8 @@
     "domixs-creatures:ancient_skeleton",
     "domixs-creatures:cave_wyvern",
     "domixs-creatures:termite",
-    "domixs-creatures:ant"
+    "domixs-creatures:ant",
+    "domixs-creatures:water_strider",
+    "domixs-creatures:wisp"
   ]
 }

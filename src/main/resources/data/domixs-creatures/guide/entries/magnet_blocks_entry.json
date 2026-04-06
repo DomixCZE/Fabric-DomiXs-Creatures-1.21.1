@@ -1,0 +1,35 @@
+{
+  "entry_id": "domixs-creatures:magnet_blocks_entry",
+  "category": "blocks",
+  "title": "guide.title.domixs-creatures.magnet_blocks",
+  "button_text": "guide.title.domixs-creatures.magnet_blocks",
+  "discoverable": true,
+  "unlock_ids": [
+    "domixs-creatures:positive_magnet_block",
+    "domixs-creatures:negative_magnet_block"
+  ],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.magnet_blocks_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_crafting_recipe",
+          "recipes": [
+            "domixs-creatures:negative_magnet_block",
+            "domixs-creatures:positive_magnet_block"
+          ],
+          "x": 50,
+          "y": 100,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.magnet_blocks_page2"
+      ]
+    }
+  ]
+}

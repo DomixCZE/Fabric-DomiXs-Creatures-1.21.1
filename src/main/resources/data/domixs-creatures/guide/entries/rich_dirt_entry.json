@@ -1,0 +1,53 @@
+{
+  "entry_id": "domixs-creatures:rich_dirt_entry",
+  "category": "blocks",
+  "title": "guide.title.domixs-creatures.rich_dirt",
+  "button_text": "guide.title.domixs-creatures.rich_dirt",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:rich_dirt"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.rich_dirt_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/item/glass_jar_worm_half.png",
+              "width": 16,
+              "height": 16
+            },
+            {
+              "id": "domixs-creatures:textures/item/glass_jar_worm_full.png",
+              "width": 16,
+              "height": 16
+            }
+          ],
+          "x": 30,
+          "y": 110,
+          "scale": 2.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.rich_dirt_page2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "domixs-creatures:rich_dirt",
+            "domixs-creatures:rich_farmland"
+          ],
+          "x": 60,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    }
+  ]
+}

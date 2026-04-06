@@ -59,8 +59,13 @@
 					]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "baby_tiger",
+					"pivot": [0, 6.5, -6]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 6.5, -6],
 					"cubes": [
 						{

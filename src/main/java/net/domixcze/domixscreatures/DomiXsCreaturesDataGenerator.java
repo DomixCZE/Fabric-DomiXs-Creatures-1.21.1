@@ -1,6 +1,7 @@
 package net.domixcze.domixscreatures;
 
 import net.domixcze.domixscreatures.datagen.*;
+import net.domixcze.domixscreatures.enchantment.ModEnchantments;
 import net.domixcze.domixscreatures.world.ModConfiguredFeatures;
 import net.domixcze.domixscreatures.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -15,6 +16,7 @@ public class DomiXsCreaturesDataGenerator implements DataGeneratorEntrypoint {
 
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModWorldGenerator::new);
+		pack.addProvider(ModRegistryDataGenerator::new);
 
 	}
 
@@ -22,5 +24,6 @@ public class DomiXsCreaturesDataGenerator implements DataGeneratorEntrypoint {
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
 	}
 }

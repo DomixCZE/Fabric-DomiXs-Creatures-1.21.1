@@ -3,9 +3,9 @@ package net.domixcze.domixscreatures.entity.custom;
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.block.custom.CrocodileEggBlock;
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.CrocodileMeleeAttackGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.CrocodileMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
 import net.domixcze.domixscreatures.entity.client.crocodile.CrocodileVariants;
 import net.domixcze.domixscreatures.item.ModItems;
 import net.domixcze.domixscreatures.sound.ModSounds;
@@ -25,7 +25,6 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.IllagerEntity;
-import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -54,7 +53,6 @@ import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 
 public class CrocodileEntity extends AnimalEntity implements GeoEntity, Sleepy {
     private final AnimatableInstanceCache geocache = GeckoLibUtil.createInstanceCache(this);

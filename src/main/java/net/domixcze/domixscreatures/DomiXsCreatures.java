@@ -3,15 +3,14 @@ package net.domixcze.domixscreatures;
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.block.entity.ModBlockEntities;
 import net.domixcze.domixscreatures.component.ModDataComponents;
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.custom.*;
 import net.domixcze.domixscreatures.item.ModItemGroups;
 import net.domixcze.domixscreatures.item.ModItems;
-import net.domixcze.domixscreatures.item.guide.GuideDataLoader;
 import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.potion.ModPotions;
+import net.domixcze.domixscreatures.recipe.ModRecipes;
 import net.domixcze.domixscreatures.screen.ModScreenHandlers;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.structures.ModStructures;
@@ -24,16 +23,13 @@ import net.domixcze.domixscreatures.world.tree.ModFoliagePlacerTypes;
 import net.domixcze.domixscreatures.world.tree.ModTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.potion.Potions;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.world.Difficulty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +42,6 @@ public class DomiXsCreatures implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModConfig.loadConfig();
 		ModGameRules.register();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.FIRE_SALAMANDER, FireSalamanderEntity.setAttributes());
@@ -98,6 +93,11 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.TERMITE, TermiteEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ANT, AntEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ANTEATER, AnteaterEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.KOMODO_DRAGON, KomodoDragonEntity.setAttributes());
+
+		FabricDefaultAttributeRegistry.register(ModEntities.CROW, CrowEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.PIGEON, PigeonEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.OWL, OwlEntity.setAttributes());
 
 		ModScreenHandlers.registerScreenHandlers();
 		ModEvents.registerModEvents();
@@ -109,8 +109,6 @@ public class DomiXsCreatures implements ModInitializer {
 		ModEntities.registerModEntities();
 
 		DispenserBlock.registerBehavior(ModItems.QUILL, new QuillDispenserBehavior(ModItems.QUILL));
-
-		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new GuideDataLoader());
 
 		ModBlockEntities.registerBlockEntities();
 		ModBlocks.registerModBlocks();
@@ -219,6 +217,8 @@ public class DomiXsCreatures implements ModInitializer {
 
 		FuelRegistry.INSTANCE.add(ModBlocks.FISH_TRAP_BLOCK, 300);
 
+		ModRecipes.registerRecipes();
+
 		ModCompostables.register();
 
 		ModTrunkPlacerTypes.register();
@@ -240,10 +240,5 @@ public class DomiXsCreatures implements ModInitializer {
 		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
 			builder.registerPotionRecipe(Potions.AWKWARD, ModItems.RAW_EEL_MEAT, ModPotions.ELECTRIFYING_POTION);
 		});
-
-		PayloadTypeRegistry.playS2C().register(
-				CoconutLandedPayload.ID,
-				CoconutLandedPayload.CODEC
-		);
 	}
 }

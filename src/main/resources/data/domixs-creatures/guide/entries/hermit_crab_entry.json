@@ -1,0 +1,74 @@
+{
+  "entry_id": "domixs-creatures:hermit_crab_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.hermit_crab",
+  "button_text": "guide.title.domixs-creatures.hermit_crab",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:hermit_crab"],
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.hermit_crab_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/hermit_crab_icon_1.png",
+              "width": 302,
+              "height": 216
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/hermit_crab_icon_2.png",
+              "width": 264,
+              "height": 262
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/hermit_crab_icon_3.png",
+              "width": 253,
+              "height": 212
+            }
+          ],
+          "x": 50,
+          "y": 100,
+          "scale": 0.3
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.hermit_crab_page2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.hermit_crab_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.hermit_crab_page3_line2"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "minecraft:stick",
+            "minecraft:kelp",
+            "minecraft:seagrass",
+            "minecraft:sand",
+            "domixs-creatures:pearl",
+            "domixs-creatures:conch_shell"
+          ],
+          "x": 30,
+          "y": 120,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    }
+  ]
+}

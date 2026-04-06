@@ -1,10 +1,9 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.Beachable;
-import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
-import net.domixcze.domixscreatures.entity.ai.EelMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Beachable;
+import net.domixcze.domixscreatures.entity.ai.goal.BeachedGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.EelMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.eel.EelVariants;
-import net.domixcze.domixscreatures.particle.ModParticles;
 import net.domixcze.domixscreatures.util.ModTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.AquaticMoveControl;

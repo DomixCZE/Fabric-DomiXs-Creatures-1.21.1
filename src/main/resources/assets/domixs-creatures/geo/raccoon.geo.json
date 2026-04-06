@@ -21,8 +21,13 @@
 					"pivot": [0, 5, 0.5]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "body",
+					"pivot": [0, 5, -5]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 5, -5]
 				},
 				{
@@ -58,7 +63,7 @@
 								"south": {"uv": [28, 16], "uv_size": [6, 1]},
 								"west": {"uv": [0, 0], "uv_size": [0, 1]},
 								"up": {"uv": [0, 0], "uv_size": [6, 0]},
-								"down": {"uv": [0, 0], "uv_size": [6, 0]}
+								"down": {"uv": [6, 0], "uv_size": [-6, 0]}
 							}
 						}
 					]

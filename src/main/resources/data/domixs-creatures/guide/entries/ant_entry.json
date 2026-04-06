@@ -1,0 +1,89 @@
+{
+  "entry_id": "domixs-creatures:ant_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.ant",
+  "button_text": "guide.title.domixs-creatures.ant",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:ant"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/ant_icon_1.png",
+              "width": 273,
+              "height": 179
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/ant_icon_2.png",
+              "width": 234,
+              "height": 160
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/ant_icon_3.png",
+              "width": 260,
+              "height": 181
+            }
+          ],
+          "x": 50,
+          "y": 100,
+          "scale": 0.25
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.ant_page2_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page3"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:ant_nest_block",
+          "x": 50,
+          "y": 110,
+          "scale": 3.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page4_line1",
+        "",
+        "guide.entry.domixs-creatures.ant_page4_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page5_line1",
+        "",
+        "guide.entry.domixs-creatures.ant_page5_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.ant_page6"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:glass_jar",
+          "x": 30,
+          "y": 70,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package net.domixcze.domixscreatures.block.entity;
 
-import net.domixcze.domixscreatures.entity.ai.ColonyMember;
+import net.domixcze.domixscreatures.entity.ai.goal.util.ColonyMember;
 import net.domixcze.domixscreatures.entity.custom.AntEntity;
 import net.domixcze.domixscreatures.entity.custom.TermiteEntity;
 import net.minecraft.block.Block;

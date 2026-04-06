@@ -49,6 +49,10 @@
   "entity.domixs-creatures.termite": "Termite",
   "entity.domixs-creatures.ant": "Ant",
   "entity.domixs-creatures.anteater": "Anteater",
+  "entity.domixs-creatures.komodo_dragon": "Komodo Dragon",
+  "entity.domixs-creatures.crow": "Crow",
+  "entity.domixs-creatures.pigeon": "Pigeon",
+  "entity.domixs-creatures.owl": "Owl",
 
   "item.domixs-creatures.fire_salamander_spawn_egg": "Fire Salamander Spawn Egg",
   "item.domixs-creatures.spectral_bat_spawn_egg": "Spectral Bat Spawn Egg",
@@ -99,6 +103,10 @@
   "item.domixs-creatures.termite_spawn_egg": "Termite Spawn Egg",
   "item.domixs-creatures.ant_spawn_egg": "Ant Spawn Egg",
   "item.domixs-creatures.anteater_spawn_egg": "Anteater Spawn Egg",
+  "item.domixs-creatures.komodo_dragon_spawn_egg": "Komodo Dragon Spawn Egg",
+  "item.domixs-creatures.crow_spawn_egg": "Crow Spawn Egg",
+  "item.domixs-creatures.pigeon_spawn_egg": "Pigeon Spawn Egg",
+  "item.domixs-creatures.owl_spawn_egg": "Owl Spawn Egg",
 
   "item.domixs-creatures.fire_salamander_scales": "Fire Salamander Scales",
   "item.domixs-creatures.spectral_bat_wing": "Spectral Bat Wing",
@@ -150,6 +158,10 @@
   "item.domixs-creatures.iron_shackle": "Iron Shackle",
   "item.domixs-creatures.cave_wyvern_scale": "Cave Wyvern Scale",
   "item.domixs-creatures.glass_jar": "Glass Jar",
+  "item.domixs-creatures.komodo_dragon_venom_bottle": "Bottle of Komodo Dragon Venom",
+  "item.domixs-creatures.blowgun": "Blowgun",
+  "item.domixs-creatures.crow_feather": "Crow Feather",
+  "item.domixs-creatures.crow_feather_cape": "Crow Feather Cape",
 
   "item.domixs-creatures.marshmallow": "Marshmallow",
   "item.domixs-creatures.marshmallow_stick": "Marshmallow on a Stick",
@@ -158,7 +170,7 @@
 
   "item.domixs-creatures.eraser": "Eraser",
 
-  "item.domixs-creatures.guide_book": "Guide Book",
+  "item.domixs-creatures.guide_book": "Guidebook",
   "item.domixs-creatures.magnet": "Magnet",
 
   "item.domixs-creatures.raw_magnetite": "Raw Magnetite",
@@ -234,6 +246,8 @@
   "domixs-creatures.tooltip.command_flute.mode.sit": "Mode: SIT",
   "domixs-creatures.tooltip.command_flute.mode.follow": "Mode: FOLLOW",
 
+  "domixs-creatures.tooltip.quill.effect": "Effect: ",
+  "domixs-creatures.tooltip.quill.duration": "Duration: ",
   "domixs-creatures.tooltip.passive_ability": "Passive Ability: ",
   "domixs-creatures.tooltip.armor_set_bonus": "Set Bonus: ",
   "domixs-creatures.tooltip.macahuitl_ability_desc": "15% chance to apply bleeding",
@@ -264,6 +278,7 @@
   "block.domixs-creatures.barnacle_block": "Barnacle",
   "block.domixs-creatures.crocodile_egg": "Crocodile Egg",
   "block.domixs-creatures.penguin_egg": "Penguin Egg",
+  "block.domixs-creatures.komodo_dragon_egg": "Komodo Dragon Egg",
   "block.domixs-creatures.pile_of_sticks_block": "Pile of Sticks Block",
   "block.domixs-creatures.sawdust_block": "Sawdust Block",
   "block.domixs-creatures.molehill_block": "Molehill",
@@ -402,6 +417,8 @@
 
   "block_entity.domixs_creatures.fish_trap": "Fish Trap",
 
+  "enchantment.domixs-creatures.recovery": "Recovery",
+
   "sounds.domixs-creatures.zap": "Zap",
 
   "sounds.domixs-creatures.eel_attack": "Eel attacks",
@@ -423,7 +440,13 @@
   "sounds.domixs-creatures.fire_salamander_hurt": "Fire salamander hurts",
   "sounds.domixs-creatures.fire_salamander_death": "Fire salamander dies",
 
+  "sounds.domixs-creatures.vine_grab": "Vine grabs",
   "sounds.domixs-creatures.vine_hurt": "Vine hurts",
+  "sounds.domixs-creatures.vine_death": "Vine dies",
+
+  "sounds.domixs-creatures.shaman_hurt": "Shaman hurts",
+  "sounds.domixs-creatures.shaman_death": "Shaman dies",
+  "sounds.domixs-creatures.shaman_ambient": "Shaman murmurs",
 
   "sounds.domixs-creatures.tiger_hurt": "Tiger hurts",
 
@@ -453,10 +476,22 @@
 
   "sounds.domixs-creatures.termite_eat": "Termite eats",
 
+  "sounds.domixs-creatures.crow_ambient": "Crow caws",
+  "sounds.domixs-creatures.crow_hurt": "Crow hurts",
+  "sounds.domixs-creatures.crow_alert": "Crow warning caw",
+
+  "sounds.domixs-creatures.owl_ambient": "Owl hoots",
+  "sounds.domixs-creatures.owl_hurt": "Owl hurts",
+  "sounds.domixs-creatures.owl_death": "Owl dies",
+
+  "sounds.domixs-creatures.pigeon_ambient": "Pigeon coos",
+
   "sounds.domixs-creatures.conch_shell_use": "Conch shell plays",
   "sounds.domixs-creatures.copper_trumpet_plays": "Trumpet plays",
   "sounds.domixs-creatures.command_flute_sit": "Flute sit command",
   "sounds.domixs-creatures.command_flute_follow": "Flute follow command",
+
+  "sounds.domixs-creatures.blowgun_use": "Blowgun fires",
 
   "sounds.domixs-creatures.coconut_land": "Coconut lands",
 
@@ -525,6 +560,8 @@
 
   "message.domixs-creatures.action.sitting": "is Sitting",
   "message.domixs-creatures.action.following": "is Following",
+  "message.domixs-creatures.action.guarding": "is Guarding",
+  "message.domixs-creatures.action.not_guarding": "is no longer Guarding",
   "message.domixs-creatures.command_flute.mode_switch": "Flute Mode: ",
   "message.domixs-creatures.command_flute.mode.sit": "Sit",
   "message.domixs-creatures.command_flute.mode.follow": "Follow",
@@ -550,6 +587,10 @@
   "tag.item.domixs-creatures.hyena_for_breeding": "Hyena for Breeding",
   "tag.item.domixs-creatures.rat_for_breeding": "Rat for Breeding",
   "tag.item.domixs-creatures.penguin_for_breeding": "Penguin for Breeding",
+  "tag.item.domixs-creatures.komodo_dragon_for_breeding": "Komodo Dragon for Breeding",
+  "tag.item.domixs-creatures.crow_for_breeding": "Crow for Breeding",
+  "tag.item.domixs-creatures.pigeon_for_breeding": "Pigeon for Breeding",
+  "tag.item.domixs-creatures.owl_for_breeding": "Owl for Breeding",
 
   "tag.item.domixs-creatures.hermit_crab_tempt": "Hermit Crab Tempt",
 
@@ -570,6 +611,13 @@
   "tag.item.domixs-creatures.net_blocks": "Net Blocks",
   "tag.item.domixs-creatures.table_cloth_blocks": "Table Cloth Blocks",
   "tag.item.domixs-creatures.hollow_logs": "Hollow Logs",
+  "tag.item.domixs-creatures.crafts_guidebook": "Crafts Guidebook",
+
+  "tag.item.domixs-creatures.enchantable.blowgun": "Blowgun",
+
+  "guide.category.domixs-creatures.guide_book.entities": "§lEntities",
+  "guide.category.domixs-creatures.guide_book.items": "§lItems",
+  "guide.category.domixs-creatures.guide_book.blocks": "§lBlocks",
 
   "guide.title.domixs-creatures.arapaima": "§lArapaima",
   "guide.title.domixs-creatures.beaver": "§lBeaver",
@@ -589,7 +637,11 @@
   "guide.title.domixs-creatures.termite": "§lTermite",
   "guide.title.domixs-creatures.ant": "§lAnt",
   "guide.title.domixs-creatures.anteater": "§lAnteater",
+  "guide.title.domixs-creatures.crow": "§lCrow",
+  "guide.title.domixs-creatures.owl": "§lOwl",
+  "guide.title.domixs-creatures.komodo_dragon": "§lKomodo Dragon",
 
+  "guide.title.domixs-creatures.guidebook": "§lGuidebook",
   "guide.title.domixs-creatures.coconut": "§lCoconut",
   "guide.title.domixs-creatures.conch_shell": "§lConch Shell",
   "guide.title.domixs-creatures.magnet": "§lMagnet",
@@ -601,6 +653,7 @@
   "guide.title.domixs-creatures.bug_net": "§lBug Net",
   "guide.title.domixs-creatures.marshmallow": "§lMarshmallow",
   "guide.title.domixs-creatures.cheese": "§lCheese",
+  "guide.title.domixs-creatures.blowgun": "§lBlowgun",
 
   "guide.title.domixs-creatures.magnet_blocks": "§lMagnet Blocks",
   "guide.title.domixs-creatures.net_block": "§lNet Block",
@@ -626,8 +679,8 @@
   "guide.entry.domixs-creatures.deer_page1": "The deer can be found in the taiga biome.",
   "guide.entry.domixs-creatures.deer_page2_line1": "Deer will eventually shed their antlers, which can be collected.",
   "guide.entry.domixs-creatures.deer_page2_line2": "The antlers will regrow back to their original size after a while.",
-  "guide.entry.domixs-creatures.deer_page3_line1": "There are three sizes of antlers: Small, Medium, Large.",
-  "guide.entry.domixs-creatures.deer_page3_line2": "If a deer is killed, it will drop 2 antlers of the corresponding size and raw deer venison.",
+  "guide.entry.domixs-creatures.deer_page2_line3": "There are three sizes of antlers: Small, Medium, Large.",
+  "guide.entry.domixs-creatures.deer_page3": "If a deer is killed, it will drop 2 antlers of the corresponding size and raw deer venison.",
   "guide.entry.domixs-creatures.deer_page4": "2 antlers of the same size can be combined with 1 Leather to craft wearable antlers.",
   "guide.entry.domixs-creatures.deer_page5_line1": "Deer can be bred using wheat.",
   "guide.entry.domixs-creatures.deer_page5_line2": "They can only breed if one has antlers and the other does not.",
@@ -669,7 +722,7 @@
   "guide.entry.domixs-creatures.cave_wyvern_page3": "The wyvern has a powerful poison bite and can breathe poison gas at its targets.",
   "guide.entry.domixs-creatures.cave_wyvern_page4": "If killed, the wyvern drops its scales, which can be used to craft the wyvern scale armor.",
   "guide.entry.domixs-creatures.iguana_page1": "The iguana can be found in jungle biomes.",
-  "guide.entry.domixs-creatures.iguana_page2_line1": "Iguanas can be seen basking in the sun during noon.",
+  "guide.entry.domixs-creatures.iguana_page2_line1": "Iguanas can be seen basking in the sun at noon.",
   "guide.entry.domixs-creatures.iguana_page2_line2": "They can be bred with apples and tamed with jungle leaves.",
   "guide.entry.domixs-creatures.iguana_page3_line1": "Once tamed, the iguana can be commanded to sit or follow using a stick.",
   "guide.entry.domixs-creatures.iguana_page3_line2": "It can also be equipped on the shoulder with §6§lright-click§r using an empty hand (1 per shoulder)",
@@ -689,15 +742,35 @@
   "guide.entry.domixs-creatures.ant_page3": "If the queen's nest is broken, it will slowly move around trying to look for a new empty nest.",
   "guide.entry.domixs-creatures.ant_page4_line1": "The workers will look for nearby leaves.",
   "guide.entry.domixs-creatures.ant_page4_line2": "Once a worker finds leaves, it will break them and carry them back to the nest.",
-  "guide.entry.domixs-creatures.ant_page5": "The soldiers will wander around the hill and will attack termites that get near, or anything that attacks the ants.",
-  "guide.entry.domixs-creatures.ant_page6": "If the soldier gets below half health, it will retreat inside the nest to regenerate.",
-  "guide.entry.domixs-creatures.ant_page7": "Ants can be collected with the glass jar.",
+  "guide.entry.domixs-creatures.ant_page5_line1": "The soldiers will wander around the hill and will attack termites that get near, or anything that attacks the ants.",
+  "guide.entry.domixs-creatures.ant_page5_line2": "If the soldier gets below half health, it will retreat inside the nest to regenerate.",
+  "guide.entry.domixs-creatures.ant_page6": "Ants can be collected with the glass jar.",
   "guide.entry.domixs-creatures.worm_page1": "The worm can be found in most temperate biomes.",
   "guide.entry.domixs-creatures.worm_page2": "It spawns during rain on the following blocks:",
   "guide.entry.domixs-creatures.worm_page3": "Worms can be collected with the glass jar, which then can be used on dirt and farmland blocks to turn them into a rich variant.",
   "guide.entry.domixs-creatures.worm_page4": "If killed, it drops the worm item, which can be eaten but has a chance to apply the hunger effect.",
   "guide.entry.domixs-creatures.anteater_page1": "The anteater can be found in jungle biomes.",
   "guide.entry.domixs-creatures.anteater_page2": "It will attack any termites or ants nearby, but will stop attacking if its health gets below half.",
+  "guide.entry.domixs-creatures.crow_page1": "The crow can be found in the dark oak forest biome.",
+  "guide.entry.domixs-creatures.crow_page2": "Crows can be tamed with wheat seeds and bred with sweet/glow berries.",
+  "guide.entry.domixs-creatures.crow_page3_line1": "A tamed crow can be set to sit or follow with a stick. It can also be set to guard using §6§lshift§r + §6§lright-click§r with a stick.",
+  "guide.entry.domixs-creatures.crow_page3_line2": "It can be placed on your shoulder using §6§lright-click§r with an empty hand.",
+  "guide.entry.domixs-creatures.crow_page4_line1": "When guarding, a crow will caw loudly if a hostile creature gets into its line of sight in a 10 block radius.",
+  "guide.entry.domixs-creatures.crow_page4_line2": "Crows will attack nearby worms.",
+  "guide.entry.domixs-creatures.crow_page5": "Crows will occasionally clean their feathers. When doing so, there is a 20% chance that one of their feathers will drop.",
+  "guide.entry.domixs-creatures.crow_page6": "Crow feathers can be used to craft a cosmetic crow feather cape.",
+  "guide.entry.domixs-creatures.owl_page1": "The owl can be found in dark oak forests and taiga biomes.",
+  "guide.entry.domixs-creatures.owl_page2": "It can be tamed with rabbit feet and bred with worms.",
+  "guide.entry.domixs-creatures.owl_page3_line1": "Tamed owls can be set to sit or follow with an empty hand.",
+  "guide.entry.domixs-creatures.owl_page3_line2": "Owls will attack nearby rats and rabbits.",
+  "guide.entry.domixs-creatures.owl_page4": "Tamed owls near an enchanting table give their owner an 8% chance for treasure enchantments. These are normally unavailable in the table. While useful, this chance also includes curse enchantments.",
+  "guide.entry.domixs-creatures.komodo_dragon_page1": "The Komodo dragon can be found in the sparse jungle biome.",
+  "guide.entry.domixs-creatures.komodo_dragon_page2": "It can be tamed with rotten flesh and bred with beef.",
+  "guide.entry.domixs-creatures.komodo_dragon_page3": "After breeding, one of the komodos will place 1-3 eggs on one of the following blocks:",
+  "guide.entry.domixs-creatures.komodo_dragon_page4_line1": "Once tamed, the Komodo can be saddled and ridden.",
+  "guide.entry.domixs-creatures.komodo_dragon_page4_line2": "Komodos can be seen basking in the sun at noon.",
+  "guide.entry.domixs-creatures.komodo_dragon_page5": "After a while, venom will build up in the komodo's mouth. This can be collected with an empty glass bottle and used to coat porcupine quills.",
+  "guide.entry.domixs-creatures.komodo_dragon_page6": "Komodos hunt pigs, sheep, boars, and deer, applying bleeding on hit. They don't attack players unless hit first.",
 
   "guide.entry.domixs-creatures.coconut_page1_line1": "Coconuts can be found growing on palm trees in beach biomes. They can be knocked down with a projectile.",
   "guide.entry.domixs-creatures.coconut_page1_line2": "To split a coconut, simply §6§lright-click§r it with an axe. This will yield 2 coconut slices.",
@@ -727,6 +800,15 @@
   "guide.entry.domixs-creatures.marshmallow_page3": "If you hold it on the campfire for too long, the marshmallow will get burnt.",
   "guide.entry.domixs-creatures.cheese_page1": "A cheese wheel can be crafted by combining 3 salt with 3 milk buckets.",
   "guide.entry.domixs-creatures.cheese_page2": "The cheese wheel can be placed as a block. You can take cheese pieces from it using §6§lright-click§r.",
+  "guide.entry.domixs-creatures.blowgun_page1": "The blowgun can be crafted using bamboo and string.",
+  "guide.entry.domixs-creatures.blowgun_page2": "It uses porcupine quills as ammo.",
+  "guide.entry.domixs-creatures.blowgun_page3": "The blowgun has a special enchantment, §6§lrecovery§r, which has a 10% chance to not consume ammo. This increases by another 10% at level 2.",
+  "guide.entry.domixs-creatures.blowgun_page4": "Books with the §6§lrecovery§r enchantment can be found in jungle and aztec temple chests, or by enchanting the blowgun in the enchanting table.",
+
+  "guide.entry.domixs-creatures.guidebook_page1_line1": "The guidebook contains information about creatures, items, and blocks.",
+  "guide.entry.domixs-creatures.guidebook_page1_line2": "Hold the guidebook and look at a creature, or hold it with an item in your off-hand.",
+  "guide.entry.domixs-creatures.guidebook_page1_line3": "If a magnifying glass icon appears, §6§lright-click§r to write the entry.",
+  "guide.entry.domixs-creatures.guidebook_page2": "Entries can be found in their respective categories inside the book.",
 
   "guide.entry.domixs-creatures.magnet_blocks_page1": "There are two types of magnet blocks: negative and positive.",
   "guide.entry.domixs-creatures.magnet_blocks_page2": "When powered by redstone, the negative magnet pushes iron items and entities with iron armor, while the positive magnet pulls them.",
@@ -736,22 +818,10 @@
   "guide.entry.domixs-creatures.rich_dirt_page1": "Rich dirt can be made by collecting worms into a jar and putting them into normal dirt using §6§lright-click§r with the jar of worms.",
   "guide.entry.domixs-creatures.rich_dirt_page2": "It can be tilled with a hoe to make rich farmland. Any crop planted on rich farmland will grow twice as fast.",
 
-
-  "category.domixs-creatures.general": "Domix's Creatures",
-  "key.domixs-creatures.open_config": "Open Config",
-
-  "domixs-creatures.config.title": "Domix's Creatures Config",
-  "domixs-creatures.config.category.general": "Domix's Creatures",
-
-  "domixs-creatures.config.option.enableSleepParticles": "Sleep Particle Spawning",
-  "domixs-creatures.config.option.enableSleepParticles.tooltip": "If disabled the ZZZ particles won't spawn above sleeping entities",
-
-  "domixs-creatures.config.option.enableCoconutBonkSound": "Coconut 'Bonk' Sound",
-  "domixs-creatures.config.option.enableCoconutBonkSound.tooltip": "If enabled, coconuts will play a 'bonk' sound when they land.",
-
   "domixs-creatures.message.riding_disabled": "Riding Disabled!",
 
   "gamerule.enableWaterStriderRiding": "Enable Water Strider Riding",
+  "gamerule.enableKomodoDragonRiding": "Enable Komodo Dragon Riding",
   "gamerule.enableFireSalamanderSmelting": "Enable Fire Salamander Smelting",
   "gamerule.enableFireSalamanderMagmaAttack": "Enable Fire Salamander Magma Attack",
   "gamerule.enableSpectralBatScreech": "Enable Spectral Bat Screech",

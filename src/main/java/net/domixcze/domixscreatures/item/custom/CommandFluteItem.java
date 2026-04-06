@@ -1,7 +1,6 @@
 package net.domixcze.domixscreatures.item.custom;
 
 import net.domixcze.domixscreatures.component.ModDataComponents;
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.custom.RatEntity;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModGameRules;

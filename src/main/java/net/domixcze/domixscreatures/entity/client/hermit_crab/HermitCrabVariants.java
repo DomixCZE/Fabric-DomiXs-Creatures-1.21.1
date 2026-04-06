@@ -2,7 +2,10 @@ package net.domixcze.domixscreatures.entity.client.hermit_crab;
 
 public enum HermitCrabVariants {
     PINK(0, "pink"),
-    BLUE(1, "blue");
+    BLUE(1, "blue"),
+    YELLOW(2, "yellow"),
+    BROWN(3, "brown"),
+    WHITE(4,"white");
 
     private static final HermitCrabVariants[] BY_ID = values();
     private final int id;

@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.item.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.Chainable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Chainable;
 import net.domixcze.domixscreatures.entity.custom.ChainAnchorEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

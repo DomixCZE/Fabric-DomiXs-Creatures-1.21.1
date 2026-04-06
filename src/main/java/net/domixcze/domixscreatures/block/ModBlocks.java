@@ -33,6 +33,9 @@ public class ModBlocks {
     public static final Block PENGUIN_EGG = registerBlock("penguin_egg",
             new PenguinEggBlock(AbstractBlock.Settings.create().strength(0.5F).ticksRandomly().sounds(BlockSoundGroup.POINTED_DRIPSTONE).pistonBehavior(PistonBehavior.DESTROY)));
 
+    public static final Block KOMODO_DRAGON_EGG = registerBlock("komodo_dragon_egg",
+            new KomodoDragonEggBlock(AbstractBlock.Settings.create().strength(0.5F).ticksRandomly().sounds(BlockSoundGroup.POINTED_DRIPSTONE).pistonBehavior(PistonBehavior.DESTROY)));
+
     public static final Block PILE_OF_STICKS_BLOCK = registerBlock("pile_of_sticks_block",
             new PileOfSticksBlock(AbstractBlock.Settings.create().mapColor(MapColor.SPRUCE_BROWN).sounds(BlockSoundGroup.ROOTS).nonOpaque()));
 

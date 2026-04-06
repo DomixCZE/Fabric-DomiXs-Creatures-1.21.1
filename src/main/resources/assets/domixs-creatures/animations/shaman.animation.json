@@ -129,7 +129,61 @@
 					}
 				}
 			}
+		},
+		"animation.shaman.cast": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"head": {
+					"rotation": {
+						"vector": [-10, 0, 0]
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [7.5, 0, -130]
+						},
+						"0.25": {
+							"vector": [-7.5, 0, -130]
+						},
+						"0.5": {
+							"vector": [7.5, 0, -130]
+						},
+						"0.75": {
+							"vector": [-7.5, 0, -130]
+						},
+						"1.0": {
+							"vector": [7.5, 0, -130]
+						}
+					},
+					"position": {
+						"vector": [1, 0, 0]
+					}
+				},
+				"right_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [7.5, 0, 130]
+						},
+						"0.25": {
+							"vector": [-7.5, 0, 130]
+						},
+						"0.5": {
+							"vector": [7.5, 0, 130]
+						},
+						"0.75": {
+							"vector": [-7.5, 0, 130]
+						},
+						"1.0": {
+							"vector": [7.5, 0, 130]
+						}
+					},
+					"position": {
+						"vector": [-1, 0, 0]
+					}
+				}
+			}
 		}
-	},
-	"geckolib_format_version": 2
+	}
 }

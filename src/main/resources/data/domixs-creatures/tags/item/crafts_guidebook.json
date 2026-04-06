@@ -1,0 +1,22 @@
+{
+  "values": [
+    "domixs-creatures:small_antler",
+    "domixs-creatures:medium_antler",
+    "domixs-creatures:large_antler",
+    "domixs-creatures:crocodile_scale",
+    "domixs-creatures:arapaima_scale_black",
+    "domixs-creatures:arapaima_scale_green",
+    "domixs-creatures:cave_wyvern_scale",
+    "domixs-creatures:crocodile_tooth",
+    "domixs-creatures:shark_tooth",
+    "domixs-creatures:raccoon_tail",
+    "domixs-creatures:quill",
+    "domixs-creatures:skull",
+    "domixs-creatures:water_lily",
+    "domixs-creatures:bark",
+    "domixs-creatures:sawdust",
+    "domixs-creatures:coconut_block",
+    "domixs-creatures:truffle",
+    "domixs-creatures:silk"
+  ]
+}

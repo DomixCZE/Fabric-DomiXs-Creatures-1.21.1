@@ -1,0 +1,61 @@
+{
+  "entry_id": "domixs-creatures:arapaima_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.arapaima",
+  "button_text": "guide.title.domixs-creatures.arapaima",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:arapaima"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.arapaima_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/arapaima_icon_1.png",
+              "width": 504,
+              "height": 217
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/arapaima_icon_2.png",
+              "width": 504,
+              "height": 217
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/arapaima_icon_3.png",
+              "width": 504,
+              "height": 217
+            }
+          ],
+          "x": 60,
+          "y": 110,
+          "scale": 0.2
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.arapaima_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:arapaima_scale_black",
+          "x": 30,
+          "y": 100,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:arapaima_scale_green",
+          "x": 90,
+          "y": 100,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

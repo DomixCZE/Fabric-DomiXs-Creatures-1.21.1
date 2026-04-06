@@ -1,6 +1,5 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.entity.ModEntities;
 import net.domixcze.domixscreatures.entity.client.caterpillar.CaterpillarVariants;
 import net.domixcze.domixscreatures.item.ModItems;

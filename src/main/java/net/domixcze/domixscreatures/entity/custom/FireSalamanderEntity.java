@@ -1,8 +1,8 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.FireSalamanderMagmaBallAttackGoal;
-import net.domixcze.domixscreatures.entity.ai.FireSalamanderMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.FireSalamanderMagmaBallAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.FireSalamanderMeleeAttackGoal;
 import net.domixcze.domixscreatures.entity.client.fire_salamander.FireSalamanderVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModGameRules;

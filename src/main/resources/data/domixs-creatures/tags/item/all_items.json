@@ -48,6 +48,7 @@
     "domixs-creatures:sawdust",
     "domixs-creatures:bark",
     "domixs-creatures:water_lily",
+    "domixs-creatures:clovers",
     "domixs-creatures:warden_tendril",
     "domixs-creatures:small_antler",
     "domixs-creatures:medium_antler",
@@ -149,7 +150,6 @@
     "domixs-creatures:mistletoe",
     "domixs-creatures:raw_carp",
     "domixs-creatures:cooked_carp",
-
     "domixs-creatures:gold_coin",
     "domixs-creatures:coin_pile_block",
     "domixs-creatures:gold_pile_block",
@@ -181,6 +181,10 @@
     "domixs-creatures:termite_mound",
     "domixs-creatures:termite_nest_block",
     "domixs-creatures:ant_mound",
-    "domixs-creatures:ant_nest_block"
+    "domixs-creatures:ant_nest_block",
+    "domixs-creatures:komodo_dragon_egg",
+    "domixs-creatures:blowgun",
+    "domixs-creatures:crow_feather",
+    "domixs-creatures:crow_feather_cape"
   ]
 }

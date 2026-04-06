@@ -2,10 +2,10 @@ package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.block.ModBlocks;
 import net.domixcze.domixscreatures.block.entity.AbstractColonyBlockEntity;
-import net.domixcze.domixscreatures.entity.ai.AntMeleeAttackGoal;
-import net.domixcze.domixscreatures.entity.ai.ColonyMember;
-import net.domixcze.domixscreatures.entity.ai.ReturnToColonyGoal;
-import net.domixcze.domixscreatures.entity.ai.StayNearColonyGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.entity.AntMeleeAttackGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.ColonyMember;
+import net.domixcze.domixscreatures.entity.ai.goal.ReturnToColonyGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.StayNearColonyGoal;
 import net.domixcze.domixscreatures.entity.client.ant.AntVariants;
 import net.domixcze.domixscreatures.sound.ModSounds;
 import net.domixcze.domixscreatures.util.ModGameRules;

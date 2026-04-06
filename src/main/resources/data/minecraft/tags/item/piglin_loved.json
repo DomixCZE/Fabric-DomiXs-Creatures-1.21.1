@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "domixs-creatures:gold_coin",
+    "domixs-creatures:coin_pile_block",
+    "domixs-creatures:gold_pile_block"
+  ]
+}

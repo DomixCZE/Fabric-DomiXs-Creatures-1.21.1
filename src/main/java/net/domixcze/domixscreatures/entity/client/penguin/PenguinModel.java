@@ -5,7 +5,9 @@ import net.domixcze.domixscreatures.entity.custom.PenguinEntity;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
 
 import java.text.Normalizer;
 
@@ -52,23 +54,31 @@ public class PenguinModel extends GeoModel<PenguinEntity> {
     }
 
     @Override
-    public void setCustomAnimations(PenguinEntity entity, long instanceId, AnimationState<PenguinEntity> animationState) {
-        super.setCustomAnimations(entity, instanceId, animationState);
+    public void setCustomAnimations(PenguinEntity animatable, long instanceId, AnimationState<PenguinEntity> animationState) {
+        super.setCustomAnimations(animatable, instanceId, animationState);
+
+        GeoBone head = this.getAnimationProcessor().getBone("head_rot");
+        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+
+        if (head != null && entityData != null) {
+            head.setRotX(entityData.headPitch() * 0.017453292F);
+            head.setRotY(entityData.netHeadYaw() * 0.017453292F);
+        }
 
         GeoBone bone = this.getAnimationProcessor().getBone("penguin");
         if (bone == null) return;
 
-        if (entity.isSliding()) {
+        if (animatable.isSliding()) {
             bone.setRotX((float) Math.toRadians(-90));
             return;
         }
 
-        if (!entity.isTouchingWater()) {
+        if (!animatable.isTouchingWater()) {
             bone.setRotX(0);
             return;
         }
 
-        float pitchRadians = -entity.getPitch(animationState.getPartialTick()) * ((float)Math.PI / 180F);
+        float pitchRadians = -animatable.getPitch(animationState.getPartialTick()) * ((float)Math.PI / 180F);
 
         float baseSwimTilt = (float) Math.toRadians(-90);
 

@@ -130,8 +130,13 @@
 					]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "hippo",
+					"pivot": [0, 17, -16]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 17, -16],
 					"cubes": [
 						{

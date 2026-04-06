@@ -12,6 +12,8 @@ public class ModSounds {
 
     public static final SoundEvent CONCH_SHELL_USE = registerSoundEvent("conch_shell_use");
 
+    public static final SoundEvent BLOWGUN_USE = registerSoundEvent("blowgun_use");
+
     public static final SoundEvent COMMAND_FLUTE_SIT = registerSoundEvent("command_flute_sit");
     public static final SoundEvent COMMAND_FLUTE_FOLLOW = registerSoundEvent("command_flute_follow");
 
@@ -44,6 +46,12 @@ public class ModSounds {
     public static final SoundEvent HIPPO_HURT = registerSoundEvent("hippo_hurt");
 
     public static final SoundEvent VINE_HURT = registerSoundEvent("vine_hurt");
+    public static final SoundEvent VINE_DEATH = registerSoundEvent("vine_death");
+    public static final SoundEvent VINE_GRAB = registerSoundEvent("vine_grab");
+
+    public static final SoundEvent SHAMAN_AMBIENT = registerSoundEvent("shaman_ambient");
+    public static final SoundEvent SHAMAN_HURT = registerSoundEvent("shaman_hurt");
+    public static final SoundEvent SHAMAN_DEATH = registerSoundEvent("shaman_death");
 
     public static final SoundEvent TIGER_HURT = registerSoundEvent("tiger_hurt");
 
@@ -73,10 +81,17 @@ public class ModSounds {
 
     public static final SoundEvent TERMITE_EAT = registerSoundEvent("termite_eat");
 
-    public static final SoundEvent COCONUT_LAND = registerSoundEvent("coconut_land");
+    public static final SoundEvent CROW_AMBIENT = registerSoundEvent("crow_ambient");
+    public static final SoundEvent CROW_HURT = registerSoundEvent("crow_hurt");
+    public static final SoundEvent CROW_ALERT = registerSoundEvent("crow_alert");
 
-    public static final SoundEvent GUIDE_BOOK_ENTRY = registerSoundEvent("guide_book_entry");
-    public static final SoundEvent GUIDE_BOOK_BOOKMARK = registerSoundEvent("guide_book_bookmark");
+    public static final SoundEvent OWL_AMBIENT = registerSoundEvent("owl_ambient");
+    public static final SoundEvent OWL_HURT = registerSoundEvent("owl_hurt");
+    public static final SoundEvent OWL_DEATH = registerSoundEvent("owl_death");
+
+    public static final SoundEvent PIGEON_AMBIENT = registerSoundEvent("pigeon_ambient");
+
+    public static final SoundEvent COCONUT_LAND = registerSoundEvent("coconut_land");
 
     public static final SoundEvent MAGNET_IN = registerSoundEvent("magnet_in");
     public static final SoundEvent MAGNET_OUT = registerSoundEvent("magnet_out");

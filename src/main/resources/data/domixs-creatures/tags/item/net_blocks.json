@@ -1,6 +1,7 @@
 {
   "values": [
     "domixs-creatures:white_net_block",
+    "domixs-creatures:light_gray_net_block",
     "domixs-creatures:gray_net_block",
     "domixs-creatures:black_net_block",
     "domixs-creatures:yellow_net_block",
@@ -8,7 +9,11 @@
     "domixs-creatures:red_net_block",
     "domixs-creatures:brown_net_block",
     "domixs-creatures:green_net_block",
+    "domixs-creatures:lime_net_block",
     "domixs-creatures:blue_net_block",
+    "domixs-creatures:cyan_net_block",
+    "domixs-creatures:light_blue_net_block",
+    "domixs-creatures:magenta_net_block",
     "domixs-creatures:purple_net_block",
     "domixs-creatures:pink_net_block"
   ]

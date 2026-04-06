@@ -1,0 +1,64 @@
+{
+  "entry_id": "domixs-creatures:cave_wyvern_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.cave_wyvern",
+  "button_text": "guide.title.domixs-creatures.cave_wyvern",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:cave_wyvern"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.cave_wyvern_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/cave_wyvern_icon_1.png",
+              "width": 710,
+              "height": 450
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/cave_wyvern_icon_2.png",
+              "width": 710,
+              "height": 450
+            }
+          ],
+          "x": 55,
+          "y": 110,
+          "scale": 0.15
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.cave_wyvern_page2"
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.cave_wyvern_page3"
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.cave_wyvern_page4"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:cave_wyvern_scale",
+          "x": 30,
+          "y": 120,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

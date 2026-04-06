@@ -16,8 +16,13 @@
 					"pivot": [0, 16, 0]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "moose",
+					"pivot": [0, 16.5, -9]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 16.5, -9]
 				},
 				{

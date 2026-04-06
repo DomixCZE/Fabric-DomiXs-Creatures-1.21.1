@@ -1,7 +1,7 @@
 package net.domixcze.domixscreatures.entity.custom;
 
-import net.domixcze.domixscreatures.entity.ai.Beachable;
-import net.domixcze.domixscreatures.entity.ai.BeachedGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Beachable;
+import net.domixcze.domixscreatures.entity.ai.goal.BeachedGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.control.AquaticMoveControl;
 import net.minecraft.entity.ai.control.YawAdjustingLookControl;

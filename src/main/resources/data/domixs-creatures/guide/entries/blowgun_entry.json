@@ -1,0 +1,54 @@
+{
+  "entry_id": "domixs-creatures:blowgun_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.blowgun",
+  "button_text": "guide.title.domixs-creatures.blowgun",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:blowgun"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.blowgun_page1"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:blowgun",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 90,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.blowgun_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:quill",
+          "x": 80,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "",
+        "",
+        "guide.entry.domixs-creatures.blowgun_page3"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.blowgun_page4"
+      ]
+    }
+  ]
+}

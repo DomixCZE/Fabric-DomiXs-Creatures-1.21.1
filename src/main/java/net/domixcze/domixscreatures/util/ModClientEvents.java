@@ -1,6 +1,6 @@
 package net.domixcze.domixscreatures.util;
 
-import net.domixcze.domixscreatures.entity.ai.Chainable;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Chainable;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.MinecraftClient;

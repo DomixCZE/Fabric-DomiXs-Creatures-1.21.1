@@ -1,7 +1,6 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.DomiXsCreatures;
-import net.domixcze.domixscreatures.config.ModConfig;
 import net.domixcze.domixscreatures.effect.ModEffects;
 import net.domixcze.domixscreatures.entity.client.hermit_crab.HermitCrabShapes;
 import net.domixcze.domixscreatures.entity.client.hermit_crab.HermitCrabVariants;
@@ -39,6 +38,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -101,15 +101,26 @@ public class HermitCrabEntity extends AnimalEntity implements GeoEntity {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         entityData = super.initialize(world, difficulty, spawnReason, entityData);
 
-        if (spawnReason == SpawnReason.NATURAL || spawnReason == SpawnReason.COMMAND || spawnReason == SpawnReason.SPAWN_EGG || spawnReason == SpawnReason.CHUNK_GENERATION || spawnReason == SpawnReason.BREEDING) {
-            RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
+        int shapeRoll = this.random.nextInt(3);
+        if (shapeRoll == 0) {
+            this.setShape(HermitCrabShapes.ROUND);
+        } else if (shapeRoll == 1) {
+            this.setShape(HermitCrabShapes.POINTY);
+        } else {
+            this.setShape(HermitCrabShapes.FLAT);
+        }
 
-            if (biomeEntry.isIn(ModTags.Biomes.HERMIT_CRAB_SPAWNS_IN)) {
-                this.setVariant(random.nextBoolean() ? HermitCrabVariants.BLUE : HermitCrabVariants.PINK);
-            } else {
-                this.setVariant(HermitCrabVariants.PINK);
-            }
-            this.setShape(random.nextBoolean() ? HermitCrabShapes.ROUND : HermitCrabShapes.POINTY);
+        int variantRoll = this.random.nextInt(5);
+        if (variantRoll == 0) {
+            this.setVariant(HermitCrabVariants.BLUE);
+        } else if (variantRoll == 1) {
+            this.setVariant(HermitCrabVariants.PINK);
+        } else if (variantRoll == 2) {
+            this.setVariant(HermitCrabVariants.YELLOW);
+        } else if (variantRoll == 3) {
+            this.setVariant(HermitCrabVariants.BROWN);
+        } else {
+            this.setVariant(HermitCrabVariants.WHITE);
         }
 
         return entityData;

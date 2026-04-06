@@ -1,0 +1,59 @@
+{
+  "entry_id": "domixs-creatures:marshmallow_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.marshmallow",
+  "button_text": "guide.title.domixs-creatures.marshmallow",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:marshmallow"],
+  "pages": [
+    {
+      "text_content": [
+        "",
+        "guide.entry.domixs-creatures.marshmallow_page1"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:marshmallow",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 100,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.marshmallow_page2"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:marshmallow_stick",
+          "grid_size": "2x2",
+          "x": 50,
+          "y": 100,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.marshmallow_page3"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "ids": [
+            "domixs-creatures:marshmallow_stick",
+            "domixs-creatures:cooked_marshmallow_stick",
+            "domixs-creatures:burnt_marshmallow_stick"
+          ],
+          "x": 30,
+          "y": 90,
+          "scale": 2.0
+        }
+      ]
+    }
+  ]
+}

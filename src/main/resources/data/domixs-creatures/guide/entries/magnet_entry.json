@@ -1,0 +1,32 @@
+{
+  "entry_id": "domixs-creatures:magnet_entry",
+  "category": "items",
+  "title": "guide.title.domixs-creatures.magnet",
+  "button_text": "guide.title.domixs-creatures.magnet",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:magnet"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.magnet_page1"
+      ],
+      "images": [
+        {
+          "type": "crafting_recipe",
+          "recipe": "domixs-creatures:magnet",
+          "grid_size": "3x3",
+          "x": 50,
+          "y": 110,
+          "scale": 1.0
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.magnet_page2_line1",
+        "",
+        "guide.entry.domixs-creatures.magnet_page2_line2"
+      ]
+    }
+  ]
+}

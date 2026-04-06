@@ -1,10 +1,10 @@
 package net.domixcze.domixscreatures.entity.custom;
 
 import net.domixcze.domixscreatures.entity.ModEntities;
-import net.domixcze.domixscreatures.entity.ai.BabyFollowParentGoal;
-import net.domixcze.domixscreatures.entity.ai.SleepGoal;
-import net.domixcze.domixscreatures.entity.ai.Sleepy;
-import net.domixcze.domixscreatures.entity.ai.SnowLayerable;
+import net.domixcze.domixscreatures.entity.ai.goal.BabyFollowParentGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.SleepGoal;
+import net.domixcze.domixscreatures.entity.ai.goal.util.Sleepy;
+import net.domixcze.domixscreatures.entity.ai.goal.util.SnowLayerable;
 import net.domixcze.domixscreatures.entity.client.porcupine.PorcupineVariants;
 import net.domixcze.domixscreatures.util.ModGameRules;
 import net.domixcze.domixscreatures.util.ModTags;
@@ -20,6 +20,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
@@ -133,6 +134,8 @@ public class PorcupineEntity  extends AnimalEntity implements GeoEntity, Sleepy,
 
             for (int i = 0; i < numberOfQuills; ++i) {
                 QuillProjectileEntity quill = new QuillProjectileEntity(world, this.getX(), this.getEyeY() - 0.1, this.getZ());
+
+                quill.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
 
                 Vec3d backwardVec = this.getRotationVec(1.0F).normalize().multiply(-0.4);
 

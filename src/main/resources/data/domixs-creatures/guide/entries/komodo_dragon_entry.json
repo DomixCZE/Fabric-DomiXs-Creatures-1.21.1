@@ -1,0 +1,91 @@
+{
+  "entry_id": "domixs-creatures:komodo_dragon_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.komodo_dragon",
+  "button_text": "guide.title.domixs-creatures.komodo_dragon",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:komodo_dragon"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.komodo_dragon_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/komodo_dragon_icon.png",
+          "x": 50,
+          "y": 100,
+          "width": 492,
+          "height": 214,
+          "scale": 0.2
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.komodo_dragon_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:rotten_flesh",
+          "x": 30,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        },
+        {
+          "type": "item",
+          "id": "minecraft:beef",
+          "x": 80,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.komodo_dragon_page3"
+      ],
+      "images": [
+        {
+          "type": "cycling_item",
+          "tag": "#domixs-creatures:komodo_dragon_egg_hatchable",
+          "x": 60,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.komodo_dragon_page4_line1",
+        "",
+        "guide.entry.domixs-creatures.komodo_dragon_page4_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.komodo_dragon_page5"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "domixs-creatures:komodo_dragon_venom_bottle",
+          "x": 60,
+          "y": 120,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.komodo_dragon_page6"
+      ]
+    }
+  ]
+}

@@ -130,8 +130,13 @@
 					]
 				},
 				{
-					"name": "head",
+					"name": "head_rot",
 					"parent": "hippo",
+					"pivot": [0, 11.5, -12]
+				},
+				{
+					"name": "head",
+					"parent": "head_rot",
 					"pivot": [0, 11.5, -12],
 					"cubes": [
 						{
@@ -219,12 +224,12 @@
 							"origin": [-5.525, 13, -18],
 							"size": [11.05, 1, 2],
 							"uv": {
-								"north": {"uv": [58, 66], "uv_size": [11.05, 1]},
+								"north": {"uv": [58, 66], "uv_size": [11, 1]},
 								"east": {"uv": [12, 51], "uv_size": [2, 1]},
-								"south": {"uv": [0, 67], "uv_size": [11.05, 1]},
+								"south": {"uv": [0, 67], "uv_size": [11, 1]},
 								"west": {"uv": [14, 51], "uv_size": [2, 1]},
-								"up": {"uv": [65.95, 0], "uv_size": [11.05, 2]},
-								"down": {"uv": [65.95, 4], "uv_size": [11.05, -2]}
+								"up": {"uv": [66, 0], "uv_size": [11, 2]},
+								"down": {"uv": [66, 4], "uv_size": [11, -2]}
 							}
 						}
 					]

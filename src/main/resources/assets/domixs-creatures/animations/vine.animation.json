@@ -11,8 +11,13 @@
 							"vector": [7.5, 0, 0]
 						},
 						"1.0": {
-							"vector": [-7.5, 0, 0],
-							"easing": "linear"
+							"pre": {
+								"vector": [-7.5, 0, 0]
+							},
+							"post": {
+								"vector": [-7.5, 0, 0]
+							},
+							"lerp_mode": "catmullrom"
 						},
 						"2.0": {
 							"vector": [7.5, 0, 0]
@@ -25,8 +30,13 @@
 							"vector": [15, 0, 0]
 						},
 						"1.0": {
-							"vector": [-15, 0, 0],
-							"easing": "linear"
+							"pre": {
+								"vector": [-15, 0, 0]
+							},
+							"post": {
+								"vector": [-15, 0, 0]
+							},
+							"lerp_mode": "catmullrom"
 						},
 						"2.0": {
 							"vector": [15, 0, 0]
@@ -39,11 +49,27 @@
 							"vector": [-25, 0, 0]
 						},
 						"1.0": {
-							"vector": [25, 0, 0],
-							"easing": "linear"
+							"pre": {
+								"vector": [25, 0, 0]
+							},
+							"post": {
+								"vector": [25, 0, 0]
+							},
+							"lerp_mode": "catmullrom"
 						},
 						"2.0": {
 							"vector": [-25, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0.3]
+						},
+						"1.0": {
+							"vector": [0, 0, -0.3]
+						},
+						"2.0": {
+							"vector": [0, 0, 0.3]
 						}
 					}
 				},
@@ -53,11 +79,27 @@
 							"vector": [-40, 0, 0]
 						},
 						"1.0": {
-							"vector": [40, 0, 0],
-							"easing": "linear"
+							"pre": {
+								"vector": [40, 0, 0]
+							},
+							"post": {
+								"vector": [40, 0, 0]
+							},
+							"lerp_mode": "catmullrom"
 						},
 						"2.0": {
 							"vector": [-40, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0.6]
+						},
+						"1.0": {
+							"vector": [0, 0, -0.6]
+						},
+						"2.0": {
+							"vector": [0, 0, 0.6]
 						}
 					}
 				}
@@ -113,6 +155,5 @@
 				}
 			}
 		}
-	},
-	"geckolib_format_version": 2
+	}
 }

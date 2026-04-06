@@ -254,6 +254,26 @@ public class ModEntities {
             EntityType.Builder.create(AnteaterEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.8f, 0.8f).build());
 
+    public static final EntityType<KomodoDragonEntity> KOMODO_DRAGON = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "komodo_dragon"),
+            EntityType.Builder.create(KomodoDragonEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(1.0f, 0.8f).build());
+
+    public static final EntityType<CrowEntity> CROW = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "crow"),
+            EntityType.Builder.create(CrowEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.5f, 0.5f).build());
+
+    public static final EntityType<PigeonEntity> PIGEON = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "pigeon"),
+            EntityType.Builder.create(PigeonEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.5f, 0.5f).build());
+
+    public static final EntityType<OwlEntity> OWL = Registry.register(
+            Registries.ENTITY_TYPE, Identifier.of(DomiXsCreatures.MOD_ID, "owl"),
+            EntityType.Builder.create(OwlEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.5f, 0.8f).build());
+
 
 
 

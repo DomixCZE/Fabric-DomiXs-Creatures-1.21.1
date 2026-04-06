@@ -37,6 +37,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CAVE_WYVERN_SPAWN_EGG);
                         entries.add(ModItems.CHEETAH_SPAWN_EGG);
                         entries.add(ModItems.CROCODILE_SPAWN_EGG);
+                        entries.add(ModItems.CROW_SPAWN_EGG);
                         entries.add(ModItems.DEER_SPAWN_EGG);
                         entries.add(ModItems.EEL_SPAWN_EGG);
                         entries.add(ModItems.FIRE_SALAMANDER_SPAWN_EGG);
@@ -47,12 +48,15 @@ public class ModItemGroups {
                         entries.add(ModItems.HIPPO_SPAWN_EGG);
                         entries.add(ModItems.HYENA_SPAWN_EGG);
                         entries.add(ModItems.IGUANA_SPAWN_EGG);
+                        entries.add(ModItems.KOMODO_DRAGON_SPAWN_EGG);
                         entries.add(ModItems.MOLE_SPAWN_EGG);
                         entries.add(ModItems.MOOSE_SPAWN_EGG);
                         entries.add(ModItems.MUD_GOLEM_SPAWN_EGG);
                         entries.add(ModItems.NEON_TETRA_SPAWN_EGG);
+                        entries.add(ModItems.OWL_SPAWN_EGG);
                         entries.add(ModItems.PEACOCK_BASS_SPAWN_EGG);
                         entries.add(ModItems.PENGUIN_SPAWN_EGG);
+                        entries.add(ModItems.PIGEON_SPAWN_EGG);
                         entries.add(ModItems.PIRANHA_SPAWN_EGG);
                         entries.add(ModItems.PORCUPINE_SPAWN_EGG);
                         entries.add(ModItems.RACCOON_SPAWN_EGG);
@@ -72,6 +76,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.CROCODILE_EGG);
                         entries.add(ModBlocks.PENGUIN_EGG);
+                        entries.add(ModBlocks.KOMODO_DRAGON_EGG);
                         entries.add(ModItems.PIRANHA_BUCKET);
                         entries.add(ModItems.NEON_TETRA_BUCKET);
                         entries.add(ModItems.PEACOCK_BASS_BUCKET);
@@ -120,6 +125,7 @@ public class ModItemGroups {
                         entries.add(ModItems.MEDIUM_ANTLER);
                         entries.add(ModItems.LARGE_ANTLER);
                         entries.add(ModItems.RACCOON_TAIL);
+                        entries.add(ModItems.CROW_FEATHER);
                         entries.add(ModItems.QUILL);
                         entries.add(ModItems.UNICORN_DUST);
                         entries.add(ModItems.SKULL);
@@ -147,6 +153,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.WARDEN_TENDRIL);
                         entries.add(ModItems.SONIC_BLOCKERS);
+                        entries.add(ModItems.CROW_FEATHER_CAPE);
                         entries.add(ModItems.ADVENTURER_HAT);
                         entries.add(ModItems.RACCOON_HAT);
                         entries.add(ModItems.SHAMAN_MASK);
@@ -172,8 +179,11 @@ public class ModItemGroups {
                         entries.add(ModItems.SALAMANDER_UPGRADE_SMITHING_TEMPLATE);
 
                         entries.add(ModItems.MACUAHUITL);
+                        entries.add(ModItems.BLOWGUN);
 
                         entries.add(ModItems.GLASS_JAR);
+
+                        entries.add(ModItems.KOMODO_DRAGON_VENOM_BOTTLE);
 
                         entries.add(PotionContentsComponent.createStack(Items.POTION, ModPotions.ECHOLOCATION_POTION));
                         entries.add(PotionContentsComponent.createStack(Items.POTION, ModPotions.ELECTRIFYING_POTION));
@@ -189,13 +199,13 @@ public class ModItemGroups {
                         entries.add(ModBlocks.LIMESTONE_BRICKS);
                         entries.add(ModBlocks.LIMESTONE_BRICK_STAIRS);
                         entries.add(ModBlocks.LIMESTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.CHISELED_LIMESTONE);
-                        entries.add(ModBlocks.LIMESTONE_STATUE);
                         entries.add(ModBlocks.LIMESTONE_BRICK_WALL);
                         entries.add(ModBlocks.MOSSY_LIMESTONE_BRICKS);
                         entries.add(ModBlocks.MOSSY_LIMESTONE_BRICK_STAIRS);
                         entries.add(ModBlocks.MOSSY_LIMESTONE_BRICK_SLAB);
                         entries.add(ModBlocks.MOSSY_LIMESTONE_BRICK_WALL);
+                        entries.add(ModBlocks.CHISELED_LIMESTONE);
+                        entries.add(ModBlocks.LIMESTONE_STATUE);
 
                         entries.add(ModBlocks.TRACK_BLOCK);
                         entries.add(ModBlocks.ACTIVATOR_TRACK_BLOCK);

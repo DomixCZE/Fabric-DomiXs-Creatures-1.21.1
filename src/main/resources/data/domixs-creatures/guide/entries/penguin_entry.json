@@ -1,0 +1,59 @@
+{
+  "entry_id": "domixs-creatures:penguin_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.penguin",
+  "button_text": "guide.title.domixs-creatures.penguin",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:penguin"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.penguin_page1"
+      ],
+      "images": [
+        {
+          "type": "image",
+          "id": "domixs-creatures:textures/gui/guide/entries/penguin_icon.png",
+          "x": 50,
+          "y": 110,
+          "width": 280,
+          "height": 409,
+          "scale": 0.18
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.penguin_page2_line1",
+        "",
+        "",
+        "",
+        "guide.entry.domixs-creatures.penguin_page2_line2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:cod",
+          "x": 60,
+          "y": 50,
+          "scale": 2.0
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:penguin_egg",
+          "x": 30,
+          "y": 135,
+          "scale": 2.0
+        },
+        {
+          "type": "cycling_item",
+          "tag": "#domixs-creatures:penguin_egg_hatchable",
+          "x": 70,
+          "y": 135,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    }
+  ]
+}

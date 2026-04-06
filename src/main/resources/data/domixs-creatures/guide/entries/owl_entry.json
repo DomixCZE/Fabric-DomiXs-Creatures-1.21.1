@@ -1,0 +1,75 @@
+{
+  "entry_id": "domixs-creatures:owl_entry",
+  "category": "entities",
+  "title": "guide.title.domixs-creatures.owl",
+  "button_text": "guide.title.domixs-creatures.owl",
+  "discoverable": true,
+  "unlock_ids": ["domixs-creatures:owl"],
+  "pages": [
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.owl_page1"
+      ],
+      "images": [
+        {
+          "type": "cycling_image",
+          "ids": [
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/owl_icon_1.png",
+              "width": 265,
+              "height": 375
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/owl_icon_2.png",
+              "width": 265,
+              "height": 375
+            },
+            {
+              "id": "domixs-creatures:textures/gui/guide/entries/owl_icon_3.png",
+              "width": 265,
+              "height": 375
+            }
+          ],
+          "x": 50,
+          "y": 100,
+          "scale": 0.2
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.owl_page2"
+      ],
+      "images": [
+        {
+          "type": "item",
+          "id": "minecraft:rabbit_foot",
+          "x": 30,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        },
+        {
+          "type": "item",
+          "id": "domixs-creatures:worm",
+          "x": 80,
+          "y": 100,
+          "scale": 2.0,
+          "slotted": true
+        }
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.owl_page3_line1",
+        "",
+        "guide.entry.domixs-creatures.owl_page3_line2"
+      ]
+    },
+    {
+      "text_content": [
+        "guide.entry.domixs-creatures.owl_page4"
+      ]
+    }
+  ]
+}
